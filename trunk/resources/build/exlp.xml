@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+<project name="ExLP"  basedir="../..">
+
+	<property file="resources/properties/ant.properties"/>
+	<property file="resources/properties/ws.properties"/>
+
+	<property name="src.dir" location="${basedir}/src" />
+	<property name="build.dir" location="${basedir}/bin/" />
+	<property name="dist.dir" location="${basedir}/dist/" />
+	<property name="lib.dir" location="${basedir}/lib" />
+	<property name="rsrc.dir" location="${basedir}/resources" />
+	<property name="xsd.dir" location="${rsrc.dir}/config/xsd" />
+	
+	<!-- Library Definitions: Utils -->
+	<property name="log4j.dir" value="utils/log4j"/><property name="log4j.lib" value="log4j-${log4j-version}.jar" />
+	<property name="commonslang.dir" value="utils/commons/lang"/><property name="commonslang.lib" value="commons-lang-${commonslang-version}.jar" />
+	
+	<!-- Classpath wird gesetzt -->
+	<path id="classpath">
+		<!-- Utils  -->
+			<pathelement location="${lib.dir}/${log4j.dir}/${log4j.lib}"/>
+			<pathelement location="${lib.dir}/${commonslang.dir}/${commonslang.lib}"/>
+	</path>
+	
+	<target name="00 - Classpath" description="Echos Classpath">
+		<echo level="info">Using ${ant.version} in ${ant.home}</echo>
+		<echo level="info">Lib-Info for ExLP v.${exlp-version}</echo>
+		<echo level="info">   Utils : ${log4j.dir}/${log4j.lib}</echo>
+		<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
+		<echo level="info">------------------------</echo>
+    </target>
+	
+    <target name="01 - clean" description="Removes build artifacts">
+        <delete dir="${build.dir}"/>
+    	<delete dir="${dist.dir}"/>
+    </target>
+	
+    <target name="02 - Init" description="Init ...">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+    </target>
+	
+	<target name="04 - Compile" depends="02 - Init" description="Compile the source">
+		<javac	srcdir="${src.dir}"
+				destdir="${build.dir}"
+				debug="true"
+				debuglevel="lines,vars,source" 
+				deprecation="on"
+				optimize="on"
+				classpathref="classpath">
+			<include name="**"/>
+		</javac>
+	</target>
+	
+	<target name="05 - Copy Libs" depends="02 - Init">
+    	<!-- Utils  -->
+    		<copy file="${lib.dir}/${log4j.dir}/${log4j.lib}" todir="${dist.dir}/lib"/>
+			<copy file="${lib.dir}/${commonslang.dir}/${commonslang.lib}" todir="${dist.dir}/lib"/>
+	</target>  
+	
+	<target name="06 - ExLP" description="ExLP" depends="04 - Compile,05 - Copy Libs">
+		<echo level="info">Create exlp-${exlp-version}.jar</echo>
+    	<jar destfile="${dist.dir}/exlp-${exlp-version}.jar">
+    		<fileset dir="${build.dir}" includes="net/sf/exlp/**" />
+    		<manifest>
+    			<attribute name="Main-Class" value="net.sf.exlp.ExLP"/>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Implementation-Version"  value="${exlp-version}"/>
+    			<attribute name="Class-Path" value="${jar.lib}"/>
+			</manifest>        	
+		</jar>
+		<delete dir="${build.dir}/META-INF"/>
+	</target>
+</project>
