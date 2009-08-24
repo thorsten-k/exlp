@@ -19,11 +19,11 @@ public class MultiResourceLoader
 	private static ArrayList<String> alLoadDebug;
 	public static LoadType lastLT;
 	public static String lastAbsolutPath;
-	public static boolean debug = false;
-	
+	public static boolean debug;
+
 	public MultiResourceLoader()
 	{
-		
+		debug = false;
 	}
 	
 	public synchronized InputStream searchIs(String resourceName) throws FileNotFoundException
@@ -95,4 +95,7 @@ public class MultiResourceLoader
 		}
 		return is;
 	}
+	
+	public static boolean isDebug() {return debug;}
+	public static void setDebug(boolean debug) {MultiResourceLoader.debug = debug;}
 }
