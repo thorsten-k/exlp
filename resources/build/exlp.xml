@@ -40,6 +40,16 @@
 		<mkdir dir="${dist.dir}"/>
     </target>
 	
+    <target name="03 - Loc" description="Task definition">
+    	<taskdef name="loc" classname="net.sf.exlp.loc.LoccerTask" classpath="${build.dir}" loaderref="${build.dir}"/>
+    	<loc>
+    		<fileset dir="${basedir}">
+    			<include name="**/*.java"/>
+    			<include name="**/*.xml"/>
+    		</fileset>
+    	</loc>
+    </target>
+	
 	<target name="04 - Compile" depends="02 - Init" description="Compile the source">
 		<javac	srcdir="${src.dir}"
 				destdir="${build.dir}"
@@ -69,6 +79,5 @@
     			<attribute name="Class-Path" value="${jar.lib}"/>
 			</manifest>        	
 		</jar>
-		<delete dir="${build.dir}/META-INF"/>
 	</target>
 </project>
