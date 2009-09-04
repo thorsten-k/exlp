@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import org.apache.commons.lang.SystemUtils;
 import org.apache.log4j.Logger;
 
-
 public abstract class AbstractTxtWriter
 {
 	static Logger logger = Logger.getLogger(AbstractTxtWriter.class);
