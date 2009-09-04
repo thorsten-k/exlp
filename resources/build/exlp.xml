@@ -14,12 +14,18 @@
 	<!-- Library Definitions: Utils -->
 	<property name="log4j.dir" value="utils/log4j"/><property name="log4j.lib" value="log4j-${log4j-version}.jar" />
 	<property name="commonslang.dir" value="utils/commons/lang"/><property name="commonslang.lib" value="commons-lang-${commonslang-version}.jar" />
+	<property name="commonsconfig.dir" value="utils/commons/config"/><property name="commonsconfig.lib" value="commons-configuration-${commonsconfig-version}.jar" />
+	
+	<!-- Library Definitions: Utils -->
+	<property name="jdom.dir" value="xml/jdom"/><property name="jdom.lib" value="jdom-${jdom-version}.jar" />
 	
 	<!-- Classpath wird gesetzt -->
 	<path id="classpath">
 		<!-- Utils  -->
 			<pathelement location="${lib.dir}/${log4j.dir}/${log4j.lib}"/>
 			<pathelement location="${lib.dir}/${commonslang.dir}/${commonslang.lib}"/>
+			<pathelement location="${lib.dir}/${jdom.dir}/${jdom.lib}"/>
+			<pathelement location="${lib.dir}/${commonsconfig.dir}/${commonsconfig.lib}"/>
 	</path>
 	
 	<target name="00 - Classpath" description="Echos Classpath">
@@ -51,12 +57,14 @@
     </target>
 	
 	<target name="04 - Compile" depends="02 - Init" description="Compile the source">
+		<echo level="info">Compiling with ${java-version}</echo>
 		<javac	srcdir="${src.dir}"
 				destdir="${build.dir}"
 				debug="true"
 				debuglevel="lines,vars,source" 
 				deprecation="on"
 				optimize="on"
+				target="${java-version}"
 				classpathref="classpath">
 			<include name="**"/>
 		</javac>
@@ -71,7 +79,10 @@
 	<target name="06 - ExLP" description="ExLP" depends="04 - Compile,05 - Copy Libs">
 		<echo level="info">Create exlp-${exlp-version}.jar</echo>
     	<jar destfile="${dist.dir}/exlp-${exlp-version}.jar">
-    		<fileset dir="${build.dir}" includes="net/sf/exlp/**" />
+    		<fileset dir="${build.dir}">
+    			<include name="net/sf/exlp/**"/>
+    			<exclude name="net/sf/exlp/util/translation/**"/>
+    		</fileset>
     		<manifest>
     			<attribute name="Main-Class" value="net.sf.exlp.ExLP"/>
 				<attribute name="Built-By" value="${user.name}"/>
