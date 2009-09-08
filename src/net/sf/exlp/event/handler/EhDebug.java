@@ -8,12 +8,12 @@ import org.apache.log4j.Logger;
 
 
 
-public class EventHandlerDebug extends AbstractEventHandler 
+public class EhDebug extends AbstractEventHandler 
 {
-	static Logger logger = Logger.getLogger(EventHandlerDebug.class);
+	static Logger logger = Logger.getLogger(EhDebug.class);
 	static final long serialVersionUID=1;
 	
-	public EventHandlerDebug()
+	public EhDebug()
 	{
 
 	}

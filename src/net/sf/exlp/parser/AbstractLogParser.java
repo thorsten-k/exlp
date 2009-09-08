@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import net.sf.exlp.event.LogEventHandler;
-import net.sf.exlp.event.handler.EventHandlerDebug;
+import net.sf.exlp.event.handler.EhDebug;
 
 import org.apache.log4j.Logger;
 
@@ -17,7 +17,7 @@ public class AbstractLogParser
 	protected Properties metaInfo;
 	protected int allLines,unknownLines;
 	
-	public AbstractLogParser(){this(new EventHandlerDebug());}
+	public AbstractLogParser(){this(new EhDebug());}
 	public AbstractLogParser(LogEventHandler ehi)
 	{
 		this.ehi=ehi;
