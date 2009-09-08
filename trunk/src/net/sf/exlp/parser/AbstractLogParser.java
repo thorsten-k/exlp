@@ -8,7 +8,6 @@ import net.sf.exlp.event.handler.EhDebug;
 
 import org.apache.log4j.Logger;
 
-
 public class AbstractLogParser
 {
 	static Logger logger = Logger.getLogger(AbstractLogParser.class);
