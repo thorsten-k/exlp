@@ -12,14 +12,14 @@ public class AbstractLogParser
 {
 	static Logger logger = Logger.getLogger(AbstractLogParser.class);
 	
-	protected LogEventHandler ehi;
+	protected LogEventHandler leh;
 	protected Properties metaInfo;
 	protected int allLines,unknownLines;
 	
 	public AbstractLogParser(){this(new EhDebug());}
-	public AbstractLogParser(LogEventHandler ehi)
+	public AbstractLogParser(LogEventHandler leh)
 	{
-		this.ehi=ehi;
+		this.leh=leh;
 		unknownLines=0;
 		allLines=0;
 	}
