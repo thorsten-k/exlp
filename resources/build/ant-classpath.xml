@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+<project basedir="../../">
+	<path id="classpath">
+		<!-- Utils  -->
+		<pathelement location="${lib.dir}/${log4j.dir}/${log4j.lib}"/>
+		<pathelement location="${lib.dir}/${commonslang.dir}/${commonslang.lib}"/>
+		<pathelement location="${lib.dir}/${jdom.dir}/${jdom.lib}"/>
+		<pathelement location="${lib.dir}/${commonsconfig.dir}/${commonsconfig.lib}"/>
+		<!-- Class files -->
+		<pathelement path ="${build.dir}"/>
+	</path>
+</project>
