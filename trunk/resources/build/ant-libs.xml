@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<project basedir="../../">
+
+	<property file="resources/properties/ant.properties"/>
+
+	<property name="lib.dir" location="${basedir}/libs" />
+	
+	<!-- Library Definitions: Utils -->
+	<property name="log4j.dir" value="utils/log4j"/><property name="log4j.lib" value="log4j-${log4j-version}.jar" />
+	<property name="commonslang.dir" value="utils/commons/lang"/><property name="commonslang.lib" value="commons-lang-${commonslang-version}.jar" />
+	<property name="commonsconfig.dir" value="utils/commons/config"/><property name="commonsconfig.lib" value="commons-configuration-${commonsconfig-version}.jar" />
+	
+	<!-- Library Definitions: XML -->
+	<property name="jdom.dir" value="xml/jdom"/><property name="jdom.lib" value="jdom-${jdom-version}.jar" />
+	
+	<!-- Library Definitions: GUI-->
+	<property name="swt.dir" value="gui/swt/${swt-version}"/>
+		<property name="swt-win.lib" value="swt-win32-${swt-version}.jar"/>
+		<property name="swt-linux.lib" value="swt-linux-${swt-version}.jar"/>
+		<property name="swt-osx.lib" value="swt-osx-${swt-version}.jar"/>
+	
+	<target name="00 - Classpath" description="Echos Classpath">
+			<echo level="info">Using ${ant.version} in ${ant.home}</echo>
+			<echo level="info">Lib-Info for ExLP v.${exlp-version}</echo>
+			<echo level="info">   Utils : ${log4j.dir}/${log4j.lib}</echo>
+			<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
+			<echo level="info">   GUI   : ${swt.dir}/${swt-osx.lib}</echo>
+					<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
+			<echo level="info">------------------------</echo>
+	    </target>
+	
+</project>
