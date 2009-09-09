@@ -1,10 +1,9 @@
 package net.sf.exlp.event;
 
-import java.util.Date;
+import java.util.Map;
 
 public interface LogEvent
 {
-	public void debug();
-	
-	public Date getRecord();
+	void debug();
+	boolean persist(Map<String,?> facades);
 }

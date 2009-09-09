@@ -1,6 +1,7 @@
 package net.sf.exlp.util;
 
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -127,5 +128,23 @@ public class DateUtil
 		gc.set(GregorianCalendar.MONTH, xmlGC.getMonth());
 		gc.set(GregorianCalendar.DAY_OF_MONTH, xmlGC.getDay());
 		return gc.getTime();
+	}
+	
+	public synchronized static Date getDateFromInt(int year, int month, int day, int hour, int min, int sec)
+	{
+		GregorianCalendar gc = new GregorianCalendar();
+			gc.set(GregorianCalendar.YEAR, year);
+			gc.set(GregorianCalendar.MONTH, month);
+			gc.set(GregorianCalendar.DAY_OF_MONTH, day);
+			gc.set(GregorianCalendar.HOUR_OF_DAY, hour);
+			gc.set(GregorianCalendar.MINUTE, min);
+			gc.set(GregorianCalendar.SECOND, sec);
+		return gc.getTime();
+	}
+	
+	public synchronized static int getMonth(String s) throws ParseException
+	{
+		if(s.equals("Sep")){return 8;}
+		throw new ParseException("No month found for: "+s,0);
 	}
 }

@@ -18,10 +18,10 @@ public class EhDebug extends AbstractEventHandler
 
 	}
 
-	public boolean handleEvent(LogEvent pe)
+	public boolean handleEvent(LogEvent event)
 	{
 		count();
-		pe.debug();
+		event.debug();
 		return true;
 	}
 
