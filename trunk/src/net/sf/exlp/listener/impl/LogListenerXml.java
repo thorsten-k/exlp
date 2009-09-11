@@ -51,6 +51,31 @@ public class LogListenerXml extends AbstractLogListener implements LogListener
 		return e;
 	}
 	
+	public void processSingle(String xPathExpression)
+	{
+		logger.debug("Evaluating xPath:"+xPathExpression);
+		try
+		{
+			XPath x = XPath.newInstance(xPathExpression);
+			List<?> l = x.selectNodes(doc);
+			if(l!=null && l.size()>0)
+			{
+				for(Object o : l)
+				{
+					Element e = (Element)o;
+					String content = e.getText();
+					StringTokenizer st = new StringTokenizer(content,"\n");
+					while(st.hasMoreElements())
+					{
+						lp.parseLine((String)st.nextElement());
+					}
+					
+				}
+			}
+		}
+		catch (JDOMException e) {logger.error(e);}
+	}
+	
 	public void processMulti(String xPathExpression)
 	{
 		logger.debug("Evaluating xPath:"+xPathExpression);
