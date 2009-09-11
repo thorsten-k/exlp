@@ -54,10 +54,9 @@ public class LogListenerXml extends AbstractLogListener implements LogListener
 	public void processMulti(String xPathExpression)
 	{
 		logger.debug("Evaluating xPath:"+xPathExpression);
-		logger.debug(doc.getRootElement().getName());
 		try
 		{
-			XPath x = XPath.newInstance("/wikiinjection");
+			XPath x = XPath.newInstance(xPathExpression);
 			List<?> l = x.selectNodes(doc);
 			if(l!=null && l.size()>0)
 			{
