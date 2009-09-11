@@ -19,13 +19,25 @@
 		<property name="swt-linux.lib" value="swt-linux-${swt-version}.jar"/>
 		<property name="swt-osx.lib" value="swt-osx-${swt-version}.jar"/>
 	
+	<!-- Jboss -->
+	<property name="jboss.dir" value="jboss/${jboss-version}"/>
+		<property name="jboss-ejb3.lib" value="ejb3-persistence.jar"/>
+		<property name="jboss-javaee.lib" value="jboss-javaee.jar"/>
+		<property name="jboss-stax.lib" value="stax-api.jar"/>
+		<property name="jboss-ejb3extapi.lib" value="jboss-ejb3-ext-api.jar"/>
+	
 	<target name="00 - Classpath" description="Echos Classpath">
-			<echo level="info">Using ${ant.version} in ${ant.home}</echo>
-			<echo level="info">Lib-Info for ExLP v.${exlp-version}</echo>
-			<echo level="info">   Utils : ${log4j.dir}/${log4j.lib}</echo>
-			<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
-			<echo level="info">   GUI   : ${swt.dir}/${swt-osx.lib}</echo>
-					<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
+		<echo level="info">Using ${ant.version} in ${ant.home}</echo>
+		<echo level="info">Lib-Info for ExLP v.${exlp-version}</echo>
+		<echo level="info">   Utils : ${log4j.dir}/${log4j.lib}</echo>
+		<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
+		<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
+		<echo level="info">   GUI   : ${swt.dir}/${swt-osx.lib}</echo>
+		<echo level="info">   JBoss : ${jboss.dir}/${jboss-ejb3.lib}</echo>
+		<echo level="info">           ${jboss.dir}/${jboss-javaee.lib}</echo>
+		<echo level="info">           ${jboss.dir}/${jboss-stax.lib}</echo>
+		<echo level="info">           ${jboss.dir}/${jboss-ejb3extapi.lib}</echo>
+					
 			<echo level="info">------------------------</echo>
 	    </target>
 	
