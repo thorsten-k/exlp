@@ -6,6 +6,15 @@
 		<pathelement location="${lib.dir}/${commonslang.dir}/${commonslang.lib}"/>
 		<pathelement location="${lib.dir}/${jdom.dir}/${jdom.lib}"/>
 		<pathelement location="${lib.dir}/${commonsconfig.dir}/${commonsconfig.lib}"/>
+		
+		<!-- JBoss  -->
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-ejb3.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-javaee.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-stax.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-client.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-system-jmx.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-ejb3extapi.lib}"/>
+		
 		<!-- Class files -->
 		<pathelement path ="${build.dir}"/>
 	</path>
