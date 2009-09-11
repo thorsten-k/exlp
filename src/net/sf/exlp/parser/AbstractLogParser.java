@@ -30,7 +30,7 @@ public class AbstractLogParser
 	
 	public void parseLine(String line)
 	{
-		logger.fatal("parseLine falscher Aufruf.");
+		logger.fatal("Method \"parseLine\" is not implemented for this parser!");
 		System.exit(-1);
 	}
 	
@@ -41,7 +41,7 @@ public class AbstractLogParser
 	
 	public void parseItem(ArrayList<String> item)
 	{
-		logger.fatal("parseItem falscher Aufruf.");
+		logger.fatal("Method \"parseItem\" is not implemented for this parser!");
 		System.exit(-1);
 	}
 }

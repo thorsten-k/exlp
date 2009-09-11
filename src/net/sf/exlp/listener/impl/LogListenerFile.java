@@ -39,7 +39,7 @@ public class LogListenerFile extends AbstractLogListener implements LogListener
 		this.f=f;
 		if(!f.exists())
 		{
-			logger.fatal("Datei "+f.getAbsolutePath()+" existiert nicht!");
+			logger.fatal("File "+f.getAbsolutePath()+" does not exist!");
 			System.exit(-1);
 		}
 		String s="[a-z0-9A-Z\\.]*\\.(gz)";
