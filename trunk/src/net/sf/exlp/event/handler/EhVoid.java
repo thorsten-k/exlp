@@ -5,8 +5,6 @@ import net.sf.exlp.event.LogEvent;
 
 import org.apache.log4j.Logger;
 
-
-
 public class EhVoid extends AbstractEventHandler 
 {
 	static Logger logger = Logger.getLogger(EhVoid.class);
@@ -22,5 +20,4 @@ public class EhVoid extends AbstractEventHandler
 		count();
 		return true;
 	}
-
 }
