@@ -1,12 +1,9 @@
 package net.sf.exlp.event.handler;
 
-
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
 
 import org.apache.log4j.Logger;
-
-
 
 public class EhDebug extends AbstractEventHandler 
 {
@@ -24,5 +21,4 @@ public class EhDebug extends AbstractEventHandler
 		event.debug();
 		return true;
 	}
-
 }
