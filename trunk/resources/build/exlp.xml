@@ -5,8 +5,8 @@
 	<property file="resources/properties/ws.properties"/>
 
 	<property name="src.dir" location="${basedir}/src" />
-	<property name="build.dir" location="${basedir}/bin/" />
 	<property name="dist.dir" location="${basedir}/dist/" />
+	<property name="build.dir" location="${dist.dir}/build/" />
 	<property name="lib.dir" location="${basedir}/lib" />
 	<property name="rsrc.dir" location="${basedir}/resources" />
 	<property name="xsd.dir" location="${rsrc.dir}/config/xsd" />
@@ -62,10 +62,9 @@
     			<exclude name="net/sf/exlp/util/translation/**"/>
     		</fileset>
     		<manifest>
-    			<attribute name="Main-Class" value="net.sf.exlp.ExLP"/>
 				<attribute name="Built-By" value="${user.name}"/>
 				<attribute name="Implementation-Version"  value="${exlp-version}"/>
-    			<attribute name="Class-Path" value="${jar.lib}"/>
+    			<attribute name="Built-Date" value="${version} ${TODAY}"/> 
 			</manifest>        	
 		</jar>
 	</target>
