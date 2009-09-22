@@ -130,6 +130,11 @@ public class DateUtil
 		return gc.getTime();
 	}
 	
+	public synchronized static Date getDateFromInt(int year, int month, int day)
+	{
+		return getDateFromInt(year, month, day, 0, 0, 0);
+	}
+	
 	public synchronized static Date getDateFromInt(int year, int month, int day, int hour, int min, int sec)
 	{
 		GregorianCalendar gc = new GregorianCalendar();
@@ -146,5 +151,12 @@ public class DateUtil
 	{
 		if(s.equals("Sep")){return 8;}
 		throw new ParseException("No month found for: "+s,0);
+	}
+	
+	public synchronized static long getDiff(Calendar c1, Calendar c2)
+	{
+		long time = c1.getTime().getTime() - c2.getTime().getTime();  // Differenz in ms
+		long days = Math.round( (double)time / (24. * 60.*60.*1000.) );     // Differenz in Tagen
+		return days;
 	}
 }
