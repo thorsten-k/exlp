@@ -139,11 +139,12 @@ public class DateUtil
 	{
 		GregorianCalendar gc = new GregorianCalendar();
 			gc.set(GregorianCalendar.YEAR, year);
-			gc.set(GregorianCalendar.MONTH, month);
+			gc.set(GregorianCalendar.MONTH, month-1);
 			gc.set(GregorianCalendar.DAY_OF_MONTH, day);
 			gc.set(GregorianCalendar.HOUR_OF_DAY, hour);
 			gc.set(GregorianCalendar.MINUTE, min);
 			gc.set(GregorianCalendar.SECOND, sec);
+			gc.set(GregorianCalendar.MILLISECOND, 0);
 		return gc.getTime();
 	}
 	
