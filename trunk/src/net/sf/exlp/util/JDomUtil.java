@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
+import org.jdom.Namespace;
 import org.jdom.Text;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
@@ -58,6 +59,16 @@ public class JDomUtil
 		catch (IOException e) {logger.error(e);}
 	}
 	
+	public static synchronized void debugDocument(Document doc)
+	{
+		try
+		{
+			XMLOutputter xmlOut = new XMLOutputter(Format.getPrettyFormat());
+			xmlOut.output(doc, System.out);
+		}
+		catch (IOException e) {logger.error(e);}
+	}
+	
 	public static synchronized void dissect(Document doc)
 	{
 		Element rootE = doc.getRootElement();
@@ -97,5 +108,16 @@ public class JDomUtil
 			osw.close();os.close();
 		} 
 		catch (IOException e) {logger.error(e);}
+	}
+	
+	public static Element unsetNameSpace(Element e, Namespace ns)
+	{
+		e.setNamespace(ns);
+		for(Object o : e.getChildren())
+		{
+			Element eChild = (Element)o;
+			eChild=unsetNameSpace(eChild,ns);
+		}
+		return e;
 	}
 }
