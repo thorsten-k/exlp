@@ -10,6 +10,9 @@ import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.exlp.io.resourceloader.MultiResourceLoader;
 
@@ -17,6 +20,7 @@ import org.apache.log4j.Logger;
 import org.jdom.Document;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.xml.sax.SAXException;
 
 public class JaxbUtil
 {
@@ -74,6 +78,33 @@ public class JaxbUtil
 		}
 		catch (JAXBException e) {logger.error(e);}
 		catch (JDOMException e) {logger.error(e);}
+		catch (IOException e) {logger.error(e);}
+		return doc;
+	}
+	
+	public static synchronized org.w3c.dom.Document toW3CDocument(Object jaxb){return toW3CDocument(jaxb,null);}
+	public static synchronized org.w3c.dom.Document toW3CDocument(Object jaxb, Object nsPrefixMapper)
+	{
+		org.w3c.dom.Document doc = null;
+		try
+		{
+			ByteArrayOutputStream out = new ByteArrayOutputStream();
+			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
+			Marshaller m = context.createMarshaller(); 
+			if(nsPrefixMapper!=null)
+			{
+				m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);
+			}
+			m.marshal(jaxb, out);
+			
+			InputStream is = new ByteArrayInputStream(out.toByteArray());
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			doc = builder.parse(is);
+		}
+		catch (JAXBException e) {logger.error(e);}
+		catch (ParserConfigurationException e) {logger.error(e);}
+		catch (SAXException e) {logger.error(e);}
 		catch (IOException e) {logger.error(e);}
 		return doc;
 	}
