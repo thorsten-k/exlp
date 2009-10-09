@@ -25,6 +25,7 @@ import org.xml.sax.SAXException;
 public class JaxbUtil
 {
 	private static Logger logger = Logger.getLogger(JaxbUtil.class);
+	public static boolean useLog4j = true;
 	
 	public static synchronized Object loadJAXB(String xmlFile, Class<?> c)
 	{
@@ -36,8 +37,8 @@ public class JaxbUtil
 			Unmarshaller u = jc.createUnmarshaller();
 			result = u.unmarshal(mrl.searchIs(xmlFile));
 		}
-		catch (JAXBException e) {logger.error(e);}
-		catch (FileNotFoundException e) {logger.error(e);}
+		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (FileNotFoundException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return result;
 	}
 	
@@ -55,7 +56,7 @@ public class JaxbUtil
 			}
 			m.marshal( jaxb, System.out);
 		}
-		catch (JAXBException e) {logger.error(e);}
+		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 	}
 	
 	public static synchronized Document toDocument(Object jaxb){return toDocument(jaxb,null);}
@@ -76,9 +77,9 @@ public class JaxbUtil
 			InputStream is = new ByteArrayInputStream(out.toByteArray());
 			doc = new SAXBuilder().build(is);
 		}
-		catch (JAXBException e) {logger.error(e);}
-		catch (JDOMException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}
+		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (JDOMException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return doc;
 	}
 	
@@ -102,10 +103,10 @@ public class JaxbUtil
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			doc = builder.parse(is);
 		}
-		catch (JAXBException e) {logger.error(e);}
-		catch (ParserConfigurationException e) {logger.error(e);}
-		catch (SAXException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}
+		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (ParserConfigurationException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (SAXException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return doc;
 	}
 }
