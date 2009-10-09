@@ -23,6 +23,7 @@ import org.jdom.output.XMLOutputter;
 public class JDomUtil
 {
 	private static Logger logger = Logger.getLogger(JDomUtil.class);
+	public static boolean useLog4j = true;
 	
 	public static synchronized Document txtToDoc(String txt)
 	{
@@ -32,20 +33,21 @@ public class JDomUtil
 			Reader sr = new StringReader(txt);  
 			doc = new SAXBuilder().build(sr);
 		}
-		catch (JDOMException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}
+		catch (JDOMException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return doc;
 	}
 	
 	public static synchronized String docToTxt(Document doc)
 	{
+		
 		StringBufferOutputStream sbos = new StringBufferOutputStream();
 		try
 		{
 			XMLOutputter xmlOut = new XMLOutputter(Format.getRawFormat());
 			xmlOut.output(doc, sbos);
 		}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return sbos.getStringBuffer().toString();
 	}
 	
@@ -56,7 +58,7 @@ public class JDomUtil
 			XMLOutputter xmlOut = new XMLOutputter(Format.getPrettyFormat());
 			xmlOut.output(element, System.out);
 		}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 	}
 	
 	public static synchronized void debugDocument(Document doc)
@@ -72,12 +74,15 @@ public class JDomUtil
 	public static synchronized void dissect(Document doc)
 	{
 		Element rootE = doc.getRootElement();
-		logger.debug("RootName="+rootE.getName());
+		String logMsg="RootName="+rootE.getName();
+		if(useLog4j){logger.debug(logMsg);}else{System.out.println(logMsg);}
 		
 		for(Object o :rootE.getChildren())
 		{
 			Element e=(Element)o;
 			logger.debug(e.getName());
+			logMsg=e.getName();
+			if(useLog4j){logger.debug(logMsg);}else{System.out.println(logMsg);}
 			for(Object oContent : e.getContent())
 			{
 				if(org.jdom.Text.class.isInstance(oContent))
@@ -107,7 +112,7 @@ public class JDomUtil
 			xmlOut.output( doc, osw );
 			osw.close();os.close();
 		} 
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 	}
 	
 	public static Element unsetNameSpace(Element e, Namespace ns)
