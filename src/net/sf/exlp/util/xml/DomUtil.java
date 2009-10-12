@@ -1,4 +1,4 @@
-package net.sf.exlp.util;
+package net.sf.exlp.util.xml;
 
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
