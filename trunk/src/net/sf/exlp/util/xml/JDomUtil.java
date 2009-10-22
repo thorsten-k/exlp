@@ -12,6 +12,10 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.StringReader;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
+
 import net.sf.exlp.io.StringBufferOutputStream;
 
 import org.apache.log4j.Logger;
@@ -38,8 +42,8 @@ public class JDomUtil
 			Reader sr = new StringReader(txt);  
 			doc = new SAXBuilder().build(sr);
 		}
-		catch (JDOMException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (JDOMException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 		return doc;
 	}
 	
@@ -52,7 +56,7 @@ public class JDomUtil
 			XMLOutputter xmlOut = new XMLOutputter(Format.getRawFormat());
 			xmlOut.output(doc, sbos);
 		}
-		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 		return sbos.getStringBuffer().toString();
 	}
 	
@@ -63,7 +67,7 @@ public class JDomUtil
 			XMLOutputter xmlOut = new XMLOutputter(Format.getPrettyFormat());
 			xmlOut.output(element, System.out);
 		}
-		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 	}
 	
 	public static synchronized void dissect(Document doc)
@@ -119,6 +123,19 @@ public class JDomUtil
 		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return null;
 	}
+	public static synchronized InputStream toInputStream(Element rootElement, Format format)
+	{
+		try
+		{
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			outputStream(rootElement, os, format);
+			InputStream is = new ByteArrayInputStream(os.toByteArray());
+			os.close();
+			return is;
+		}
+		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		return null;
+	}
 	public static synchronized void save(Document doc, File f, Format format)
 	{
 		try
@@ -127,10 +144,14 @@ public class JDomUtil
 			outputStream(doc, os, format);
 			os.close();
 		}
-		catch (FileNotFoundException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (FileNotFoundException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 	}
-	public static synchronized void debug(Document doc){outputStream(doc, System.out, Format.getPrettyFormat());}
+	public static synchronized void debug(Document doc)
+	{
+		outputStream(doc, System.out, Format.getPrettyFormat());
+		System.out.flush();
+	}
 	private static synchronized void outputStream(Document doc, OutputStream os, Format format)
 	{
 		try
@@ -140,7 +161,49 @@ public class JDomUtil
 			xmlOut.output( doc, osw );
 			osw.close();
 		} 
-		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+	}
+	public static synchronized Object toJaxb(Element rootElement, Class<?> c)
+	{
+		InputStream is = toInputStream(rootElement, Format.getRawFormat());
+		Object result = null;
+		try
+		{
+			JAXBContext jc = JAXBContext.newInstance(c);
+			Unmarshaller u = jc.createUnmarshaller();
+			result = u.unmarshal(is);
+		}
+		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		return result;
+	}
+	
+	public static synchronized void debug(Element e)
+	{
+		outputStream(e, System.out, Format.getPrettyFormat());
+		System.out.flush();
+	}
+	private static synchronized void outputStream(Element e, OutputStream os, Format format)
+	{
+		try
+		{
+			XMLOutputter xmlOut = new XMLOutputter(format);
+			OutputStreamWriter osw = new OutputStreamWriter(os,"UTF-8");
+			xmlOut.output( e, osw );
+			osw.close();
+		} 
+		catch (IOException ex){if(useLog4j){logger.error(ex);}else{System.err.println(ex.getMessage());}}
+	}
+	
+	public static synchronized Document laod(File f)
+	{
+		Document doc = null;
+		try
+		{
+			doc = new SAXBuilder().build(f);
+		}
+		catch (JDOMException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		return doc;
 	}
 	
 	public static Element unsetNameSpace(Element e, Namespace ns)
