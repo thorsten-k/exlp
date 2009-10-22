@@ -52,7 +52,7 @@ public class JaxbUtil
 	{
 		output(System.out, jaxb, nsPrefixMapper, doctype,true);
 	}
-	
+	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f, jaxb, null, null,formatted);}
 	public static synchronized void save(File f, Object jaxb, Object nsPrefixMapper,boolean formatted){save(f, jaxb, nsPrefixMapper,null,formatted);}
 	public static synchronized void save(File f, Object jaxb, Object nsPrefixMapper, DocType doctype, boolean formatted)
 	{
