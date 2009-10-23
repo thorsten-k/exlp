@@ -14,7 +14,11 @@ import java.io.StringReader;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.exlp.io.StringBufferOutputStream;
 
@@ -28,6 +32,7 @@ import org.jdom.Text;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+import org.xml.sax.SAXException;
 
 public class JDomUtil
 {
@@ -175,6 +180,22 @@ public class JDomUtil
 		}
 		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return result;
+	}
+	
+	public static synchronized org.w3c.dom.Document toW3CDocument(Document jdomDoc)
+	{
+		org.w3c.dom.Document w3cDoc = null;
+		try
+		{
+			InputStream is = JDomUtil.toInputStream(jdomDoc, Format.getRawFormat());
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			w3cDoc = builder.parse(is);
+		}
+		catch (ParserConfigurationException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (SAXException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		return w3cDoc;
 	}
 	
 	public static synchronized void debug(Element e)
