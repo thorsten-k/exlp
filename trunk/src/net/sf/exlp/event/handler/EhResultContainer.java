@@ -6,7 +6,6 @@ import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
 
 import org.apache.log4j.Logger;
-import org.eclipse.swt.widgets.List;
 
 public class EhResultContainer extends AbstractEventHandler 
 {

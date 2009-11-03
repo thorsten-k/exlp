@@ -6,8 +6,6 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
 
-import net.sf.exlp.listener.LogListener;
-
 import org.apache.log4j.Logger;
 
 public abstract class AbstractEvent implements LogEvent,Serializable
@@ -15,7 +13,6 @@ public abstract class AbstractEvent implements LogEvent,Serializable
 	static final long serialVersionUID=2;
 	
 	static Logger logger = Logger.getLogger(AbstractEvent.class);
-	private static String fs = System.getProperty("file.separator");
 	
 	protected  String fileName;
 	protected  Date record;
