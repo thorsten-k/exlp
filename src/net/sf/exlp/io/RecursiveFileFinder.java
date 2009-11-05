@@ -8,16 +8,18 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.io.DirectoryWalker;
-import org.apache.commons.io.filefilter.SuffixFileFilter;
+import org.apache.commons.io.filefilter.FileFilterUtils;
+import org.apache.commons.io.filefilter.HiddenFileFilter;
+import org.apache.commons.io.filefilter.IOFileFilter;
 import org.apache.log4j.Logger;
 
 public class RecursiveFileFinder extends DirectoryWalker
 {
 	private static Logger logger = Logger.getLogger(RecursiveFileFinder.class);
 	
-	public RecursiveFileFinder(FileFilter filter)
+	public RecursiveFileFinder(IOFileFilter dirFilter, IOFileFilter fileFilter)
 	{
-		super(filter, -1);
+		super(dirFilter, fileFilter, -1);
 	}
 
 	
@@ -26,15 +28,15 @@ public class RecursiveFileFinder extends DirectoryWalker
 		
 	}
 	
-	public List<File> find(File startDirectory) throws IOException
+	public List<File> find(File dir) throws IOException
 	{
 		List<File> results = new ArrayList<File>();
-		walk(startDirectory, results);
+		walk(dir, results);
 		return results;
 	}
 
 	@SuppressWarnings("unchecked")
-	protected boolean handleDirectory(File directory, int depth, Collection results)
+	protected boolean handleDirectory(File dir, int depth, Collection results)
 	{
 	    return true;
 	}
@@ -51,8 +53,13 @@ public class RecursiveFileFinder extends DirectoryWalker
 			loggerInit.addAltPath("resources/config");
 			loggerInit.init();
 		
-		RecursiveFileFinder test = new RecursiveFileFinder(new SuffixFileFilter(".java"));
+		IOFileFilter df = HiddenFileFilter.VISIBLE;
+		IOFileFilter ff = FileFilterUtils.suffixFileFilter(".class");
+	
+		RecursiveFileFinder test = new RecursiveFileFinder(df,ff);
 		List<File> l = test.find(new File("."));
 		logger.debug("Size "+l.size());
+		for(File f : l){logger.debug(f.getAbsolutePath());}
+			
 	}
 }
