@@ -3,10 +3,12 @@ package net.sf.exlp.util.xml;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
@@ -140,12 +142,14 @@ public class JDomUtil
 		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return null;
 	}
-	public static synchronized void save(Document doc, File f, Format format)
+	public static synchronized void save(Document doc, File f, Format format){save(doc,f,format,"UTF-8");}
+	public static synchronized void save(Document doc, File f, Format format, String encoding)
 	{
+		format.setEncoding(encoding);
 		try
 		{
 			OutputStream os = new FileOutputStream(f);
-			outputStream(doc, os, format);
+			outputStream(doc, os, format,encoding);
 			os.close();
 		}
 		catch (FileNotFoundException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
@@ -156,12 +160,13 @@ public class JDomUtil
 		outputStream(doc, System.out, Format.getPrettyFormat());
 		System.out.flush();
 	}
-	private static synchronized void outputStream(Document doc, OutputStream os, Format format)
+	private static synchronized void outputStream(Document doc, OutputStream os, Format format){outputStream(doc, os, format, "UTF-8");}
+	private static synchronized void outputStream(Document doc, OutputStream os, Format format, String encoding)
 	{
 		try
 		{
 			XMLOutputter xmlOut = new XMLOutputter(format);
-			OutputStreamWriter osw = new OutputStreamWriter(os,"UTF-8");
+			OutputStreamWriter osw = new OutputStreamWriter(os,encoding);
 			xmlOut.output( doc, osw );
 			osw.close();
 		} 
@@ -200,7 +205,8 @@ public class JDomUtil
 	public static synchronized void debug(Element e)
 	{
 		outputStream(e, System.out, Format.getPrettyFormat());
-		System.out.flush();
+//		System.out.flush();
+//		System.out.close();
 	}
 	private static synchronized void outputStream(Element e, OutputStream os, Format format)
 	{
@@ -214,12 +220,15 @@ public class JDomUtil
 		catch (IOException ex){if(useLog4j){logger.error(ex);}else{System.err.println(ex.getMessage());}}
 	}
 	
-	public static synchronized Document laod(File f)
+	public static synchronized Document load(File f){return load(f, "UTF-8");}
+	public static synchronized Document load(File f, String encoding)
 	{
 		Document doc = null;
 		try
 		{
-			doc = new SAXBuilder().build(f);
+			InputStream is = new FileInputStream(f);
+			InputStreamReader isr = new InputStreamReader(is, encoding);
+			doc = new SAXBuilder().build(isr);
 		}
 		catch (JDOMException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 		catch (IOException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
