@@ -22,6 +22,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.exlp.io.StringBufferOutputStream;
+import net.sf.exlp.util.xml.exception.JDomUtilException;
 
 import org.apache.log4j.Logger;
 import org.jdom.DocType;
@@ -230,18 +231,26 @@ public class JDomUtil
 			InputStreamReader isr = new InputStreamReader(is, encoding);
 			doc = new SAXBuilder().build(isr);
 		}
-		catch (JDOMException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (JDOMException e)
+		{
+			String msg = e.getMessage()+" "+f.getAbsolutePath();
+			throw new JDomUtilException(msg);
+		}
+		catch (IOException e)
+		{
+			String msg = e.getMessage()+" "+f.getAbsolutePath();
+			if(useLog4j){logger.error(msg);}else{System.err.println(msg);}
+		}
 		return doc;
 	}
 	
-	public static Element unsetNameSpace(Element e, Namespace ns)
+	public static Element setNameSpaceRecursive(Element e, Namespace ns)
 	{
 		e.setNamespace(ns);
 		for(Object o : e.getChildren())
 		{
 			Element eChild = (Element)o;
-			eChild=unsetNameSpace(eChild,ns);
+			eChild=setNameSpaceRecursive(eChild,ns);
 		}
 		return e;
 	}
@@ -273,7 +282,7 @@ public class JDomUtil
 		for(Object o : e.getChildren())
 		{
 			Element eChild = (Element)o;
-			eChild=unsetNameSpace(eChild,ns);
+			eChild=setNameSpaceRecursive(eChild,ns);
 		}
 		return e;
 	}
