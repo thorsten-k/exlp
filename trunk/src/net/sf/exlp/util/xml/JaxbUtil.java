@@ -37,12 +37,21 @@ public class JaxbUtil
 		Object result = null;
 		try
 		{
+			result = loadJAXB(mrl.searchIs(xmlFile),c);
+		}
+		catch (FileNotFoundException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		return result;
+	}
+	public static synchronized Object loadJAXB(InputStream is, Class<?> c)
+	{
+		Object result = null;
+		try
+		{
 			JAXBContext jc = JAXBContext.newInstance(c);
 			Unmarshaller u = jc.createUnmarshaller();
-			result = u.unmarshal(mrl.searchIs(xmlFile));
+			result = u.unmarshal(is);
 		}
 		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (FileNotFoundException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return result;
 	}
 	
