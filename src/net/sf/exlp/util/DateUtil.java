@@ -116,6 +116,9 @@ public class DateUtil
 			xmlGC.setYear(gc.get(GregorianCalendar.YEAR));
 			xmlGC.setMonth(gc.get(GregorianCalendar.MONTH)+1);
 			xmlGC.setDay(gc.get(GregorianCalendar.DAY_OF_MONTH));
+			xmlGC.setHour(gc.get(GregorianCalendar.HOUR_OF_DAY));
+			xmlGC.setMinute(gc.get(GregorianCalendar.MINUTE));
+			xmlGC.setSecond(gc.get(GregorianCalendar.SECOND));
 		}
 		catch (DatatypeConfigurationException e) {logger.error(e);}
 		return xmlGC;

@@ -90,6 +90,7 @@ public class JaxbUtil
 		return null;
 	}
 	
+	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted){output(os, jaxb,null,null, formatted);}
 	public static synchronized void output(OutputStream os, Object jaxb, Object nsPrefixMapper, DocType doctype, boolean formatted)
 	{
 		try
