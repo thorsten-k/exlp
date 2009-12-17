@@ -15,7 +15,7 @@ import net.sf.exlp.addon.ads.ejb.AdOu;
 import net.sf.exlp.addon.ads.ejb.AdUser;
 import net.sf.exlp.io.InputChoiceReader;
 import net.sf.exlp.io.LoggerInit;
-import net.sf.exlp.util.Connector;
+import net.sf.exlp.util.ExlpContextFactory;
 
 import org.apache.log4j.Logger;
 
@@ -115,24 +115,5 @@ public class AdsCrawler
 		catch (NamingException e){logger.error("Problem getting attribute: " + e);}
 		catch (Exception e){logger.error("Encountered a really bad error:: " + e);}
 		return alGroup;
-	}
-	
-	public static void main(String args[])
-	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("resources/config");
-			loggerInit.init();
-		
-		String user = "DOMAIN\\NAME";
-		String pwd = InputChoiceReader.readLine("Password for "+user+"? ");
-		
-		InitialDirContext idc = Connector.getDirContext("192.168.1.2",user,pwd);
-		
-		String search = "CN=-Openfuxml,OU=SVN,OU=Gruppen,OU=AHT Group AG,DC=aht-group,DC=local";
-		ArrayList<AdUser> alAu = getAllAdUserForGroup(search, idc);
-		for(AdUser adu : alAu)
-		{
-			logger.debug("\t"+adu);
-		}
 	}
 }
