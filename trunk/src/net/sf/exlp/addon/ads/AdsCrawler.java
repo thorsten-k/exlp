@@ -35,7 +35,6 @@ public class AdsCrawler
 			
 			while (answer.hasMore())
 			{
-				logger.debug("antwort2");
 				SearchResult sr = (SearchResult)answer.next ();
 				AdsRecordInspector.Typ adsTyp = AdsRecordInspector.getTyp(sr);
 				logger.trace("Objekt von Typ: "+adsTyp);
