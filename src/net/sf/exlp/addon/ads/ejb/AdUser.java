@@ -42,6 +42,8 @@ public class AdUser implements java.io.Serializable
 			sb.append(" "+vorName);
 			sb.append(" "+nachName);
 			sb.append(" ("+eMail+")");
+			sb.append(" ("+account+")");
+			sb.append(" ("+info+")");
 		return sb.toString();
 	}
 }
