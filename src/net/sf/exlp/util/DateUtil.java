@@ -153,7 +153,18 @@ public class DateUtil
 	
 	public synchronized static int getMonth(String s) throws ParseException
 	{
-		if(s.equals("Sep")){return 8;}
+		if(s.equals("Jan")){return 0;}
+		else if(s.equals("Feb")){return 1;}
+		else if(s.equals("Mar")){return 2;}
+		else if(s.equals("Apr")){return 3;}
+		else if(s.equals("May")){return 4;}
+		else if(s.equals("Jun")){return 5;}
+		else if(s.equals("Jul")){return 6;}
+		else if(s.equals("Aug")){return 7;}
+		else if(s.equals("Sep")){return 8;}
+		else if(s.equals("Oct")){return 9;}
+		else if(s.equals("Nov")){return 10;}
+		else if(s.equals("Dec")){return 11;}
 		throw new ParseException("No month found for: "+s,0);
 	}
 	

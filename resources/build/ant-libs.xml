@@ -27,6 +27,10 @@
 		<property name="jboss-stax.lib" value="stax-api.jar"/>
 		<property name="jboss-ejb3extapi.lib" value="jboss-ejb3-ext-api.jar"/>
 	
+	<!-- Hibernate -->
+	<property name="hibernate.dir" value="db/hibernate"/>
+		<property name="hibernatecore.dir" value="${hibernate.dir}/core"/><property name="hibernatecore.lib" value="hibernate3-${hibernate-version}.jar" />
+	
 	<target name="00 - Classpath" description="Echos Classpath">
 		<echo level="info">Using ${ant.version} in ${ant.home}</echo>
 		<echo level="info">Lib-Info for ExLP v.${exlp-version}</echo>
@@ -39,6 +43,7 @@
 		<echo level="info">           ${jboss.dir}/${jboss-javaee.lib}</echo>
 		<echo level="info">           ${jboss.dir}/${jboss-stax.lib}</echo>
 		<echo level="info">           ${jboss.dir}/${jboss-ejb3extapi.lib}</echo>
+		<echo level="info">   Hib   : ${hibernatecore.dir}/${hibernatecore.lib}</echo>
 					
 			<echo level="info">------------------------</echo>
 	    </target>
