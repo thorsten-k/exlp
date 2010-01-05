@@ -1,9 +1,6 @@
 package net.sf.exlp.addon.apache.event;
 
-import java.util.Map;
-
 import net.sf.exlp.addon.apache.ejb.ExlpApache;
-import net.sf.exlp.addon.apache.facade.ExlpApacheFacade;
 import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.event.AbstractEvent;
 import net.sf.exlp.event.LogEvent;
@@ -35,11 +32,6 @@ public class ApacheEvent extends AbstractEvent implements LogEvent
 		logger.debug("** Size\t"+apache.getSize());
 	}
 	
-	@Override
-	public boolean persist(Map<String,?> facades)
-	{
-		ExlpApacheFacade apacheFacade = (ExlpApacheFacade)facades.get(ExlpApacheFacade.class.getSimpleName());
-		logger.error("Eventhandling ");
-		return false;
-	}
+	public ExlpApache getApache() {return apache;}
+	public ExlpHost getHost() {return host;}
 }

@@ -29,7 +29,7 @@ public class ApacheParser extends AbstractLogParser implements LogParser
 		StringBuffer sb = new StringBuffer();
 			sb.append(PatternFactory.ipPattern);
 			sb.append(" - ");
-			sb.append("[\\w-]+");
+			sb.append("[\\w-\"]+");
 			sb.append(" \\[(\\d+)/(\\w+)/(\\d+):");
 			sb.append("(\\d+):(\\d+):(\\d+)");
 			sb.append(" ([+-]\\d+)\\]");
