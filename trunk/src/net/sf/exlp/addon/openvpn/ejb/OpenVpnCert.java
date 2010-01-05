@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -29,6 +28,7 @@ public class OpenVpnCert implements Serializable
 
 	private int serial;
 	private Date notBefore,notAfter;
+	private String dn;
 
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Getters and Setters<<<<<<<<<<<<<<<<<<<<<<<<<<<
 	
@@ -44,6 +44,9 @@ public class OpenVpnCert implements Serializable
 	public Date getNotBefore() {return notBefore;}
 	public void setNotBefore(Date notBefore) {	this.notBefore = notBefore;}
 	
+	public String getDn() {return dn;}
+	public void setDn(String dn) {this.dn = dn;}
+	
 	// >>>>>>>>>>>>>>>>>>>>>>>>>>Methods<<<<<<<<<<<<<<<<<<<<<<<<<<<	
 	
 	public String toString()
@@ -51,6 +54,7 @@ public class OpenVpnCert implements Serializable
 		StringBuffer sb = new StringBuffer();
 			sb.append(id);
 			sb.append(" "+serial);
+			sb.append(" "+dn);
 		return sb.toString();
 	}
 }

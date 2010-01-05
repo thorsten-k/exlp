@@ -10,6 +10,7 @@
 	<property name="commonslang.dir" value="utils/commons/lang"/><property name="commonslang.lib" value="commons-lang-${commonslang-version}.jar" />
 	<property name="commonsio.dir" value="utils/commons/io"/><property name="commonsio.lib" value="commons-io-${commonsio-version}.jar" />
 	<property name="commonsconfig.dir" value="utils/commons/config"/><property name="commonsconfig.lib" value="commons-configuration-${commonsconfig-version}.jar" />
+	<property name="jclarens.dir" value="utils/jclarens"/><property name="jclarens.lib" value="jclarens-${jclarens-version}.jar" />
 	
 	<!-- Library Definitions: XML -->
 	<property name="jdom.dir" value="xml/jdom"/><property name="jdom.lib" value="jdom-${jdom-version}.jar" />
@@ -38,6 +39,7 @@
 		<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
 		<echo level="info">           ${commonsio.dir}/${commonsio.lib}</echo>
 		<echo level="info">           ${commonsconfig.dir}/${commonsconfig.lib}</echo>
+		<echo level="info">           ${jclarens.dir}/${jclarens.lib}</echo>
 		<echo level="info">   GUI   : ${swt.dir}/${swt-osx.lib}</echo>
 		<echo level="info">   JBoss : ${jboss.dir}/${jboss-ejb3.lib}</echo>
 		<echo level="info">           ${jboss.dir}/${jboss-javaee.lib}</echo>
