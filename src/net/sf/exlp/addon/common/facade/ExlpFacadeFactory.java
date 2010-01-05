@@ -3,6 +3,8 @@ package net.sf.exlp.addon.common.facade;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
+import net.sf.exlp.addon.apache.facade.bean.ExlpApacheFacadeBean;
+import net.sf.exlp.addon.apache.facade.exlp.ExlpApacheFacade;
 import net.sf.exlp.addon.common.facade.bean.ExlpCommonFacadeBean;
 import net.sf.exlp.addon.common.facade.exlp.ExlpCommonFacade;
 import net.sf.exlp.util.ExlpContextFactory;
@@ -41,7 +43,14 @@ public class ExlpFacadeFactory
 		return f;
 	}
 	
-	
+	public ExlpApacheFacade getApacheFacade()
+	{
+		if(context==null){initContext();}
+		ExlpApacheFacade f=null;
+		try{f = (ExlpApacheFacade)context.lookup(contextPrefix+"/"+ExlpApacheFacadeBean.class.getSimpleName()+"/remote");}
+		catch (NamingException e){exit(e);}
+		return f;
+	}
 	
 	private void exit(Exception e)
 	{

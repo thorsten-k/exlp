@@ -8,10 +8,16 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 
 @Entity
+@NamedQueries
+({
+	@NamedQuery(name="fExlpApache",query="SELECT r FROM ExlpApache r WHERE r.record = :record AND r.url = :url AND r.host.id = :hostid")
+})
 public class ExlpApache implements Serializable
 {
 	public static final long serialVersionUID=1;

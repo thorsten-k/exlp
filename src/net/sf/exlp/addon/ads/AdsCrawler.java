@@ -30,7 +30,7 @@ public class AdsCrawler
 		{
 			Attributes matchAttrs = new BasicAttributes (true);
 			//matchAttrs.put (new BasicAttribute ("mail"));
-			logger.debug("suche: "+search);
+			logger.trace("suche: "+search);
 			NamingEnumeration<SearchResult> answer = ctx.search(search, null);
 			
 			while (answer.hasMore())
