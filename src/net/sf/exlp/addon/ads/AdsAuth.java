@@ -7,11 +7,12 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 import javax.naming.ldap.InitialLdapContext;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class AdsAuth
 {
-	static Logger logger = Logger.getLogger(AdsAuth.class);
+	static Log logger = LogFactory.getLog(AdsAuth.class);
 	
 	private String domain;
 	private String ldapHost;

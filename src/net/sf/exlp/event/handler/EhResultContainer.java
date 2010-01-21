@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class EhResultContainer extends AbstractEventHandler 
 {
-	static Logger logger = Logger.getLogger(EhResultContainer.class);
+	static Log logger = LogFactory.getLog(EhResultContainer.class);
 	static final long serialVersionUID=1;
 	
 	private ArrayList<LogEvent> alResults;

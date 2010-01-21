@@ -7,11 +7,12 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.naming.directory.InitialDirContext;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class ExlpContextFactory
 {
-	static Logger logger = Logger.getLogger(ExlpContextFactory.class);
+	static Log logger = LogFactory.getLog(ExlpContextFactory.class);
 	
 	public static InitialContext getJbossContext(String jndiHost) throws NamingException
 	{

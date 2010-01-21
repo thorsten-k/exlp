@@ -12,17 +12,17 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
-
 import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 
 public class LogListenerFile extends AbstractLogListener implements LogListener
 {
-	static Logger logger = Logger.getLogger(LogListenerFile.class);
+	static Log logger = LogFactory.getLog(LogListenerFile.class);
 	
 	Pattern gzipPattern;
 	BufferedReader myBufferedReader;

@@ -2,12 +2,13 @@ package net.sf.exlp.event;
 
 import java.io.Serializable;
 
-
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public abstract class AbstractEventHandler implements Serializable,LogEventHandler  
 {
-	static Logger logger = Logger.getLogger(AbstractEventHandler.class);
+	static Log logger = LogFactory.getLog(AbstractEventHandler.class);
+	static final long serialVersionUID=1;
 	
 	protected long eventCounter;
 	

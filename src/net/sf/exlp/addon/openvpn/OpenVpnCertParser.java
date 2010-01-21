@@ -12,13 +12,14 @@ import java.security.cert.X509Certificate;
 import net.sf.exlp.addon.openvpn.ejb.OpenVpnCert;
 import net.sf.exlp.addon.openvpn.event.OpenVpnCertEvent;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import pk.edu.niit.clarens.util.PEMBlock;
 
 public class OpenVpnCertParser
 {	
-	static Logger logger = Logger.getLogger(OpenVpnCertParser.class);
+	static Log logger = LogFactory.getLog(OpenVpnCertParser.class);
 		
 	public OpenVpnCertParser()
 	{

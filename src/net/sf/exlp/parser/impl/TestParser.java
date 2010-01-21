@@ -8,11 +8,12 @@ import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class TestParser extends AbstractLogParser implements LogParser  
 {
-	private static Logger logger = Logger.getLogger(TestParser.class);
+	static Log logger = LogFactory.getLog(TestParser.class);
 
 	private final static int maxP=1;
 	Pattern p[] = new Pattern[maxP];

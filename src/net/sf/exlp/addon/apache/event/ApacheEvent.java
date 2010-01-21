@@ -5,11 +5,12 @@ import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.event.AbstractEvent;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class ApacheEvent extends AbstractEvent implements LogEvent
 {
-	static Logger logger = Logger.getLogger(ApacheEvent.class);
+	static Log logger = LogFactory.getLog(ApacheEvent.class);
 	static final long serialVersionUID=1;
 	
 	private ExlpApache apache;

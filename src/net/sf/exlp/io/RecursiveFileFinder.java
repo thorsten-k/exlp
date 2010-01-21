@@ -10,11 +10,12 @@ import org.apache.commons.io.DirectoryWalker;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class RecursiveFileFinder extends DirectoryWalker
 {
-	private static Logger logger = Logger.getLogger(RecursiveFileFinder.class);
+	static Log logger = LogFactory.getLog(RecursiveFileFinder.class);
 	
 	public RecursiveFileFinder(IOFileFilter dirFilter, IOFileFilter fileFilter)
 	{

@@ -2,15 +2,14 @@ package net.sf.exlp.listener;
 
 import java.util.Properties;
 
-
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.log4j.Logger;
-
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public abstract class AbstractLogListener
 {	
-	static Logger logger = Logger.getLogger(AbstractLogListener.class);
+	static Log logger = LogFactory.getLog(AbstractLogListener.class);
 	
 	public Properties metaInfo;
 	protected LogParser lp;

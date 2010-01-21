@@ -4,11 +4,12 @@ import net.sf.exlp.io.ConfigLoader;
 import net.sf.exlp.io.LoggerInit;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class TestConfigLoader
 {
-	static Logger logger = Logger.getLogger(TestConfigLoader.class);
+	static Log logger = LogFactory.getLog(TestConfigLoader.class);
 	
 	public static void main(String args[])
 	{

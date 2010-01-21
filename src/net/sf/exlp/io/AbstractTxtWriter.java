@@ -8,11 +8,12 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 import org.apache.commons.lang.SystemUtils;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public abstract class AbstractTxtWriter
 {
-	static Logger logger = Logger.getLogger(AbstractTxtWriter.class);
+	static Log logger = LogFactory.getLog(AbstractTxtWriter.class);
 	
 	protected static String fs = SystemUtils.FILE_SEPARATOR;
 	protected static String ls = SystemUtils.LINE_SEPARATOR;

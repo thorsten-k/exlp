@@ -5,11 +5,12 @@ import java.util.regex.Pattern;
 
 import net.sf.exlp.io.LoggerInit;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class TestApachePattern
 {
-	static Logger logger = Logger.getLogger(TestApachePattern.class);
+	static Log logger = LogFactory.getLog(TestApachePattern.class);
 	
 	public static void main(String args[])
 	{

@@ -6,11 +6,12 @@ import java.util.Properties;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhDebug;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class AbstractLogParser
 {
-	static Logger logger = Logger.getLogger(AbstractLogParser.class);
+	static Log logger = LogFactory.getLog(AbstractLogParser.class);
 	
 	protected LogEventHandler leh;
 	protected Properties metaInfo;
