@@ -6,13 +6,13 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public abstract class AbstractEvent implements LogEvent,Serializable
 {
+	static Log logger = LogFactory.getLog(AbstractEvent.class);
 	static final long serialVersionUID=2;
-	
-	static Logger logger = Logger.getLogger(AbstractEvent.class);
 	
 	protected  String fileName;
 	protected  Date record;

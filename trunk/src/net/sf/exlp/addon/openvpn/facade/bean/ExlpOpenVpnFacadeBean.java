@@ -12,13 +12,14 @@ import net.sf.exlp.addon.common.facade.bean.AbstractExlpFacadeBean;
 import net.sf.exlp.addon.openvpn.ejb.OpenVpnCert;
 import net.sf.exlp.addon.openvpn.facade.exlp.ExlpOpenVpnFacade;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 @Stateful
 @Remote
 public class ExlpOpenVpnFacadeBean extends AbstractExlpFacadeBean implements ExlpOpenVpnFacade, Serializable
 {
-	private static Logger logger = Logger.getLogger(ExlpOpenVpnFacadeBean.class);
+	static Log logger = LogFactory.getLog(ExlpOpenVpnFacadeBean.class);
 	static final long serialVersionUID=10;
 	
 	public OpenVpnCert fOpenVpnCert(int serial)

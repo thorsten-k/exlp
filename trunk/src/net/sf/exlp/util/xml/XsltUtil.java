@@ -17,11 +17,12 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class XsltUtil
 {
-	private static Logger logger = Logger.getLogger(XsltUtil.class);
+	static Log logger = LogFactory.getLog(XsltUtil.class);
 	public static boolean useLog4j = true;
 	
 	public static synchronized void debug(InputStream xml, String xslt){transform(xml,xslt,System.out);}

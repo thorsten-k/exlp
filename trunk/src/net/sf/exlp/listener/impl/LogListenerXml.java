@@ -11,7 +11,8 @@ import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
@@ -20,7 +21,7 @@ import org.jdom.xpath.XPath;
 
 public class LogListenerXml extends AbstractLogListener implements LogListener
 {
-	static Logger logger = Logger.getLogger(LogListenerXml.class);
+	static Log logger = LogFactory.getLog(LogListenerXml.class);
 	
 	BufferedReader myBufferedReader;
 	Document doc;

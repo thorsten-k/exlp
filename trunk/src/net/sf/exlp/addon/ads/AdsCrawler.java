@@ -7,21 +7,18 @@ import javax.naming.NamingException;
 import javax.naming.directory.Attributes;
 import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
-import javax.naming.directory.InitialDirContext;
 import javax.naming.directory.SearchResult;
 
 import net.sf.exlp.addon.ads.ejb.AdGroup;
 import net.sf.exlp.addon.ads.ejb.AdOu;
 import net.sf.exlp.addon.ads.ejb.AdUser;
-import net.sf.exlp.io.InputChoiceReader;
-import net.sf.exlp.io.LoggerInit;
-import net.sf.exlp.util.ExlpContextFactory;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class AdsCrawler
 {
-	static Logger logger = Logger.getLogger(AdsCrawler.class);
+	static Log logger = LogFactory.getLog(AdsCrawler.class);
 	
 	public static ArrayList<AdUser> getAllAdUser(String search, DirContext ctx)
 	{

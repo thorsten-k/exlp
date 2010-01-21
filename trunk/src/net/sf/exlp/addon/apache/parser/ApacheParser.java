@@ -13,11 +13,12 @@ import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.PatternFactory;
 import net.sf.exlp.util.DateUtil;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class ApacheParser extends AbstractLogParser implements LogParser  
 {
-	private static Logger logger = Logger.getLogger(ApacheParser.class);
+	static Log logger = LogFactory.getLog(ApacheParser.class);
 
 	private final static int maxP=1;
 	Pattern p[] = new Pattern[maxP];

@@ -15,13 +15,14 @@ import javax.persistence.Query;
 import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.addon.common.facade.exlp.ExlpCommonFacade;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 @Stateful
 @Remote
 public class ExlpCommonFacadeBean extends AbstractExlpFacadeBean implements ExlpCommonFacade, Serializable
 {
-	private static Logger logger = Logger.getLogger(ExlpCommonFacadeBean.class);
+	static Log logger = LogFactory.getLog(ExlpCommonFacadeBean.class);
 	static final long serialVersionUID=10;
 	
 	public ExlpHost fExlpHost(String ip)

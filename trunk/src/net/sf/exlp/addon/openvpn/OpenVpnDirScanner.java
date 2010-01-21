@@ -12,11 +12,12 @@ import net.sf.exlp.io.RecursiveFileFinder;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class OpenVpnDirScanner
 {	
-	static Logger logger = Logger.getLogger(OpenVpnDirScanner.class);
+	static Log logger = LogFactory.getLog(OpenVpnDirScanner.class);
 	
 	private RecursiveFileFinder rff;
 	private OpenVpnCertParser certParser;

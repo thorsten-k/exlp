@@ -12,11 +12,12 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.configuration.tree.xpath.XPathExpressionEngine;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class ConfigLoader
 {
-	static Logger logger = Logger.getLogger(ConfigLoader.class);
+	static Log logger = LogFactory.getLog(ConfigLoader.class);
 	private static enum Typ{UNKNOWN,XML,PROPERTIES}
 	
 	private static CompositeConfiguration c;

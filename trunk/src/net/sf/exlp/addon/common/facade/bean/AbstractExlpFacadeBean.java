@@ -12,12 +12,13 @@ import javax.persistence.PersistenceContext;
 
 import net.sf.exlp.addon.common.facade.ExlpIntegrityException;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 @PersistenceContext(name="exlpEM", unitName="exlp")
 public class AbstractExlpFacadeBean
 {
-	private static Logger logger = Logger.getLogger(AbstractExlpFacadeBean.class);
+	static Log logger = LogFactory.getLog(AbstractExlpFacadeBean.class);
 	static final long serialVersionUID=10;
 	
 	private EntityManager manager;

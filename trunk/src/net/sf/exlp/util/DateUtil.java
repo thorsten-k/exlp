@@ -11,11 +11,12 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class DateUtil
 {
-	static Logger logger = Logger.getLogger(DateUtil.class);
+	static Log logger = LogFactory.getLog(DateUtil.class);
 	
 	public static GregorianCalendar getGC4D(Date d)
 	{

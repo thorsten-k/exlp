@@ -3,11 +3,12 @@ package net.sf.exlp.event.handler;
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class EhVoid extends AbstractEventHandler 
 {
-	static Logger logger = Logger.getLogger(EhVoid.class);
+	static Log logger = LogFactory.getLog(EhVoid.class);
 	static final long serialVersionUID=1;
 	
 	public EhVoid()

@@ -2,11 +2,12 @@ package net.sf.exlp.io;
 
 import java.io.OutputStream;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class StringBufferOutputStream extends OutputStream
 {
-	static Logger logger = Logger.getLogger(StringBufferOutputStream.class);
+	static Log logger = LogFactory.getLog(StringBufferOutputStream.class);
 	
 	protected StringBuffer sb = new StringBuffer();
 

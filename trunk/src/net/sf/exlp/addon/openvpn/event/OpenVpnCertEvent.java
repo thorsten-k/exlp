@@ -4,11 +4,12 @@ import net.sf.exlp.addon.openvpn.ejb.OpenVpnCert;
 import net.sf.exlp.event.AbstractEvent;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class OpenVpnCertEvent extends AbstractEvent implements LogEvent
 {
-	static Logger logger = Logger.getLogger(OpenVpnCertEvent.class);
+	static Log logger = LogFactory.getLog(OpenVpnCertEvent.class);
 	static final long serialVersionUID=1;
 	
 	private OpenVpnCert cert;

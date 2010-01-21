@@ -8,11 +8,12 @@ import net.sf.exlp.listener.impl.LogListenerXml;
 import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.impl.TestParser;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class TestListenerXml
 {
-	static Logger logger = Logger.getLogger(TestListenerXml.class);
+	static Log logger = LogFactory.getLog(TestListenerXml.class);
 	
 	public static void main(String args[])
 	{

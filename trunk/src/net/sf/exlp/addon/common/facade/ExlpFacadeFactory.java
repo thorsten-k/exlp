@@ -9,11 +9,12 @@ import net.sf.exlp.addon.common.facade.bean.ExlpCommonFacadeBean;
 import net.sf.exlp.addon.common.facade.exlp.ExlpCommonFacade;
 import net.sf.exlp.util.ExlpContextFactory;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class ExlpFacadeFactory
 {
-	private static Logger logger = Logger.getLogger(ExlpFacadeFactory.class);
+	static Log logger = LogFactory.getLog(ExlpFacadeFactory.class);
 	
 	private InitialContext context;
 	private String jbossServer;

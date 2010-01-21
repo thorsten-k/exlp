@@ -7,12 +7,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.w3c.dom.Document;
 
 public class DomUtil
 {
-	private static Logger logger = Logger.getLogger(DomUtil.class);
+	static Log logger = LogFactory.getLog(DomUtil.class);
 	
 	public static synchronized void debugDocument(Document doc)
 	{

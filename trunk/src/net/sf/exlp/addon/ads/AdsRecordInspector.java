@@ -11,11 +11,12 @@ import net.sf.exlp.addon.ads.ejb.AdGroup;
 import net.sf.exlp.addon.ads.ejb.AdOu;
 import net.sf.exlp.addon.ads.ejb.AdUser;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class AdsRecordInspector
 {
-	static Logger logger = Logger.getLogger(AdsRecordInspector.class);
+	static Log logger = LogFactory.getLog(AdsRecordInspector.class);
 	
 	public static enum Typ{ Unknown, USER, OU, GROUP, CONTACT }
 	

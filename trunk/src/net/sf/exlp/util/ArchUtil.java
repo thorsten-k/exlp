@@ -3,11 +3,12 @@ package net.sf.exlp.util;
 import net.sf.exlp.io.LoggerInit;
 
 import org.apache.commons.lang.SystemUtils;
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 public class ArchUtil
 {
-	static Logger logger = Logger.getLogger(ArchUtil.class);
+	static Log logger = LogFactory.getLog(ArchUtil.class);
 	
 	private static String fSep = SystemUtils.FILE_SEPARATOR;
 	

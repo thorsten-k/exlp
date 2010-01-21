@@ -25,7 +25,8 @@ import net.sf.exlp.io.StringBufferOutputStream;
 import net.sf.exlp.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.exception.JDomUtilException;
 
-import org.apache.log4j.Logger;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.jdom.DocType;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -39,7 +40,7 @@ import org.xml.sax.SAXException;
 
 public class JDomUtil
 {
-	private static Logger logger = Logger.getLogger(JDomUtil.class);
+	static Log logger = LogFactory.getLog(JDomUtil.class);
 	public static boolean useLog4j = true;
 	
 	public static synchronized Document txtToDoc(String txt)
