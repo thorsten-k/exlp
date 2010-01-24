@@ -14,8 +14,9 @@ public abstract class AbstractEvent implements LogEvent,Serializable
 	static Log logger = LogFactory.getLog(AbstractEvent.class);
 	static final long serialVersionUID=2;
 	
-	protected  String fileName;
-	protected  Date record;
+	protected String fileName;
+	protected Date record;
+
 	transient protected Hashtable<String,String> propStr;
 	transient protected Hashtable<String,Integer> propInt;
 	transient protected Hashtable<String,Object> myFacades;
@@ -53,4 +54,5 @@ public abstract class AbstractEvent implements LogEvent,Serializable
 	}
 	
 	public boolean persist(Map<String,?> mapFacades){logger.error("Event Handling \"persist\" not implemented!");return false;}
+	public Date getRecord() {return record;}
 }
