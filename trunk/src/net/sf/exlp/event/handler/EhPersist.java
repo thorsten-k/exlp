@@ -28,10 +28,12 @@ public class EhPersist extends AbstractEventHandler
 		logger.debug("inited with "+facades.size());
 	}
 
-	public boolean handleEvent(LogEvent le)
+	public synchronized boolean handleEvent(LogEvent le)
 	{
+		logger.debug("Handling persist.");
 		count();
 		boolean result = le.persist(facades);
+		logger.debug("Result: "+result);
 		return result;
 	}
 	

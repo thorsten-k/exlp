@@ -1,10 +1,14 @@
 package net.sf.exlp.event;
 
+import java.io.File;
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Random;
+
+import net.sf.exlp.io.ObjectIO;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -21,6 +25,8 @@ public abstract class AbstractEvent implements LogEvent,Serializable
 	transient protected Hashtable<String,Integer> propInt;
 	transient protected Hashtable<String,Object> myFacades;
 	
+	transient private Random rnd;
+	
 	public AbstractEvent()
 	{
 		initProps();
@@ -28,8 +34,9 @@ public abstract class AbstractEvent implements LogEvent,Serializable
 	
 	protected void initProps()
 	{
+		rnd = new Random();
 		record = new Date();
-		fileName = record.getTime()+"";
+		fileName = record.getTime()+"-"+rnd.nextInt(999999999);
 		propStr = new Hashtable<String,String>();
 		propInt = new Hashtable<String,Integer>();
 		propStr.put("Event",this.getClass().getSimpleName());
@@ -51,6 +58,13 @@ public abstract class AbstractEvent implements LogEvent,Serializable
 		logger.debug("** File\t"+fileName+"."+this.getClass().getSimpleName());
 		logger.debug("** Crte\t"+DateFormat.getDateTimeInstance(DateFormat.MEDIUM,DateFormat.MEDIUM).format(record));
 		if(sb.length()>0){logger.debug("** Props\t"+sb);}
+	}
+	
+	public boolean save(File dir)
+	{
+		File f = new File(dir,fileName);
+		ObjectIO.save(f.getAbsolutePath(), (Object)this);
+		return true;
 	}
 	
 	public boolean persist(Map<String,Object> mapFacades){logger.error("Event Handling \"persist\" not implemented!");return false;}
