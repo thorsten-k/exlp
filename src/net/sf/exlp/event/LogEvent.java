@@ -7,5 +7,5 @@ public interface LogEvent
 {
 	void debug();
 	Date getRecord();
-	boolean persist(Map<String,?> facades);
+	boolean persist(Map<String,Object> facades);
 }
