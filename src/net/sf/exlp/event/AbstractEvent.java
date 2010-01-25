@@ -69,4 +69,5 @@ public abstract class AbstractEvent implements LogEvent,Serializable
 	
 	public boolean persist(Map<String,Object> mapFacades){logger.error("Event Handling \"persist\" not implemented!");return false;}
 	public Date getRecord() {return record;}
+	public void setRecord(Date record) {this.record = record;}
 }

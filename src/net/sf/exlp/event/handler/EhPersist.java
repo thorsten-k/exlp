@@ -5,7 +5,6 @@ import java.util.Map;
 
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
-import net.sf.exlp.event.exception.HandlerException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -30,10 +29,8 @@ public class EhPersist extends AbstractEventHandler
 
 	public synchronized boolean handleEvent(LogEvent le)
 	{
-		logger.debug("Handling persist.");
 		count();
 		boolean result = le.persist(facades);
-		logger.debug("Result: "+result);
 		return result;
 	}
 	

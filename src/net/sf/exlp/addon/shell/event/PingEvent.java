@@ -13,8 +13,8 @@ public class PingEvent extends AbstractEvent implements LogEvent,Serializable
 	static Log logger = LogFactory.getLog(PingEvent.class);
 	static final long serialVersionUID=1;
 	
-	String hostIp;
-	double time;
+	private String hostIp;
+	private double time;
 	
 	public PingEvent(String hostIp, double time)
 	{
@@ -34,4 +34,5 @@ public class PingEvent extends AbstractEvent implements LogEvent,Serializable
 	}
 
 	public double getTime() {return time;}
+	public String getHostIp() {return hostIp;}
 }
