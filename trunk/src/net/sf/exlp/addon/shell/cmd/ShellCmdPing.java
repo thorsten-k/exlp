@@ -15,10 +15,9 @@ public class ShellCmdPing extends ShellCmds
 		StringBuffer sb = new StringBuffer();
 		switch(arch)
 		{
-			case Win32: sb.append("ping -n "+anzahl+" ");
-						sb.append(host);break;
-			case OsX:	sb.append("ping -c "+anzahl+" ");
-						sb.append(host);break;
+			case Win32: sb.append("ping -n "+anzahl+" "+host);break;
+			case OsX:	sb.append("ping -c "+anzahl+" "+host);break;
+			case Linux:	sb.append("ping -c "+anzahl+" "+host);break;
 			default:	errorUnsupportedOS("ping -number target");break;
 		}	
 		return sb.toString();
