@@ -32,7 +32,6 @@ public class PingParser extends AbstractLogParser implements LogParser
 
 	public void parseLine(String line)
 	{
-		logger.debug(line);
 		jetzt = new Date();
 		for(int i=0;i<maxChainPattern;i++)
 		{
