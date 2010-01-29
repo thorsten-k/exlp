@@ -32,6 +32,7 @@ public class PingParser extends AbstractLogParser implements LogParser
 
 	public void parseLine(String line)
 	{
+		logger.trace(line);
 		jetzt = new Date();
 		for(int i=0;i<maxChainPattern;i++)
 		{
@@ -40,8 +41,8 @@ public class PingParser extends AbstractLogParser implements LogParser
 			{
 				switch(i)
 				{
-					case 0: event(m.group(1),m.group(2),m.group(6));break;
-					case 1: event(m.group(2),m.group(2),m.group(3));break;
+					case 0: event(m.group(1),m.group(2),m.group(5));break;
+					case 1: event(m.group(2),m.group(1),m.group(3));break;
 				}
 				i=maxChainPattern;
 			}
