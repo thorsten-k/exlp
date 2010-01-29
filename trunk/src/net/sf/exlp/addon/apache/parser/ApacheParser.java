@@ -40,6 +40,8 @@ public class ApacheParser extends AbstractLogParser implements LogParser
 			sb.append(" (\\d+) ([\\-\\d+])(.*)");
 		p[i] = Pattern.compile(sb.toString());i++;
 		logger.debug(p[0].toString());
+		logger.warn("You have to check the pattern first, iPPattern ()");
+		System.exit(-1);
 	}
 
 	public void parseLine(String line)
