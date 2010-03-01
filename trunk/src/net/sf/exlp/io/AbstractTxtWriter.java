@@ -2,8 +2,10 @@ package net.sf.exlp.io;
 
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
@@ -52,14 +54,14 @@ public abstract class AbstractTxtWriter
 		try
 		{
 			f.createNewFile();
-			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
+			OutputStream os = new FileOutputStream(f);
+			OutputStreamWriter osw = new  OutputStreamWriter(os, "UTF-8"); 
+
+			BufferedWriter bw = new BufferedWriter(osw);
 			for(String s : txt){bw.write(s+ls);}
-			bw.close(); 
+			bw.close();osw.close();os.close();
 		}
-		catch (IOException e)
-		{
-			e.printStackTrace();
-		}  
+		catch (IOException e){logger.error(e);}  
 	}
 	
 	protected String spaces(int indent)
@@ -78,8 +80,22 @@ public abstract class AbstractTxtWriter
 		for(String s : txt)
 		{
 			s=s.replaceAll("#", "\\\\#");
+			s=s.replaceAll("∞","\\$ \\\\inf \\$");
 			tmp.add(s);
 		}
 		txt=tmp;
+	}
+	
+	public static void main (String[] args) throws Exception
+	{
+		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
+			loggerInit.addAltPath("resources/config");
+			loggerInit.init();
+		
+		String s = "∞";
+		logger.debug(s);
+		
+		s=s.replaceAll("∞","\\$ \\\\inf \\$");
+		logger.debug(s);
 	}
 }
