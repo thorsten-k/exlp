@@ -20,7 +20,7 @@ public class ExlpContextFactory
         environment.put(Context.INITIAL_CONTEXT_FACTORY, "org.jnp.interfaces.NamingContextFactory");
         environment.put(Context.URL_PKG_PREFIXES, "org.jboss.naming:org.jnp.interfaces");
         environment.put(Context.PROVIDER_URL, "jnp://"+jndiHost);
-        logger.debug("InitialContext to "+jndiHost);
+        logger.info("Creating InitialContext to "+jndiHost);
         return new InitialContext(environment);
 	}
 
