@@ -175,4 +175,11 @@ public class DateUtil
 		long days = Math.round( (double)time / (24. * 60.*60.*1000.) );     // Differenz in Tagen
 		return days;
 	}
+	
+	public synchronized static int getCurrentYear()
+	{
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(new Date());
+		return gc.get(GregorianCalendar.YEAR);
+	}
 }
