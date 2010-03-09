@@ -1,5 +1,6 @@
 package net.sf.exlp.util.xml;
 
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
@@ -21,6 +22,9 @@ public class DomUtil
 		{
 			TransformerFactory tf = TransformerFactory.newInstance(); 
 			Transformer t = tf.newTransformer();
+			//Setup indenting to "pretty print"
+			t.setOutputProperty(OutputKeys.INDENT,"yes");
+			t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2");
 			t.transform(new DOMSource(doc), new StreamResult(System.out));
 		}
 		catch (TransformerConfigurationException e) {logger.error(e);} 
