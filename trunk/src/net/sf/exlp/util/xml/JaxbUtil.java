@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.zip.GZIPInputStream;
+import java.util.zip.GZIPOutputStream;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -38,7 +40,24 @@ public class JaxbUtil
 		Object result = null;
 		try
 		{
-			result = loadJAXB(mrl.searchIs(xmlFile),c);
+			InputStream is=null;
+			InputStream resourceIs = mrl.searchIs(xmlFile);
+			
+			if(xmlFile.endsWith(".gz"))
+			{
+				try
+				{
+					GZIPInputStream gzIs = new GZIPInputStream(resourceIs);
+					is=gzIs;
+				}
+				catch (IOException e) {logger.error(e);}
+			}
+			else
+			{
+				is = resourceIs;
+			}
+			
+			result = loadJAXB(is,c);
 		}
 		catch (FileNotFoundException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 		return result;
@@ -66,14 +85,20 @@ public class JaxbUtil
 	public static synchronized void save(File f, Object jaxb, Object nsPrefixMapper,boolean formatted){save(f, jaxb, nsPrefixMapper,null,formatted);}
 	public static synchronized void save(File f, Object jaxb, Object nsPrefixMapper, DocType doctype, boolean formatted)
 	{
+		OutputStream os=null;
 		try
 		{
-			FileOutputStream fos = new FileOutputStream(f);
-			output(fos, jaxb, nsPrefixMapper, doctype, formatted);
-			fos.close();
+			if(f.getAbsolutePath().endsWith(".gz"))
+			{
+				os = new GZIPOutputStream(new FileOutputStream(f));
+			}
+			else {os = new FileOutputStream(f);}
+			
+			output(os, jaxb, nsPrefixMapper, doctype, formatted);
+			os.close();
 		}
 		catch (FileNotFoundException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}	
+		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 	}
 	
 	public static synchronized InputStream toInputStream(Object jaxb, Object nsPrefixMapper,boolean formatted){return toInputStream(jaxb, nsPrefixMapper, null, formatted);}
@@ -101,7 +126,6 @@ public class JaxbUtil
 			m.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
 			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
-            
 			m.marshal( jaxb, os);
 		}
 		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
