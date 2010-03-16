@@ -7,7 +7,7 @@ import net.sf.exlp.addon.apache.facade.bean.ExlpApacheFacadeBean;
 import net.sf.exlp.addon.apache.facade.exlp.ExlpApacheFacade;
 import net.sf.exlp.addon.common.facade.bean.ExlpCommonFacadeBean;
 import net.sf.exlp.addon.common.facade.exlp.ExlpCommonFacade;
-import net.sf.exlp.util.ExlpContextFactory;
+import net.sf.exlp.util.data.facade.ExlpContextFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
