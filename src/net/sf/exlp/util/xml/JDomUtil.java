@@ -13,6 +13,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.List;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -309,6 +310,33 @@ public class JDomUtil
 		{
 			Element eChild = (Element)o;
 			eChild=setNameSpaceRecursive(eChild,ns);
+		}
+		return e;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static synchronized Document unsetNameSpace(Document doc)
+	{
+		Namespace ns = Namespace.getNamespace("");
+		unsetNameSpace(doc.getRootElement(), ns);
+		
+		List<Namespace> lAddNs = (List<Namespace>)doc.getRootElement().getAdditionalNamespaces();
+		while(lAddNs.size()>0)
+		{
+			doc.getRootElement().removeNamespaceDeclaration(lAddNs.get(0));
+			lAddNs = (List<Namespace>)doc.getRootElement().getAdditionalNamespaces();
+		}
+		
+		return doc;
+	}
+	
+	public static synchronized Element unsetNameSpace(Element e, Namespace ns)
+	{
+		e.setNamespace(ns);
+		for(Object o : e.getChildren())
+		{
+			Element eChild = (Element)o;
+			eChild=unsetNameSpace(eChild,ns);
 		}
 		return e;
 	}
