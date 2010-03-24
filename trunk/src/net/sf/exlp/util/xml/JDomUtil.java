@@ -176,6 +176,20 @@ public class JDomUtil
 		} 
 		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 	}
+	public static synchronized Object toJaxb(Document doc, Class<?> c)
+	{
+		InputStream is = toInputStream(doc, Format.getRawFormat());
+		Object result = null;
+		try
+		{
+			JAXBContext jc = JAXBContext.newInstance(c);
+			Unmarshaller u = jc.createUnmarshaller();
+			result = u.unmarshal(is);
+		}
+		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		return result;
+	}
+	
 	public static synchronized Object toJaxb(Element rootElement, Class<?> c)
 	{
 		InputStream is = toInputStream(rootElement, Format.getRawFormat());

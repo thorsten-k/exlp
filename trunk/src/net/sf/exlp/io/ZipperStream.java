@@ -1,0 +1,57 @@
+package net.sf.exlp.io;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+public class ZipperStream
+{
+	static Log logger = LogFactory.getLog(ZipperStream.class);
+	
+	private ByteArrayOutputStream resultOs;
+	private ZipOutputStream zipOs;
+	
+	public ZipperStream()
+	{
+		resultOs = new ByteArrayOutputStream();
+		zipOs = new ZipOutputStream(resultOs);
+	}
+	
+	public void add(String name, byte[] data)
+	{
+		try
+		{
+			zipOs.putNextEntry(new ZipEntry(name));
+			zipOs.write(data);
+		}
+		catch (IOException e) {logger.error(e);}
+	}
+	
+	public OutputStream getZipStream()
+	{
+		try {zipOs.close();}
+		catch (IOException e) {logger.error(e);}
+		return resultOs;
+	}
+	
+	public static void writeFile(String fileName,OutputStream os)
+	{
+		try
+		{
+			FileOutputStream fos = new FileOutputStream(new File(fileName));
+			ByteArrayOutputStream baos = (ByteArrayOutputStream)os;
+			fos.write(baos.toByteArray());
+			fos.close();
+		}
+		catch (FileNotFoundException e) {logger.error(e);}
+		catch (IOException e) {logger.error(e);}
+	}
+}

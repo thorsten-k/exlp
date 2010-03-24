@@ -117,13 +117,14 @@ public class JaxbUtil
 	}
 	
 	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted){output(os, jaxb,null,null, formatted);}
+	public static synchronized void output(OutputStream os, Object jaxb, Object nsPrefixMapper, boolean formatted){output(os, jaxb,nsPrefixMapper,null, formatted);}
 	public static synchronized void output(OutputStream os, Object jaxb, Object nsPrefixMapper, DocType doctype, boolean formatted)
 	{
 		try
 		{
 			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
 			Marshaller m = context.createMarshaller(); 
-			m.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
 			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
 			m.marshal( jaxb, os);
