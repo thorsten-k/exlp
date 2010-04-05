@@ -20,11 +20,24 @@ public class MultiResourceLoader
 	private static ArrayList<String> alLoadDebug;
 	public static LoadType lastLT;
 	public static String lastAbsolutPath;
-	public static boolean debug;
+	public boolean debugInfo,debugError;
 
 	public MultiResourceLoader()
 	{
-		debug = false;
+		debugInfo = false;
+		debugError = true;
+	}
+	
+	public boolean isAvailable(String resourceName)
+	{
+		boolean available=false;
+		try
+		{
+			searchIs(resourceName);
+			available = true;
+		}
+		catch (FileNotFoundException e) {}
+		return available;
 	}
 	
 	public synchronized InputStream searchIs(String resourceName) throws FileNotFoundException
@@ -51,10 +64,10 @@ public class MultiResourceLoader
 			}
 			if(is!=null){lastLT=lt;break;}
 		}
-		if(debug){for(String s : alLoadDebug){logger.debug(s);}}
+		if(debugInfo){for(String s : alLoadDebug){logger.debug(s);}}
 		if(is==null)
 		{
-			for(String s : alLoadError){logger.debug(s);}
+			if(debugError){for(String s : alLoadError){logger.debug(s);}}
 			throw new FileNotFoundException("Missing File: "+resourceName);
 		}
 		return is;
@@ -97,6 +110,9 @@ public class MultiResourceLoader
 		return is;
 	}
 	
-	public static boolean isDebug() {return debug;}
-	public static void setDebug(boolean debug) {MultiResourceLoader.debug = debug;}
+	public boolean isDebugInfo() {return debugInfo;}
+	public void setDebugInfo(boolean debug) {this.debugInfo = debug;}
+	
+	public boolean isDebugError() {return debugError;}
+	public void setDebugError(boolean debugError) {this.debugError = debugError;}
 }
