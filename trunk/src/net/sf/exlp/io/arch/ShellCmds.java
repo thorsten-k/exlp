@@ -37,4 +37,17 @@ public class ShellCmds
 		}	
 		return sb.toString();
 	}
+	
+	public static String symbolicLink(String existing, String link)
+	{
+		if(arch==null){setArch();}
+		StringBuffer sb = new StringBuffer();
+		switch(arch)
+		{
+			case OsX:	sb.append("ln -s "+existing+" "+link);break;
+			case Linux:	sb.append("ln -s "+existing+" "+link);break;
+			default:	errorUnsupportedOS("symbolicLink");break;
+		}	
+		return sb.toString();
+	}
 }

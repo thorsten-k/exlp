@@ -8,5 +8,5 @@ public interface LogListener
 	public void processSingle(String cmd); 
 	public void processMulti(String cmd);
 	public void addMetaInfo(Properties p);
-	public void beenden();
+	public void close();
 }
