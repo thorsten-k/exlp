@@ -40,26 +40,17 @@ public abstract class AbstractLogListener
 		logger.debug("Gesamtzeilen="+lp.getAllLines()+" und davon unbekannt "+lp.getUnknownLines());
 	}
 	
-	public void processSingle()
-	{
-		logger.fatal("processSingle falscher Aufruf.");
-		System.exit(-1);
-	}
-	public void processSingle(String cmd)
-	{
-		logger.fatal("processSingle(cmd) falscher Aufruf.");
-		System.exit(-1);
-	}
+	public void processSingle(){exitCall("processSingle()");}
+	public void processSingle(String cmd){exitCall("processSingle(String)");}
+	public void processMulti(String cmd){exitCall("processMulti(String)");}
 	
-	public void processMulti(String cmd)
-	{
-		logger.fatal("processSingle falscher Aufruf.");
-		System.exit(-1);
-	}
+	public void close() {}
 	
-	public void beenden() 
+	private void exitCall(String call)
 	{
-		logger.debug(".beenden (unn�tig zu implementieren)");
+		logger.fatal("Forbidden call: "+call);
+		logger.fatal("System will exit!");
+		System.exit(-1);
 	}
 	
 }

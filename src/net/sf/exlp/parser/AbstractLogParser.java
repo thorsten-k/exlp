@@ -1,7 +1,9 @@
 package net.sf.exlp.parser;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhDebug;
@@ -13,6 +15,7 @@ public class AbstractLogParser
 {
 	static Log logger = LogFactory.getLog(AbstractLogParser.class);
 	
+	protected List<Pattern> pattern;
 	protected LogEventHandler leh;
 	protected Properties metaInfo;
 	protected int allLines,unknownLines;
@@ -23,6 +26,7 @@ public class AbstractLogParser
 		this.leh=leh;
 		unknownLines=0;
 		allLines=0;
+		pattern = new ArrayList<Pattern>();
 	}
 	
 	public void addMetaInfo(Properties metaInfo) {this.metaInfo=metaInfo;}

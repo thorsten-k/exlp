@@ -48,7 +48,6 @@ public class Spawn extends Thread
 			if(!workingDir.exists()){logger.warn(workingDir.getAbsoluteFile()+" does not exist!");}
 			if(!workingDir.isDirectory()){logger.warn(workingDir.getAbsoluteFile()+" is no directory!");}
 		}
-
 	}
 	
 	public void cmd()
@@ -91,7 +90,7 @@ public class Spawn extends Thread
 			logger.trace("Process finished with "+exitCode);
 		}
 		catch (UnsupportedEncodingException uee){logger.error("UnsupportedEncodingException. charsets.jar in Path?",uee);}
-		catch (IOException e) {logger.error("Fehler beim ausf�hren von: "+command,e);}
+		catch (IOException e) {logger.error("Fehler beim ausführen von: "+command,e);}
 		catch (InterruptedException e) {logger.error(e);}
 	}
 	
@@ -102,7 +101,7 @@ public class Spawn extends Thread
 	
 	public void kill()
 	{
-		logger.debug("Kill wird ausgef�hrt");
+		logger.debug("Kill will be send");
 		p.destroy();
 	}
 	
