@@ -8,6 +8,8 @@
 		<pathelement location="${lib.dir}/${commonsconfig.dir}/${commonsconfig.lib}"/>
 		<pathelement location="${lib.dir}/${commonsio.dir}/${commonsio.lib}"/>
 		<pathelement location="${lib.dir}/${commonslogging.dir}/${commonslogging.lib}"/>
+		<pathelement location="${lib.dir}/${commonshttp.dir}/${commonshttp-core.lib}"/>
+		<pathelement location="${lib.dir}/${commonshttp.dir}/${commonshttp-client.lib}"/>
 		<pathelement location="${lib.dir}/${jclarens.dir}/${jclarens.lib}"/>
 		
 		<!-- JBoss  -->
