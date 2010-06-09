@@ -11,6 +11,9 @@
 	<property name="commonslogging.dir" value="utils/commons/logging"/><property name="commonslogging.lib" value="commons-logging-api-${commonslogging-version}.jar" />
 	<property name="commonsio.dir" value="utils/commons/io"/><property name="commonsio.lib" value="commons-io-${commonsio-version}.jar" />
 	<property name="commonsconfig.dir" value="utils/commons/config"/><property name="commonsconfig.lib" value="commons-configuration-${commonsconfig-version}.jar" />
+	<property name="commonshttp.dir" value="utils/commons/httpcomponents/${commonshttp-version}" />
+		<property name="commonshttp-core.lib" value="httpcore-${commonshttp-version}.jar" />
+		<property name="commonshttp-client.lib" value="httpclient-${commonshttp-version}.jar" />
 	<property name="jclarens.dir" value="utils/jclarens"/><property name="jclarens.lib" value="jclarens-${jclarens-version}.jar" />
 	
 	<!-- Library Definitions: XML -->
@@ -40,6 +43,8 @@
 		<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
 		<echo level="info">           ${commonsio.dir}/${commonsio.lib}</echo>
 		<echo level="info">           ${commonsconfig.dir}/${commonsconfig.lib}</echo>
+		<echo level="info">           ${commonshttp.dir}/${commonshttp-core.lib}</echo>
+		<echo level="info">           ${commonshttp.dir}/${commonshttp-client.lib}</echo>
 		<echo level="info">           ${jclarens.dir}/${jclarens.lib}</echo>
 		<echo level="info">   GUI   : ${swt.dir}/${swt-osx.lib}</echo>
 		<echo level="info">   JBoss : ${jboss.dir}/${jboss-ejb3.lib}</echo>
