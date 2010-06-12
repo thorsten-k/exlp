@@ -337,21 +337,23 @@ public class ObjectIO
 		}
 	}
 	
-	public static void streamCop(InputStream fis, OutputStream fos)
+	public static void streamCop(InputStream fromIs, OutputStream toOs)
 	{
 		try
 		{
 			byte[] buffer = new byte[ 0xFFFF ];
-			for ( int len; (len = fis.read(buffer)) != -1; )
-				fos.write( buffer, 0, len );
+			for ( int len; (len = fromIs.read(buffer)) != -1; )
+			{
+				toOs.write( buffer, 0, len );
+			}
 		}
 	    catch( IOException e ) {logger.error(e);}
 	    finally
 	    {
-	      if ( fis != null )
-	        try { fis.close(); } catch ( IOException e ) {logger.error(e);}
-	      if ( fos != null )
-	        try { fos.close(); } catch ( IOException e ) {logger.error(e);}
+	      if ( fromIs != null )
+	        try { fromIs.close(); } catch ( IOException e ) {logger.error(e);}
+	      if ( toOs != null )
+	        try { toOs.close(); } catch ( IOException e ) {logger.error(e);}
 	    }
 	  }
 	
