@@ -27,7 +27,8 @@ public class CounterSelector
                 fileName.endsWith(".c") ||
                 fileName.endsWith(".h") ) {result = Lang.cpp;}
         else if (fileName.endsWith(".sql") ) {result = Lang.sql;}
-        else if (fileName.endsWith(".xml") ) {result = Lang.xml;}
+        else if (fileName.endsWith(".xml") ||
+        		fileName.endsWith(".jrxml")) {result = Lang.xml;}
         else if (fileName.endsWith(".css") ) {result = Lang.css;}
         else if (fileName.endsWith(".jsf") || 
         		fileName.endsWith(".jsp")) {result = Lang.jsp;}
