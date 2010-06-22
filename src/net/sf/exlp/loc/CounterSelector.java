@@ -31,7 +31,8 @@ public class CounterSelector
         		fileName.endsWith(".jrxml")) {result = Lang.xml;}
         else if (fileName.endsWith(".css") ) {result = Lang.css;}
         else if (fileName.endsWith(".jsf") || 
-        		fileName.endsWith(".jsp")) {result = Lang.jsp;}
+        		fileName.endsWith(".jsp") ||
+        		fileName.endsWith(".jspx")) {result = Lang.jsp;}
         else if (fileName.endsWith(".bas") ||
                fileName.endsWith(".cls") ||
                fileName.endsWith(".ctl") ) {result = Lang.vb;}

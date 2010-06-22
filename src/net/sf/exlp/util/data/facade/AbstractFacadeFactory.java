@@ -10,13 +10,14 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class AbstractFacadeFactory
+public class AbstractFacadeFactory implements FacadeFactory
 {
 	static Log logger = LogFactory.getLog(AbstractFacadeFactory.class);
 	
-	protected InitialContext context;
+	private InitialContext context;
 	protected String jbossServer;
 	protected String contextPrefix;
+
 	protected Map<String,Object> mFacadeCache;
 	
 	public AbstractFacadeFactory(String jbossServer,String contextPrefix)
@@ -32,11 +33,17 @@ public class AbstractFacadeFactory
 	{
 		this(config.getString("net/jboss/@host")+":"+config.getInt("net/jboss/@port"),config.getString("net/jboss/@context"));
 	}
+
+	public String getContextPrefix() {return contextPrefix;}
 	
-	protected void initContext()
+	public InitialContext getContext()
 	{
-		try{context = ExlpContextFactory.getJbossContext(jbossServer);}
-		catch (NamingException e){exit(e);}
+		if(context==null)
+		{
+			try{context = ExlpContextFactory.getJbossContext(jbossServer);}
+			catch (NamingException e){exit(e);}
+		}
+		return context;
 	}
 	
 	protected void exit(Exception e)
