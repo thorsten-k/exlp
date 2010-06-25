@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
 <project name="ExLP"  basedir="../..">
 
+	<property file="resources/properties/user.properties"/>
 	<property file="resources/properties/ant.properties"/>
-	<property file="resources/properties/ws.properties"/>
 
 	<property name="src.dir" location="${basedir}/src" />
 	<property name="dist.dir" location="${basedir}/dist/" />
