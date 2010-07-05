@@ -21,7 +21,7 @@
 		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-ejb3extapi.lib}"/>
 		
 		<!-- Hibernate  -->
-		<pathelement location="${lib.dir}/${hibernatecore.dir}/${hibernatecore.lib}"/>
+		<pathelement location="${lib.dir}/${hibernate.dir}/${hibernate.lib}"/>
 		
 		<!-- Class files -->
 		<pathelement path ="${build.dir}"/>
