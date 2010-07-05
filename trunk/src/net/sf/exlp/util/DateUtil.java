@@ -129,7 +129,7 @@ public class DateUtil
 	{
 		GregorianCalendar gc = new GregorianCalendar();
 		gc.set(GregorianCalendar.YEAR, xmlGC.getYear());
-		gc.set(GregorianCalendar.MONTH, xmlGC.getMonth());
+		gc.set(GregorianCalendar.MONTH, xmlGC.getMonth()-1);
 		gc.set(GregorianCalendar.DAY_OF_MONTH, xmlGC.getDay());
 		gc.set(GregorianCalendar.HOUR_OF_DAY, xmlGC.getHour());
 		gc.set(GregorianCalendar.MINUTE, xmlGC.getMinute());
