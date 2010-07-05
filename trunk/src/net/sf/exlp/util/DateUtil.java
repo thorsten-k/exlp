@@ -131,6 +131,9 @@ public class DateUtil
 		gc.set(GregorianCalendar.YEAR, xmlGC.getYear());
 		gc.set(GregorianCalendar.MONTH, xmlGC.getMonth());
 		gc.set(GregorianCalendar.DAY_OF_MONTH, xmlGC.getDay());
+		gc.set(GregorianCalendar.HOUR_OF_DAY, xmlGC.getHour());
+		gc.set(GregorianCalendar.MINUTE, xmlGC.getMinute());
+		gc.set(GregorianCalendar.SECOND, xmlGC.getSecond());
 		return gc.getTime();
 	}
 	
