@@ -71,7 +71,7 @@ public class JaxbUtil
 			Unmarshaller u = jc.createUnmarshaller();
 			result = u.unmarshal(is);
 		}
-		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (JAXBException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 		return result;
 	}
 	
