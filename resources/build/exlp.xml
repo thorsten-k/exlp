@@ -17,11 +17,22 @@
     <target name="01 - clean" description="Removes build artifacts">
         <delete dir="${build.dir}"/>
     	<delete dir="${dist.dir}"/>
+    	<delete dir="${locallib.dir}"/>
     </target>
 	
     <target name="02 - Init" description="Init ...">
 		<mkdir dir="${build.dir}"/>
 		<mkdir dir="${dist.dir}"/>
+    	<mkdir dir="${locallib.dir}"/>
+    			<echo level="info">Creating metalib with ${metalib.dir} in ${locallib.dir}</echo>
+    			<echo level="info">Class-Path: ${meta.jar}</echo>
+    			<jar destfile="${locallib.dir}/meta-libs.jar">
+    				<manifest>
+    					<attribute name="Built-By" value="${user.name}"/>
+    					<attribute name="Implementation-Version"  value="${ear.version}"/>
+    					<attribute name="Class-Path" value="${meta.jar}"/>
+    				</manifest>        	
+    			</jar>
     </target>
 	
     <target name="03 - Loc" description="Task definition">

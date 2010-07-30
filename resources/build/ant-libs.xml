@@ -81,15 +81,4 @@
 		<echo level="info">   Hib   : ${hibernate.dir}/${hibernate.lib}</echo>
 		<echo level="info">------------------------</echo>
 	   </target>
-
-		<mkdir dir="${locallib.dir}"/>
-		<echo level="info">Creating metalib with ${metalib.dir} in ${locallib.dir}</echo>
-		<echo level="info">Class-Path: ${meta.jar}</echo>
-		<jar destfile="${locallib.dir}/meta-libs.jar">
-			<manifest>
-				<attribute name="Built-By" value="${user.name}"/>
-				<attribute name="Implementation-Version"  value="${ear.version}"/>
-				<attribute name="Class-Path" value="${meta.jar}"/>
-			</manifest>        	
-		</jar>
 </project>
