@@ -40,11 +40,21 @@ public class EventDebugListener implements MessageListener
 			logger.debug("\tJMSMessageID="+msg.getJMSMessageID());
 		}
 		catch (JMSException e) {e.printStackTrace();}	
-		try
+//		try
 		{	
-			LogEvent event = (LogEvent)((ObjectMessage)msg).getObject();
-			ehi.handleEvent(event);
+			LogEvent event;
+			try {
+				event = (LogEvent)((ObjectMessage)msg).getObject();
+			} catch (JMSException e) {
+				try {
+					throw new Exception("s");
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+//			ehi.handleEvent(event);
 		}
-		catch (Throwable t){t.printStackTrace();}
+//		catch (Throwable t){t.printStackTrace();}
 	}
 }

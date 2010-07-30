@@ -43,14 +43,18 @@ public class PtpConsumer implements MessageListener
 	QueueReceiver recv;
 	MessageResponder mRes;
 	
-	public PtpConsumer(InitialContext ctx,MessageListener ml,String queueName,String messageSelector)
+	public PtpConsumer(InitialContext ctx,String queueName,MessageListener ml)
+	{
+		this(ctx,queueName,ml,"");
+	}
+	
+	public PtpConsumer(InitialContext ctx,String queueName,MessageListener ml,String messageSelector)
 	{
 		this.ctx=ctx;
 		this.queueName=queueName;
 		this.ml=ml;
 		this.messageSelector=messageSelector;
 		typ = Typ.Listener;
-		start();
 	}
 	
 	public PtpConsumer(InitialContext ctx,MessageResponder mRes,String queueName,String messageSelector)
@@ -62,18 +66,18 @@ public class PtpConsumer implements MessageListener
 		typ = Typ.Responder;
 		start();
 	}
+
 	
 	public void start()
 	{
 		try
 		{
-			Object tmp = ctx.lookup("XAConnectionFactory");
-			QueueConnectionFactory tcf = (QueueConnectionFactory)tmp;
+			QueueConnectionFactory tcf = (QueueConnectionFactory)ctx.lookup("ConnectionFactory");;
 			conn = tcf.createQueueConnection();
 			queue = (Queue) ctx.lookup(queueName);
 			session = conn.createQueueSession(false, TopicSession.AUTO_ACKNOWLEDGE);
 			
-			conn.setExceptionListener(new TestExceptionListener(this));
+//			conn.setExceptionListener(new TestExceptionListener(this));
 			conn.start();
 			
 			recv = session.createReceiver(queue,messageSelector);
@@ -82,11 +86,10 @@ public class PtpConsumer implements MessageListener
 				case Listener: recv.setMessageListener(ml);break;
 				case Responder: recv.setMessageListener(this);break; 
 			}
-			
+			logger.debug("PtpConsumer startet: queue="+queueName+" selector="+messageSelector);
 		}
-		catch (JMSException e){	logger.error(e.getLocalizedMessage());}
-		catch (NamingException e) {e.printStackTrace();}
-		logger.info("initialisiert: (queue="+queueName+" selector="+messageSelector+")");
+		catch (JMSException e){logger.error(e);}
+		catch (NamingException e){logger.error(e);}
 	}
 
 	public void onMessage(Message msg)
@@ -124,15 +127,19 @@ public class PtpConsumer implements MessageListener
 		
 	}
 	
-	public void stop() throws JMSException
+	public void stop()
 	{
-		logger.debug("QueueReceiver wird geschlossen");
-		recv.close();
-		logger.debug("QueueConnection wird gestopt");
-		conn.stop();
-		logger.debug("QueueSession wird geschlossen");
-		session.close();
-		logger.debug("QueueConnection wird geschlossen");
-		conn.close();
+		try
+		{
+			logger.debug("QueueReceiver wird geschlossen");
+			recv.close();
+			logger.debug("QueueConnection wird gestopt");
+			conn.stop();
+			logger.debug("QueueSession wird geschlossen");
+			session.close();
+			logger.debug("QueueConnection wird geschlossen");
+			conn.close();
+		}
+		catch (JMSException e) {logger.error(e);}
 	}
 }

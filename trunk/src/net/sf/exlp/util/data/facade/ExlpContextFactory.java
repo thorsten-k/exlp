@@ -7,12 +7,20 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.naming.directory.InitialDirContext;
 
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 public class ExlpContextFactory
 {
 	static Log logger = LogFactory.getLog(ExlpContextFactory.class);
+	
+	public static InitialContext getJbossContext(Configuration config) throws NamingException
+	{
+		String host=config.getString("net/jboss/@host");
+		int port=config.getInt("net/jboss/@port");
+		return getJbossContext(host+":"+port);
+	}
 	
 	public static InitialContext getJbossContext(String jndiHost) throws NamingException
 	{

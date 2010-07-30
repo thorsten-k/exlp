@@ -1,12 +1,12 @@
-/*
- * Created on 11.10.2004
- */
 package net.sf.exlp.util.jms.ptp;
 
+import java.io.ByteArrayOutputStream;
 import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Hashtable;
+import java.util.Map;
 
+import javax.jms.BytesMessage;
 import javax.jms.DeliveryMode;
 import javax.jms.JMSException;
 import javax.jms.Message;
@@ -23,46 +23,68 @@ import javax.jms.TopicSession;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
+import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.exlp.util.xml.NsPrefixMapperInterface;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/**
- * @author kisner
- */
 public class PtpPublisher
 {
 	static Log logger = LogFactory.getLog(PtpPublisher.class);
 	public static enum Typ{ String, Integer }
 	
-	QueueConnection qCon;
-	QueueSession qSes;
-	Queue queue;
-	QueueBrowser qb;
-	String queueName;
-	Context ctx;
+	private QueueConnection connection;
+	private QueueSession session;
+	private Queue queue;
+	private QueueSender sender;
+	private QueueBrowser browser;
+	private String queueName;
+	private Context ctx;
+	
+	private Map<String,String> propStr;
+	private Map<String,Integer> propInt;
+	private int priority;
 	
 	public PtpPublisher(Context ctx,String queueName)
 	{
 		this.ctx=ctx;
 		this.queueName=queueName;
 		setupPTP();
-		logger.info("initialisiert");
+		propStr = new Hashtable<String,String>();
+		propInt = new Hashtable<String,Integer>();
+		clearProperties();
 	}
+	
+	// Management Methods
 	
 	public void setupPTP()
 	{
 		try
 		{
-			Object tmp = ctx.lookup("XAConnectionFactory");
-			QueueConnectionFactory qcf = (QueueConnectionFactory)tmp;
-			qCon = qcf.createQueueConnection();
+			QueueConnectionFactory qcf = (QueueConnectionFactory)ctx.lookup("ConnectionFactory");
+			connection = qcf.createQueueConnection();
 			queue = (Queue) ctx.lookup(queueName);
-			qSes = qCon.createQueueSession(false, TopicSession.AUTO_ACKNOWLEDGE);
-			qCon.start();
-			qb = qSes.createBrowser(queue);
+			session = connection.createQueueSession(false, TopicSession.AUTO_ACKNOWLEDGE);
+			sender = session.createSender(queue);
+			browser = session.createBrowser(queue);
+			connection.start();
+			logger.debug("PtpProducer startet: queue="+queueName);
 		}
 		catch (JMSException e){e.printStackTrace();}
 		catch (NamingException e) {e.printStackTrace();}
+	}
+	
+	public void stop()
+	{
+		try
+		{
+			sender.close();
+			connection.stop();
+			session.close();
+			connection.close();
+		}
+		catch (JMSException e){	e.printStackTrace();}
 	}
 	
 	public int getQueueElements()
@@ -70,53 +92,54 @@ public class PtpPublisher
 		int j=0;
 		try
 		{
-			Enumeration<?> enu = qb.getEnumeration();
+			Enumeration<?> enu = browser.getEnumeration();
 			while(enu.hasMoreElements()){enu.nextElement();j++;}
 		}
 		catch (JMSException e) {e.printStackTrace();}
 		return j;
 	}
 	
-	public void sendText(String text) throws JMSException, NamingException
+	public void clearProperties()
 	{
-		QueueSender send = qSes.createSender(queue);
-		TextMessage tm = qSes.createTextMessage(text);
-		send.send(tm);
-		System.out.println("Gesendet: "+tm.getText());
-		send.close();
+		priority = 4;
+		propStr.clear();
+		propInt.clear();
 	}
 	
-	public void sendObject(Serializable myOb){sendObject(myOb, null,null);}
-	public void sendObject(Serializable myOb,Hashtable<String,String> propStr){sendObject(myOb, propStr,null);}
-//	public void sendObject(Serializable myOb,Hashtable<String,Integer> propInt){sendObject(myOb, null,propInt);}
-	
-	public void sendObject(Serializable myOb, Hashtable<String,String> propStr, Hashtable<String,Integer> propInt)
+	public void setProperty(String key, int value)
 	{
-		try
-		{
-			QueueSender send = qSes.createSender(queue);
-			ObjectMessage om = qSes.createObjectMessage();
-			int priority = 4;
-			om.setObject(myOb);
-			om.setIntProperty("PRIORITY",priority);
-			if(propStr != null)
-			{	// String Properties
-				for (String propName : propStr.keySet())
-				{
-					om.setStringProperty(propName,propStr.get(propName));
-				}
-			}				
-			if(propInt != null)
-			{	// Integer Properties
-				for (String propName : propInt.keySet())
-				{
-					om.setIntProperty(propName,propInt.get(propName));
-				}
-			}
-			send.send(om, DeliveryMode.PERSISTENT,priority,0);
-			send.close();
-		}
-		catch (JMSException e) {e.printStackTrace();}
+		propInt.put(key, value);
+	}
+	public void setProperty(String key, String value)
+	{
+		propStr.put(key, value);
+	}
+	
+	private void send(Message msg) throws JMSException
+	{
+		for (String propName : propStr.keySet()){msg.setStringProperty(propName,propStr.get(propName));}			
+		for (String propName : propInt.keySet()){msg.setIntProperty(propName,propInt.get(propName));}
+		
+		msg.setIntProperty("PRIORITY",priority);
+		sender.send(msg, DeliveryMode.PERSISTENT,priority,0);
+	}
+	
+	// Text Messages
+	
+	public void sendText(String text) throws JMSException
+	{
+		TextMessage tm = session.createTextMessage(text);
+		send(tm);
+		logger.trace("Sending to Queue ("+queue.getQueueName()+"): "+tm.getText());
+	}
+	
+	// Object Messages
+	
+	public void sendObject(Serializable myOb) throws JMSException
+	{
+		ObjectMessage om = session.createObjectMessage();
+		om.setObject(myOb);
+		send(om);
 	}
 		
 	public Object requestAnswer(Serializable myOb, Hashtable<String,String> propStr, Hashtable<String,Integer> propInt)
@@ -124,8 +147,9 @@ public class PtpPublisher
 		Object oResponse=null;
 		try
 		{
-			QueueRequestor qReq = new QueueRequestor(qSes,queue);
-			ObjectMessage omRequest = qSes.createObjectMessage();
+			QueueRequestor qReq = new QueueRequestor(session,queue);
+			ObjectMessage omRequest = session.createObjectMessage();
+			
 			int priority = 4;
 			omRequest.setObject(myOb);
 			omRequest.setIntProperty("PRIORITY",priority);
@@ -160,15 +184,18 @@ public class PtpPublisher
 	
 	public Object requestAnswer(Serializable myOb) {return requestAnswer(myOb, null,null);}
 	
-	public void stop()
+	// JAXB Messages
+	
+	public void sendJaxb(Object jaxb, NsPrefixMapperInterface nsPrefixMapper) throws JMSException
 	{
-		try
-		{
-			qCon.stop();
-			qSes.close();
-			qCon.close();
-		}
-		catch (JMSException e){	e.printStackTrace();}
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		JaxbUtil.output(baos, jaxb, nsPrefixMapper, true);
+		
+		BytesMessage byteMsg = session.createBytesMessage();
+		byteMsg.writeBytes(baos.toByteArray());
+		
+		send(byteMsg);
 	}
+
 
 }
