@@ -1,6 +1,3 @@
-/*
- * Created on 11.10.2004
- */
 package net.sf.exlp.util.jms.topic;
 
 import java.io.Serializable;
@@ -19,17 +16,13 @@ import javax.jms.TopicSession;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import net.sf.exlp.util.jms.ptp.PtpPublisher;
-import net.sf.exlp.util.jms.ptp.PtpPublisher.Typ;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/**
- * @author kisner
- */
 public class TopPublisher
 {
+	public static enum Typ{ String, Integer }
+	
 	static Log logger = LogFactory.getLog(TopPublisher.class);
 	
 	TopicConnection tc=null;
@@ -83,7 +76,7 @@ public class TopPublisher
 //		System.out.println(this.getClass().getName()+".setupPubSub: abgeschlossen");
 	}
 	
-	public void sendObject(Serializable myOb, Hashtable<PtpPublisher.Typ,Hashtable> p)
+	public void sendObject(Serializable myOb, Hashtable<TopPublisher.Typ,Hashtable> p)
 	{
 		try
 		{

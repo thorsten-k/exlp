@@ -1,6 +1,3 @@
-/*
- * Created on 11.10.2004
- */
 package net.sf.exlp.util.jms.ptp;
 
 import java.io.Serializable;
@@ -23,10 +20,7 @@ import javax.naming.NamingException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-/**
- * @author kisner
- */
-public class PtpConsumer implements MessageListener
+public class PtpConsumer
 {
 	static Log logger = LogFactory.getLog(PtpConsumer.class);
 	private static enum Typ {Listener, Responder};
@@ -67,7 +61,6 @@ public class PtpConsumer implements MessageListener
 		start();
 	}
 
-	
 	public void start()
 	{
 		try
@@ -81,50 +74,11 @@ public class PtpConsumer implements MessageListener
 			conn.start();
 			
 			recv = session.createReceiver(queue,messageSelector);
-			switch (typ)
-			{
-				case Listener: recv.setMessageListener(ml);break;
-				case Responder: recv.setMessageListener(this);break; 
-			}
+			recv.setMessageListener(ml);
 			logger.debug("PtpConsumer startet: queue="+queueName+" selector="+messageSelector);
 		}
 		catch (JMSException e){logger.error(e);}
 		catch (NamingException e){logger.error(e);}
-	}
-
-	public void onMessage(Message msg)
-	{
-		try
-		{
-			StringBuffer sb = new StringBuffer();
-			Enumeration<String> enu = (Enumeration<String>)msg.getPropertyNames();
-			while(enu.hasMoreElements())
-			{
-				String prop=(String)enu.nextElement();
-				sb.append(prop+"="+msg.getStringProperty(prop)+" ");
-			}
-			logger.debug("onMessage mit Properties: "+sb);
-		}
-		catch (JMSException e) {e.printStackTrace();}	
-		try
-		{	
-			Object oReq = ((ObjectMessage)msg).getObject();
-			Serializable answer = mRes.respondObject(oReq);
-			ObjectMessage om = session.createObjectMessage();
-			int priority = 4;
-			om.setObject(answer);
-			om.setIntProperty("PRIORITY",priority);
-			Queue replyQ = (Queue)msg.getJMSReplyTo();
-			QueueSender qSend = session.createSender(replyQ);
-			qSend.send(replyQ, om);
-			qSend.close();
-		}
-		catch (Throwable t){t.printStackTrace();}
-	}
-	
-	public void kill()
-	{
-		
 	}
 	
 	public void stop()
