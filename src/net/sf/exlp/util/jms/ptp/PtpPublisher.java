@@ -32,12 +32,12 @@ import org.apache.commons.logging.LogFactory;
 public class PtpPublisher
 {
 	static Log logger = LogFactory.getLog(PtpPublisher.class);
-	public static enum Typ{ String, Integer }
 	
 	private QueueConnection connection;
 	private QueueSession session;
 	private Queue queue;
 	private QueueSender sender;
+	private QueueRequestor requestor;
 	private QueueBrowser browser;
 	private String queueName;
 	private Context ctx;
@@ -46,10 +46,13 @@ public class PtpPublisher
 	private Map<String,Integer> propInt;
 	private int priority;
 	
+	private boolean requestMode;
+	
 	public PtpPublisher(Context ctx,String queueName)
 	{
 		this.ctx=ctx;
 		this.queueName=queueName;
+		requestMode = false;
 		setupPTP();
 		propStr = new Hashtable<String,String>();
 		propInt = new Hashtable<String,Integer>();
@@ -57,7 +60,6 @@ public class PtpPublisher
 	}
 	
 	// Management Methods
-	
 	public void setupPTP()
 	{
 		try
@@ -66,7 +68,10 @@ public class PtpPublisher
 			connection = qcf.createQueueConnection();
 			queue = (Queue) ctx.lookup(queueName);
 			session = connection.createQueueSession(false, TopicSession.AUTO_ACKNOWLEDGE);
-			sender = session.createSender(queue);
+			
+			if(requestMode){requestor = new QueueRequestor(session, queue);}
+			else {sender = session.createSender(queue);}
+			
 			browser = session.createBrowser(queue);
 			connection.start();
 			logger.debug("PtpProducer startet: queue="+queueName);
@@ -86,7 +91,7 @@ public class PtpPublisher
 		}
 		catch (JMSException e){	e.printStackTrace();}
 	}
-	
+		
 	public int getQueueElements()
 	{
 		int j=0;
@@ -115,13 +120,17 @@ public class PtpPublisher
 		propStr.put(key, value);
 	}
 	
-	private void send(Message msg) throws JMSException
+	private Message send(Message msg) throws JMSException
 	{
+		Message answer = null;
 		for (String propName : propStr.keySet()){msg.setStringProperty(propName,propStr.get(propName));}			
 		for (String propName : propInt.keySet()){msg.setIntProperty(propName,propInt.get(propName));}
 		
 		msg.setIntProperty("PRIORITY",priority);
-		sender.send(msg, DeliveryMode.PERSISTENT,priority,0);
+		
+		if(requestMode){answer = requestor.request(msg);}
+		else {sender.send(msg, DeliveryMode.PERSISTENT,priority,0);}
+		return answer;
 	}
 	
 	// Text Messages
@@ -131,6 +140,20 @@ public class PtpPublisher
 		TextMessage tm = session.createTextMessage(text);
 		send(tm);
 		logger.trace("Sending to Queue ("+queue.getQueueName()+"): "+tm.getText());
+	}
+	
+	public String requestText(String text) throws JMSException
+	{
+		if(!requestMode)
+		{
+			requestMode=true;
+			stop();
+			setupPTP();
+		}
+		TextMessage tm = session.createTextMessage(text);
+		TextMessage answer = (TextMessage)send(tm);
+		logger.trace("Sending to Queue ("+queue.getQueueName()+"): "+tm.getText());
+		return answer.getText();
 	}
 	
 	// Object Messages
