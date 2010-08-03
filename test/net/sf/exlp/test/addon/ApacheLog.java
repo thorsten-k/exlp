@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.apache;
+package net.sf.exlp.test.addon;
 
 import net.sf.exlp.addon.apache.parser.ApacheParser;
 import net.sf.exlp.event.LogEventHandler;
