@@ -17,80 +17,84 @@ import org.apache.commons.logging.LogFactory;
 public class HostConnectionParser extends AbstractLogParser implements LogParser  
 {
 	static Log logger = LogFactory.getLog(HostConnectionParser.class);
-
-	static List<Pattern> lPattern = new ArrayList<Pattern>();
 	
-	public static String hBracket = "\\("+PatternFactory.hostPattern+"\\)";
-	public static String iBracket = "\\[("+PatternFactory.ipPattern+")\\]";
-	public static String dHiBracket = "\\(\\[("+PatternFactory.ipPattern+")\\]\\)";
-	public static String dIhBracket = "\\[\\(("+PatternFactory.ipPattern+")\\)\\]";
+	private RejectParser rejectParser;
 	
 	private Date record;
 	private String hostName,dnsName,ipAddress;
-	
+		
 	public HostConnectionParser(LogEventHandler leh)
 	{
 		super(leh);
-		String prefix = PatternFactory.eximPrefix;
+		rejectParser = new RejectParser(leh);childParser.add(rejectParser);
+		clear();
 		
-		lPattern.add(Pattern.compile(prefix+PatternFactory.eximId+" (.*)"));
+		pattern.add(Pattern.compile("F=<("+PatternFactory.email+")> (.*)"));		
+		pattern.add(Pattern.compile("U="+PatternFactory.hostPattern+" F=<("+PatternFactory.email+")> (.*)"));
+		pattern.add(Pattern.compile("U=("+PatternFactory.hostPattern+") F=<> (.*)"));
 		
-		lPattern.add(Pattern.compile(prefix+"H="+hBracket+" "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H="+PatternFactory.hostPattern+" "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H="+PatternFactory.hostPattern+" "+hBracket+" "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H="+PatternFactory.hostPattern+" "+dHiBracket+" "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H="+dHiBracket+" "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H="+hBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H="+iBracket+" "+hBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H="+iBracket+" (.*)"));
-		
-		
-		lPattern.add(Pattern.compile(prefix+"unexpected disconnection while reading SMTP command from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"no IP address found for host (.*)"));
-		lPattern.add(Pattern.compile(prefix+"no host name found for IP address (.*)"));
-		lPattern.add(Pattern.compile(prefix+"lowest numbered MX record points to (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP protocol synchronization error (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP command timeout on connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP command timeout on TLS connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP data timeout (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP call from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"TLS error on connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"TLS send error on connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"TLS recv error on connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"rejected EHLO from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"rejected HELO from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"Start queue run: pid=(.*)"));
-		lPattern.add(Pattern.compile(prefix+"End queue run: pid=(.*)"));
-		lPattern.add(Pattern.compile(prefix+"exim 4.63 daemon started: (.*)"));
-		lPattern.add(Pattern.compile(prefix+"CNAME loop for (.*)"));
-		
+		pattern.add(Pattern.compile("sender verify fail for <("+PatternFactory.email+")>: (.*)"));
+		pattern.add(Pattern.compile("sender verify defer for <("+PatternFactory.email+")>: (.*)"));
 	}
-	
-	
 
 	public void parseLine(String line)
 	{
 		allLines++;
 		boolean unknownPattern = true;
-		for(int i=0;i<lPattern.size();i++)
+		for(int i=0;i<pattern.size();i++)
 		{
-			Matcher m=lPattern.get(i).matcher(line);
+			Matcher m=pattern.get(i).matcher(line);
 			if(m.matches())
 			{
 				switch(i)
 				{
-					
+					case 0: reject(m.group(1),m.group(2));break;
+					case 1: reject(m.group(1),m.group(2));break;
+					case 2: reject(m.group(1),m.group(2));break;
+					case 3: senderFail(m.group(1),m.group(2));break;
+					case 4: senderDefer(m.group(1),m.group(2));break;
+					default: unknownHandling++;break;
 				}
 				unknownPattern=false;
 			}
 		}
 		if(unknownPattern)
 		{
-//			logger.warn("Unknown pattern: " +line);
+			logger.warn("Unknown pattern: " +line);
 			unknownLines++;
 		}
 	}
+	
+	private void clear()
+	{
+		record = null;
+		hostName = null;
+		dnsName = null;
+		ipAddress = null;
+	}
+	
+	private void reject(String emailFrom, String line)
+	{
+		rejectParser.setRecord(record);
+		rejectParser.setHostName(hostName);
+		rejectParser.setDnsName(dnsName);
+		rejectParser.setIpAddress(ipAddress);
+		rejectParser.setEmailFrom(emailFrom);
+		rejectParser.parseLine(line);
+	}
+	
+	private void senderFail(String emailFrom, String line)
+	{
+		unknownHandling++;
+	}
+	
+	private void senderDefer(String emailFrom, String line)
+	{
+		unknownHandling++;
+	}
+	
+	@Override
+	public void debugMe(){super.debugMe(this.getClass().getSimpleName());}
 	
 	public void setRecord(Date record) {this.record = record;}
 	public void setHostName(String hostName) {this.hostName = hostName;}

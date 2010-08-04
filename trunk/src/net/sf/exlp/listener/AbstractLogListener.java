@@ -35,9 +35,9 @@ public abstract class AbstractLogListener
 		this.metaInfo=metaInfo;
 	}
 	
-	protected void debug()
+	protected void debugStats()
 	{
-		logger.debug("Gesamtzeilen="+lp.getAllLines()+" und davon unbekannt "+lp.getUnknownLines());
+		lp.debugStats();
 	}
 	
 	public void processSingle(){exitCall("processSingle()");}

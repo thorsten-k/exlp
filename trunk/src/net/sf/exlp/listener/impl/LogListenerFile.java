@@ -101,7 +101,7 @@ public class LogListenerFile extends AbstractLogListener implements LogListener
 				lp.parseLine(Zeile,f.getAbsolutePath());
 			}
 		    myBufferedReader.close();
-		    debug();
+		    debugStats();
 		}
 		catch (IOException e) {e.printStackTrace();}
 	}
@@ -119,7 +119,7 @@ public class LogListenerFile extends AbstractLogListener implements LogListener
 		    myBufferedReader.close();
 		    lp.addMetaInfo(metaInfo);
 		    lp.parseItem(item);
-		    debug();
+		    debugStats();
 		}
 		catch (IOException e) {e.printStackTrace();}
 	}
