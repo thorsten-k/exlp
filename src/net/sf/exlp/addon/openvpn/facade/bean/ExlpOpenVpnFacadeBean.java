@@ -8,7 +8,7 @@ import javax.ejb.Stateful;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
-import net.sf.exlp.addon.common.facade.bean.AbstractExlpFacadeBean;
+import net.sf.exlp.addon.common.data.facade.bean.AbstractExlpFacadeBean;
 import net.sf.exlp.addon.openvpn.ejb.OpenVpnCert;
 import net.sf.exlp.addon.openvpn.facade.exlp.ExlpOpenVpnFacade;
 

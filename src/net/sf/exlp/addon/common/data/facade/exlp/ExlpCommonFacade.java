@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.common.facade.exlp;
+package net.sf.exlp.addon.common.data.facade.exlp;
 
 import java.util.List;
 

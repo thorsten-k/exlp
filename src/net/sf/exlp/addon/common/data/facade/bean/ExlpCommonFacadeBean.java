@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.common.facade.bean;
+package net.sf.exlp.addon.common.data.facade.bean;
 
 import java.io.Serializable;
 import java.math.BigInteger;
@@ -13,7 +13,7 @@ import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import net.sf.exlp.addon.common.data.ejb.ExlpHost;
-import net.sf.exlp.addon.common.facade.exlp.ExlpCommonFacade;
+import net.sf.exlp.addon.common.data.facade.exlp.ExlpCommonFacade;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
