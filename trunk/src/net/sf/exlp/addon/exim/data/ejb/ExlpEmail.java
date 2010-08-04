@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.exim.ejb;
+package net.sf.exlp.addon.exim.data.ejb;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -7,9 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
-public class Email implements Serializable
+@NamedQueries
+({
+	@NamedQuery(name="fEmail",query="SELECT r FROM ExlpEmail r WHERE r.email = :email")
+})
+public class ExlpEmail implements Serializable
 { 
 	static final long serialVersionUID=1;
 	
