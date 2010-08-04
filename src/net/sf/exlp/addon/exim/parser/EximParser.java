@@ -21,8 +21,6 @@ public class EximParser extends AbstractLogParser implements LogParser
 	private HostConnectionParser hostConnectionParser;
 	private TransmissionParser transmissionParser;
 	
-	static List<Pattern> lPattern = new ArrayList<Pattern>();
-	
 	public static String hBracket = "\\(("+PatternFactory.hostPattern+")\\)";
 	public static String iBracket = "\\[("+PatternFactory.ipPattern+")\\]";
 	public static String dHiBracket = "\\(\\[("+PatternFactory.ipPattern+")\\]\\)";
@@ -31,49 +29,48 @@ public class EximParser extends AbstractLogParser implements LogParser
 	public EximParser(LogEventHandler leh)
 	{
 		super(leh);
-		hostConnectionParser = new HostConnectionParser(leh);
-		transmissionParser = new TransmissionParser(leh);
+		hostConnectionParser = new HostConnectionParser(leh);childParser.add(hostConnectionParser);
+		transmissionParser = new TransmissionParser(leh);childParser.add(transmissionParser);
 		
 		String prefix = PatternFactory.eximPrefix;
 		
-		lPattern.add(Pattern.compile(prefix+PatternFactory.eximId+" (.*)"));
+		pattern.add(Pattern.compile(prefix+PatternFactory.eximId+" (.*)"));
 		
-		lPattern.add(Pattern.compile(prefix+"H="+hBracket+" "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H=("+PatternFactory.hostPattern+") "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H=("+PatternFactory.hostPattern+") "+hBracket+" "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H=("+PatternFactory.hostPattern+") "+dHiBracket+" "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H="+dHiBracket+" "+iBracket+" (.*)"));
-		lPattern.add(Pattern.compile(prefix+"H="+iBracket+" (.*)"));
+		pattern.add(Pattern.compile(prefix+"H="+hBracket+" "+iBracket+" (.*)"));
+		pattern.add(Pattern.compile(prefix+"H=("+PatternFactory.hostPattern+") "+iBracket+" (.*)"));
+		pattern.add(Pattern.compile(prefix+"H=("+PatternFactory.hostPattern+") "+hBracket+" "+iBracket+" (.*)"));
+		pattern.add(Pattern.compile(prefix+"H=("+PatternFactory.hostPattern+") "+dHiBracket+" "+iBracket+" (.*)"));
+		pattern.add(Pattern.compile(prefix+"H="+dHiBracket+" "+iBracket+" (.*)"));
+		pattern.add(Pattern.compile(prefix+"H="+iBracket+" (.*)"));
 		
-		lPattern.add(Pattern.compile(prefix+"unexpected disconnection while reading SMTP command from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"no IP address found for host (.*)"));
-		lPattern.add(Pattern.compile(prefix+"no host name found for IP address (.*)"));
-		lPattern.add(Pattern.compile(prefix+"lowest numbered MX record points to (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP protocol synchronization error (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP command timeout on connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP command timeout on TLS connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP data timeout (.*)"));
-		lPattern.add(Pattern.compile(prefix+"SMTP call from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"TLS error on connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"TLS send error on connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"TLS recv error on connection from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"rejected EHLO from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"rejected HELO from (.*)"));
-		lPattern.add(Pattern.compile(prefix+"Start queue run: pid=(.*)"));
-		lPattern.add(Pattern.compile(prefix+"End queue run: pid=(.*)"));
-		lPattern.add(Pattern.compile(prefix+"exim 4.63 daemon started: (.*)"));
-		lPattern.add(Pattern.compile(prefix+"CNAME loop for (.*)"));
-		
+		pattern.add(Pattern.compile(prefix+"unexpected disconnection while reading SMTP command from (.*)"));
+		pattern.add(Pattern.compile(prefix+"no IP address found for host (.*)"));
+		pattern.add(Pattern.compile(prefix+"no host name found for IP address (.*)"));
+		pattern.add(Pattern.compile(prefix+"lowest numbered MX record points to (.*)"));
+		pattern.add(Pattern.compile(prefix+"SMTP protocol synchronization error (.*)"));
+		pattern.add(Pattern.compile(prefix+"SMTP connection from (.*)"));
+		pattern.add(Pattern.compile(prefix+"SMTP command timeout on connection from (.*)"));
+		pattern.add(Pattern.compile(prefix+"SMTP command timeout on TLS connection from (.*)"));
+		pattern.add(Pattern.compile(prefix+"SMTP data timeout (.*)"));
+		pattern.add(Pattern.compile(prefix+"SMTP call from (.*)"));
+		pattern.add(Pattern.compile(prefix+"TLS error on connection from (.*)"));
+		pattern.add(Pattern.compile(prefix+"TLS send error on connection from (.*)"));
+		pattern.add(Pattern.compile(prefix+"TLS recv error on connection from (.*)"));
+		pattern.add(Pattern.compile(prefix+"rejected EHLO from (.*)"));
+		pattern.add(Pattern.compile(prefix+"rejected HELO from (.*)"));
+		pattern.add(Pattern.compile(prefix+"Start queue run: pid=(.*)"));
+		pattern.add(Pattern.compile(prefix+"End queue run: pid=(.*)"));
+		pattern.add(Pattern.compile(prefix+"exim 4.63 daemon started: (.*)"));
+		pattern.add(Pattern.compile(prefix+"CNAME loop for (.*)"));
 	}
 
 	public void parseLine(String line)
 	{
 		allLines++;
 		boolean unknownPattern = true;
-		for(int i=0;i<lPattern.size();i++)
+		for(int i=0;i<pattern.size();i++)
 		{
-			Matcher m=lPattern.get(i).matcher(line);
+			Matcher m=pattern.get(i).matcher(line);
 			if(m.matches())
 			{
 				Date record = new Date();
@@ -114,6 +111,7 @@ public class EximParser extends AbstractLogParser implements LogParser
 							hostConnectionParser.setRecord(record);
 							hostConnectionParser.parseLine(m.group(8));
 							break;
+					default: unknownHandling++;break;
 				}
 				unknownPattern=false;
 			}
@@ -135,4 +133,7 @@ public class EximParser extends AbstractLogParser implements LogParser
 			sb.append(m.group(start+2));
 		return sb.toString();
 	}
+	
+	@Override
+	public void debugMe(){super.debugMe(this.getClass().getSimpleName());}
 }
