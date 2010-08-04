@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.common.facade.bean;
+package net.sf.exlp.addon.common.data.facade.bean;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import net.sf.exlp.addon.common.facade.ExlpIntegrityException;
+import net.sf.exlp.addon.common.data.exception.ExlpIntegrityException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

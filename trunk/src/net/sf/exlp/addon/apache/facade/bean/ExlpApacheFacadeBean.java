@@ -10,7 +10,7 @@ import javax.persistence.Query;
 
 import net.sf.exlp.addon.apache.ejb.ExlpApache;
 import net.sf.exlp.addon.apache.facade.exlp.ExlpApacheFacade;
-import net.sf.exlp.addon.common.facade.bean.AbstractExlpFacadeBean;
+import net.sf.exlp.addon.common.data.facade.bean.AbstractExlpFacadeBean;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

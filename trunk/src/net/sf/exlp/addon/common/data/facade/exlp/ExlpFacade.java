@@ -1,8 +1,8 @@
-package net.sf.exlp.addon.common.facade.exlp;
+package net.sf.exlp.addon.common.data.facade.exlp;
 
 import java.util.List;
 
-import net.sf.exlp.addon.common.facade.ExlpIntegrityException;
+import net.sf.exlp.addon.common.data.exception.ExlpIntegrityException;
 
 public interface ExlpFacade
 {
