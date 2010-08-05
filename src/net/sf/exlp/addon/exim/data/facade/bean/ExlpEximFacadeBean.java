@@ -3,6 +3,7 @@ package net.sf.exlp.addon.exim.data.facade.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.ejb.Remote;
@@ -25,6 +26,35 @@ public class ExlpEximFacadeBean extends AbstractExlpFacadeBean implements ExlpEx
 {
 	static Log logger = LogFactory.getLog(ExlpEximFacadeBean.class);
 	static final long serialVersionUID=10;
+	
+	@SuppressWarnings("unchecked")
+	public Date fLastLogDate()
+	{
+		List<String> lTables = new ArrayList<String>();
+		lTables.add(ExlpGreylist.class.getSimpleName());
+		
+		Date latest = new Date(0);
+		
+		for(String table : lTables)
+		{
+			StringBuffer sql = new StringBuffer();
+				sql.append("SELECT record");
+				sql.append(" FROM "+table);
+				sql.append(" ORDER BY record DESC");
+				sql.append(" LIMIT 1");
+			
+			logger.debug(sql);
+			Query q = getManager().createNativeQuery(sql.toString());
+			List<Object> l = q.getResultList();
+	
+			for (Iterator<Object> it = l.iterator(); it.hasNext(); )
+			{ 
+				Date tableDate = (Date)it.next();
+				if(tableDate.after(latest)){latest = tableDate;}
+			}
+		}
+		return latest;
+	}
 	
 	public ExlpEmail fEmail(String email)
 	{
