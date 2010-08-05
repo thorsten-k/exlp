@@ -24,10 +24,10 @@ public class LogListenerFile extends AbstractLogListener implements LogListener
 {
 	static Log logger = LogFactory.getLog(LogListenerFile.class);
 	
-	Pattern gzipPattern;
-	BufferedReader myBufferedReader;
-	String charSet;
-	File f;
+	private Pattern gzipPattern;
+	private BufferedReader myBufferedReader;
+	private String charSet;
+	private File f;
 	
 	public LogListenerFile(String fileName,LogParser lp){this(new File(fileName),null,lp);}
 	public LogListenerFile(String fileName,String charSet,LogParser lp){this(new File(fileName),charSet,lp);}
