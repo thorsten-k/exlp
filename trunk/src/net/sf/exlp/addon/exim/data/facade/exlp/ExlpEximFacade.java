@@ -10,6 +10,8 @@ import net.sf.exlp.addon.exim.data.ejb.ExlpGreylist;
 
 public interface ExlpEximFacade extends ExlpFacade
 {
+	Date fLastLogDate();
+	
 	//Email
 	ExlpEmail fEmail(String email);
 	
