@@ -157,6 +157,10 @@ public class DateUtil
 		return getDateFromInt(year, month, day, 0, 0, 0);
 	}
 	
+	public synchronized static Date getDateFromString(String year, String month, String day, String hour, String min, String sec)
+	{
+		return getDateFromInt(new Integer(year), new Integer(month), new Integer(day), new Integer(hour), new Integer(min), new Integer(sec));
+	}
 	public synchronized static Date getDateFromInt(int year, int month, int day, int hour, int min, int sec)
 	{
 		GregorianCalendar gc = new GregorianCalendar();

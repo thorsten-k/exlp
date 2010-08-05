@@ -1,63 +1,49 @@
 package net.sf.exlp.addon.common.data.facade;
 
-import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import net.sf.exlp.addon.apache.facade.bean.ExlpApacheFacadeBean;
 import net.sf.exlp.addon.apache.facade.exlp.ExlpApacheFacade;
 import net.sf.exlp.addon.common.data.facade.bean.ExlpCommonFacadeBean;
 import net.sf.exlp.addon.common.data.facade.exlp.ExlpCommonFacade;
-import net.sf.exlp.util.data.facade.ExlpContextFactory;
+import net.sf.exlp.addon.exim.data.facade.bean.ExlpEximFacadeBean;
+import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
+import net.sf.exlp.util.data.facade.AbstractFacadeFactory;
 
+import org.apache.commons.configuration.Configuration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class ExlpFacadeFactory
+public class ExlpFacadeFactory extends AbstractFacadeFactory
 {
 	static Log logger = LogFactory.getLog(ExlpFacadeFactory.class);
 	
-	private InitialContext context;
-	private String jbossServer;
-	private String contextPrefix;
-	
-	public ExlpFacadeFactory(String contextPrefix){this("localhost:1099",contextPrefix);}
-	
-	public ExlpFacadeFactory(String jbossServer,String contextPrefix)
-	{
-		this.contextPrefix=contextPrefix;
-		this.jbossServer=jbossServer;
-	}
-	
-	private void initContext()
-	{
-		
-		try{context = ExlpContextFactory.getJbossContext(jbossServer);}
-		catch (NamingException e){exit(e);}
-	}
+	public ExlpFacadeFactory(){super("exlp");}
+	public ExlpFacadeFactory(String contextPrefix){super(contextPrefix);}
+	public ExlpFacadeFactory(String jbossServer,String contextPrefix) {super(jbossServer,contextPrefix);}
+	public ExlpFacadeFactory(Configuration config){super(config);}
 	
 	public ExlpCommonFacade getCommonFacade()
 	{
-		if(context==null){initContext();}
 		ExlpCommonFacade f=null;
-		try{f = (ExlpCommonFacade)context.lookup(contextPrefix+"/"+ExlpCommonFacadeBean.class.getSimpleName()+"/remote");}
+		try{f = (ExlpCommonFacade)getContext().lookup(contextPrefix+"/"+ExlpCommonFacadeBean.class.getSimpleName()+"/remote");}
 		catch (NamingException e){exit(e);}
 		return f;
 	}
 	
 	public ExlpApacheFacade getApacheFacade()
 	{
-		if(context==null){initContext();}
 		ExlpApacheFacade f=null;
-		try{f = (ExlpApacheFacade)context.lookup(contextPrefix+"/"+ExlpApacheFacadeBean.class.getSimpleName()+"/remote");}
+		try{f = (ExlpApacheFacade)getContext().lookup(contextPrefix+"/"+ExlpApacheFacadeBean.class.getSimpleName()+"/remote");}
 		catch (NamingException e){exit(e);}
 		return f;
 	}
 	
-	private void exit(Exception e)
+	public ExlpEximFacade getEximFacade()
 	{
-		logger.error(e);
-		logger.fatal("Error binding remote facade.");
-		logger.fatal("System will exit");
-		System.exit(-1);
+		ExlpEximFacade f=null;
+		try{f = (ExlpEximFacade)getContext().lookup(contextPrefix+"/"+ExlpEximFacadeBean.class.getSimpleName()+"/remote");}
+		catch (NamingException e){exit(e);}
+		return f;
 	}
 }

@@ -24,7 +24,6 @@ public class EhSave extends AbstractEventHandler
 	public boolean handleEvent(LogEvent le)
 	{
 		count();
-		boolean result = le.save(dir);
-		return true;
+		return le.save(dir);
 	}
 }

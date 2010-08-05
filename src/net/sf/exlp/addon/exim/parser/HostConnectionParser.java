@@ -1,11 +1,10 @@
 package net.sf.exlp.addon.exim.parser;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
@@ -21,7 +20,7 @@ public class HostConnectionParser extends AbstractLogParser implements LogParser
 	private RejectParser rejectParser;
 	
 	private Date record;
-	private String hostName,dnsName,ipAddress;
+	private ExlpHost host;
 		
 	public HostConnectionParser(LogEventHandler leh)
 	{
@@ -68,17 +67,13 @@ public class HostConnectionParser extends AbstractLogParser implements LogParser
 	private void clear()
 	{
 		record = null;
-		hostName = null;
-		dnsName = null;
-		ipAddress = null;
+		host = new ExlpHost();
 	}
 	
 	private void reject(String emailFrom, String line)
 	{
 		rejectParser.setRecord(record);
-		rejectParser.setHostName(hostName);
-		rejectParser.setDnsName(dnsName);
-		rejectParser.setIpAddress(ipAddress);
+		rejectParser.setHost(host);
 		rejectParser.setEmailFrom(emailFrom);
 		rejectParser.parseLine(line);
 	}
@@ -97,8 +92,6 @@ public class HostConnectionParser extends AbstractLogParser implements LogParser
 	public void debugMe(){super.debugMe(this.getClass().getSimpleName());}
 	
 	public void setRecord(Date record) {this.record = record;}
-	public void setHostName(String hostName) {this.hostName = hostName;}
-	public void setDnsName(String dnsName) {this.dnsName = dnsName;}
-	public void setIpAddress(String ipAddress) {this.ipAddress = ipAddress;}
-
+	
+	public void setHost(ExlpHost host) {this.host = host;}
 }
