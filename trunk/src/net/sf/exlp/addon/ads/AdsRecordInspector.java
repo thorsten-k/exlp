@@ -14,6 +14,7 @@ import net.sf.exlp.addon.ads.ejb.AdUser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
+@SuppressWarnings("rawtypes")
 public class AdsRecordInspector
 {
 	static Log logger = LogFactory.getLog(AdsRecordInspector.class);

@@ -25,7 +25,7 @@ public class AdsCrawler
 		ArrayList<AdUser> alAdu = new ArrayList<AdUser>();
 		try
 		{
-			Attributes matchAttrs = new BasicAttributes (true);
+//			Attributes matchAttrs = new BasicAttributes (true);
 			//matchAttrs.put (new BasicAttribute ("mail"));
 			logger.trace("suche: "+search);
 			NamingEnumeration<SearchResult> answer = ctx.search(search, null);
