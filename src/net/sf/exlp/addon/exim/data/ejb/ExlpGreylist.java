@@ -16,7 +16,8 @@ import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 @Entity
 @NamedQueries
 ({
-	@NamedQuery(name="fGreylist",query="SELECT g FROM ExlpGreylist g WHERE g.record = :record AND g.from.id = :fromId AND g.rcpt.id = :rcptId")
+	@NamedQuery(name="fGreylist",query="SELECT g FROM ExlpGreylist g WHERE g.record = :record AND g.from.id = :fromId AND g.rcpt.id = :rcptId"),
+	@NamedQuery(name="fGreylistForRcptInInterval",query="SELECT g FROM ExlpGreylist g WHERE g.rcpt.id = :rcptId AND g.record >= :recordFrom AND g.record < :recordTo")
 })
 public class ExlpGreylist implements Serializable
 { 

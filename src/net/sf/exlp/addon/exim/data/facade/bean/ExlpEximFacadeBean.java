@@ -1,7 +1,9 @@
 package net.sf.exlp.addon.exim.data.facade.bean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.ejb.Remote;
 import javax.ejb.Stateful;
@@ -49,5 +51,17 @@ public class ExlpEximFacadeBean extends AbstractExlpFacadeBean implements ExlpEx
 		try	{result=(ExlpGreylist)nq.getSingleResult();}
 		catch (NoResultException ex){throw new ExlpNotFoundException("No "+ExlpGreylist.class.getSimpleName()+" found for record="+record+" from="+from.getEmail()+" rcpt="+rcpt.getEmail());}
 		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<ExlpGreylist> fGreylistForRcptInInterval(ExlpEmail rcpt, Date from, Date to)
+	{
+		List<ExlpGreylist> lResult = new ArrayList<ExlpGreylist>();
+		Query q = getManager().createNamedQuery("fGreylistForRcptInInterval");
+			q.setParameter("rcptId", rcpt.getId());
+			q.setParameter("recordFrom", from);
+			q.setParameter("recordTo", to);
+		lResult = (List<ExlpGreylist>)q.getResultList();
+		return lResult;
 	}
 }
