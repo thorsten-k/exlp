@@ -6,6 +6,8 @@ import net.sf.exlp.addon.apache.facade.bean.ExlpApacheFacadeBean;
 import net.sf.exlp.addon.apache.facade.exlp.ExlpApacheFacade;
 import net.sf.exlp.addon.common.data.facade.bean.ExlpCommonFacadeBean;
 import net.sf.exlp.addon.common.data.facade.exlp.ExlpCommonFacade;
+import net.sf.exlp.addon.dirsize.data.facade.bean.ExlpDirsizeFacadeBean;
+import net.sf.exlp.addon.dirsize.data.facade.exlp.ExlpDirsizeFacade;
 import net.sf.exlp.addon.exim.data.facade.bean.ExlpEximFacadeBean;
 import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
 import net.sf.exlp.util.data.facade.AbstractFacadeFactory;
@@ -43,6 +45,14 @@ public class ExlpFacadeFactory extends AbstractFacadeFactory
 	{
 		ExlpEximFacade f=null;
 		try{f = (ExlpEximFacade)getContext().lookup(contextPrefix+"/"+ExlpEximFacadeBean.class.getSimpleName()+"/remote");}
+		catch (NamingException e){exit(e);}
+		return f;
+	}
+	
+	public ExlpDirsizeFacade getDirsizeFacade()
+	{
+		ExlpDirsizeFacade f=null;
+		try{f = (ExlpDirsizeFacade)getContext().lookup(contextPrefix+"/"+ExlpDirsizeFacadeBean.class.getSimpleName()+"/remote");}
 		catch (NamingException e){exit(e);}
 		return f;
 	}
