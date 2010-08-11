@@ -79,4 +79,44 @@
 			</manifest>        	
 		</jar>
 	</target>
+	
+	<target name="07 - EAR" description="ExLP" depends="04 - Compile,05 - Copy Libs">
+		<echo level="info">Creating Exlp EJB </echo>
+		<delete dir="${build.dir}/META-INF"/>
+		<copy file="${rsrc.dir}/config/persistence/exlp-persistence.xml" tofile="${build.dir}/META-INF/persistence.xml"/> 
+		<jar destfile="${dist.dir}/xx-exlp-EJB3.jar" basedir="${build.dir}">
+			<include name="net/sf/exlp/addon/common/data/ejb/**/*.class"/>
+			<include name="net/sf/exlp/addon/dirsize/data/ejb/**/*.class"/>
+			<include name="META-INF/*.xml"/>
+		</jar>	
+		<delete dir="${build.dir}/META-INF"/>
+		<echo level="info">Creating ERP SessionBeans </echo>
+		<mkdir dir="${build.dir}/META-INF"/>
+		<copy file="${rsrc.dir}/config/jboss/ejb-jar.xml" tofile="${build.dir}/META-INF/ejb-jar.xml"/>
+		<jar destfile="${dist.dir}/xy-exlp-SB.jar" basedir="${build.dir}">
+			<include name="net/sf/exlp/addon/common/data/exception/**/*.class"/>
+			<include name="net/sf/exlp/addon/common/data/facade/**/*.class"/>
+			<include name="net/sf/exlp/addon/dirsize/data/facade/**/*.class"/>
+			<include name="META-INF/*.xml"/>
+		</jar>	
+    	<delete dir="${build.dir}/META-INF"/>
+		
+		<echo level="warn">Creating EAR</echo>
+		<delete dir="${dist.dir}/tmp"/> 
+		<mkdir dir="${dist.dir}/tmp"/>
+		<mkdir dir="${dist.dir}/tmp/META-INF"/>
+		<mkdir dir="${dist.dir}/tmp/lib"/>
+		
+		<copy file="${dist.dir}/xx-exlp-EJB3.jar" todir="${dist.dir}/tmp"/>
+		<copy file="${dist.dir}/xy-exlp-SB.jar" todir="${dist.dir}/tmp"/>
+	
+		<copy file="${rsrc.dir}/config/jboss/jboss-app.xml" todir="${dist.dir}/tmp/META-INF"/>
+		<copy file="${rsrc.dir}/config/jboss/application.xml" todir="${dist.dir}/tmp/META-INF"/>
+			
+		<jar destfile="${dist.dir}/exlp.ear" basedir="${dist.dir}/tmp">
+			<include name="**/*"/>
+		</jar>			
+		<delete dir="${dist.dir}/tmp"/> 
+	</target>
+	
 </project>
