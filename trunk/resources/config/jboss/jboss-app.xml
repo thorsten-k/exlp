@@ -1,0 +1,6 @@
+<jboss-app>
+    <loader-repository>
+        jsfejb3:archive=exlp.ear
+    </loader-repository>
+    <library-directory>lib</library-directory>
+</jboss-app>
