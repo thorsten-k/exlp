@@ -32,9 +32,7 @@ public class ExlpDirectory implements Serializable
 	
 	private String path;
 	
-	private boolean scanActive,pathRelative;
-	
-	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.LAZY, mappedBy="directory")
 	private List<ExlpDirectorySize> sizes;
 
 	@OneToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
@@ -47,12 +45,6 @@ public class ExlpDirectory implements Serializable
 
 	public String getPath() {return path;}
 	public void setPath(String path) {this.path = path;}
-	
-	public boolean isScanActive() {return scanActive;}
-	public void setScanActive(boolean scanActive) {this.scanActive = scanActive;}
-	
-	public boolean isPathRelative() {return pathRelative;}
-	public void setPathRelative(boolean pathRelative) {this.pathRelative = pathRelative;}
 	
 	public List<ExlpDirectorySize> getSizes() {if(sizes==null){sizes = new ArrayList<ExlpDirectorySize>();};return sizes;}
 	public void setSizes(List<ExlpDirectorySize> sizes) {this.sizes = sizes;}
