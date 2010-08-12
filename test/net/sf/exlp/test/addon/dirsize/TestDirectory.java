@@ -13,19 +13,7 @@ import org.apache.commons.logging.LogFactory;
 public class TestDirectory
 {
 	static Log logger = LogFactory.getLog(TestDirectory.class);
-	
-	public static void main (String[] args) throws Exception
-	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("resources/config");
-			loggerInit.init();
 		
-		TestDirectory test = new TestDirectory();
-		test.list();
-		test.insert();
-		test.list();
-	}
-	
 	private ExlpDirsizeFacade fExlp;
 	
 	public TestDirectory()
@@ -38,8 +26,6 @@ public class TestDirectory
 	{
 		ExlpDirectory dir = new ExlpDirectory();
 		dir.setPath("/tmp");
-		dir.setPathRelative(false);
-		dir.setScanActive(true);
 		fExlp.newObject(dir);
 	}
 	
@@ -47,5 +33,17 @@ public class TestDirectory
 	{
 		List<ExlpDirectory> list = fExlp.allExlpDirectories();
 		logger.debug(list.size());
+	}
+	
+	public static void main (String[] args) throws Exception
+	{
+		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
+			loggerInit.addAltPath("resources/config");
+			loggerInit.init();
+		
+		TestDirectory test = new TestDirectory();
+		test.list();
+		test.insert();
+		test.list();
 	}
 }
