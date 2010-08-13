@@ -1,14 +1,18 @@
-package net.sf.exlp.io;
+package net.sf.exlp.io.zip;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
+import net.sf.exlp.io.resourceloader.MultiResourceLoader;
+
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -18,11 +22,13 @@ public class ZipperStream
 	
 	private ByteArrayOutputStream resultOs;
 	private ZipOutputStream zipOs;
+	private MultiResourceLoader mrl;
 	
 	public ZipperStream()
 	{
 		resultOs = new ByteArrayOutputStream();
 		zipOs = new ZipOutputStream(resultOs);
+		mrl = new MultiResourceLoader();
 	}
 	
 	public void add(String name, byte[] data)
@@ -32,6 +38,18 @@ public class ZipperStream
 			zipOs.putNextEntry(new ZipEntry(name));
 			zipOs.write(data);
 		}
+		catch (IOException e) {logger.error(e);}
+	}
+	
+	public void addFile(String zipName, String fileName)
+	{
+		try
+		{
+			zipOs.putNextEntry(new ZipEntry(zipName));
+			InputStream is = mrl.searchIs(fileName);
+			IOUtils.copy(is, zipOs);
+		}
+		catch (FileNotFoundException e) {logger.error(e);}
 		catch (IOException e) {logger.error(e);}
 	}
 	
