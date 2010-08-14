@@ -16,7 +16,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 @PersistenceContext(name="exlpEM", unitName="exlp")
-public class AbstractExlpFacadeBean
+public abstract class AbstractExlpFacadeBean
 {
 	static Log logger = LogFactory.getLog(AbstractExlpFacadeBean.class);
 	static final long serialVersionUID=10;
