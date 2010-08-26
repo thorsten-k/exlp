@@ -52,6 +52,8 @@ public class ExlpDirectorySize implements Serializable
 	{
 		StringBuffer sb = new StringBuffer();
 			sb.append(id);
+			sb.append(" record="+record);
+			sb.append(" size="+size);
 		return sb.toString();
 	}
 }
