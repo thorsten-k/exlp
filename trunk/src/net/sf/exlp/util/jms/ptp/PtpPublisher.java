@@ -18,8 +18,8 @@ import javax.jms.QueueConnectionFactory;
 import javax.jms.QueueRequestor;
 import javax.jms.QueueSender;
 import javax.jms.QueueSession;
+import javax.jms.Session;
 import javax.jms.TextMessage;
-import javax.jms.TopicSession;
 import javax.naming.Context;
 import javax.naming.NamingException;
 
@@ -67,7 +67,7 @@ public class PtpPublisher
 			QueueConnectionFactory qcf = (QueueConnectionFactory)ctx.lookup("ConnectionFactory");
 			connection = qcf.createQueueConnection();
 			queue = (Queue) ctx.lookup(queueName);
-			session = connection.createQueueSession(false, TopicSession.AUTO_ACKNOWLEDGE);
+			session = connection.createQueueSession(false, Session.AUTO_ACKNOWLEDGE);
 			
 			if(requestMode){requestor = new QueueRequestor(session, queue);}
 			else {sender = session.createSender(queue);}
