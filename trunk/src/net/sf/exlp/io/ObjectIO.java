@@ -61,11 +61,9 @@ public class ObjectIO
 			out.flush();
 			byte [] b = baos.toByteArray();
 			baos.close();
-			out.close();
-		   	
-			// Kontrollausgaben
-	    	System.out.println("Anz. bytes: " + b.length);
-	    	//printByteStream(b);
+			out.close();		   	
+
+	    	logger.trace("Anz. bytes: " + b.length);
 
 	    	for ( int i = 0; (i*BLOCKLENGTH < BLOCKLENGTH); i++)
 			{
