@@ -17,16 +17,22 @@ public abstract class AbstractTxtWriter
 {
 	static Log logger = LogFactory.getLog(AbstractTxtWriter.class);
 	
-	protected static String fs = SystemUtils.FILE_SEPARATOR;
-	protected static String ls = SystemUtils.LINE_SEPARATOR;
+	protected String fs;
+	protected String ls;
 	
 	protected ArrayList<String> txt;
 	protected String dirName,fileName;
 	protected DecimalFormat df;
 	
-	public AbstractTxtWriter(String dirName)
+	private String encoding;
+	
+	public AbstractTxtWriter(String dirName){this(dirName,"UTF-8",SystemUtils.LINE_SEPARATOR);}
+	public AbstractTxtWriter(String dirName, String encoding, String ls)
 	{
 		this.dirName=dirName;
+		this.encoding=encoding;
+		this.ls=ls;
+		fs = SystemUtils.FILE_SEPARATOR;
 		txt = new ArrayList<String>();
 		df = new DecimalFormat();
 	}
@@ -55,11 +61,24 @@ public abstract class AbstractTxtWriter
 		{
 			f.createNewFile();
 			OutputStream os = new FileOutputStream(f);
-			OutputStreamWriter osw = new  OutputStreamWriter(os, "UTF-8"); 
+			OutputStreamWriter osw = new  OutputStreamWriter(os, encoding); 
 
 			BufferedWriter bw = new BufferedWriter(osw);
 			for(String s : txt){bw.write(s+ls);}
 			bw.close();osw.close();os.close();
+		}
+		catch (IOException e){logger.error(e);}  
+	}
+	
+	public void writeStream(OutputStream os)
+	{
+		try
+		{
+			OutputStreamWriter osw = new  OutputStreamWriter(os, encoding); 
+
+			BufferedWriter bw = new BufferedWriter(osw);
+			for(String s : txt){bw.write(s+ls);}
+			bw.close();osw.close();
 		}
 		catch (IOException e){logger.error(e);}  
 	}

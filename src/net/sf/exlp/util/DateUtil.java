@@ -132,9 +132,9 @@ public class DateUtil
 		gc.set(GregorianCalendar.MONTH, xmlGC.getMonth()-1);
 		gc.set(GregorianCalendar.DAY_OF_MONTH, xmlGC.getDay());
 		
-		boolean okHour = xmlGC.getHour()>0 && xmlGC.getHour()<=24;
-		boolean okMinute = xmlGC.getMinute()>0 && xmlGC.getHour()<=60;
-		boolean okSecond = xmlGC.getSecond()>0 && xmlGC.getSecond()<=60;
+		boolean okHour = xmlGC.getHour()>=0 && xmlGC.getHour()<=24;
+		boolean okMinute = xmlGC.getMinute()>=0 && xmlGC.getHour()<=60;
+		boolean okSecond = xmlGC.getSecond()>=0 && xmlGC.getSecond()<=60;
 		
 		if(okHour && okMinute && okSecond)
 		{
