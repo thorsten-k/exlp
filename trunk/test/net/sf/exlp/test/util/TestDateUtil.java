@@ -1,6 +1,7 @@
 package net.sf.exlp.test.util;
 
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
@@ -30,6 +31,18 @@ public class TestDateUtil
 		logger.debug(xmlGcNow);
 		logger.debug(nowBack);
 	}
+	
+	public void testQuarter()
+	{
+		Date d = DateUtil.getDateFromInt(2000, 1, 1);
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(d);
+		for(int i=1;i<=12;i++)
+		{
+			logger.debug(DateUtil.getQuarter(gc.getTime())+" "+gc.getTime());
+			gc.add(GregorianCalendar.MONTH, 1);
+		}
+	}
 
 	public static void main (String[] args) throws Exception
 	{
@@ -38,6 +51,7 @@ public class TestDateUtil
 			loggerInit.init();
 		
 		TestDateUtil test = new TestDateUtil();
-		test.xmlGc();
+//		test.xmlGc();
+		test.testQuarter();
 	}
 }

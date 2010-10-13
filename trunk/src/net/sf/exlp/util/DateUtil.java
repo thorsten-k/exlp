@@ -174,6 +174,19 @@ public class DateUtil
 		return gc.getTime();
 	}
 	
+	public synchronized static int getQuarter(XMLGregorianCalendar xmlGC){return getQuarter(DateUtil.getDate4XmlGc(xmlGC));}
+	public synchronized static int getQuarter(Date d)
+	{
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(d);
+		int month = gc.get(GregorianCalendar.MONTH)+1;
+		if(month<4){return 1;}
+		else if(month<7){return 2;}
+		else if(month<10){return 3;}
+		else if(month<13){return 4;}
+		else {return -1;}
+	}
+	
 	public synchronized static int getMonth(String s) throws ParseException
 	{
 		if(s.equals("Jan")){return 1;}
