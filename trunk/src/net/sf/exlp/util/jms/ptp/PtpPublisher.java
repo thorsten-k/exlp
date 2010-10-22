@@ -208,7 +208,6 @@ public class PtpPublisher
 	public Object requestAnswer(Serializable myOb) {return requestAnswer(myOb, null,null);}
 	
 	// JAXB Messages
-	
 	public void sendJaxb(Object jaxb, NsPrefixMapperInterface nsPrefixMapper) throws JMSException
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -219,6 +218,4 @@ public class PtpPublisher
 		
 		send(byteMsg);
 	}
-
-
 }
