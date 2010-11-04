@@ -127,7 +127,8 @@ public class DateUtil
 	
 	public synchronized static Date getDate4XmlGc(XMLGregorianCalendar xmlGC)
 	{
-		GregorianCalendar gc = new GregorianCalendar();
+		return xmlGC.toGregorianCalendar().getTime();
+/*		GregorianCalendar gc = new GregorianCalendar();
 		gc.set(GregorianCalendar.YEAR, xmlGC.getYear());
 		gc.set(GregorianCalendar.MONTH, xmlGC.getMonth()-1);
 		gc.set(GregorianCalendar.DAY_OF_MONTH, xmlGC.getDay());
@@ -150,7 +151,7 @@ public class DateUtil
 		}
 		
 		return gc.getTime();
-	}
+*/	}
 	
 	public synchronized static Date getDateFromInt(int year, int month, int day)
 	{
