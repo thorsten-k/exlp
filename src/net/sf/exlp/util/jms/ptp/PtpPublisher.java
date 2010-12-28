@@ -45,7 +45,7 @@ public class PtpPublisher
 	private Map<String,String> propStr;
 	private Map<String,Integer> propInt;
 	private int priority;
-	
+
 	private boolean requestMode;
 	
 	public PtpPublisher(Context ctx,String queueName)
@@ -134,7 +134,6 @@ public class PtpPublisher
 	}
 	
 	// Text Messages
-	
 	public void sendText(String text) throws JMSException
 	{
 		TextMessage tm = session.createTextMessage(text);
@@ -157,7 +156,6 @@ public class PtpPublisher
 	}
 	
 	// Object Messages
-	
 	public void sendObject(Serializable myOb) throws JMSException
 	{
 		ObjectMessage om = session.createObjectMessage();
@@ -218,4 +216,8 @@ public class PtpPublisher
 		
 		send(byteMsg);
 	}
+	
+	// Getter & Setter
+	public int getPriority() {return priority;}
+	public void setPriority(int priority) {this.priority = priority;}
 }
