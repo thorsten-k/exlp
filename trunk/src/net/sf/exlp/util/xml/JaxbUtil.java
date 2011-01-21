@@ -34,32 +34,30 @@ public class JaxbUtil
 	static Log logger = LogFactory.getLog(JaxbUtil.class);
 	public static boolean useLog4j = true;
 	
-	public static synchronized Object loadJAXB(String xmlFile, Class<?> c)
+	public static synchronized Object loadJAXB(String xmlFile, Class<?> c) throws FileNotFoundException
 	{
 		MultiResourceLoader mrl = new MultiResourceLoader();
 		Object result = null;
-		try
+
+		InputStream is=null;
+		InputStream resourceIs = mrl.searchIs(xmlFile);
+		
+		if(xmlFile.endsWith(".gz"))
 		{
-			InputStream is=null;
-			InputStream resourceIs = mrl.searchIs(xmlFile);
-			
-			if(xmlFile.endsWith(".gz"))
+			try
 			{
-				try
-				{
-					GZIPInputStream gzIs = new GZIPInputStream(resourceIs);
-					is=gzIs;
-				}
-				catch (IOException e) {logger.error(e);}
+				GZIPInputStream gzIs = new GZIPInputStream(resourceIs);
+				is=gzIs;
 			}
-			else
-			{
-				is = resourceIs;
-			}
-			
-			result = loadJAXB(is,c);
+			catch (IOException e) {logger.error(e);}
 		}
-		catch (FileNotFoundException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		else
+		{
+			is = resourceIs;
+		}
+		
+		result = loadJAXB(is,c);
+
 		return result;
 	}
 	public static synchronized Object loadJAXB(InputStream is, Class<?> c)
