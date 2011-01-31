@@ -19,6 +19,10 @@
 	<!-- Library Definitions: XML -->
 	<property name="jdom.dir" value="xml/jdom"/><property name="jdom.lib" value="jdom-${jdom-version}.jar"/>
 	<property name="jaxen.dir" value="xml/jaxen"/><property name="jaxen.lib" value="jaxen-${jaxen-version}.jar"/>
+	<property name="jaxb.dir" value="xml/jaxb/${jaxb-version}"/>
+		<property name="jaxbapi.lib" value="jaxb-api-${jaxb-version}.jar"/>
+		<property name="jaxbimpl.lib" value="jaxb-impl-${jaxb-version}.jar"/>
+		<property name="jaxbxjc.lib" value="jaxb-xjc-${jaxb-version}.jar"/>
 	
 	<!-- Library Definitions: GUI-->
 	<property name="swt.dir" value="gui/swt/${swt-version}"/>
