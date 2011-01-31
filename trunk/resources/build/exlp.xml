@@ -6,6 +6,8 @@
 
 	<property name="src.dir" location="${basedir}/src" />
 	<property name="dist.dir" location="${basedir}/dist/" />
+	<property name="resource.dir" location="${basedir}/resources" />
+	<property name="xsd.dir" location="${resource.dir}/xsd" />
 	<property name="build.dir" location="${dist.dir}/build/" />
 	<property name="lib.dir" location="${basedir}/lib" />
 	<property name="rsrc.dir" location="${basedir}/resources" />
@@ -24,15 +26,15 @@
 		<mkdir dir="${build.dir}"/>
 		<mkdir dir="${dist.dir}"/>
     	<mkdir dir="${locallib.dir}"/>
-    			<echo level="info">Creating metalib with ${metalib.dir} in ${locallib.dir}</echo>
-    			<echo level="info">Class-Path: ${meta.jar}</echo>
-    			<jar destfile="${locallib.dir}/meta-libs.jar">
-    				<manifest>
-    					<attribute name="Built-By" value="${user.name}"/>
-    					<attribute name="Implementation-Version"  value="${ear.version}"/>
-    					<attribute name="Class-Path" value="${meta.jar}"/>
-    				</manifest>        	
-    			</jar>
+		<echo level="info">Creating metalib with ${metalib.dir} in ${locallib.dir}</echo>
+		<echo level="info">Class-Path: ${meta.jar}</echo>
+		<jar destfile="${locallib.dir}/meta-libs.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Implementation-Version"  value="${ear.version}"/>
+				<attribute name="Class-Path" value="${meta.jar}"/>
+			</manifest>        	
+		</jar>
     </target>
 	
     <target name="03 - Loc" description="Task definition">
@@ -44,6 +46,21 @@
     		</fileset>
     	</loc>
     </target>
+	
+	<target name="04 - JAXB">
+		<echo level="info">Generating JAXB</echo>
+		<java classname="com.sun.tools.xjc.XJCFacade"
+				fork="true" failonerror="true"  maxmemory="128m">
+			<arg value="-extension"/>
+			<arg value="${xsd.dir}/exlp.xsd"/>
+			<arg value="-d"/><arg value="${src.dir}"/>
+			<arg value="-b"/><arg value="${xsd.dir}/exlp.xjb"/>
+			<classpath>
+				<pathelement location="${lib.dir}/${jaxb.dir}/${jaxbimpl.lib}"/>
+	         	<pathelement location="${lib.dir}/${jaxb.dir}/${jaxbxjc.lib}"/>
+			</classpath>
+		</java>
+	</target> 
 	
 	<target name="04 - Compile" depends="02 - Init" description="Compile the source">
 		<echo level="info">Compiling with ${java-version}</echo>
