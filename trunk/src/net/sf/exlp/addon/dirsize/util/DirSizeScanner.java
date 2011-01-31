@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.dirsize.data;
+package net.sf.exlp.addon.dirsize.util;
 
 import java.io.File;
 import java.util.Date;
