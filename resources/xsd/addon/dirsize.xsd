@@ -7,10 +7,10 @@
     elementFormDefault="qualified"
     attributeFormDefault="unqualified"
     jaxb:extensionBindingPrefixes="xjc">
-    <xsd:element name="dirfile">
+    <xsd:element name="dirFile">
         <xsd:complexType>
             <xsd:sequence>
-                <xsd:element ref="dir:dirfile" maxOccurs="unbounded"/>
+                <xsd:element ref="dir:dirFile" maxOccurs="unbounded"/>
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:int"/>
             <xsd:attribute name="name" type="xsd:string"/>

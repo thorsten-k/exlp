@@ -29,11 +29,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://exlp.sourceforge.net/dirsize}dir" maxOccurs="unbounded"/>
- *         &lt;element ref="{http://exlp.sourceforge.net/dirsize}file" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://exlp.sourceforge.net/dirsize}dirFile" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}int" />
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="type" type="{http://www.w3.org/2001/XMLSchema}string" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -43,96 +43,58 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "dir",
-    "file"
+    "dirFile"
 })
-@XmlRootElement(name = "dir")
-public class Dir
+@XmlRootElement(name = "dirFile")
+public class DirFile
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<Dir> dir;
-    @XmlElement(required = true)
-    protected List<File> file;
+    protected List<DirFile> dirFile;
     @XmlAttribute
     protected Integer id;
     @XmlAttribute
     protected String name;
+    @XmlAttribute
+    protected String type;
 
     /**
-     * Gets the value of the dir property.
+     * Gets the value of the dirFile property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the dir property.
+     * This is why there is not a <CODE>set</CODE> method for the dirFile property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getDir().add(newItem);
+     *    getDirFile().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Dir }
+     * {@link DirFile }
      * 
      * 
      */
-    public List<Dir> getDir() {
-        if (dir == null) {
-            dir = new ArrayList<Dir>();
+    public List<DirFile> getDirFile() {
+        if (dirFile == null) {
+            dirFile = new ArrayList<DirFile>();
         }
-        return this.dir;
+        return this.dirFile;
     }
 
-    public boolean isSetDir() {
-        return ((this.dir!= null)&&(!this.dir.isEmpty()));
+    public boolean isSetDirFile() {
+        return ((this.dirFile!= null)&&(!this.dirFile.isEmpty()));
     }
 
-    public void unsetDir() {
-        this.dir = null;
-    }
-
-    /**
-     * Gets the value of the file property.
-     * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the file property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getFile().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link File }
-     * 
-     * 
-     */
-    public List<File> getFile() {
-        if (file == null) {
-            file = new ArrayList<File>();
-        }
-        return this.file;
-    }
-
-    public boolean isSetFile() {
-        return ((this.file!= null)&&(!this.file.isEmpty()));
-    }
-
-    public void unsetFile() {
-        this.file = null;
+    public void unsetDirFile() {
+        this.dirFile = null;
     }
 
     /**
@@ -193,6 +155,34 @@ public class Dir
 
     public boolean isSetName() {
         return (this.name!= null);
+    }
+
+    /**
+     * Gets the value of the type property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * Sets the value of the type property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setType(String value) {
+        this.type = value;
+    }
+
+    public boolean isSetType() {
+        return (this.type!= null);
     }
 
 }
