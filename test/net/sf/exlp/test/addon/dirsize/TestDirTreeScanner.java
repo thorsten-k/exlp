@@ -2,6 +2,7 @@ package net.sf.exlp.test.addon.dirsize;
 
 import java.io.FileNotFoundException;
 
+import net.sf.exlp.addon.dirsize.data.factory.DirToDirFileFactory;
 import net.sf.exlp.addon.dirsize.data.jaxb.Dir;
 import net.sf.exlp.addon.dirsize.util.DirTreeScanner;
 import net.sf.exlp.io.LoggerInit;
@@ -16,7 +17,7 @@ public class TestDirTreeScanner
 	
 	public TestDirTreeScanner()
 	{
-		
+
 	}
 	
 	public void scan() throws FileNotFoundException
@@ -24,6 +25,7 @@ public class TestDirTreeScanner
 		DirTreeScanner scanner = new DirTreeScanner();
 		Dir dir = scanner.getDirTree("/Users/thorsten/Documents/workspace/3.6.0/ExLP/dist");
 		JaxbUtil.debug(dir);
+		JaxbUtil.debug(DirToDirFileFactory.convert(dir));
 	}
 	
 	public static void main (String[] args) throws Exception

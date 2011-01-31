@@ -2,8 +2,10 @@ package net.sf.exlp.addon.dirsize.util;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.Date;
 
 import net.sf.exlp.addon.dirsize.data.jaxb.Dir;
+import net.sf.exlp.util.DateUtil;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.logging.Log;
@@ -13,9 +15,24 @@ public class DirTreeScanner
 {
 	static Log logger = LogFactory.getLog(DirTreeScanner.class);
 	
+	private Dir qDir;
+	
 	public DirTreeScanner()
 	{
-	
+		net.sf.exlp.addon.dirsize.data.jaxb.File qFile = new net.sf.exlp.addon.dirsize.data.jaxb.File();
+		qFile.setName("");
+		qFile.setLastModifed(DateUtil.getXmlGc4D(new Date()));
+		
+		qDir = new Dir();
+		qDir.setName("");
+		
+		qDir.getFile().add(qFile);
+		
+		
+	}
+	public DirTreeScanner(Dir qDir)
+	{
+		this.qDir=qDir;
 	}
 	
 	public Dir getDirTree(String rootDir) throws FileNotFoundException
@@ -33,12 +50,12 @@ public class DirTreeScanner
 	{
 		String ignorePrefix = getIgnorePrefix(f);
 		Dir dir = new Dir();
-		dir.setName(f.getAbsolutePath().substring(ignorePrefix.length(), f.getAbsolutePath().length()));
-		
+		if(qDir.isSetName()){dir.setName(f.getAbsolutePath().substring(ignorePrefix.length(), f.getAbsolutePath().length()));}
+		if(qDir.isSetLastModifed()){dir.setLastModifed(DateUtil.getXmlGc4D(new Date(f.lastModified())));}
 		for(File subF : f.listFiles())
 		{
 			if(subF.isDirectory()){dir.getDir().add(getDirTree(subF));}
-			else if (subF.isFile()){dir.getFile().add(getFile(subF));}
+			else if (subF.isFile() && qDir.isSetFile()){dir.getFile().add(getFile(subF));}
 		}
 		
 		return dir;
@@ -47,7 +64,8 @@ public class DirTreeScanner
 	private net.sf.exlp.addon.dirsize.data.jaxb.File getFile(File f)
 	{
 		net.sf.exlp.addon.dirsize.data.jaxb.File file = new net.sf.exlp.addon.dirsize.data.jaxb.File();
-		file.setName(f.getName());
+		if(qDir.getFile().get(0).isSetName()){file.setName(f.getName());}
+		if(qDir.getFile().get(0).isSetLastModifed()){file.setLastModifed(DateUtil.getXmlGc4D(new Date(f.lastModified())));}
 		return file;
 	}
 	
