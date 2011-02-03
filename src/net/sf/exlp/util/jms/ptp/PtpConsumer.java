@@ -1,21 +1,17 @@
 package net.sf.exlp.util.jms.ptp;
 
-import java.io.Serializable;
-import java.util.Enumeration;
-
 import javax.jms.JMSException;
-import javax.jms.Message;
 import javax.jms.MessageListener;
-import javax.jms.ObjectMessage;
 import javax.jms.Queue;
 import javax.jms.QueueConnection;
 import javax.jms.QueueConnectionFactory;
 import javax.jms.QueueReceiver;
-import javax.jms.QueueSender;
 import javax.jms.QueueSession;
 import javax.jms.TopicSession;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+
+import net.sf.exlp.util.jms.listener.MessageRespondListener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -71,6 +67,12 @@ public class PtpConsumer
 			session = conn.createQueueSession(false, TopicSession.AUTO_ACKNOWLEDGE);
 			
 //			conn.setExceptionListener(new TestExceptionListener(this));
+			
+			if(ml instanceof MessageRespondListener)
+			{
+				((MessageRespondListener)ml).setSession(session);
+			}
+			
 			conn.start();
 			
 			recv = session.createReceiver(queue,messageSelector);
