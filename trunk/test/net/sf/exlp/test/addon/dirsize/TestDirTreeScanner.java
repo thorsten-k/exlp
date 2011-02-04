@@ -21,15 +21,16 @@ public class TestDirTreeScanner
 
 	}
 	
-	public void scan() throws FileNotFoundException
+	public void scan(String dirName) throws FileNotFoundException
 	{
 		DirTreeScanner scanner = new DirTreeScanner();
-		Dir dir = scanner.getDir("/Users/thorsten/Documents/workspace/3.6.0/ExLP/dist");
+		Dir dir = scanner.getDir(dirName);
 		JaxbUtil.debug(dir);
-		DirFile df = scanner.getDirFile("/Users/thorsten/Documents/workspace/3.6.0/ExLP/dist");
+		
+		DirFile df = scanner.getDirFile(dirName);
 		JaxbUtil.debug(df);
 		
-		ExlpFile ef = scanner.getExlpFile("/Users/thorsten/Documents/workspace/3.6.0/ExLP/dist");
+		ExlpFile ef = scanner.getExlpFile(dirName);
 		logger.debug("Debug "+ef.getChilds().size());
 		for (int i=0;i<ef.getChilds().size();i++)
 		{
@@ -46,6 +47,6 @@ public class TestDirTreeScanner
 			loggerInit.init();
 		
 		TestDirTreeScanner test = new TestDirTreeScanner();
-		test.scan();
+		test.scan("/tmp/ftp/project");
 	}
 }
