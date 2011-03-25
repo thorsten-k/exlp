@@ -19,6 +19,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import net.sf.exlp.io.StringBufferOutputStream;
 import net.sf.exlp.io.resourceloader.MultiResourceLoader;
 
 import org.apache.commons.logging.Log;
@@ -152,6 +153,40 @@ public class JaxbUtil
 		catch (JDOMException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
 		return doc;
+	}
+	
+	public static void toOutputStream(Object jaxb, OutputStream os, NsPrefixMapperInterface nsPrefixMapper)
+	{
+		try
+		{
+			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
+			Marshaller m = context.createMarshaller(); 
+			if(nsPrefixMapper!=null)
+			{
+				m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);
+			}
+			m.marshal(jaxb, os);
+		}
+		catch (JAXBException e) {logger.error(e);}
+	}
+	
+	public static synchronized String toString(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean preable)
+	{
+		StringBufferOutputStream sbo = new StringBufferOutputStream();
+		JaxbUtil.toOutputStream(jaxb, sbo, nsPrefixMapper);
+		
+		String s;
+		if(!preable)
+		{
+			int index = sbo.getStringBuffer().indexOf("?>");
+			s = sbo.getStringBuffer().substring(index+2);
+		}
+		else
+		{
+			s = sbo.getStringBuffer().toString();
+		}
+		
+		return s;
 	}
 	
 	public static synchronized org.w3c.dom.Document toW3CDocument(Object jaxb){return toW3CDocument(jaxb,null);}
