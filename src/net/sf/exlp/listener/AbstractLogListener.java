@@ -43,14 +43,13 @@ public abstract class AbstractLogListener
 	public void processSingle(){exitCall("processSingle()");}
 	public void processSingle(String cmd){exitCall("processSingle(String)");}
 	public void processMulti(String cmd){exitCall("processMulti(String)");}
-	
-	public void close() {}
+	public void close(){exitCall("close()");}
 	
 	private void exitCall(String call)
 	{
 		logger.fatal("Forbidden call: "+call);
+		logger.fatal("But you can ovveride this!");
 		logger.fatal("System will exit!");
 		System.exit(-1);
 	}
-	
 }
