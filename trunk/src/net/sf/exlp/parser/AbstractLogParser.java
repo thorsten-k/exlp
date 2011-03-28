@@ -55,20 +55,16 @@ public class AbstractLogParser
 		logger.warn("This method should be overriden!!");
 	}
 	
-	public void parseLine(String line)
-	{
-		logger.fatal("Method \"parseLine\" is not implemented for this parser!");
-		System.exit(-1);
-	}
+	public void parseLine(String line){exitCall("parseLine(String)");}
+	public void parseLine(String line,String DateiName){exitCall("parseLine(String,String)");}
+	public void parseItem(ArrayList<String> item){exitCall("parseItem(ArrayList<String>)");}
+	public void close(){exitCall("close()");}
 	
-	public void parseLine(String line,String DateiName)
+	private void exitCall(String call)
 	{
-		parseLine(line);
-	}
-	
-	public void parseItem(ArrayList<String> item)
-	{
-		logger.fatal("Method \"parseItem\" is not implemented for this parser!");
+		logger.fatal("Forbidden call: "+call);
+		logger.fatal("But you can ovveride this in you parser!");
+		logger.fatal("System will exit!");
 		System.exit(-1);
 	}
 }

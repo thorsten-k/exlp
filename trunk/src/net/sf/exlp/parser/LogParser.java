@@ -9,6 +9,7 @@ public interface LogParser
 	public void parseLine(String line,String dateiName);
 	public void parseItem(ArrayList<String> item);
 	public void addMetaInfo(Properties p);
+	public void close();
 	
 	public void debugStats();
 }
