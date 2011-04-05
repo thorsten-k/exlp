@@ -12,13 +12,13 @@ import net.sf.exlp.io.LoggerInit;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestDirsize
+public class TstDirsize
 {
-	static Log logger = LogFactory.getLog(TestDirsize.class);
+	static Log logger = LogFactory.getLog(TstDirsize.class);
 	
 	private ExlpDirsizeFacade fExlp;
 	
-	public TestDirsize()
+	public TstDirsize()
 	{
 		ExlpFacadeFactory ff = new ExlpFacadeFactory();
 		fExlp = ff.getDirsizeFacade();
@@ -49,7 +49,7 @@ public class TestDirsize
 			loggerInit.addAltPath("resources/config");
 			loggerInit.init();
 		
-		TestDirsize test = new TestDirsize();
+		TstDirsize test = new TstDirsize();
 		test.insert();
 	}
 }

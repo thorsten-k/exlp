@@ -5,11 +5,11 @@ import net.sf.exlp.io.LoggerInit;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestCommonsLog
+public class TstCommonsLog
 {
-	static Log logger = LogFactory.getLog(TestCommonsLog.class);
+	static Log logger = LogFactory.getLog(TstCommonsLog.class);
 	
-	public TestCommonsLog()
+	public TstCommonsLog()
 	{
 		
 	}
@@ -25,7 +25,7 @@ public class TestCommonsLog
 			loggerInit.addAltPath("resources/config");
 			loggerInit.init();
 		
-		TestCommonsLog test = new TestCommonsLog();
+		TstCommonsLog test = new TstCommonsLog();
 		test.test();
 	}
 }

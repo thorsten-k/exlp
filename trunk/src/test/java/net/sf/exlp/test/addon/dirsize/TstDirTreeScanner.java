@@ -12,11 +12,11 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestDirTreeScanner
+public class TstDirTreeScanner
 {
-	static Log logger = LogFactory.getLog(TestDirTreeScanner.class);
+	static Log logger = LogFactory.getLog(TstDirTreeScanner.class);
 	
-	public TestDirTreeScanner()
+	public TstDirTreeScanner()
 	{
 
 	}
@@ -46,7 +46,7 @@ public class TestDirTreeScanner
 			loggerInit.addAltPath("resources/config");
 			loggerInit.init();
 		
-		TestDirTreeScanner test = new TestDirTreeScanner();
+		TstDirTreeScanner test = new TstDirTreeScanner();
 		test.scan("/tmp/ftp/project");
 	}
 }

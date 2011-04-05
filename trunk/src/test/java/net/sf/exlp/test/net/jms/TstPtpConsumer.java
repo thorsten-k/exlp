@@ -11,13 +11,13 @@ import net.sf.exlp.util.jms.ptp.PtpConsumer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestPtpConsumer
+public class TstPtpConsumer
 {
-	static Log logger = LogFactory.getLog(TestPtpConsumer.class);
+	static Log logger = LogFactory.getLog(TstPtpConsumer.class);
 	
 	private PtpConsumer ptp;
 	
-	public TestPtpConsumer(InitialContext ctx)
+	public TstPtpConsumer(InitialContext ctx)
 	{
 		MessageListener tmdl = new TextMessageRespondDebugListener(ctx);
 		ptp = new PtpConsumer(ctx,"queue/ErpAsync",tmdl);
@@ -35,10 +35,12 @@ public class TestPtpConsumer
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
 			loggerInit.addAltPath("resources/config");
 			loggerInit.init();
-				
+		
+		logger.debug("Starting main.");	
+			
 		InitialContext ctx = ExlpContextFactory.getJbossContext("192.168.1.251:1099");
 			
-		TestPtpConsumer test = new TestPtpConsumer(ctx);
+		TstPtpConsumer test = new TstPtpConsumer(ctx);
 		test.receive();
 	}
 }

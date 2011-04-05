@@ -4,16 +4,16 @@ import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhDebug;
 import net.sf.exlp.io.LoggerInit;
 import net.sf.exlp.listener.LogListener;
-import net.sf.exlp.listener.impl.LogListenerXml;
+import net.sf.exlp.listener.impl.LogListenerHttp;
 import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.impl.TestParser;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestListenerXml
+public class TstListenerHttp
 {
-	static Log logger = LogFactory.getLog(TestListenerXml.class);
+	static Log logger = LogFactory.getLog(TstListenerHttp.class);
 	
 	public static void main(String args[])
 	{
@@ -23,7 +23,7 @@ public class TestListenerXml
 			
 		LogEventHandler leh = new EhDebug();
 		LogParser lp = new TestParser(leh);
-		LogListener ll = new LogListenerXml("../openFuXML/resources/data/timeline.xml",lp);
-		ll.processMulti("/wikiinjection/a");
+		LogListener ll = new LogListenerHttp(lp);
+		ll.processSingle("http://www.google.com");
 	}
 }

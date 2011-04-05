@@ -10,13 +10,13 @@ import net.sf.exlp.io.LoggerInit;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestDirectory
+public class TstDirectory
 {
-	static Log logger = LogFactory.getLog(TestDirectory.class);
+	static Log logger = LogFactory.getLog(TstDirectory.class);
 		
 	private ExlpDirsizeFacade fExlp;
 	
-	public TestDirectory()
+	public TstDirectory()
 	{
 		ExlpFacadeFactory ff = new ExlpFacadeFactory();
 		fExlp = ff.getDirsizeFacade();
@@ -41,7 +41,7 @@ public class TestDirectory
 			loggerInit.addAltPath("resources/config");
 			loggerInit.init();
 		
-		TestDirectory test = new TestDirectory();
+		TstDirectory test = new TstDirectory();
 		test.list();
 		test.insert();
 		test.list();

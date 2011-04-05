@@ -4,13 +4,14 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.sf.exlp.io.LoggerInit;
+import net.sf.exlp.parser.PatternFactory;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestApachePattern
+public class TstMacAddressPattern
 {
-	static Log logger = LogFactory.getLog(TestApachePattern.class);
+	static Log logger = LogFactory.getLog(TstMacAddressPattern.class);
 	
 	public static void main(String args[])
 	{
@@ -18,8 +19,8 @@ public class TestApachePattern
 			loggerInit.addAltPath("resources/config");
 			loggerInit.init();
 			
-		Pattern p = Pattern.compile("/index.php\\?id=([\\d]+)(.*)");
-		Matcher m=p.matcher("/index.php?id=408");
+		Pattern p = Pattern.compile(PatternFactory.macPatter+"(.*)");
+		Matcher m=p.matcher("00:AB:12:AC:3F:EE");
 		logger.debug(m.matches());
 	}
 }
