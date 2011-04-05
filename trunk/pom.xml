@@ -5,7 +5,7 @@
         <artifactId>exlp</artifactId>
         <version>0.1.0</version>
     <packaging>jar</packaging>
-    <name>XisUtils</name>
+    <name>Extensible Logfile Processor</name>
 
 <repositories>
     <repository>
