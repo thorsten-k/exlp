@@ -7,9 +7,9 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestConfigLoader
+public class TstConfigLoader
 {
-	static Log logger = LogFactory.getLog(TestConfigLoader.class);
+	static Log logger = LogFactory.getLog(TstConfigLoader.class);
 	
 	public static void main(String args[])
 	{

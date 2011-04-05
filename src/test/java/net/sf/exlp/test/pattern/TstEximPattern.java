@@ -10,9 +10,9 @@ import net.sf.exlp.parser.PatternFactory;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestEximPattern
+public class TstEximPattern
 {
-	static Log logger = LogFactory.getLog(TestEximPattern.class);
+	static Log logger = LogFactory.getLog(TstEximPattern.class);
 	
 	public static void main(String args[])
 	{

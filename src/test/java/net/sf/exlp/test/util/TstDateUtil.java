@@ -11,12 +11,12 @@ import net.sf.exlp.util.DateUtil;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestDateUtil
+public class TstDateUtil
 {
-	static Log logger = LogFactory.getLog(TestDateUtil.class);
+	static Log logger = LogFactory.getLog(TstDateUtil.class);
 	
 	
-	public TestDateUtil()
+	public TstDateUtil()
 	{
 
 	}
@@ -50,7 +50,7 @@ public class TestDateUtil
 			loggerInit.addAltPath("resources/config");
 			loggerInit.init();
 		
-		TestDateUtil test = new TestDateUtil();
+		TstDateUtil test = new TstDateUtil();
 //		test.xmlGc();
 		test.testQuarter();
 	}

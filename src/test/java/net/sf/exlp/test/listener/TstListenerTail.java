@@ -11,9 +11,9 @@ import net.sf.exlp.parser.impl.TestParser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestListenerTail
+public class TstListenerTail
 {
-	static Log logger = LogFactory.getLog(TestListenerTail.class);
+	static Log logger = LogFactory.getLog(TstListenerTail.class);
 	
 	public static void main(String args[])
 	{
