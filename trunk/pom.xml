@@ -46,6 +46,7 @@
 
    <modules>
       <module>util</module>
+      <module>ejb</module>
    </modules>
 
    <repositories>
