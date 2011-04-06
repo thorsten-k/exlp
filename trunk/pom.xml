@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+     
+	<groupId>net.sourceforge.exlp</groupId>
+	<artifactId>exlp</artifactId>
+	<version>0.1.1</version>
+    <packaging>pom</packaging>
+    <name>ExLP</name>
+
+    <properties>
+        <seam.version>2.2.1.CR1</seam.version>
+        <jsf.version>1.2_13</jsf.version>
+        <richfaces.version>3.3.3.Final</richfaces.version>
+        <portletbridge.version>2.0.0.FINAL</portletbridge.version>
+        <cargo.container>jboss42x</cargo.container>
+        <cargo.jvmargs>-Xms128m -Xmx512m -XX:MaxPermSize=256m</cargo.jvmargs>
+        <cargo.host>localhost</cargo.host>
+        <cargo.port>8085</cargo.port>
+        <cargo.wait>true</cargo.wait>
+        <installDir>${java.io.tmpdir}/cargo-installs</installDir>
+        <remoteServer>localhost</remoteServer>
+        <remotePort>8085</remotePort>
+		<remoteUsername>admin</remoteUsername>
+	</properties>
+
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	<licenses>
+		<license>
+		</license>
+	</licenses>
+
+	<scm>
+	</scm>
+
+	<issueManagement>
+	</issueManagement>
+
+    <developers>
+        <developer>
+        </developer>
+    </developers>
+
+   <modules>
+      <module>util</module>
+   </modules>
+
+   <repositories>
+      <repository>
+         <id>jboss</id>
+         <name>JBoss Repository</name>
+         <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+         <snapshots>
+            <enabled>false</enabled>
+         </snapshots>
+      </repository>
+      <repository>
+         <id>jboss-snapshots</id>
+         <name>JBoss Snapshot Repository</name>
+         <url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
+         <releases>
+            <enabled>false</enabled>
+         </releases>
+         <snapshots>
+         </snapshots>
+      </repository>
+   </repositories>
+
+	<pluginRepositories>
+		<pluginRepository>
+			<id>codehaus.org</id>
+			<name>CodeHaus Plugin Snapshots</name>
+			<url>http://snapshots.repository.codehaus.org</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+
+</project>
