@@ -1,7 +1,7 @@
 package net.sf.exlp.test.io;
 
 import net.sf.exlp.io.ConfigLoader;
-import net.sf.exlp.io.LoggerInit;
+import net.sf.exlp.util.io.LoggerInit;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.logging.Log;

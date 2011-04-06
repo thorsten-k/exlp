@@ -3,10 +3,10 @@ package net.sf.exlp.test.addon;
 import net.sf.exlp.addon.apache.parser.ApacheParser;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhDebug;
-import net.sf.exlp.io.LoggerInit;
 import net.sf.exlp.listener.LogListener;
 import net.sf.exlp.listener.impl.LogListenerFile;
 import net.sf.exlp.parser.LogParser;
+import net.sf.exlp.util.io.LoggerInit;
 
 public class ApacheLog
 {	

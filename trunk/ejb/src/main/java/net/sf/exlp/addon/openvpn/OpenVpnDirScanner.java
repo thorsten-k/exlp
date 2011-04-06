@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import net.sf.exlp.addon.openvpn.event.OpenVpnCertEvent;
-import net.sf.exlp.io.LoggerInit;
 import net.sf.exlp.io.RecursiveFileFinder;
+import net.sf.exlp.util.io.LoggerInit;
 
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;

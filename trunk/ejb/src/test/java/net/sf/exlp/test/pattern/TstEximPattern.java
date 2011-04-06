@@ -4,8 +4,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.sf.exlp.addon.exim.parser.EximParser;
-import net.sf.exlp.io.LoggerInit;
 import net.sf.exlp.parser.PatternFactory;
+import net.sf.exlp.util.io.LoggerInit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

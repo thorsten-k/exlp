@@ -6,7 +6,7 @@ import net.sf.exlp.addon.dirsize.data.ejb.ExlpFile;
 import net.sf.exlp.addon.dirsize.data.jaxb.Dir;
 import net.sf.exlp.addon.dirsize.data.jaxb.DirFile;
 import net.sf.exlp.addon.dirsize.util.DirTreeScanner;
-import net.sf.exlp.io.LoggerInit;
+import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.logging.Log;

@@ -2,6 +2,8 @@ package net.sf.exlp.io;
 
 import java.io.UnsupportedEncodingException;
 
+import net.sf.exlp.util.io.LoggerInit;
+
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
