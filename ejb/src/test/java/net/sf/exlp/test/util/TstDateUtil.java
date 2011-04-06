@@ -5,8 +5,8 @@ import java.util.GregorianCalendar;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import net.sf.exlp.io.LoggerInit;
 import net.sf.exlp.util.DateUtil;
+import net.sf.exlp.util.io.LoggerInit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

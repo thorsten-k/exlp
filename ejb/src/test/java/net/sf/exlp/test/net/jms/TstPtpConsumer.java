@@ -3,8 +3,8 @@ package net.sf.exlp.test.net.jms;
 import javax.jms.MessageListener;
 import javax.naming.InitialContext;
 
-import net.sf.exlp.io.LoggerInit;
 import net.sf.exlp.util.data.facade.ExlpContextFactory;
+import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.jms.listener.TextMessageRespondDebugListener;
 import net.sf.exlp.util.jms.ptp.PtpConsumer;
 
