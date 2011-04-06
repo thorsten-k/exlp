@@ -1,4 +1,4 @@
-package net.sf.exlp.io;
+package net.sf.exlp.util.io;
 
 import java.io.File;
 import java.io.FileInputStream;
