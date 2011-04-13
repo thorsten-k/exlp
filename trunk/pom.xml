@@ -4,7 +4,7 @@
      
 	<groupId>net.sourceforge.exlp</groupId>
 	<artifactId>exlp</artifactId>
-	<version>0.1.2-SNAPSHOT</version>
+	<version>0.1.2</version>
     <packaging>pom</packaging>
     <name>ExLP</name>
 

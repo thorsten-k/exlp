@@ -5,13 +5,13 @@
 	<parent>
     	<groupId>net.sourceforge.exlp</groupId>
     	<artifactId>exlp</artifactId>
-    	<version>0.1.2-SNAPSHOT</version>
+    	<version>0.1.2</version>
         <relativePath>../pom.xml</relativePath>
 	</parent>
     
     <groupId>net.sourceforge.exlp</groupId>
         <artifactId>exlp-ejb</artifactId>
-        <version>0.1.2-SNAPSHOT</version>
+        <version>0.1.2</version>
     <packaging>jar</packaging>
     <name>Extensible Logfile Processor EJB</name>
 
@@ -32,11 +32,6 @@
       <version>0.6.2</version>
 </dependency>
 
-   <dependency>
-      <groupId>net.sourceforge.exlp</groupId>
-      <artifactId>exlp-util</artifactId>
-      <version>0.1.2-SNAPSHOT</version>
-</dependency>
    
    <dependency>
     <groupId>org.jboss.spec</groupId>
@@ -100,8 +95,15 @@
    	</dependency>
    	<dependency>
    		<groupId>net.sourceforge.exlp</groupId>
+   		<artifactId>exlp-util</artifactId>
+   		<version>0.1.2</version>
+   		<type>jar</type>
+   		<scope>compile</scope>
+   	</dependency>
+   	<dependency>
+   		<groupId>net.sourceforge.exlp</groupId>
    		<artifactId>exlp-core</artifactId>
-   		<version>0.1.2-SNAPSHOT</version>
+   		<version>0.1.2</version>
    		<type>jar</type>
    		<scope>compile</scope>
    	</dependency>

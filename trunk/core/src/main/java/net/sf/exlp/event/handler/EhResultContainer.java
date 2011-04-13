@@ -28,4 +28,5 @@ public class EhResultContainer extends AbstractEventHandler
 	}
 	
 	public ArrayList<LogEvent> getAlResults() {return alResults;}
+	public LogEvent getSingleResult() {return alResults.get(0);}
 }
