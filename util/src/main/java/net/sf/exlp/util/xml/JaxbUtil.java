@@ -19,8 +19,8 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import net.sf.exlp.io.StringBufferOutputStream;
-import net.sf.exlp.io.resourceloader.MultiResourceLoader;
+import net.sf.exlp.util.io.StringBufferOutputStream;
+import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
