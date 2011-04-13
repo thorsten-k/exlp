@@ -1,4 +1,4 @@
-package net.sf.exlp.io;
+package net.sf.exlp.util.io;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -27,7 +27,6 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-import net.sf.exlp.util.io.LoggerInit;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

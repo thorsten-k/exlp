@@ -5,7 +5,7 @@ import net.sf.exlp.event.handler.EhDebug;
 import net.sf.exlp.listener.LogListener;
 import net.sf.exlp.listener.impl.LogListenerTail;
 import net.sf.exlp.parser.LogParser;
-import net.sf.exlp.parser.impl.TestParser;
+import net.sf.exlp.parser.impl.DummyParser;
 import net.sf.exlp.util.io.LoggerInit;
 
 import org.apache.commons.logging.Log;
@@ -22,7 +22,7 @@ public class TstListenerTail
 			loggerInit.init();
 			
 		LogEventHandler leh = new EhDebug();
-		LogParser lp = new TestParser(leh);
+		LogParser lp = new DummyParser(leh);
 		LogListener ll = new LogListenerTail("/tmp/exim.log",lp);
 		ll.processSingle();
 	}

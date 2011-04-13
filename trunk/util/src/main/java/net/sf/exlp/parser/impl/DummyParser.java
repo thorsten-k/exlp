@@ -11,14 +11,14 @@ import net.sf.exlp.parser.LogParser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class TestParser extends AbstractLogParser implements LogParser  
+public class DummyParser extends AbstractLogParser implements LogParser  
 {
-	static Log logger = LogFactory.getLog(TestParser.class);
+	static Log logger = LogFactory.getLog(DummyParser.class);
 
 	private final static int maxP=1;
 	Pattern p[] = new Pattern[maxP];
 	
-	public TestParser(LogEventHandler leh)
+	public DummyParser(LogEventHandler leh)
 	{
 		super(leh);
 		int i=0;
