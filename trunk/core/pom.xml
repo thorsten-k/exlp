@@ -5,14 +5,14 @@
 	<parent>
     	<groupId>net.sourceforge.exlp</groupId>
     	<artifactId>exlp</artifactId>
-    	<version>0.1.1</version>
+    	<version>0.1.2-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
 	</parent>
 	
 	<groupId>net.sourceforge.exlp</groupId>
     <artifactId>exlp-core</artifactId>
     <packaging>jar</packaging>
-    <version>0.1.1</version>
+    <version>0.1.2-SNAPSHOT</version>
     <name>ExLP Core</name>
    
       <build>
@@ -67,6 +67,13 @@
    		<groupId>org.apache.httpcomponents</groupId>
    		<artifactId>httpclient</artifactId>
    		<version>4.1.1</version>
+   		<type>jar</type>
+   		<scope>compile</scope>
+   	</dependency>
+   	<dependency>
+   		<groupId>net.sourceforge.exlp</groupId>
+   		<artifactId>exlp-util</artifactId>
+   		<version>0.1.2-SNAPSHOT</version>
    		<type>jar</type>
    		<scope>compile</scope>
    	</dependency>
