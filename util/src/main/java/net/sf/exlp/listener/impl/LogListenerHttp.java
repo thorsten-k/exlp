@@ -1,6 +1,8 @@
 package net.sf.exlp.listener.impl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
@@ -31,6 +33,23 @@ public class LogListenerHttp extends AbstractLogListener implements LogListener
 	@Override
 	public void processSingle(String url)
 	{
+		List<String> result = getBody(url);
+		for(String line : result)
+		{
+			lp.parseLine(line);
+		}
+	}
+	
+	@Override
+	public void processMulti(String url)
+	{
+		List<String> result = getBody(url);
+		lp.parseItem(result);
+	}
+	
+	private List<String> getBody(String url)
+	{
+		List<String> result = new ArrayList<String>();
 		try
 		{
 			HttpGet httpget = new HttpGet(url); 
@@ -42,11 +61,12 @@ public class LogListenerHttp extends AbstractLogListener implements LogListener
 			String[] poList = responseBody.split("\r|\n|\r\n");
 			for(String line : poList)
 			{
-				lp.parseLine(line);
+				result.add(line);
 			}
 		}
 		catch (ClientProtocolException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}         
+		catch (IOException e) {logger.error(e);}
+		return result;
 	}
 	
 	@Override
