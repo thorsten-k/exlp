@@ -4,11 +4,12 @@
      
 	<groupId>net.sourceforge.exlp</groupId>
 	<artifactId>exlp</artifactId>
-	<version>0.1.1</version>
+	<version>0.1.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ExLP</name>
 
     <properties>
+    	<exlp.version>0.1.2-SNAPSHOT</exlp.version>
         <seam.version>2.2.1.CR1</seam.version>
         <jsf.version>1.2_13</jsf.version>
         <richfaces.version>3.3.3.Final</richfaces.version>
