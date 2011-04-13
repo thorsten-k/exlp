@@ -57,7 +57,7 @@ public class AbstractLogParser
 	
 	public void parseLine(String line){exitCall("parseLine(String)");}
 	public void parseLine(String line,String DateiName){exitCall("parseLine(String,String)");}
-	public void parseItem(ArrayList<String> item){exitCall("parseItem(ArrayList<String>)");}
+	public void parseItem(List<String> item){exitCall("parseItem(List<String>)");}
 	public void close(){exitCall("close()");}
 	
 	private void exitCall(String call)

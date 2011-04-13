@@ -1,6 +1,6 @@
 package net.sf.exlp.parser.impl;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -51,7 +51,7 @@ public class DummyParser extends AbstractLogParser implements LogParser
 	}
 	
 	@Override
-	public void parseItem(ArrayList<String> item)
+	public void parseItem(List<String> item)
 	{
 		logger.debug("Item received with "+item.size()+" entries");
 	}
