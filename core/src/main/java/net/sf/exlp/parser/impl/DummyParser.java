@@ -54,6 +54,10 @@ public class DummyParser extends AbstractLogParser implements LogParser
 	public void parseItem(List<String> item)
 	{
 		logger.debug("Item received with "+item.size()+" entries");
+		for(String s : item)
+		{
+			logger.debug(s);
+		}
 	}
 	
 	public void event(Matcher m)
