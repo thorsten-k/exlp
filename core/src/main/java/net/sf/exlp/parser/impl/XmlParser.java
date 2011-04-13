@@ -1,9 +1,9 @@
 package net.sf.exlp.parser.impl;
 
 import java.util.List;
-import java.util.regex.Matcher;
 
 import net.sf.exlp.event.LogEventHandler;
+import net.sf.exlp.event.impl.JDomEvent;
 import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.util.xml.JDomUtil;
@@ -31,12 +31,8 @@ public class XmlParser extends AbstractLogParser implements LogParser
 		{
 			sb.append(s+SystemUtils.LINE_SEPARATOR);
 		}
-		Document doc;
-		JDomUtil jd;
-	}
-	
-	public void event(Matcher m)
-	{
-		logger.debug(m.group(0));
+		Document doc = JDomUtil.txtToDoc(sb.toString());		
+		JDomEvent e = new JDomEvent(doc);
+		leh.handleEvent(e);
 	}
 }

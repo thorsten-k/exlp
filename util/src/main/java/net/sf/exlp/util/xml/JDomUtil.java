@@ -220,11 +220,16 @@ public class JDomUtil
 		return w3cDoc;
 	}
 	
+	public static String toString(Document doc)
+	{
+		StringBufferOutputStream sbos = new StringBufferOutputStream();
+		outputStream(doc, sbos, Format.getPrettyFormat());
+		return sbos.getStringBuffer().toString().trim();
+	}
+	
 	public static synchronized void debug(Element e)
 	{
 		outputStream(e, System.out, Format.getPrettyFormat());
-//		System.out.flush();
-//		System.out.close();
 	}
 	private static synchronized void outputStream(Element e, OutputStream os, Format format)
 	{
