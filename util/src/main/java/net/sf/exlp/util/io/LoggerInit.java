@@ -67,7 +67,7 @@ public class LoggerInit
 				case Url:		urlLoad(cl,l4jName);
 								for(String path : altPaths)
 								{
-									if(!log4jInited){urlLoad(cl,path+fSep+l4jName);}
+									if(!log4jInited){urlLoad(cl,path+"/"+l4jName);}
 								}
 								break;
 				case File:		fileLoad(cl,l4jName);
@@ -79,7 +79,7 @@ public class LoggerInit
 				case Resource:	resourceLoad(cl,l4jName);
 								for(String path : altPaths)
 								{
-									if(!log4jInited){resourceLoad(cl,path+fSep+l4jName);}
+									if(!log4jInited){resourceLoad(cl,path+"/"+l4jName);}
 								}
 								break;
 			}
