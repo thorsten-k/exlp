@@ -10,7 +10,7 @@ import java.io.OutputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
-import net.sf.exlp.io.resourceloader.MultiResourceLoader;
+import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
