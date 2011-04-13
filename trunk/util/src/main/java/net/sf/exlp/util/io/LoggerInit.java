@@ -4,6 +4,7 @@ import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.lang.SystemUtils;
@@ -14,12 +15,14 @@ public class LoggerInit
 {
 	static Logger logger = Logger.getLogger(LoggerInit.class);
 	
+	public enum LoadType {Url,File,Resource};
+	
 	private static String fSep = System.getProperty("file.separator");
 	public static boolean log4jInited=false;
 	private ArrayList<String> alErrors;
-	private enum LoadType {Url,File,Resource};
 	private ArrayList<String> altPaths;
 	private String l4jName;
+	private List<LoadType> activeLoadTypes;
 	
 	public LoggerInit(String l4jName)
 	{
@@ -27,6 +30,18 @@ public class LoggerInit
 		log4jInited = false;
 		altPaths = new ArrayList<String>();
 		alErrors = new ArrayList<String>();
+		
+		activeLoadTypes = new ArrayList<LoadType>();
+		for(LoadType lt : LoadType.values()){activeLoadTypes.add(lt);}
+	}
+	
+	public void setAllLoadTypes(LoadType... lt)
+	{
+		activeLoadTypes.clear();
+		for(int i=0;i<lt.length;i++)
+		{
+			activeLoadTypes.add(lt[i]);
+		}
 	}
 	
 	public static void init(String l4jName, String altPath)
@@ -45,7 +60,7 @@ public class LoggerInit
 	public void init()
 	{
 		ClassLoader cl = this.getClass().getClassLoader();
-		for(LoadType lt : LoadType.values())
+		for(LoadType lt : activeLoadTypes)
 		{
 			switch (lt)
 			{
@@ -55,10 +70,10 @@ public class LoggerInit
 									if(!log4jInited){urlLoad(cl,path+fSep+l4jName);}
 								}
 								break;
-				case File:		directLoad(cl,l4jName);
+				case File:		fileLoad(cl,l4jName);
 								for(String path : altPaths)
 								{
-									if(!log4jInited){directLoad(cl,path+fSep+l4jName);}
+									if(!log4jInited){fileLoad(cl,path+fSep+l4jName);}
 								}
 								break;
 				case Resource:	resourceLoad(cl,l4jName);
@@ -90,9 +105,9 @@ public class LoggerInit
 		else {alErrors.add("Not found ClassLoader.getSystemResource("+l4jName+")");}
 	}
 	
-	public void directLoad(ClassLoader cl,String l4jName)
+	public void fileLoad(ClassLoader cl,String l4jName)
 	{
-		File f = new File(l4jName);
+		File f = new File(".",l4jName);
 		
 		if(f.exists())
 		{
@@ -114,6 +129,21 @@ public class LoggerInit
 			log4jInited=true;
 		}
 		else {alErrors.add("Not found "+confInfo);}
+	}
+	
+	public void showErrors()
+	{
+		for(String s : alErrors)
+		{
+			if(!log4jInited)
+			{
+				System.err.println(s);
+			}
+			else
+			{
+				logger.debug(s);
+			}
+		}
 	}
 
 	public static boolean isLog4jInited() {return log4jInited;}
