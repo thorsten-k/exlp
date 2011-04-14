@@ -74,12 +74,27 @@ public class JaxbUtil
 		return result;
 	}
 	
+	@Deprecated
 	public static synchronized void debug(Object jaxb){debug(jaxb, null);}
+	
+	@Deprecated
 	public static synchronized void debug(Object jaxb, Object nsPrefixMapper){debug(jaxb, nsPrefixMapper,null);}
+	
+	@Deprecated
 	public static synchronized void debug(Object jaxb, Object nsPrefixMapper, DocType doctype)
 	{
+		logger.warn("This method is deprecated. Use: JaxbUtil.debug(this.getClass(),jaxb);");
 		output(System.out, jaxb, nsPrefixMapper, doctype,true);
 	}
+	
+	public static synchronized void debug(Class<?> c, Object jaxb){debug2(c, jaxb, null);}
+	public static synchronized void debug2(Class<?> c, Object jaxb, Object nsPrefixMapper){debug(c, jaxb, nsPrefixMapper,null);}
+	public static synchronized void debug(Class<?> c, Object jaxb, Object nsPrefixMapper, DocType doctype)
+	{
+		logger.debug("JAXB Debug from class "+c.getSimpleName());
+		output(System.out, jaxb, nsPrefixMapper, doctype,true);
+	}
+	
 	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f, jaxb, null, null,formatted);}
 	public static synchronized void save(File f, Object jaxb, Object nsPrefixMapper,boolean formatted){save(f, jaxb, nsPrefixMapper,null,formatted);}
 	public static synchronized void save(File f, Object jaxb, Object nsPrefixMapper, DocType doctype, boolean formatted)
@@ -170,13 +185,15 @@ public class JaxbUtil
 		catch (JAXBException e) {logger.error(e);}
 	}
 	
-	public static synchronized String toString(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean preable)
+	public static synchronized String toString(Object jaxb){return toString(jaxb,null);}
+	public static synchronized String toString(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){return toString(jaxb,nsPrefixMapper,true);}
+	public static synchronized String toString(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean printPreamble)
 	{
 		StringBufferOutputStream sbo = new StringBufferOutputStream();
 		JaxbUtil.toOutputStream(jaxb, sbo, nsPrefixMapper);
 		
 		String s;
-		if(!preable)
+		if(!printPreamble)
 		{
 			int index = sbo.getStringBuffer().indexOf("?>");
 			s = sbo.getStringBuffer().substring(index+2);

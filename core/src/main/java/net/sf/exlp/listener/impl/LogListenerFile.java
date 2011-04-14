@@ -19,7 +19,6 @@ import net.sf.exlp.parser.LogParser;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-
 public class LogListenerFile extends AbstractLogListener implements LogListener
 {
 	static Log logger = LogFactory.getLog(LogListenerFile.class);
@@ -95,12 +94,13 @@ public class LogListenerFile extends AbstractLogListener implements LogListener
 	{
 		try
 		{
-			String Zeile; 
-			while(null != (Zeile = myBufferedReader.readLine()))
+			String line; 
+			while(null != (line = myBufferedReader.readLine()))
 			{
-				lp.parseLine(Zeile,f.getAbsolutePath());
+				lp.parseLine(line,f.getAbsolutePath());
 			}
 		    myBufferedReader.close();
+		    lp.close();
 		    debugStats();
 		}
 		catch (IOException e) {e.printStackTrace();}
@@ -119,6 +119,7 @@ public class LogListenerFile extends AbstractLogListener implements LogListener
 		    myBufferedReader.close();
 		    lp.addMetaInfo(metaInfo);
 		    lp.parseItem(item);
+		    lp.close();
 		    debugStats();
 		}
 		catch (IOException e) {e.printStackTrace();}
