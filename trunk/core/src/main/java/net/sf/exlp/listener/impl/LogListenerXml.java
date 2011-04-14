@@ -102,4 +102,7 @@ public class LogListenerXml extends AbstractLogListener implements LogListener
 		}
 		catch (JDOMException e) {logger.error(e);}
 	}
+	
+	@Override
+	public void close() {}
 }

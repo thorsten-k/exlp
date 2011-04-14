@@ -47,18 +47,15 @@ public class AbstractLogParser
 	
 	public void debugMe(String name)
 	{
-		logger.info(name+": All="+allLines+" UnknownPattern="+unknownLines+" UnknownHandling="+unknownHandling);
+		logger.debug(name+": All="+allLines+" UnknownPattern="+unknownLines+" UnknownHandling="+unknownHandling);
 	}
 	
-	public void debugMe()
-	{
-		logger.warn("This method should be overriden!!");
-	}
+	public void debugMe(){logger.warn("debugMe() Override this (with a debug(name) in your implementing class");}
 	
 	public void parseLine(String line){exitCall("parseLine(String)");}
-	public void parseLine(String line,String DateiName){exitCall("parseLine(String,String)");}
+	public void parseLine(String line,String DateiName){parseLine(line);}
 	public void parseItem(List<String> item){exitCall("parseItem(List<String>)");}
-	public void close(){exitCall("close()");}
+	public void close(){}
 	
 	private void exitCall(String call)
 	{

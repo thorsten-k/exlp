@@ -38,6 +38,7 @@ public class LogListenerHttp extends AbstractLogListener implements LogListener
 		{
 			lp.parseLine(line);
 		}
+		lp.close();
 	}
 	
 	@Override
@@ -45,6 +46,7 @@ public class LogListenerHttp extends AbstractLogListener implements LogListener
 	{
 		List<String> result = getBody(url);
 		lp.parseItem(result);
+		lp.close();
 	}
 	
 	private List<String> getBody(String url)
