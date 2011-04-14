@@ -1,4 +1,4 @@
-package net.sf.exlp.io;
+package net.sf.exlp.util.io.txt;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -9,8 +9,6 @@ import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
-import net.sf.exlp.util.io.LoggerInit;
-
 import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -19,22 +17,18 @@ public abstract class AbstractTxtWriter
 {
 	static Log logger = LogFactory.getLog(AbstractTxtWriter.class);
 	
-	protected String fs;
-	protected String ls;
+	protected String lineSeparator;	
+	private String encoding;
 	
 	protected ArrayList<String> txt;
 	protected String dirName,fileName;
 	protected DecimalFormat df;
 	
-	private String encoding;
-	
-	public AbstractTxtWriter(String dirName){this(dirName,"UTF-8",SystemUtils.LINE_SEPARATOR);}
-	public AbstractTxtWriter(String dirName, String encoding, String ls)
+	public AbstractTxtWriter()
 	{
-		this.dirName=dirName;
-		this.encoding=encoding;
-		this.ls=ls;
-		fs = SystemUtils.FILE_SEPARATOR;
+		encoding = "UTF-8";
+		lineSeparator = SystemUtils.LINE_SEPARATOR;
+		
 		txt = new ArrayList<String>();
 		df = new DecimalFormat();
 	}
@@ -47,27 +41,24 @@ public abstract class AbstractTxtWriter
 	
 	public void debug()
 	{
-		logger.debug("Verzeichnis="+dirName+"\tDatei="+fileName);
+		logger.debug("Debugging TXT content");
 		for(String s : txt)
 		{
 			logger.debug(s);
 		}
 	}
 	
-	public void writeFile()
+	public void writeFile(String dir, String file){writeFile(new File(dir,file));}
+	public void writeFile(File f)
 	{
-		File f = new File(dirName+System.getProperty("file.separator")+fileName);
 		if(f.exists()){f.delete();}
-		logger.info("Schreibe in Datei: "+f.getAbsolutePath());
+		logger.debug("Writing file: "+f.getAbsolutePath());
 		try
 		{
 			f.createNewFile();
 			OutputStream os = new FileOutputStream(f);
-			OutputStreamWriter osw = new  OutputStreamWriter(os, encoding); 
-
-			BufferedWriter bw = new BufferedWriter(osw);
-			for(String s : txt){bw.write(s+ls);}
-			bw.close();osw.close();os.close();
+			writeStream(os);
+			os.close();
 		}
 		catch (IOException e){logger.error(e);}  
 	}
@@ -79,7 +70,7 @@ public abstract class AbstractTxtWriter
 			OutputStreamWriter osw = new  OutputStreamWriter(os, encoding); 
 
 			BufferedWriter bw = new BufferedWriter(osw);
-			for(String s : txt){bw.write(s+ls);}
+			for(String s : txt){bw.write(s+lineSeparator);}
 			bw.close();osw.close();
 		}
 		catch (IOException e){logger.error(e);}  
@@ -97,6 +88,7 @@ public abstract class AbstractTxtWriter
 	
 	public void tex()
 	{
+		//TODO move this to a separate class
 		ArrayList<String> tmp = new ArrayList<String>();
 		for(String s : txt)
 		{
@@ -107,16 +99,9 @@ public abstract class AbstractTxtWriter
 		txt=tmp;
 	}
 	
-	public static void main (String[] args) throws Exception
-	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("resources/config");
-			loggerInit.init();
-		
-		String s = "∞";
-		logger.debug(s);
-		
-		s=s.replaceAll("∞","\\$ \\\\inf \\$");
-		logger.debug(s);
-	}
+	public String getEncoding() {return encoding;}
+	public void setEncoding(String encoding) {this.encoding = encoding;}
+	
+	public String getLineSeparator() {return lineSeparator;}
+	public void setLineSeparator(String lineSeparator) {this.lineSeparator = lineSeparator;}
 }
