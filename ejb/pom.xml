@@ -15,22 +15,21 @@
     <packaging>jar</packaging>
     <name>Extensible Logfile Processor EJB</name>
 
-<repositories>
-    <repository>
-        <id>repository.jboss.org</id>
-        <name>JBoss Repository</name>
-        <url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
-    </repository>
-</repositories>
+	<repositories>
+		<repository>
+			<id>repository.jboss.org</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
+	</repositories>
 
 
-   <dependencies>
-   
-   <dependency>
-      <groupId>net.sf.clarens</groupId>
-      <artifactId>jclarens</artifactId>
-      <version>0.6.2</version>
-</dependency>
+	<dependencies>
+		<dependency>
+		<groupId>net.sf.clarens</groupId>
+		<artifactId>jclarens</artifactId>
+		<version>0.6.2</version>
+	</dependency>
 
    
    <dependency>
