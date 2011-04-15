@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
+	<parent>
+    	<groupId>org.sonatype.oss</groupId>
+    	<artifactId>oss-parent</artifactId>
+    	<version>7</version>
+	</parent>
+
 	<modelVersion>4.0.0</modelVersion>     
 	<groupId>net.sf.exlp</groupId>
 	<artifactId>exlp</artifactId>
@@ -48,34 +54,7 @@
 		<module>ejb</module>
 		<module>core</module>
 	</modules>
-
-	<!--  We try to remove this repositories! -->
-	<repositories>
-		<repository>
-			<id>jboss</id>
-			<name>JBoss Repository</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
-			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-		<repository>
-			<id>jboss-snapshots</id>
-			<name>JBoss Snapshot Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-			<releases><enabled>false</enabled></releases>
-			<snapshots/>
-		</repository>
-	</repositories>
-
-	<pluginRepositories>
-		<pluginRepository>
-			<id>codehaus.org</id>
-			<name>CodeHaus Plugin Snapshots</name>
-			<url>http://snapshots.repository.codehaus.org</url>
-			<releases><enabled>false</enabled></releases>
-			<snapshots/>
-		</pluginRepository>
-	</pluginRepositories>
-
+ 
 	<dependencyManagement>
 		<dependencies>
 		</dependencies>
