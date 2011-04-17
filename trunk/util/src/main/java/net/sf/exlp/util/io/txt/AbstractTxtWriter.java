@@ -8,6 +8,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
@@ -22,6 +23,7 @@ public abstract class AbstractTxtWriter
 	
 	protected ArrayList<String> txt;
 	protected String dirName,fileName;
+	
 	protected DecimalFormat df;
 	
 	public AbstractTxtWriter()
@@ -45,6 +47,17 @@ public abstract class AbstractTxtWriter
 		for(String s : txt)
 		{
 			logger.debug(s);
+		}
+	}
+	
+	public void write() throws NoSuchElementException
+	{
+		if(dirName == null){throw new NoSuchElementException("Field dirName not set!");}
+		else if(fileName == null){throw new NoSuchElementException("Field fileName not set!");}
+		else
+		{
+			File f = new File(dirName,fileName);
+			writeFile(f);
 		}
 	}
 	
@@ -104,4 +117,10 @@ public abstract class AbstractTxtWriter
 	
 	public String getLineSeparator() {return lineSeparator;}
 	public void setLineSeparator(String lineSeparator) {this.lineSeparator = lineSeparator;}
+	
+	public String getDirName() {return dirName;}
+	public void setDirName(String dirName) {this.dirName = dirName;}
+
+	public String getFileName() {return fileName;}
+	public void setFileName(String fileName) {this.fileName = fileName;}
 }
