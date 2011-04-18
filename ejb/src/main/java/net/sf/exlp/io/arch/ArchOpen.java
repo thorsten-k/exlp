@@ -1,7 +1,8 @@
 package net.sf.exlp.io.arch;
 
-import net.sf.exlp.io.arch.ArchUtil.OsArch;
 import net.sf.exlp.io.spawn.Spawn;
+import net.sf.exlp.util.os.ArchUtil;
+import net.sf.exlp.util.os.ArchUtil.OsArch;
 
 import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
