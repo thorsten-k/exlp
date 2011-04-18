@@ -1,17 +1,21 @@
-package net.sf.exlp.addon.shell.cmd;
+package net.sf.exlp.util.os.shell;
 
-import net.sf.exlp.io.arch.ShellCmds;
+import net.sf.exlp.util.exception.ExlpUnsupportedOsException;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class ShellCmdPing extends ShellCmds
+public class ShellCmdPing extends AbstractShellCmd
 {
 	static Log logger = LogFactory.getLog(ShellCmdPing.class);
 	
-	public static String ping(String host, int anzahl)
+	public ShellCmdPing()
 	{
-		if(arch==null){setArch();}
+		
+	}
+	
+	public String ping(String host, int anzahl) throws ExlpUnsupportedOsException
+	{
 		StringBuffer sb = new StringBuffer();
 		switch(arch)
 		{
