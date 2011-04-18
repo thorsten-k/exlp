@@ -44,7 +44,7 @@ public class JDomUtil
 	static Log logger = LogFactory.getLog(JDomUtil.class);
 	public static boolean useLog4j = true;
 	
-	public static synchronized Document txtToDoc(String txt)
+	public static synchronized Document txtToDoc(String txt) throws JDOMException
 	{
 		Document doc=null;
 		try
@@ -52,7 +52,6 @@ public class JDomUtil
 			Reader sr = new StringReader(txt);  
 			doc = new SAXBuilder().build(sr);
 		}
-		catch (JDOMException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 		return doc;
 	}
