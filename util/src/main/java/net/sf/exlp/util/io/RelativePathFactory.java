@@ -28,7 +28,7 @@ public class RelativePathFactory
 		String fNormalized = FilenameUtils.normalize(fullFixed, true);
 		String rNormalized = FilenameUtils.normalize(fullRelative, true);
 		 
-		String relative = getRelative( fNormalized,  rNormalized);
+		String relative = getRelative(fNormalized,  rNormalized);
 		
 		if(quoteSpaces){relative = quoteSpaces(relative);}
 		relative = FilenameUtils.separatorsToSystem(relative);
@@ -38,12 +38,16 @@ public class RelativePathFactory
 	
 	private String getRelative(String fNormalized, String rNormalized)
 	{
+		logger.debug("fNormalized: "+fNormalized);
+		logger.debug("rNormalized: "+rNormalized);
+		
 		String result = rNormalized;
 		int index = rNormalized.indexOf(fNormalized);
 		
 		if(index==0)
 		{
 			result = rNormalized.substring(fNormalized.length(), rNormalized.length());
+			if(result.startsWith("/")){result = result.substring(1,result.length());}
 		}		
 		return result;
 	}
@@ -54,8 +58,6 @@ public class RelativePathFactory
 		{
 			path = "\""+path+"\"";
 		}
-		
-		
 		return path;
 	}
 }
