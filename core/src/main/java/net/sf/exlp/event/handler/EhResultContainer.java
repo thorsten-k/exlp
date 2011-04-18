@@ -1,6 +1,7 @@
 package net.sf.exlp.event.handler;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
@@ -28,5 +29,13 @@ public class EhResultContainer extends AbstractEventHandler
 	}
 	
 	public ArrayList<LogEvent> getAlResults() {return alResults;}
-	public LogEvent getSingleResult() {return alResults.get(0);}
+	
+	public LogEvent getSingleResult()
+	{
+		if(alResults.size()>0){return alResults.get(0);}
+		else
+		{
+			throw new NoSuchElementException("No "+LogEvent.class.getSimpleName()+" in container.");
+		}
+	}
 }

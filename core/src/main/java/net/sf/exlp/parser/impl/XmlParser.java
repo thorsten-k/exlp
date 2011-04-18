@@ -12,6 +12,7 @@ import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jdom.Document;
+import org.jdom.JDOMException;
 
 public class XmlParser extends AbstractLogParser implements LogParser  
 {
@@ -31,8 +32,14 @@ public class XmlParser extends AbstractLogParser implements LogParser
 		{
 			sb.append(s+SystemUtils.LINE_SEPARATOR);
 		}
-		Document doc = JDomUtil.txtToDoc(sb.toString());		
-		JDomEvent e = new JDomEvent(doc);
-		leh.handleEvent(e);
+		Document doc = null;
+		try
+		{
+			doc = JDomUtil.txtToDoc(sb.toString());
+			JDomEvent e = new JDomEvent(doc);
+			leh.handleEvent(e);
+		}
+		catch (JDOMException e){}		
+		
 	}
 }
