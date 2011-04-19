@@ -1,4 +1,4 @@
-package net.sf.exlp.util.xml;
+package net.sf.exlp.xml.ns;
 
 public interface NsPrefixMapperInterface
 {
