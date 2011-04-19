@@ -53,6 +53,7 @@
 		<module>util</module>
 		<module>ejb</module>
 		<module>core</module>
+		<module>xml</module>
 	</modules>
  
 	<dependencyManagement>
