@@ -12,11 +12,22 @@
     </xsd:element>
     <xsd:element name="dir">
         <xsd:complexType>
-            <xsd:simpleContent> 
-                <xsd:extension base="xsd:string">
-                    <xsd:attribute name="code" type="xsd:string"/>
-                </xsd:extension>
-            </xsd:simpleContent>
+            <xsd:sequence>
+                <xsd:element ref="io:dir" maxOccurs="unbounded"/>
+                <xsd:element ref="io:file" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:int"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="lastModifed" type="xsd:dateTime"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="file">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:int"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="lastModifed" type="xsd:dateTime"/>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>

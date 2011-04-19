@@ -25,6 +25,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import net.sf.exlp.util.io.StringBufferOutputStream;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.exception.JDomUtilException;
+import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
