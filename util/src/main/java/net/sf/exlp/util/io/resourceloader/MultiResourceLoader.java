@@ -18,7 +18,6 @@ public class MultiResourceLoader
 	public enum LoadType {FileIs, Jws};
 	private static ArrayList<String> alLoadError;
 	private static ArrayList<String> alLoadDebug;
-	public static LoadType lastLT;
 	public static String lastAbsolutPath;
 	public boolean debugInfo,debugError;
 
@@ -46,10 +45,6 @@ public class MultiResourceLoader
 		return searchIs(cl, resourceName);
 	}
 	
-	/**
-	 * 	 * @deprecated
-	 * @throws FileNotFoundException 
-	 */
 	public synchronized InputStream searchIs(ClassLoader cl, String resourceName) throws FileNotFoundException
 	{
 		alLoadError = new ArrayList<String>();
@@ -62,7 +57,7 @@ public class MultiResourceLoader
 				case FileIs: 	is=getFileIs(resourceName);break;
 				case Jws:		is=getJwsIs(cl,resourceName);break;
 			}
-			if(is!=null){lastLT=lt;break;}
+			if(is!=null){break;}
 		}
 		if(debugInfo){for(String s : alLoadDebug){logger.debug(s);}}
 		if(is==null)
