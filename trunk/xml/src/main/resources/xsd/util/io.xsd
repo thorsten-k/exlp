@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://exlp.sf.net/io"
+    xmlns:io="http://exlp.sf.net/io"
+    xmlns:wiki="http://www.openfuxml.org/wiki"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="dirs">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="io:dir" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="dir">
+        <xsd:complexType>
+            <xsd:simpleContent> 
+                <xsd:extension base="xsd:string">
+                    <xsd:attribute name="code" type="xsd:string"/>
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
