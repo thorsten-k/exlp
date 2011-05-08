@@ -38,8 +38,8 @@ public class RelativePathFactory
 	
 	private String getRelative(String fNormalized, String rNormalized)
 	{
-		logger.debug("fNormalized: "+fNormalized);
-		logger.debug("rNormalized: "+rNormalized);
+		logger.trace("fNormalized: "+fNormalized);
+		logger.trace("rNormalized: "+rNormalized);
 		
 		String result = rNormalized;
 		int index = rNormalized.indexOf(fNormalized);

@@ -35,6 +35,11 @@ public abstract class AbstractTxtWriter
 		df = new DecimalFormat();
 	}
 	
+	public void clear()
+	{
+		txt.clear();
+	}
+	
 	public void setDecimalFormat(String s)
 	{
 		logger.debug("New DecimalFormat: "+s);
