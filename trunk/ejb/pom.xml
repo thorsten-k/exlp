@@ -13,7 +13,7 @@
         <artifactId>exlp-ejb</artifactId>
         <version>0.1.3-SNAPSHOT</version>
     <packaging>jar</packaging>
-    <name>Extensible Logfile Processor EJB</name>
+    <name>ExLP EJB</name>
 
 	<repositories>
 		<repository>
