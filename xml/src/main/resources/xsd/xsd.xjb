@@ -9,5 +9,11 @@
             <jxb:package name="net.sf.exlp.xml.io"/>
         </jxb:schemaBindings>
     </jxb:bindings>
+    
+    <jxb:bindings schemaLocation="util/net.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="net.sf.exlp.xml.net"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
    
 </jxb:bindings>

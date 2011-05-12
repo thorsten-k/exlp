@@ -2,19 +2,17 @@ package net.sf.exlp.test.util.io;
 
 import java.io.File;
 
-import junit.framework.TestCase;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.io.RelativePathFactory;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.apache.log4j.ConsoleAppender;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PatternLayout;
-import org.junit.Before;
+import org.junit.Assert;
+import org.junit.BeforeClass;
+import org.junit.Test;
 
-public class TestRelativePathFactory extends TestCase
+public class TestRelativePathFactory
 {
 	static Log logger = LogFactory.getLog(TestRelativePathFactory.class);
 	
@@ -23,15 +21,15 @@ public class TestRelativePathFactory extends TestCase
 		
 	}
 	
-	@Before
-	public void initx()
+	@BeforeClass
+    public static void initLogger()
 	{
-		System.out.println("Test");
-		Logger root = Logger.getRootLogger();
-		root.addAppender(new ConsoleAppender(
-		    new PatternLayout(PatternLayout.TTCC_CONVERSION_PATTERN)));
-	}
+		LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
+		loggerInit.addAltPath("src/test/resources/config");
+		loggerInit.init();
+    }
 	
+	@Test
 	public void testFile()
 	{
 		File fFixed = new File(".");
@@ -43,9 +41,10 @@ public class TestRelativePathFactory extends TestCase
 		logger.debug("Absolute: "+fRelative.getAbsolutePath());
 		logger.debug("Relative: "+sRpf);
 	
-		assertEquals(FilenameUtils.separatorsToUnix(sRpf),"target/x1.txt");
+		Assert.assertEquals(FilenameUtils.separatorsToUnix(sRpf),"target/x1.txt");
 	}
 	
+	@Test
 	public void testWin()
 	{
 		String sBase = "C:\\Users\\Base";
@@ -57,9 +56,10 @@ public class TestRelativePathFactory extends TestCase
 		logger.debug("Absolute: "+sAbsolute);
 		logger.debug("Relative: "+sRpf);
 		
-		assertEquals(FilenameUtils.separatorsToUnix(sRpf),"x.3/a.txt");
+		Assert.assertEquals(FilenameUtils.separatorsToUnix(sRpf),"x.3/a.txt");
 	}
 	
+	@Test
 	public void testString()
 	{
 		String sFixed = "/Base";
@@ -71,9 +71,8 @@ public class TestRelativePathFactory extends TestCase
 		logger.debug("Absolute: "+sRelative);
 		logger.debug("Relative: "+sRpf);
 	
-		assertEquals(FilenameUtils.separatorsToUnix(sRpf),"X");
+		Assert.assertEquals(FilenameUtils.separatorsToUnix(sRpf),"X");
 	}
-	
 	
 	public static void main(String[] args)
     {
