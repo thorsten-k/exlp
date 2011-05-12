@@ -46,7 +46,7 @@ public class NetXpath
 			Element e = (Element)list.get(0);
 			url = (Url)JDomUtil.toJaxb(e, Url.class);
 		}
-		catch (JDOMException e) {logger.error(e);}
+		catch (JDOMException e) {logger.error(e);e.printStackTrace();}
         return url;
 	}
 	
