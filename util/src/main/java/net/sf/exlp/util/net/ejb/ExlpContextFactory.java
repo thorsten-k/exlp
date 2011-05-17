@@ -1,4 +1,4 @@
-package net.sf.exlp.util.data.facade;
+package net.sf.exlp.util.net.ejb;
 
 import java.util.Hashtable;
 
