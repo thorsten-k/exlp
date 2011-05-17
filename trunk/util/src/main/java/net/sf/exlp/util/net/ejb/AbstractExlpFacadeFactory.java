@@ -1,4 +1,4 @@
-package net.sf.exlp.util.data.facade;
+package net.sf.exlp.util.net.ejb;
 
 import java.util.Hashtable;
 import java.util.Map;
@@ -10,9 +10,9 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class AbstractFacadeFactory implements FacadeFactory
+public abstract class AbstractExlpFacadeFactory implements ExlpFacadeFactory
 {
-	static Log logger = LogFactory.getLog(AbstractFacadeFactory.class);
+	static Log logger = LogFactory.getLog(AbstractExlpFacadeFactory.class);
 	
 	private InitialContext context;
 	protected String jbossServer;
@@ -20,16 +20,16 @@ public class AbstractFacadeFactory implements FacadeFactory
 
 	protected Map<String,Object> mFacadeCache;
 	
-	public AbstractFacadeFactory(String jbossServer,String contextPrefix)
+	public AbstractExlpFacadeFactory(String jbossServer,String contextPrefix)
 	{
 		this.jbossServer=jbossServer;
 		this.contextPrefix=contextPrefix;
 		mFacadeCache = new Hashtable<String,Object>();
 	}
 	
-	public AbstractFacadeFactory(String contextPrefix){this("localhost:1099",contextPrefix);}
+	public AbstractExlpFacadeFactory(String contextPrefix){this("localhost:1099",contextPrefix);}
 	
-	public AbstractFacadeFactory(Configuration config)
+	public AbstractExlpFacadeFactory(Configuration config)
 	{
 		this(config.getString("net/jboss/@host")+":"+config.getInt("net/jboss/@port"),config.getString("net/jboss/@context"));
 	}

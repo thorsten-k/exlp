@@ -1,8 +1,8 @@
-package net.sf.exlp.util.data.facade;
+package net.sf.exlp.util.net.ejb;
 
 import javax.naming.InitialContext;
 
-public interface FacadeFactory
+public interface ExlpFacadeFactory
 {
 	InitialContext getContext();
 	String getContextPrefix();

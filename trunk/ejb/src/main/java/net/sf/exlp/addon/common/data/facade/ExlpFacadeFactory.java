@@ -10,13 +10,13 @@ import net.sf.exlp.addon.dirsize.data.facade.bean.ExlpDirsizeFacadeBean;
 import net.sf.exlp.addon.dirsize.data.facade.exlp.ExlpDirsizeFacade;
 import net.sf.exlp.addon.exim.data.facade.bean.ExlpEximFacadeBean;
 import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
-import net.sf.exlp.util.data.facade.AbstractFacadeFactory;
+import net.sf.exlp.util.net.ejb.AbstractExlpFacadeFactory;
 
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-public class ExlpFacadeFactory extends AbstractFacadeFactory
+public class ExlpFacadeFactory extends AbstractExlpFacadeFactory
 {
 	static Log logger = LogFactory.getLog(ExlpFacadeFactory.class);
 	
