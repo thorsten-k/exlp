@@ -14,13 +14,13 @@ public class ShellSymbolicLink extends AbstractShellCmd
 		
 	}
 	
-	public String routingTable() throws ExlpUnsupportedOsException
+	public String symbolicLink(String existing, String link) throws ExlpUnsupportedOsException
 	{
 		StringBuffer sb = new StringBuffer();
 		switch(arch)
 		{
-			case Win32: sb.append("route print");break;
-			case OsX:	sb.append("netstat -r");break;
+			case OsX:	sb.append("ln -s "+existing+" "+link);break;
+			case Linux:	sb.append("ln -s "+existing+" "+link);break;
 			default:	errorUnsupportedOS("print routingtable");break;
 		}	
 		return sb.toString();
