@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://exlp.sf.net/io}dir" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://exlp.sf.net/io}file" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,52 +39,52 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "dir"
+    "file"
 })
-@XmlRootElement(name = "dirs")
-public class Dirs
+@XmlRootElement(name = "files")
+public class Files
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<Dir> dir;
+    protected List<File> file;
 
     /**
-     * Gets the value of the dir property.
+     * Gets the value of the file property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the dir property.
+     * This is why there is not a <CODE>set</CODE> method for the file property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getDir().add(newItem);
+     *    getFile().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Dir }
+     * {@link File }
      * 
      * 
      */
-    public List<Dir> getDir() {
-        if (dir == null) {
-            dir = new ArrayList<Dir>();
+    public List<File> getFile() {
+        if (file == null) {
+            file = new ArrayList<File>();
         }
-        return this.dir;
+        return this.file;
     }
 
-    public boolean isSetDir() {
-        return ((this.dir!= null)&&(!this.dir.isEmpty()));
+    public boolean isSetFile() {
+        return ((this.file!= null)&&(!this.file.isEmpty()));
     }
 
-    public void unsetDir() {
-        this.dir = null;
+    public void unsetFile() {
+        this.file = null;
     }
 
 }

@@ -52,7 +52,7 @@ public class TestNetXpath
     	url3.setValue("http://url3");
 	}
     
-	 private Urls createUrls()
+	private Urls createUrls()
     {
     	Urls urls = new Urls();
     	urls.getUrl().add(url1);
