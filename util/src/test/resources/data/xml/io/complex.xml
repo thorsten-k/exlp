@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<io:dir xmlns:io="http://exlp.sf.net/io" id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true">
+    <io:dirs>
+        <io:dir id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true">
+            <io:files>
+                <io:file id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10"/>
+                <io:file id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10"/>
+            </io:files>
+        </io:dir>
+        <io:dir id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true">
+            <io:files>
+                <io:file id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10"/>
+                <io:file id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10"/>
+            </io:files>
+        </io:dir>
+    </io:dirs>
+    <io:files>
+        <io:file id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10"/>
+        <io:file id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10"/>
+    </io:files>
+</io:dir>
