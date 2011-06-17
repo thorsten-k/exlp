@@ -28,7 +28,7 @@ public class ExlpFacadeFactory extends AbstractExlpFacadeFactory
 	public ExlpCommonFacade getCommonFacade()
 	{
 		ExlpCommonFacade f=null;
-		try{f = (ExlpCommonFacade)getContext().lookup(contextPrefix+"/"+ExlpCommonFacadeBean.class.getSimpleName()+"/remote");}
+		try{f = (ExlpCommonFacade)getContext().lookup(getContextPrefix()+ExlpCommonFacadeBean.class.getSimpleName()+"/remote");}
 		catch (NamingException e){exit(e);}
 		return f;
 	}
@@ -36,7 +36,7 @@ public class ExlpFacadeFactory extends AbstractExlpFacadeFactory
 	public ExlpApacheFacade getApacheFacade()
 	{
 		ExlpApacheFacade f=null;
-		try{f = (ExlpApacheFacade)getContext().lookup(contextPrefix+"/"+ExlpApacheFacadeBean.class.getSimpleName()+"/remote");}
+		try{f = (ExlpApacheFacade)getContext().lookup(getContextPrefix()+ExlpApacheFacadeBean.class.getSimpleName()+"/remote");}
 		catch (NamingException e){exit(e);}
 		return f;
 	}
@@ -44,7 +44,7 @@ public class ExlpFacadeFactory extends AbstractExlpFacadeFactory
 	public ExlpEximFacade getEximFacade()
 	{
 		ExlpEximFacade f=null;
-		try{f = (ExlpEximFacade)getContext().lookup(contextPrefix+"/"+ExlpEximFacadeBean.class.getSimpleName()+"/remote");}
+		try{f = (ExlpEximFacade)getContext().lookup(getContextPrefix()+ExlpEximFacadeBean.class.getSimpleName()+"/remote");}
 		catch (NamingException e){exit(e);}
 		return f;
 	}
@@ -52,7 +52,7 @@ public class ExlpFacadeFactory extends AbstractExlpFacadeFactory
 	public ExlpDirsizeFacade getDirsizeFacade()
 	{
 		ExlpDirsizeFacade f=null;
-		try{f = (ExlpDirsizeFacade)getContext().lookup(contextPrefix+"/"+ExlpDirsizeFacadeBean.class.getSimpleName()+"/remote");}
+		try{f = (ExlpDirsizeFacade)getContext().lookup(getContextPrefix()+ExlpDirsizeFacadeBean.class.getSimpleName()+"/remote");}
 		catch (NamingException e){exit(e);}
 		return f;
 	}
