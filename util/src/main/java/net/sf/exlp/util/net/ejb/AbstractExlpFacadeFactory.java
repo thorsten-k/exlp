@@ -16,7 +16,7 @@ public abstract class AbstractExlpFacadeFactory implements ExlpFacadeFactory
 	
 	private InitialContext context;
 	protected String jbossServer;
-	protected String contextPrefix;
+	private String contextPrefix;
 
 	protected Map<String,Object> mFacadeCache;
 	
@@ -34,7 +34,7 @@ public abstract class AbstractExlpFacadeFactory implements ExlpFacadeFactory
 		this(config.getString("net/jboss/@host")+":"+config.getInt("net/jboss/@port"),config.getString("net/jboss/@context"));
 	}
 
-	public String getContextPrefix() {return contextPrefix;}
+	public String getContextPrefix() {return contextPrefix+"/";}
 	
 	public InitialContext getContext()
 	{
