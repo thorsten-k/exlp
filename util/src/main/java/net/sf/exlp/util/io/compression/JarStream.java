@@ -1,4 +1,4 @@
-package net.sf.exlp.io.compression;
+package net.sf.exlp.util.io.compression;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
