@@ -1,14 +1,15 @@
-package net.sf.exlp.test.xml.xpath.io;
+package net.sf.exlp.test.xml.io;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import net.sf.exlp.test.AbstractExlpTest;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.io.Dir;
-import net.sf.exlp.xml.io.Dirs;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.apache.commons.logging.Log;
@@ -29,7 +30,6 @@ public class TestDir extends AbstractExlpTest
 	public static void initFiles()
 	{
 		fDir = new java.io.File(rootDir,"dir.xml");
-		fDirs = new java.io.File(rootDir,"dirs.xml");
 		fComplex = new java.io.File(rootDir,"complex.xml");
 	}
     
@@ -38,14 +38,6 @@ public class TestDir extends AbstractExlpTest
     {
     	Dir xmlTest = createDir(false,false);
     	Dir xmlRef = (Dir)JaxbUtil.loadJAXB(fDir.getAbsolutePath(), Dir.class);
-    	Assert.assertEquals(JaxbUtil.toString(xmlRef),JaxbUtil.toString(xmlTest));
-    }
-    
-    @Test
-    public void testDirs() throws FileNotFoundException
-    {
-    	Dirs xmlTest = createDirs(false,false);
-    	Dirs xmlRef = (Dirs)JaxbUtil.loadJAXB(fDirs.getAbsolutePath(), Dirs.class);
     	Assert.assertEquals(JaxbUtil.toString(xmlRef),JaxbUtil.toString(xmlTest));
     }
     
@@ -64,21 +56,9 @@ public class TestDir extends AbstractExlpTest
     	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
     	JaxbUtil.save(fDir, xml, new ExlpNsPrefixMapper(), true);
     	
-    	Dirs xmlFiles = createDirs(false,false);
-    	JaxbUtil.debug2(this.getClass(),xmlFiles, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fDirs, xmlFiles, new ExlpNsPrefixMapper(), true);
-    	
     	Dir xmlComplex = createDir(true,true);
     	JaxbUtil.debug2(this.getClass(),xmlComplex, new ExlpNsPrefixMapper());
     	JaxbUtil.save(fComplex, xmlComplex, new ExlpNsPrefixMapper(), true);
-    }
-
-    public static Dirs createDirs(boolean withFiles, boolean withDirs)
-    {   	
-    	Dirs xml = new Dirs();
-    	xml.getDir().add(createDir(withFiles,withDirs));
-    	xml.getDir().add(createDir(withFiles,withDirs));
-    	return xml;
     }
     
     public static Dir createDir(boolean withFiles,boolean withDirs)
@@ -92,10 +72,18 @@ public class TestDir extends AbstractExlpTest
     	xml.setAllowCreate(true);
     	xml.setLastModifed(DateUtil.getXmlGc4D(d));
     	
-    	if(withFiles){xml.setFiles(TestFile.createFiles());}
-    	if(withDirs){xml.setDirs(TestDir.createDirs(true,false));}
+    	if(withFiles){xml.getFile().addAll(TestFile.createFiles());}
+    	if(withDirs){xml.getDir().addAll(TestDir.createDirs(true,false));}
     	
     	return xml;
+    }
+    
+    public static List<Dir> createDirs(boolean withFiles, boolean withDirs)
+    {   	
+    	List<Dir> list = new ArrayList<Dir>();
+    	list.add(createDir(withFiles,withDirs));
+    	list.add(createDir(withFiles,withDirs));
+    	return list;
     }
 	
 	public static void main(String[] args)

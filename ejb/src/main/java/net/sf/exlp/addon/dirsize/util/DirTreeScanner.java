@@ -6,8 +6,6 @@ import java.util.Date;
 
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.xml.io.Dir;
-import net.sf.exlp.xml.io.Dirs;
-import net.sf.exlp.xml.io.Files;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -62,13 +60,11 @@ public class DirTreeScanner
 		{
 			if(subF.isDirectory())
 			{
-				if(!dir.isSetDirs()){dir.setDirs(new Dirs());}
-				dir.getDirs().getDir().add(getDirTree(subF));
+				dir.getDir().add(getDirTree(subF));
 			}
-			else if (subF.isFile() && qDir.isSetFiles() && qDir.getFiles().isSetFile())
+			else if (subF.isFile() && qDir.isSetFile())
 			{
-				if(!dir.isSetFiles()){dir.setFiles(new Files());}
-				dir.getFiles().getFile().add(getFile(subF));
+				dir.getFile().add(getFile(subF));
 			}
 		}
 		
