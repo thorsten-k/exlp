@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<io:dirs xmlns:io="http://exlp.sf.net/io">
-    <io:dir id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true"/>
-    <io:dir id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true"/>
-</io:dirs>

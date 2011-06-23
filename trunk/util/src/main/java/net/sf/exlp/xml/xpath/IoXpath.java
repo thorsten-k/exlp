@@ -7,7 +7,6 @@ import net.sf.exlp.util.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.io.Dir;
-import net.sf.exlp.xml.io.Dirs;
 import net.sf.exlp.xml.io.File;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
@@ -26,7 +25,7 @@ public class IoXpath
 	private static NsPrefixMapperInterface nsPrefixMapper;
 	
 	@SuppressWarnings("unchecked")
-	public static synchronized Dir getDir(Dirs dirs, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
+	public static synchronized Dir getDir(Dir dirs, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{
 		Dir dir = null;
 		try
@@ -44,7 +43,7 @@ public class IoXpath
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static synchronized File getFile(Dirs dirs, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
+	public static synchronized File getFile(Dir dirs, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{
 		File file = null;
 		try

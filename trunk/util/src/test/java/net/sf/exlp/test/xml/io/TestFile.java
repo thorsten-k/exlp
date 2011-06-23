@@ -1,14 +1,15 @@
-package net.sf.exlp.test.xml.xpath.io;
+package net.sf.exlp.test.xml.io;
 
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import net.sf.exlp.test.AbstractExlpTest;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.io.File;
-import net.sf.exlp.xml.io.Files;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.apache.commons.logging.Log;
@@ -29,7 +30,6 @@ public class TestFile extends AbstractExlpTest
 	public static void initFiles()
 	{
 		fFile = new java.io.File(rootDir,"file.xml");
-		fFiles = new java.io.File(rootDir,"files.xml");
 	}
     
     @Test
@@ -40,14 +40,6 @@ public class TestFile extends AbstractExlpTest
     	Assert.assertEquals(JaxbUtil.toString(xmlRef),JaxbUtil.toString(xmlTest));
     }
     
-    @Test
-    public void testFiles() throws FileNotFoundException
-    {
-    	Files xmlTest = createFiles();
-    	Files xmlRef = (Files)JaxbUtil.loadJAXB(fFiles.getAbsolutePath(), Files.class);
-    	Assert.assertEquals(JaxbUtil.toString(xmlRef),JaxbUtil.toString(xmlTest));
-    }
-    
     public void save()
     {
     	logger.debug("Saving Reference XML");
@@ -55,17 +47,14 @@ public class TestFile extends AbstractExlpTest
     	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
     	JaxbUtil.save(fFile, xml, new ExlpNsPrefixMapper(), true);
     	
-    	Files xmlFiles = createFiles();
-    	JaxbUtil.debug2(this.getClass(),xmlFiles, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fFiles, xmlFiles, new ExlpNsPrefixMapper(), true);
     }
 
-    public static Files createFiles()
+    public static List<File> createFiles()
     {   	
-    	Files xml = new Files();
-    	xml.getFile().add(createFile());
-    	xml.getFile().add(createFile());
-    	return xml;
+    	List<File> list = new ArrayList<File>();
+    	list.add(createFile());
+    	list.add(createFile());
+    	return list;
     }
     
     public static File createFile()
