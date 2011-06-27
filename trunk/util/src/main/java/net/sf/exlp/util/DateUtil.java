@@ -120,6 +120,7 @@ public class DateUtil
 			xmlGC.setHour(gc.get(GregorianCalendar.HOUR_OF_DAY));
 			xmlGC.setMinute(gc.get(GregorianCalendar.MINUTE));
 			xmlGC.setSecond(gc.get(GregorianCalendar.SECOND));
+			xmlGC.setMillisecond(gc.get(GregorianCalendar.MILLISECOND));
 		}
 		catch (DatatypeConfigurationException e) {logger.error(e);}
 		return xmlGC;
