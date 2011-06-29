@@ -106,7 +106,8 @@ public class DateUtil
 		return sb.toString();
 	}
 	
-	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d)
+	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d){return getXmlGc4D(d,false);}
+	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d, boolean withMilli)
 	{
 		XMLGregorianCalendar xmlGC = null;
 		try
@@ -120,7 +121,7 @@ public class DateUtil
 			xmlGC.setHour(gc.get(GregorianCalendar.HOUR_OF_DAY));
 			xmlGC.setMinute(gc.get(GregorianCalendar.MINUTE));
 			xmlGC.setSecond(gc.get(GregorianCalendar.SECOND));
-			xmlGC.setMillisecond(gc.get(GregorianCalendar.MILLISECOND));
+			if(withMilli){xmlGC.setMillisecond(gc.get(GregorianCalendar.MILLISECOND));}
 		}
 		catch (DatatypeConfigurationException e) {logger.error(e);}
 		return xmlGC;
