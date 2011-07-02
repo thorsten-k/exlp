@@ -83,8 +83,8 @@ public class TestNetXpathUrl
     	Assert.assertEquals(JaxbUtil.toString(url2),JaxbUtil.toString(url));
     }
 
-    @Test(expected=JXPathNotFoundException.class)
-    public void testNotFound() throws JXPathNotFoundException, ExlpXpathNotUniqueException
+    @Test(expected=ExlpXpathNotFoundException.class)
+    public void testNotFound() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
     	Urls urls = createUrls();
     	Url url = NetXpath.getUrl(urls, "code0");
