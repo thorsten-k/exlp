@@ -220,4 +220,12 @@ public class DateUtil
 		gc.setTime(new Date());
 		return gc.get(GregorianCalendar.YEAR);
 	}
+	
+	public synchronized static long timeWithoutMilli(Date d)
+	{
+		GregorianCalendar gc = new GregorianCalendar();
+		gc.setTime(d);
+		gc.set(GregorianCalendar.MILLISECOND, 0);
+		return gc.getTimeInMillis();
+	}
 }
