@@ -1,2 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<io:dir xmlns:io="http://exlp.sf.net/io" id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true"/>
+<io:dir xmlns:io="http://exlp.sf.net/io" id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true">
+    <io:policy id="1" code="myCode" sys="Administrators" name="myName">
+        <io:acl id="1" permission="r" pass="true"/>
+    </io:policy>
+</io:dir>
