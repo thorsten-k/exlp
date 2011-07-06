@@ -24,7 +24,7 @@ public class TestFile extends AbstractExlpTest
 	
 	private static final String rootDir = "src/test/resources/data/xml/io";
 	
-	private static java.io.File fFile, fFiles;
+	private static java.io.File fFile;
 	
 	@BeforeClass
 	public static void initFiles()
@@ -66,6 +66,7 @@ public class TestFile extends AbstractExlpTest
     	xml.setCode("code");
     	xml.setName("test.txt");
     	xml.setLastModifed(DateUtil.getXmlGc4D(d));
+    	xml.getPolicy().add(TestPolicy.createPolicy());
     	return xml;
     }
 	

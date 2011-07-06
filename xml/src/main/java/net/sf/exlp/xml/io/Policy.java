@@ -16,9 +16,7 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
@@ -31,12 +29,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element ref="{http://exlp.sf.net/io}policy" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://exlp.sf.net/io}acl" maxOccurs="unbounded"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
+ *       &lt;attribute name="sys" type="{http://www.w3.org/2001/XMLSchema}string" />
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="lastModifed" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -46,61 +44,60 @@ import javax.xml.datatype.XMLGregorianCalendar;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-    "policy"
+    "acl"
 })
-@XmlRootElement(name = "file")
-public class File
+@XmlRootElement(name = "policy")
+public class Policy
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
-    protected List<Policy> policy;
+    protected List<Acl> acl;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
     protected String code;
+    @XmlAttribute(name = "sys")
+    protected String sys;
     @XmlAttribute(name = "name")
     protected String name;
-    @XmlAttribute(name = "lastModifed")
-    @XmlSchemaType(name = "dateTime")
-    protected XMLGregorianCalendar lastModifed;
 
     /**
-     * Gets the value of the policy property.
+     * Gets the value of the acl property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the policy property.
+     * This is why there is not a <CODE>set</CODE> method for the acl property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPolicy().add(newItem);
+     *    getAcl().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Policy }
+     * {@link Acl }
      * 
      * 
      */
-    public List<Policy> getPolicy() {
-        if (policy == null) {
-            policy = new ArrayList<Policy>();
+    public List<Acl> getAcl() {
+        if (acl == null) {
+            acl = new ArrayList<Acl>();
         }
-        return this.policy;
+        return this.acl;
     }
 
-    public boolean isSetPolicy() {
-        return ((this.policy!= null)&&(!this.policy.isEmpty()));
+    public boolean isSetAcl() {
+        return ((this.acl!= null)&&(!this.acl.isEmpty()));
     }
 
-    public void unsetPolicy() {
-        this.policy = null;
+    public void unsetAcl() {
+        this.acl = null;
     }
 
     /**
@@ -164,6 +161,34 @@ public class File
     }
 
     /**
+     * Gets the value of the sys property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSys() {
+        return sys;
+    }
+
+    /**
+     * Sets the value of the sys property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSys(String value) {
+        this.sys = value;
+    }
+
+    public boolean isSetSys() {
+        return (this.sys!= null);
+    }
+
+    /**
      * Gets the value of the name property.
      * 
      * @return
@@ -189,34 +214,6 @@ public class File
 
     public boolean isSetName() {
         return (this.name!= null);
-    }
-
-    /**
-     * Gets the value of the lastModifed property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public XMLGregorianCalendar getLastModifed() {
-        return lastModifed;
-    }
-
-    /**
-     * Sets the value of the lastModifed property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link XMLGregorianCalendar }
-     *     
-     */
-    public void setLastModifed(XMLGregorianCalendar value) {
-        this.lastModifed = value;
-    }
-
-    public boolean isSetLastModifed() {
-        return (this.lastModifed!= null);
     }
 
 }

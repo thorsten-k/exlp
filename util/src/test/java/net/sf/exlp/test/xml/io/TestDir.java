@@ -24,7 +24,7 @@ public class TestDir extends AbstractExlpTest
 	
 	private static final String rootDir = "src/test/resources/data/xml/io";
 	
-	private static java.io.File fDir, fDirs, fComplex;
+	private static java.io.File fDir, fComplex;
 	
 	@BeforeClass
 	public static void initFiles()
@@ -74,6 +74,8 @@ public class TestDir extends AbstractExlpTest
     	
     	if(withFiles){xml.getFile().addAll(TestFile.createFiles());}
     	if(withDirs){xml.getDir().addAll(TestDir.createDirs(true,false));}
+    	
+    	xml.getPolicy().add(TestPolicy.createPolicy());
     	
     	return xml;
     }
