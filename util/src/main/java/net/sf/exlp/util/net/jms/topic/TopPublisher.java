@@ -1,4 +1,4 @@
-package net.sf.exlp.util.jms.topic;
+package net.sf.exlp.util.net.jms.topic;
 
 import java.io.Serializable;
 import java.util.Enumeration;

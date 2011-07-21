@@ -4,9 +4,9 @@ import javax.jms.MessageListener;
 import javax.naming.InitialContext;
 
 import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.jms.listener.TextMessageRespondDebugListener;
-import net.sf.exlp.util.jms.ptp.PtpConsumer;
 import net.sf.exlp.util.net.ejb.ExlpContextFactory;
+import net.sf.exlp.util.net.jms.listener.TextMessageRespondDebugListener;
+import net.sf.exlp.util.net.jms.ptp.PtpConsumer;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

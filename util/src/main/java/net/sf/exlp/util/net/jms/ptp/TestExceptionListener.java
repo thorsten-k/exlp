@@ -1,4 +1,4 @@
-package net.sf.exlp.util.jms.ptp;
+package net.sf.exlp.util.net.jms.ptp;
 
 import javax.jms.ExceptionListener;
 import javax.jms.JMSException;
