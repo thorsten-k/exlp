@@ -2,7 +2,7 @@
  * Created on 11.10.2004
  *
  */
-package net.sf.exlp.util.jms.topic;
+package net.sf.exlp.util.net.jms.topic;
 
 import javax.jms.JMSException;
 import javax.jms.MessageListener;

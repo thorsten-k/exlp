@@ -1,4 +1,4 @@
-package net.sf.exlp.util.jms.ptp;
+package net.sf.exlp.util.net.jms.ptp;
 
 import javax.jms.JMSException;
 import javax.jms.MessageListener;
@@ -11,7 +11,7 @@ import javax.jms.TopicSession;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import net.sf.exlp.util.jms.listener.MessageRespondListener;
+import net.sf.exlp.util.net.jms.listener.MessageRespondListener;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
