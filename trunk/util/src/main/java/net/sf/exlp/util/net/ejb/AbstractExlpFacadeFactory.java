@@ -51,6 +51,7 @@ public abstract class AbstractExlpFacadeFactory implements ExlpFacadeFactory
 		logger.error(e);
 		logger.fatal("Error binding remote facade.");
 		logger.fatal("System will exit");
+		e.printStackTrace();
 		System.exit(-1);
 	}
 }
