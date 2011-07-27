@@ -1,14 +1,8 @@
-package net.sf.exlp.addon.ads.ejb;
+package net.sf.exlp.util.net.ads.data;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
-@Entity
 public class AdGroup implements Serializable
 { 
 	static final long serialVersionUID=1;
@@ -18,7 +12,6 @@ public class AdGroup implements Serializable
 	public String distinguishedName, info;
 	public ArrayList<String> alMember;
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	public int getId() {return id;}
 	public void setId(int id){this.id = id;}
 	

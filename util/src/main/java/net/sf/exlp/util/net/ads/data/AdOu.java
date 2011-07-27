@@ -1,11 +1,6 @@
-package net.sf.exlp.addon.ads.ejb;
+package net.sf.exlp.util.net.ads.data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
-@Entity
 public class AdOu implements java.io.Serializable
 { 
 	static final long serialVersionUID=1;
@@ -13,7 +8,6 @@ public class AdOu implements java.io.Serializable
 	private int id;
 	private String distinguishedName;
 	
-	@Id @GeneratedValue(strategy=GenerationType.AUTO)
 	public int getId() {return id;}
 	public void setId(int id){this.id = id;}
 	
