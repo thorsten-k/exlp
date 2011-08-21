@@ -1,9 +1,11 @@
 package net.sf.exlp.test;
 
 import net.sf.exlp.util.io.LoggerInit;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.junit.Assert;
 import org.junit.BeforeClass;
 
 public class AbstractExlpTest
@@ -17,4 +19,9 @@ public class AbstractExlpTest
 		loggerInit.addAltPath("src/test/resources/config");
 		loggerInit.init();
     }
+	
+	protected void assertJaxbEquals(Object ref, Object test)
+	{
+		Assert.assertEquals(JaxbUtil.toString(ref),JaxbUtil.toString(test));
+	}
 }

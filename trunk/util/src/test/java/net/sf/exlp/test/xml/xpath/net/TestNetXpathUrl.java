@@ -3,22 +3,20 @@ package net.sf.exlp.test.xml.xpath.net;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.exlp.test.AbstractExlpTest;
 import net.sf.exlp.util.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.util.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.net.Url;
 import net.sf.exlp.xml.net.Urls;
 import net.sf.exlp.xml.xpath.NetXpath;
 
-import org.apache.commons.jxpath.JXPathNotFoundException;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestNetXpathUrl
+public class TestNetXpathUrl extends AbstractExlpTest
 {
 	static Log logger = LogFactory.getLog(TestNetXpathUrl.class);
 	
@@ -28,14 +26,6 @@ public class TestNetXpathUrl
 	{
 
 	}
-	
-	@BeforeClass
-    public static void initLogger()
-	{
-		LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-		loggerInit.addAltPath("src/test/resources/config");
-		loggerInit.init();
-    }
 	
 	@BeforeClass
 	public static void initUrls()
@@ -72,7 +62,7 @@ public class TestNetXpathUrl
     {
     	Urls urls = createUrls();
     	Url url = NetXpath.getUrl(urls, "code1");
-    	Assert.assertEquals(JaxbUtil.toString(url1),JaxbUtil.toString(url));
+    	assertJaxbEquals(url1,url);
     }
     
     @Test
@@ -80,15 +70,14 @@ public class TestNetXpathUrl
     {
     	Urls urls = createUrls();
     	Url url = NetXpath.getUrl(urls, "code2");
-    	Assert.assertEquals(JaxbUtil.toString(url2),JaxbUtil.toString(url));
+    	assertJaxbEquals(url2,url);
     }
 
     @Test(expected=ExlpXpathNotFoundException.class)
     public void testNotFound() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
     	Urls urls = createUrls();
-    	Url url = NetXpath.getUrl(urls, "code0");
-    	Assert.assertEquals(JaxbUtil.toString(url2),JaxbUtil.toString(url));
+    	NetXpath.getUrl(urls, "code0");
     }
     
     @Test(expected=ExlpXpathNotUniqueException.class)
@@ -107,7 +96,7 @@ public class TestNetXpathUrl
     	list.add(url3);
     	Urls urls = createUrls();
     	Url url = NetXpath.getUrl(urls, "code2");
-    	Assert.assertEquals(JaxbUtil.toString(url2),JaxbUtil.toString(url));
+    	assertJaxbEquals(url2,url);
     }
     
 	public static void main(String[] args) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException

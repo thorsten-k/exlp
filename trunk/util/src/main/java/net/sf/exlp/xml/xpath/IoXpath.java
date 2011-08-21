@@ -31,7 +31,7 @@ public class IoXpath
 		try
 		{
 			Document doc = JaxbUtil.toDocument(dirs, getNsPrefixMapper());
-			XPath xpath = XPath.newInstance( "//io:dir[@code='"+code+"']");
+			XPath xpath = XPath.newInstance("//io:dir[@code='"+code+"']");
 			List<Object> list = xpath.selectNodes(doc);
 			if(list.size()==0){throw new ExlpXpathNotFoundException("No dir found for code="+code);}
 			else if(list.size()>1){throw new ExlpXpathNotUniqueException("No unique dir for code="+code);}
@@ -43,12 +43,12 @@ public class IoXpath
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static synchronized File getFile(Dir dirs, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
+	public static synchronized File getFile(Dir dir, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{
 		File file = null;
 		try
 		{
-			Document doc = JaxbUtil.toDocument(dirs, getNsPrefixMapper());
+			Document doc = JaxbUtil.toDocument(dir, getNsPrefixMapper());
 			XPath xpath = XPath.newInstance( "//io:file[@code='"+code+"']");
 			List<Object> list = xpath.selectNodes(doc);
 			if(list.size()==0){throw new ExlpXpathNotFoundException("No file found for code="+code);}
