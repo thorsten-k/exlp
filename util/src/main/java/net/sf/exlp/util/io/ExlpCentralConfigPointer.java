@@ -65,6 +65,7 @@ public class ExlpCentralConfigPointer
 			File fXml = IoXpath.getFile(dirApp, codeConf);
 			java.io.File fConf = new java.io.File(fXml.getName());
 			if(!fConf.exists()){throw new ExlpConfigurationException("File ("+fConf.getAbsolutePath()+") does not exist for app="+codeApp+" code="+codeConf+" in : "+f.getAbsolutePath());}
+			logger.debug("Using config: "+fConf.getAbsolutePath());
 			return fConf;
 		}
 		catch (ExlpXpathNotFoundException e) {throw new ExlpConfigurationException(e.getMessage());}
