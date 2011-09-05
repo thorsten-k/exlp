@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.dirsize.util;
+package net.sf.exlp.util.io.dir;
 
 import java.io.File;
 import java.io.FileNotFoundException;
