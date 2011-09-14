@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -33,8 +32,8 @@ public class TestPolicy extends AbstractIoXmlTest
     {
     	logger.debug("Saving Reference XML");
     	Policy xml = createPolicy();
-    	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fXml, xml, new ExlpNsPrefixMapper(), true);
+    	JaxbUtil.debug2(this.getClass(),xml, getNsPrefixMapper());
+    	JaxbUtil.save(fXml, xml, getNsPrefixMapper(), true);
     }
     
     public static Policy createPolicy()

@@ -8,11 +8,9 @@ import java.util.List;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -49,12 +47,12 @@ public class TestDir extends AbstractIoXmlTest
     {
     	logger.debug("Saving Reference XML");
     	Dir xml = createDir(false,false);
-    	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fDir, xml, new ExlpNsPrefixMapper(), true);
+    	JaxbUtil.debug2(this.getClass(),xml, getNsPrefixMapper());
+    	JaxbUtil.save(fDir, xml, getNsPrefixMapper(), true);
     	
     	Dir xmlComplex = createDir(true,true);
-    	JaxbUtil.debug2(this.getClass(),xmlComplex, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fComplex, xmlComplex, new ExlpNsPrefixMapper(), true);
+    	JaxbUtil.debug2(this.getClass(),xmlComplex, getNsPrefixMapper());
+    	JaxbUtil.save(fComplex, xmlComplex, getNsPrefixMapper(), true);
     }
     
     public static Dir createDir(boolean withFiles,boolean withDirs)

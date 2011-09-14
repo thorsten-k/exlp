@@ -34,7 +34,7 @@ public class TestCertificate extends AbstractIdentityXmlTest
     	logger.debug("Saving Reference XML");
     	Certificate xml = createCertificate();
     	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fXml, xml, new ExlpNsPrefixMapper(), true);
+    	JaxbUtil.save(fXml, xml, getNsPrefixMapper(), true);
     }
     
     public static Certificate createCertificate()

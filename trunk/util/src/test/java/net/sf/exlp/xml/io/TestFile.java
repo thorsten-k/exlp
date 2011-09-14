@@ -8,7 +8,6 @@ import java.util.List;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -37,8 +36,8 @@ public class TestFile extends AbstractIoXmlTest
     {
     	logger.debug("Saving Reference XML");
     	File xml = createFile();
-    	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fXml, xml, new ExlpNsPrefixMapper(), true);
+    	JaxbUtil.debug2(this.getClass(),xml, getNsPrefixMapper());
+    	JaxbUtil.save(fXml, xml, getNsPrefixMapper(), true);
     }
 
     public static List<File> createFiles()
