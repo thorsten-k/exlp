@@ -5,39 +5,32 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import net.sf.exlp.test.AbstractExlpTest;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.io.File;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestFile extends AbstractExlpTest
+public class TestFile extends AbstractIoXmlTest
 {
 	static Log logger = LogFactory.getLog(TestFile.class);
-	
-	private static final String rootDir = "src/test/resources/data/xml/io";
-	
-	private static java.io.File fFile;
 	
 	@BeforeClass
 	public static void initFiles()
 	{
-		fFile = new java.io.File(rootDir,"file.xml");
+		fXml = new java.io.File(rootDir,"file.xml");
 	}
     
     @Test
     public void testFile() throws FileNotFoundException
     {
-    	File xmlTest = createFile();
-    	File xmlRef = (File)JaxbUtil.loadJAXB(fFile.getAbsolutePath(), File.class);
-    	Assert.assertEquals(JaxbUtil.toString(xmlRef),JaxbUtil.toString(xmlTest));
+    	File test = createFile();
+    	File ref = (File)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), File.class);
+    	assertJaxbEquals(ref, test);
     }
     
     public void save()
@@ -45,8 +38,7 @@ public class TestFile extends AbstractExlpTest
     	logger.debug("Saving Reference XML");
     	File xml = createFile();
     	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fFile, xml, new ExlpNsPrefixMapper(), true);
-    	
+    	JaxbUtil.save(fXml, xml, new ExlpNsPrefixMapper(), true);
     }
 
     public static List<File> createFiles()

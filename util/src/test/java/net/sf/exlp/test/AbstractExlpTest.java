@@ -1,5 +1,10 @@
 package net.sf.exlp.test;
 
+import java.util.Date;
+
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
@@ -23,5 +28,11 @@ public class AbstractExlpTest
 	protected void assertJaxbEquals(Object ref, Object test)
 	{
 		Assert.assertEquals(JaxbUtil.toString(ref),JaxbUtil.toString(test));
+	}
+	
+	protected static XMLGregorianCalendar getXmlDate()
+	{
+		Date d = DateUtil.getDateFromInt(2011, 11, 11, 11, 11, 11);
+		return DateUtil.getXmlGc4D(d);
 	}
 }

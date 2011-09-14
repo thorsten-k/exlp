@@ -5,11 +5,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import net.sf.exlp.test.AbstractExlpTest;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.io.Dir;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.apache.commons.logging.Log;
@@ -18,11 +16,9 @@ import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestDir extends AbstractExlpTest
+public class TestDir extends AbstractIoXmlTest
 {
 	static Log logger = LogFactory.getLog(TestDir.class);
-	
-	private static final String rootDir = "src/test/resources/data/xml/io";
 	
 	private static java.io.File fDir, fComplex;
 	
@@ -36,17 +32,17 @@ public class TestDir extends AbstractExlpTest
     @Test
     public void testDir() throws FileNotFoundException
     {
-    	Dir xmlTest = createDir(false,false);
-    	Dir xmlRef = (Dir)JaxbUtil.loadJAXB(fDir.getAbsolutePath(), Dir.class);
-    	Assert.assertEquals(JaxbUtil.toString(xmlRef),JaxbUtil.toString(xmlTest));
+    	Dir test = createDir(false,false);
+    	Dir ref = (Dir)JaxbUtil.loadJAXB(fDir.getAbsolutePath(), Dir.class);
+    	assertJaxbEquals(ref, test);
     }
     
     @Test
     public void testComplex() throws FileNotFoundException
     {
-    	Dir xmlTest = createDir(true,true);
-    	Dir xmlRef = (Dir)JaxbUtil.loadJAXB(fComplex.getAbsolutePath(), Dir.class);
-    	Assert.assertEquals(JaxbUtil.toString(xmlRef),JaxbUtil.toString(xmlTest));
+    	Dir test = createDir(true,true);
+    	Dir ref = (Dir)JaxbUtil.loadJAXB(fComplex.getAbsolutePath(), Dir.class);
+    	assertJaxbEquals(ref, test);
     }
     
     public void save()

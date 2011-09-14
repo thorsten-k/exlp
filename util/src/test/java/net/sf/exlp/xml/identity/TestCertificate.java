@@ -1,4 +1,4 @@
-package net.sf.exlp.xml.io;
+package net.sf.exlp.xml.identity;
 
 import java.io.FileNotFoundException;
 
@@ -11,38 +11,39 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestAcl extends AbstractIoXmlTest
+public class TestCertificate extends AbstractIdentityXmlTest
 {
-	static Log logger = LogFactory.getLog(TestAcl.class);
+	static Log logger = LogFactory.getLog(TestCertificate.class);
 		
 	@BeforeClass
 	public static void initFiles()
 	{
-		fXml = new java.io.File(rootDir,"acl.xml");
+		fXml = new java.io.File(rootDir,"certificate.xml");
 	}
     
     @Test
     public void testFile() throws FileNotFoundException
     {
-    	Acl test = createAcl();
-    	Acl ref = (Acl)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Acl.class);
+    	Certificate test = createCertificate();
+    	Certificate ref = (Certificate)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Certificate.class);
     	assertJaxbEquals(ref, test);
     }
     
     public void save()
     {
     	logger.debug("Saving Reference XML");
-    	Acl xml = createAcl();
+    	Certificate xml = createCertificate();
     	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
     	JaxbUtil.save(fXml, xml, new ExlpNsPrefixMapper(), true);
     }
     
-    public static Acl createAcl()
+    public static Certificate createCertificate()
     {
-    	Acl xml = new Acl();
-    	xml.setId(1);
-    	xml.setPermission("r");
-    	xml.setPass(true);
+    	Certificate xml = new Certificate();
+    	xml.setSerial(1);
+    	xml.setNotafter(getXmlDate());
+    	xml.setCn("myCn");
+    	xml.setEmail("my@e.mail");
     	return xml;
     }
 	
@@ -52,8 +53,8 @@ public class TestAcl extends AbstractIoXmlTest
 			loggerInit.addAltPath("src/test/resources/config");
 			loggerInit.init();		
 			
-		TestAcl.initFiles();	
-		TestAcl test = new TestAcl();
+		TestCertificate.initFiles();	
+		TestCertificate test = new TestCertificate();
 		test.save();
     }
 }
