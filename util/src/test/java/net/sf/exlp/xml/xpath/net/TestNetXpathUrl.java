@@ -1,4 +1,4 @@
-package net.sf.exlp.test.xml.xpath.net;
+package net.sf.exlp.xml.xpath.net;
 
 import java.util.ArrayList;
 import java.util.List;

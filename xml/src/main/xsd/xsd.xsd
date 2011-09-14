@@ -9,6 +9,7 @@
     jaxb:version="2.0">
     <xsd:import namespace="http://exlp.sf.net/io" schemaLocation="util/io.xsd"/>
     <xsd:import namespace="http://exlp.sf.net/net" schemaLocation="util/net.xsd"/>
+    <xsd:import namespace="http://exlp.sf.net/identity" schemaLocation="util/identity.xsd"/>
     <xsd:annotation>
         <xsd:appinfo>
             <jaxb:globalBindings generateIsSetMethod="true">

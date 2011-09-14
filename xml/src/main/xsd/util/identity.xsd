@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://exlp.sf.net/ads"
-    xmlns:ads="http://exlp.sf.net/ads"
+<xsd:schema targetNamespace="http://exlp.sf.net/identity"
+    xmlns:id="http://exlp.sf.net/identity"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <xsd:element name="user">
         <xsd:complexType>
@@ -10,6 +10,14 @@
             <xsd:attribute name="account" type="xsd:string"/>
             <xsd:attribute name="email" type="xsd:string"/>
             <xsd:attribute name="info" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="certificate">
+        <xsd:complexType>
+            <xsd:attribute name="serial" type="xsd:int"/>
+            <xsd:attribute name="notafter" type="xsd:date"/>
+            <xsd:attribute name="cn" type="xsd:string"/>
+            <xsd:attribute name="email" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>

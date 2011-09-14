@@ -1,10 +1,9 @@
-package net.sf.exlp.test.xml.xpath.io;
+package net.sf.exlp.xml.xpath.io;
 
 import net.sf.exlp.test.AbstractExlpTest;
 import net.sf.exlp.util.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.util.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.xml.io.Dir;
-import net.sf.exlp.xml.io.File;
 import net.sf.exlp.xml.xpath.IoXpath;
 
 import org.apache.commons.logging.Log;
@@ -12,39 +11,39 @@ import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestIoXpathFile extends AbstractExlpTest
+public class TestIoXpathDir extends AbstractExlpTest
 {
-	static Log logger = LogFactory.getLog(TestIoXpathFile.class);
+	static Log logger = LogFactory.getLog(TestIoXpathDir.class);
 	
-	private static File f1,f2,f3,f4;
+	private static Dir d1,d2,d3,d4;
 	
 	@BeforeClass
 	public static void initUrls()
 	{
-		f1 = new File();
-    	f1.setCode("code1");
-    	f1.setName("f1");
+		d1 = new Dir();
+    	d1.setCode("code1");
+    	d1.setName("f1");
     	
-    	f2 = new File();
-    	f2.setCode("code2");
-    	f2.setName("f1");
+    	d2 = new Dir();
+    	d2.setCode("code2");
+    	d2.setName("f2");
     	
-    	f3 = new File();
-    	f3.setCode("code3");
-    	f3.setName("f3");
+    	d3 = new Dir();
+    	d3.setCode("code3");
+    	d3.setName("f3");
     	
-    	f4 = new File();
-    	f4.setCode("code3");
-    	f4.setName("f4");
+    	d4 = new Dir();
+    	d4.setCode("code3");
+    	d4.setName("f4");
 	}
     
 	private Dir createDir()
     {
 		Dir dir = new Dir();
-    	dir.getFile().add(f1);
-    	dir.getFile().add(f2);
-    	dir.getFile().add(f3);
-    	dir.getFile().add(f4);
+    	dir.getDir().add(d1);
+    	dir.getDir().add(d2);
+    	dir.getDir().add(d3);
+    	dir.getDir().add(d4);
     	return dir;
     }
 	
@@ -52,16 +51,16 @@ public class TestIoXpathFile extends AbstractExlpTest
     public void testCode1() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
     	Dir dir = createDir();
-    	File file = IoXpath.getFile(dir, f1.getCode());
-    	assertJaxbEquals(f1,file);
+    	Dir test = IoXpath.getDir(dir, d1.getCode());
+    	assertJaxbEquals(d1,test);
     }
     
     @Test
     public void testCode2() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
     	Dir dir = createDir();
-    	File file = IoXpath.getFile(dir, "code2");
-    	assertJaxbEquals(f2,file);
+    	Dir test = IoXpath.getDir(dir, "code2");
+    	assertJaxbEquals(d2,test);
     }
 
     @Test(expected=ExlpXpathNotFoundException.class)
@@ -75,6 +74,6 @@ public class TestIoXpathFile extends AbstractExlpTest
     public void testUnique() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
     	Dir dir = createDir();
-    	IoXpath.getFile(dir, "code3");
+    	IoXpath.getDir(dir, "code3");
     }
 }
