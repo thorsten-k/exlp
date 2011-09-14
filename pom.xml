@@ -75,6 +75,7 @@
 	</issueManagement>
 
 	<modules>
+		<module>addon</module>
 		<module>util</module>
 		<module>ejb</module>
 		<module>core</module>
