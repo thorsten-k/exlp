@@ -41,24 +41,30 @@ public class ConfigLoader
 	{
 		try
 		{
-			XPathExpressionEngine exEngine = new XPathExpressionEngine();
-			c = new CompositeConfiguration();
-			for(String configName : alConfigNames)
-			{
-				switch(getTyp(configName))
-				{
-					case XML:	XMLConfiguration xCnf = new XMLConfiguration(configName);
-								xCnf.setExpressionEngine(exEngine);
-								if(xmlSave==null){xmlSave=xCnf;}
-								c.addConfiguration(xCnf);break;
-					case PROPERTIES:	PropertiesConfiguration pCnf = new PropertiesConfiguration(configName);
-										c.addConfiguration(pCnf);break;
-					default: logger.warn("Unknwon Resource: "+configName);break;
-				}
-			}
+			return initWithException();
 		}
 		catch (ConfigurationException e) {logger.error(e);}
+		return null;
+	}
+	
+	public synchronized static Configuration initWithException() throws ConfigurationException
+	{
+		XPathExpressionEngine exEngine = new XPathExpressionEngine();
+		c = new CompositeConfiguration();
 		c.setThrowExceptionOnMissing(true);
+		for(String configName : alConfigNames)
+		{
+			switch(getTyp(configName))
+			{
+				case XML:	XMLConfiguration xCnf = new XMLConfiguration(configName);
+							xCnf.setExpressionEngine(exEngine);
+							if(xmlSave==null){xmlSave=xCnf;}
+							c.addConfiguration(xCnf);break;
+				case PROPERTIES:	PropertiesConfiguration pCnf = new PropertiesConfiguration(configName);
+									c.addConfiguration(pCnf);break;
+				default: logger.warn("Unknwon Resource: "+configName);break;
+			}
+		}
 		return c;
 	}
 	
