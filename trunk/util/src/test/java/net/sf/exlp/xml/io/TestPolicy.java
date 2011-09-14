@@ -1,4 +1,4 @@
-package net.sf.exlp.test.xml.io;
+package net.sf.exlp.xml.io;
 
 import java.io.FileNotFoundException;
 
