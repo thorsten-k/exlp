@@ -7,6 +7,8 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
+import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -16,6 +18,8 @@ import org.junit.BeforeClass;
 public class AbstractExlpTest
 {
 	static Log logger = LogFactory.getLog(AbstractExlpTest.class);	
+	
+	private static NsPrefixMapperInterface nsPrefixMapper;
 	
 	@BeforeClass
     public static void initLogger()
@@ -34,5 +38,11 @@ public class AbstractExlpTest
 	{
 		Date d = DateUtil.getDateFromInt(2011, 11, 11, 11, 11, 11);
 		return DateUtil.getXmlGc4D(d);
+	}
+	
+	protected static NsPrefixMapperInterface getNsPrefixMapper()
+	{
+		if(nsPrefixMapper==null){nsPrefixMapper = new ExlpNsPrefixMapper();}
+		return nsPrefixMapper;
 	}
 }

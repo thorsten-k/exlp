@@ -29,11 +29,12 @@ public class OpenVpnCertParser
 	
 	public OpenVpnCertEvent getCert(File f)
 	{
+		logger.debug("Processing "+f.getAbsolutePath());
 		OpenVpnCertEvent cert = null;
 		try
 		{
 			FileInputStream fis = new FileInputStream(f);
-			BufferedReader br = new BufferedReader( new InputStreamReader(fis));
+			BufferedReader br = new BufferedReader(new InputStreamReader(fis));
 			PEMBlock pem = PEMBlock.getInstance(br);
 			X509Certificate x509Cert = (X509Certificate)pem.getCertificate();
 			cert = getOpenVpnCert(x509Cert);
@@ -49,11 +50,21 @@ public class OpenVpnCertParser
 		Certificate cert = new Certificate();
 		cert.setNotafter(DateUtil.getXmlGc4D(x509Cert.getNotAfter()));
 		cert.setSerial(x509Cert.getSerialNumber().intValue());
-		cert.setCn(x509Cert.getSubjectDN().getName());
 		cert.setEmail(getEmail(x509Cert.getSubjectDN().getName()));
+		cert.setCn(getCn(x509Cert.getSubjectDN().getName()));
+		logger.debug(x509Cert.getSubjectDN().getName());
 		
 		OpenVpnCertEvent event = new OpenVpnCertEvent(cert);
 		return event;
+	}
+	
+	private String getCn(String dn)
+	{
+		int beginIndex = dn.indexOf("CN=");
+		dn=dn.substring(beginIndex,dn.length());
+		int endIndex = dn.indexOf(",");
+		String email = dn.substring(3,endIndex);
+		return email;
 	}
 	
 	private String getEmail(String dn)
