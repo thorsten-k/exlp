@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.openvpn;
+package net.sf.exlp.addon.openvpn.parser;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -9,8 +9,9 @@ import java.io.InputStreamReader;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 
-import net.sf.exlp.addon.openvpn.ejb.OpenVpnCert;
 import net.sf.exlp.addon.openvpn.event.OpenVpnCertEvent;
+import net.sf.exlp.util.DateUtil;
+import net.sf.exlp.xml.identity.Certificate;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -45,19 +46,18 @@ public class OpenVpnCertParser
 	
 	private OpenVpnCertEvent getOpenVpnCert(X509Certificate x509Cert)
 	{
-		OpenVpnCert ovpnCert = new OpenVpnCert();
-		ovpnCert.setNotAfter(x509Cert.getNotAfter());
-		ovpnCert.setNotBefore(x509Cert.getNotBefore());
-		ovpnCert.setSerial(x509Cert.getSerialNumber().intValue());
-		ovpnCert.setDn(x509Cert.getSubjectDN().getName());
+		Certificate cert = new Certificate();
+		cert.setNotafter(DateUtil.getXmlGc4D(x509Cert.getNotAfter()));
+		cert.setSerial(x509Cert.getSerialNumber().intValue());
+		cert.setCn(x509Cert.getSubjectDN().getName());
+		cert.setEmail(getEmail(x509Cert.getSubjectDN().getName()));
 		
-		OpenVpnCertEvent cert = new OpenVpnCertEvent(ovpnCert,getEmail(ovpnCert));
-		return cert;
+		OpenVpnCertEvent event = new OpenVpnCertEvent(cert);
+		return event;
 	}
 	
-	private String getEmail(OpenVpnCert cert)
+	private String getEmail(String dn)
 	{
-		String dn = cert.getDn();
 		int beginIndex = "EMAILADDRESS=".length();
 		int endIndex = dn.indexOf(",");
 		String email = dn.substring(beginIndex,endIndex).toLowerCase();

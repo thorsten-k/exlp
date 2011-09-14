@@ -1,4 +1,4 @@
-package net.sf.exlp.io;
+package net.sf.exlp.util.io;
 
 import java.io.File;
 import java.io.IOException;
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import net.sf.exlp.util.io.LoggerInit;
 
 import org.apache.commons.io.DirectoryWalker;
 import org.apache.commons.io.filefilter.FileFilterUtils;
@@ -62,6 +61,5 @@ public class RecursiveFileFinder extends DirectoryWalker
 		List<File> l = test.find(new File("."));
 		logger.debug("Size "+l.size());
 		for(File f : l){logger.debug(f.getAbsolutePath());}
-			
 	}
 }
