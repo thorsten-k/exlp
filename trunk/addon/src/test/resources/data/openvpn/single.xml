@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<id:certificate xmlns:id="http://exlp.sf.net/identity" serial="1462466119" notafter="2012-09-13" cn="MySecret Name" email="my@e.mail"/>
+<id:certificate xmlns:id="http://exlp.sf.net/identity" serial="1462466119" notAfter="2012-09-13" notBefore="2011-09-14" cn="MySecret Name" email="my@e.mail"/>
