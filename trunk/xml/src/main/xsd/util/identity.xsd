@@ -2,6 +2,14 @@
 <xsd:schema targetNamespace="http://exlp.sf.net/identity"
     xmlns:id="http://exlp.sf.net/identity"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="identityContainer">
+        <xsd:complexType>
+            <xsd:sequence>
+               	<xsd:element ref="id:user" maxOccurs="unbounded"/>
+               	<xsd:element ref="id:certificate" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
     <xsd:element name="user">
         <xsd:complexType>
             <xsd:attribute name="id" type="xsd:long"/>
