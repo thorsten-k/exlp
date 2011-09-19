@@ -41,7 +41,8 @@ public class TestCertificate extends AbstractIdentityXmlTest
     {
     	Certificate xml = new Certificate();
     	xml.setSerial(1);
-    	xml.setNotafter(getXmlDate());
+    	xml.setNotAfter(getXmlDate());
+    	xml.setNotBefore(getXmlDate());
     	xml.setCn("myCn");
     	xml.setEmail("my@e.mail");
     	return xml;

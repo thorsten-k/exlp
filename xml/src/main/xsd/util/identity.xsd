@@ -15,7 +15,8 @@
     <xsd:element name="certificate">
         <xsd:complexType>
             <xsd:attribute name="serial" type="xsd:int"/>
-            <xsd:attribute name="notafter" type="xsd:date"/>
+            <xsd:attribute name="notAfter" type="xsd:date"/>
+            <xsd:attribute name="notBefore" type="xsd:date"/>
             <xsd:attribute name="cn" type="xsd:string"/>
             <xsd:attribute name="email" type="xsd:string"/>
         </xsd:complexType>
