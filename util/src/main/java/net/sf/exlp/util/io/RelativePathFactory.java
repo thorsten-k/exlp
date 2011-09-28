@@ -10,12 +10,13 @@ public class RelativePathFactory
 {
 	static Log logger = LogFactory.getLog(RelativePathFactory.class);
 	
-	private boolean quoteSpaces;
+	private boolean quoteSpaces,unixSeparator;
 	
-	public RelativePathFactory(){this(true);}
-	public RelativePathFactory(boolean quoteSpaces)
+	public RelativePathFactory(){this(true,true);}
+	public RelativePathFactory(boolean quoteSpaces, boolean unixSeparator)
 	{
 		this.quoteSpaces=quoteSpaces;
+		this.unixSeparator=unixSeparator;
 	}
 
 	public String relativate(File fullFixed, File fullRelative)
@@ -23,6 +24,7 @@ public class RelativePathFactory
 		return relativate(fullFixed.getAbsolutePath(), fullRelative.getAbsolutePath());
 	}
 	
+
 	public String relativate(String fullFixed, String fullRelative)
 	{
 		String fNormalized = FilenameUtils.normalize(fullFixed, true);
@@ -31,7 +33,8 @@ public class RelativePathFactory
 		String relative = getRelative(fNormalized,  rNormalized);
 		
 		if(quoteSpaces){relative = quoteSpaces(relative);}
-		relative = FilenameUtils.separatorsToSystem(relative);
+		if(unixSeparator){relative = FilenameUtils.separatorsToUnix(relative);}
+		else{relative = FilenameUtils.separatorsToWindows(relative);}
 		
 		return relative;
 	}
