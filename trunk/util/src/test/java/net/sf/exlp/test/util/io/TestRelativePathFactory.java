@@ -45,18 +45,39 @@ public class TestRelativePathFactory
 	}
 	
 	@Test
-	public void testWin()
+	public void testWinWithUnixSeparator()
 	{
 		String sBase = "C:\\Users\\Base";
 		String sAbsolute = "C:\\Users\\Base\\x.3\\a.txt";
 		
-		RelativePathFactory rpf = new RelativePathFactory();
-		String sRpf = rpf.relativate(sBase, sAbsolute);
+		RelativePathFactory rpf = new RelativePathFactory(true,true);
+		String actual = rpf.relativate(sBase, sAbsolute);
+		String expected = "x.3/a.txt";
+		
 		logger.debug("Base: "+sBase);
 		logger.debug("Absolute: "+sAbsolute);
-		logger.debug("Relative: "+sRpf);
+		logger.debug("expected: "+expected);
+		logger.debug("actual: "+actual);
 		
-		Assert.assertEquals(FilenameUtils.separatorsToUnix(sRpf),"x.3/a.txt");
+		Assert.assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void testWinWithWindowsSeparator()
+	{
+		String sBase = "C:\\Users\\Base";
+		String sAbsolute = "C:\\Users\\Base\\x.3\\a.txt";
+		
+		RelativePathFactory rpf = new RelativePathFactory(true,false);
+		String actual = rpf.relativate(sBase, sAbsolute);
+		String expected = "x.3\\a.txt";
+		
+		logger.debug("Base: "+sBase);
+		logger.debug("Absolute: "+sAbsolute);
+		logger.debug("expected: "+expected);
+		logger.debug("actual: "+actual);
+		
+		Assert.assertEquals(expected, actual);
 	}
 	
 	@Test
@@ -81,8 +102,6 @@ public class TestRelativePathFactory
 			loggerInit.init();
 		
 		TestRelativePathFactory test = new TestRelativePathFactory();
-		test.testFile();
-		test.testString();
-		test.testWin();
+		test.testWinWithWindowsSeparator();
     }
 }
