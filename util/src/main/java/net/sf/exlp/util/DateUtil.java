@@ -130,30 +130,7 @@ public class DateUtil
 	public synchronized static Date getDate4XmlGc(XMLGregorianCalendar xmlGC)
 	{
 		return xmlGC.toGregorianCalendar().getTime();
-/*		GregorianCalendar gc = new GregorianCalendar();
-		gc.set(GregorianCalendar.YEAR, xmlGC.getYear());
-		gc.set(GregorianCalendar.MONTH, xmlGC.getMonth()-1);
-		gc.set(GregorianCalendar.DAY_OF_MONTH, xmlGC.getDay());
-		
-		boolean okHour = xmlGC.getHour()>=0 && xmlGC.getHour()<=24;
-		boolean okMinute = xmlGC.getMinute()>=0 && xmlGC.getHour()<=60;
-		boolean okSecond = xmlGC.getSecond()>=0 && xmlGC.getSecond()<=60;
-		
-		if(okHour && okMinute && okSecond)
-		{
-			gc.set(GregorianCalendar.HOUR_OF_DAY, xmlGC.getHour());
-			gc.set(GregorianCalendar.MINUTE, xmlGC.getMinute());
-			gc.set(GregorianCalendar.SECOND, xmlGC.getSecond());
-		}
-		else
-		{
-			gc.set(GregorianCalendar.HOUR_OF_DAY, 0);
-			gc.set(GregorianCalendar.MINUTE, 0);
-			gc.set(GregorianCalendar.SECOND, 0);
-		}
-		
-		return gc.getTime();
-*/	}
+	}
 	
 	public synchronized static Date getDateFromInt(int year, int month, int day)
 	{
