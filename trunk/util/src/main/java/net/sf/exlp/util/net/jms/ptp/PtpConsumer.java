@@ -45,6 +45,7 @@ public class PtpConsumer
 		this.ml=ml;
 		this.messageSelector=messageSelector;
 		typ = Typ.Listener;
+		Runtime.getRuntime().addShutdownHook(new PtpConsumerShutdownHook(this));
 	}
 	
 	public PtpConsumer(InitialContext ctx,MessageResponder mRes,String queueName,String messageSelector)
@@ -97,5 +98,22 @@ public class PtpConsumer
 			conn.close();
 		}
 		catch (JMSException e) {logger.error(e);}
+	}
+	
+	private class PtpConsumerShutdownHook extends Thread
+	{	
+		private PtpConsumer ptpC;
+		
+		public PtpConsumerShutdownHook(PtpConsumer ptpC)
+		{
+			this.ptpC=ptpC;
+			logger.debug("Shutdown Hook registered for "+ptpC);
+		}
+		
+		public void run()
+		{
+			logger.debug("Shutdown Hook activated");
+	        ptpC.stop();
+	    }
 	}
 }
