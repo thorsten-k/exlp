@@ -1,0 +1,88 @@
+<?xml version="1.0" ?>
+<project basedir="../../">
+
+	<property file="resources/properties/user.properties"/>
+	<property file="resources/properties/ant.properties"/>
+	
+	<!-- Library Definitions: Utils -->
+	<property name="ant.dir" value="utils/ant/${ant-version}"/><property name="ant.lib" value="ant-${ant-version}.jar" />
+	<property name="log4j.dir" value="utils/log4j"/><property name="log4j.lib" value="log4j-${log4j-version}.jar" />
+	<property name="commonslang.dir" value="utils/commons/lang"/><property name="commonslang.lib" value="commons-lang-${commonslang-version}.jar" />
+	<property name="commonslogging.dir" value="utils/commons/logging"/><property name="commonslogging.lib" value="commons-logging-${commonslogging-version}.jar" />
+	<property name="commonsio.dir" value="utils/commons/io"/><property name="commonsio.lib" value="commons-io-${commonsio-version}.jar" />
+	<property name="commonsconfig.dir" value="utils/commons/config"/><property name="commonsconfig.lib" value="commons-configuration-${commonsconfig-version}.jar" />
+	<property name="commonshttp.dir" value="utils/commons/httpcomponents/${commonshttp-version}" />
+		<property name="commonshttp-core.lib" value="httpcore-${commonshttp-version}.jar" />
+		<property name="commonshttp-client.lib" value="httpclient-${commonshttp-version}.jar" />
+	<property name="jclarens.dir" value="utils/jclarens"/><property name="jclarens.lib" value="jclarens-${jclarens-version}.jar" />
+	
+	<!-- Library Definitions: XML -->
+	<property name="jdom.dir" value="xml/jdom"/><property name="jdom.lib" value="jdom-${jdom-version}.jar"/>
+	<property name="jaxen.dir" value="xml/jaxen"/><property name="jaxen.lib" value="jaxen-${jaxen-version}.jar"/>
+	<property name="jaxb.dir" value="xml/jaxb/${jaxb-version}"/>
+		<property name="jaxbapi.lib" value="jaxb-api-${jaxb-version}.jar"/>
+		<property name="jaxbimpl.lib" value="jaxb-impl-${jaxb-version}.jar"/>
+		<property name="jaxbxjc.lib" value="jaxb-xjc-${jaxb-version}.jar"/>
+	
+	<!-- Library Definitions: GUI-->
+	<property name="swt.dir" value="gui/swt/${swt-version}"/>
+		<property name="swt.lib" value="swt-${os-arch}-${swt-version}.jar"/>
+		<property name="swt-win.lib" value="swt-win32-${swt-version}.jar"/>
+		<property name="swt-linux.lib" value="swt-linux-${swt-version}.jar"/>
+		<property name="swt-osx.lib" value="swt-osx-${swt-version}.jar"/>
+	
+	<!-- Jboss -->
+	<property name="jboss.dir" value="jboss/${jboss-version}"/>
+		<property name="jboss-all.lib" value="jbossall-client.jar"/>
+		<property name="jboss-ejb3.lib" value="ejb3-persistence.jar"/>
+		<property name="jboss-javaee.lib" value="jboss-javaee.jar"/>
+		<property name="jboss-stax.lib" value="stax-api.jar"/>
+		<property name="jboss-ejb3extapi.lib" value="jboss-ejb3-ext-api.jar"/>
+	
+	<!-- Database -->
+	<property name="hibernate.dir" value="db/hibernate"/><property name="hibernate.lib" value="hibernate-${hibernate-version}.jar" />
+	
+	<!-- Meta-Lib -->
+	<property name="mjar.commons.http" value="${metalib.dir}/${commonshttp.dir}/${commonshttp-core.lib} ${metalib.dir}/${commonshttp.dir}/${commonshttp-client.lib}"/>
+	<property name="mjar.commons.1" value="${metalib.dir}/${commonslang.dir}/${commonslang.lib} ${metalib.dir}/${commonslogging.dir}/${commonslogging.lib} ${metalib.dir}/${commonsconfig.dir}/${commonsconfig.lib}"/>
+	<property name="mjar.commons.2" value="${metalib.dir}/${commonsio.dir}/${commonsio.lib} ${metalib.dir}/${commonsjxpath.dir}/${commonsjxpath.lib}"/>
+	<property name="mjar.commons.3" value="${mjar.commons.http}"/>
+	<property name="mjar.commons" value="${mjar.commons.1} ${mjar.commons.2} ${mjar.commons.3}"/>
+	
+	<property name="mjar.gui" value="${metalib.dir}/${swt.dir}/${swt.lib}"/>
+	
+	<property name="mjar.utils.1" value="${metalib.dir}/${ant.dir}/${ant.lib} ${metalib.dir}/${log4j.dir}/${log4j.lib}"/>
+	<property name="mjar.utils.2" value="${metalib.dir}/${jclarens.dir}/${jclarens.lib}"/>
+	<property name="mjar.utils" value="${mjar.commons} ${mjar.utils.1} ${mjar.utils.2}"/>
+	
+	<property name="mjar.xml1" value="${metalib.dir}/${jdom.dir}/${jdom.lib} ${metalib.dir}/${jaxen.dir}/${jaxen.lib}"/>
+	<property name="mjar.xml" value="${mjar.xml1}"/>
+
+	<property name="mjar.jboss" value="${metalib.dir}/${jboss.dir}/${jboss-all.lib}"/>
+
+	<property name="mjar.hibernate" value="${metalib.dir}/${hibernate.dir}/${hibernate.lib}"/>
+	<property name="mjar.db" value="${mjar.hibernate}"/>
+	
+	<property name="meta.jar" value="${mjar.utils} ${mjar.db} ${mjar.gui} ${mjar.xml} ${mjar.net} ${mjar.jboss}"/>
+	
+	<target name="00 - Classpath" description="Echos Classpath">
+		<echo level="info">Using ${ant.version} in ${ant.home}</echo>
+		<echo level="info">Lib-Info for ExLP v.${exlp-version}</echo>
+		<echo level="info">Dir : ${lib.dir}</echo>
+		<echo level="info">   Utils : ${log4j.dir}/${log4j.lib}</echo>
+		<echo level="info">           ${commonslang.dir}/${commonslang.lib}</echo>
+		<echo level="info">           ${commonslogging.dir}/${commonslogging.lib}</echo>
+		<echo level="info">           ${commonsio.dir}/${commonsio.lib}</echo>
+		<echo level="info">           ${commonsconfig.dir}/${commonsconfig.lib}</echo>
+		<echo level="info">           ${commonshttp.dir}/${commonshttp-core.lib}</echo>
+		<echo level="info">           ${commonshttp.dir}/${commonshttp-client.lib}</echo>
+		<echo level="info">           ${jclarens.dir}/${jclarens.lib}</echo>
+		<echo level="info">   GUI   : ${swt.dir}/${swt-osx.lib}</echo>
+		<echo level="info">   JBoss : ${jboss.dir}/${jboss-ejb3.lib}</echo>
+		<echo level="info">           ${jboss.dir}/${jboss-javaee.lib}</echo>
+		<echo level="info">           ${jboss.dir}/${jboss-stax.lib}</echo>
+		<echo level="info">           ${jboss.dir}/${jboss-ejb3extapi.lib}</echo>
+		<echo level="info">   Hib   : ${hibernate.dir}/${hibernate.lib}</echo>
+		<echo level="info">------------------------</echo>
+	   </target>
+</project>

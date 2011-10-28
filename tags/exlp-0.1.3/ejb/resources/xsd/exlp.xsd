@@ -1,0 +1,16 @@
+<xsd:schema targetNamespace="http://exlp.sourceforge.net"
+    xmlns:dir="http://exlp.sourceforge.net/dirsize"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    elementFormDefault="qualified" attributeFormDefault="unqualified"
+    jaxb:extensionBindingPrefixes="xjc" jaxb:version="1.0">
+    <xsd:import namespace="http://exlp.sourceforge.net/dirsize" schemaLocation="addon/dirsize.xsd"/>
+    <xsd:annotation>
+        <xsd:appinfo>
+            <jaxb:globalBindings generateIsSetMethod="true">
+                <xjc:serializable uid="1"/>
+            </jaxb:globalBindings>
+        </xsd:appinfo>
+    </xsd:annotation>
+</xsd:schema>
