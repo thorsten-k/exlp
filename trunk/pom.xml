@@ -25,9 +25,9 @@
 	</licenses>
 
 	<scm>
-    	<connection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/trunk/</connection>
-    	<developerConnection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/trunk/</developerConnection>
-    	<url>https://exlp.svn.sourceforge.net/svnroot/exlp/trunk/</url>
+    	<connection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/trunk</connection>
+    	<developerConnection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/trunk</developerConnection>
+    	<url>https://exlp.svn.sourceforge.net/svnroot/exlp/trunk</url>
 	</scm>
 	
 	<developers>
