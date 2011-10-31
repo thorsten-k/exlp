@@ -39,6 +39,12 @@
 	</developers>
 
     <properties>
+    	<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+    	<compiler-source.version>1.6</compiler-source.version>
+    	<compiler-target.version>1.6</compiler-target.version>
+    	<maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
+    	<maven-javadoc-plugin.version>2.8</maven-javadoc-plugin.version>
+    	<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
 	</properties>
 
 	<prerequisites>
@@ -46,14 +52,6 @@
 	</prerequisites>
 
 	<repositories>
-		<!--
-			<repository>
-			<id>jboss-snapshots</id>
-			<name>JBoss Snapshot Repository</name>
-			<url>https://repository.jboss.org/nexus/content/repositories/snapshots/</url>
-			<releases><enabled>false</enabled></releases>
-			<snapshots />
-			</repository>-->
 		<repository>
 			<id>jboss-public</id>
 			<name>JBoss Repository</name>
@@ -101,7 +99,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-gpg-plugin</artifactId>
-					<version>1.1</version>
+					<version>${maven-gpg-plugin.version}</version>
 					<executions>
 						<execution>
 							<id>sign-artifacts</id>
@@ -115,6 +113,7 @@
 				<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>${maven-javadoc-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>attach-javadocs</id>
@@ -127,6 +126,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-source-plugin</artifactId>
+				<version>${maven-source-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>attach-sources</id>
