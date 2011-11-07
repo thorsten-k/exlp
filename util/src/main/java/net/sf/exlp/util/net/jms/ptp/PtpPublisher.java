@@ -44,6 +44,7 @@ public class PtpPublisher
 	
 	private Map<String,String> propStr;
 	private Map<String,Integer> propInt;
+	private Map<String,Boolean> propBoolean;
 	private int priority;
 
 	private boolean requestMode;
@@ -56,6 +57,7 @@ public class PtpPublisher
 		setupPTP();
 		propStr = new Hashtable<String,String>();
 		propInt = new Hashtable<String,Integer>();
+		propBoolean = new Hashtable<String,Boolean>();
 		clearProperties();
 	}
 	
@@ -111,20 +113,16 @@ public class PtpPublisher
 		propInt.clear();
 	}
 	
-	public void setProperty(String key, int value)
-	{
-		propInt.put(key, value);
-	}
-	public void setProperty(String key, String value)
-	{
-		propStr.put(key, value);
-	}
+	public void setProperty(String key, int value){propInt.put(key, value);}
+	public void setProperty(String key, String value){propStr.put(key, value);}
+	public void setProperty(String key, boolean value){propBoolean.put(key, value);}
 	
 	private Message send(Message msg) throws JMSException
 	{
 		Message answer = null;
 		for (String propName : propStr.keySet()){msg.setStringProperty(propName,propStr.get(propName));}			
 		for (String propName : propInt.keySet()){msg.setIntProperty(propName,propInt.get(propName));}
+		for (String propName : propBoolean.keySet()){msg.setBooleanProperty(propName,propBoolean.get(propName));}
 		
 		msg.setIntProperty("PRIORITY",priority);
 		
