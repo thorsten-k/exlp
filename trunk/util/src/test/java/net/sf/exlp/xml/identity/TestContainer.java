@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,28 +23,26 @@ public class TestContainer extends AbstractIdentityXmlTest
     @Test
     public void testFile() throws FileNotFoundException
     {
-    	IdentityContainer test = createIdentityContainer();
+    	IdentityContainer test = create();
     	IdentityContainer ref = (IdentityContainer)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), IdentityContainer.class);
     	assertJaxbEquals(ref, test);
     }
     
-    public void save()
-    {
-    	logger.debug("Saving Reference XML");
-    	IdentityContainer xml = createIdentityContainer();
-    	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fXml, xml, getNsPrefixMapper(), true);
-    }
-    
-    public static IdentityContainer createIdentityContainer()
+    public static IdentityContainer create(){return create(true);}
+    public static IdentityContainer create(boolean withChilds)
     {
     	IdentityContainer xml = new IdentityContainer();
     	
-    	xml.getCertificate().add(TestCertificate.createCertificate());
-    	xml.getUser().add(TestUser.createUser());
+    	if(withChilds)
+    	{
+    		xml.getCertificate().add(TestCertificate.create());
+    		xml.getUser().add(TestUser.createUser());
+    	}
     	
     	return xml;
     }
+    
+    public void save() {save(create(),fXml);}
 	
 	public static void main(String[] args)
     {

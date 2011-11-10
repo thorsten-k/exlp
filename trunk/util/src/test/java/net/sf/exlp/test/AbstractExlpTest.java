@@ -1,5 +1,6 @@
 package net.sf.exlp.test;
 
+import java.io.File;
 import java.util.Date;
 
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -44,5 +45,12 @@ public class AbstractExlpTest
 	{
 		if(nsPrefixMapper==null){nsPrefixMapper = new ExlpNsPrefixMapper();}
 		return nsPrefixMapper;
+	}
+	
+	protected void save(Object xml, File f)
+	{
+		logger.debug("Saving Reference XML");
+		JaxbUtil.debug2(this.getClass(),xml, getNsPrefixMapper());
+    	JaxbUtil.save(f, xml, getNsPrefixMapper(), true);
 	}
 }
