@@ -4,7 +4,6 @@ import java.io.FileNotFoundException;
 
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -24,22 +23,16 @@ public class TestCertificate extends AbstractIdentityXmlTest
     @Test
     public void testFile() throws FileNotFoundException
     {
-    	Certificate test = createCertificate();
+    	Certificate test = create();
     	Certificate ref = (Certificate)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Certificate.class);
     	assertJaxbEquals(ref, test);
     }
     
-    public void save()
-    {
-    	logger.debug("Saving Reference XML");
-    	Certificate xml = createCertificate();
-    	JaxbUtil.debug2(this.getClass(),xml, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fXml, xml, getNsPrefixMapper(), true);
-    }
-    
-    public static Certificate createCertificate()
+    public static Certificate create() {return create(true);}
+    public static Certificate create(boolean withChilds)
     {
     	Certificate xml = new Certificate();
+    	xml.setId(123);
     	xml.setSerial(1);
     	xml.setNotAfter(getXmlDate());
     	xml.setNotBefore(getXmlDate());
@@ -47,6 +40,8 @@ public class TestCertificate extends AbstractIdentityXmlTest
     	xml.setEmail("my@e.mail");
     	return xml;
     }
+    
+    public void save() {save(create(),fXml);}
 	
 	public static void main(String[] args)
     {

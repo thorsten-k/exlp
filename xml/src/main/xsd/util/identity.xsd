@@ -22,6 +22,7 @@
     </xsd:element>
     <xsd:element name="certificate">
         <xsd:complexType>
+        	<xsd:attribute name="id" type="xsd:long"/>
             <xsd:attribute name="serial" type="xsd:int"/>
             <xsd:attribute name="notAfter" type="xsd:dateTime"/>
             <xsd:attribute name="notBefore" type="xsd:dateTime"/>
