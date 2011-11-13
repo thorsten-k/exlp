@@ -58,11 +58,18 @@
    		<artifactId>exlp-core</artifactId>
    		<version>${project.version}</version>
    	</dependency>
-   	<dependency>
-   		<groupId>junit</groupId>
-   		<artifactId>junit</artifactId>
-   		<version>4.9</version>
-   		<scope>test</scope>
-   	</dependency>
-      </dependencies>
+   		<dependency>
+   			<groupId>junit</groupId>
+   			<artifactId>junit</artifactId>
+   			<version>4.9</version>
+   			<scope>test</scope>
+   		</dependency>
+   		<dependency>
+   		<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.2.2</version>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+	</dependencies>
 </project>
