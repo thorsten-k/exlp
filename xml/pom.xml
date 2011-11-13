@@ -30,25 +30,22 @@
 	
 	<dependencies>
       	<dependency>
-    	   		<groupId>javax.xml.bind</groupId>
-    	   		<artifactId>jaxb-api</artifactId>
-    	   		<version>2.2.2</version>
-    	   		<type>jar</type>
-    	   		<scope>test</scope>
-    	   	</dependency>
-    	   	<dependency>
-    	   		<groupId>com.sun.xml.bind</groupId>
-    	   		<artifactId>jaxb-impl</artifactId>
-    	   		<version>2.2.2</version>
-    	   		<type>jar</type>
-    	   		<scope>provided</scope>
-    	   	</dependency>
-    	   	<dependency>
-    	   		<groupId>com.sun.xml.bind</groupId>
-    	   		<artifactId>jaxb-xjc</artifactId>
-    	   		<version>2.2.2</version>
-    	   		<type>jar</type>
-    	   		<scope>test</scope>
-    	   	</dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+    		<type>jar</type>
+    		<scope>test</scope>
+		</dependency>
+		<dependency>
+  			<groupId>com.sun.xml.bind</groupId>
+    		<artifactId>jaxb-impl</artifactId>
+    		<type>jar</type>
+    		<scope>provided</scope>
+    	</dependency>
+   		<dependency>
+ 			<groupId>com.sun.xml.bind</groupId>
+    		<artifactId>jaxb-xjc</artifactId>
+    		<type>jar</type>
+    		<scope>test</scope>
+  		</dependency>
 	</dependencies>
 </project>

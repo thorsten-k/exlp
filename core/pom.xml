@@ -32,50 +32,43 @@
       	<dependency>
       		<groupId>commons-logging</groupId>
       		<artifactId>commons-logging</artifactId>
-      		<version>1.1.1</version>
       		<type>jar</type>
       		<scope>provided</scope>
       	</dependency>
-      	   	<dependency>
-   		<groupId>log4j</groupId>
-   		<artifactId>log4j</artifactId>
-   		<version>1.2.16</version>
-   		<scope>provided</scope>
+		<dependency>
+   			<groupId>log4j</groupId>
+   			<artifactId>log4j</artifactId>
+   			<scope>provided</scope>
    		</dependency>
-      	   	<dependency>
-      	   		<groupId>commons-lang</groupId>
-      	   		<artifactId>commons-lang</artifactId>
-      	   		<version>2.6</version>
-      	   		<type>jar</type>
-      	   		<scope>compile</scope>
-      	   	</dependency>
-      	   	<dependency>
-      	   		<groupId>commons-configuration</groupId>
-      	   		<artifactId>commons-configuration</artifactId>
-      	   		<version>1.6</version>
-      	   		<type>jar</type>
-      	   		<scope>compile</scope>
-      	   	</dependency>
-      	   	<dependency>
-   		<groupId>org.jdom</groupId>
-   		<artifactId>jdom</artifactId>
-   		<version>1.1</version>
-   		<type>jar</type>
-   		<scope>compile</scope>
-   	</dependency>
-   	<dependency>
-   		<groupId>org.apache.httpcomponents</groupId>
-   		<artifactId>httpclient</artifactId>
-   		<version>4.1.1</version>
-   		<type>jar</type>
-   		<scope>compile</scope>
-   	</dependency>
-   	<dependency>
-   		<groupId>net.sf.exlp</groupId>
-   		<artifactId>exlp-util</artifactId>
-   		<version>${project.version}</version>
-   		<type>jar</type>
-   		<scope>compile</scope>
-   	</dependency>
-      </dependencies>
+		<dependency>
+    		<groupId>commons-lang</groupId>
+      		<artifactId>commons-lang</artifactId>
+     		<type>jar</type>
+   			<scope>compile</scope>
+    	</dependency>
+ 		<dependency>
+      		<groupId>commons-configuration</groupId>
+ 			<artifactId>commons-configuration</artifactId>
+      		<type>jar</type>
+  			<scope>compile</scope>
+      	</dependency>
+		<dependency>
+   			<groupId>org.jdom</groupId>
+   			<artifactId>jdom</artifactId>
+   			<type>jar</type>
+   			<scope>compile</scope>
+   		</dependency>
+		<dependency>
+   			<groupId>org.apache.httpcomponents</groupId>
+   			<artifactId>httpclient</artifactId>
+   			<type>jar</type>
+   			<scope>compile</scope>
+   		</dependency>
+   		<dependency>
+   			<groupId>net.sf.exlp</groupId>
+   			<artifactId>exlp-util</artifactId>
+   			<type>jar</type>
+   			<scope>compile</scope>
+   		</dependency>
+	</dependencies>
 </project>
