@@ -1,13 +1,15 @@
 package net.sf.exlp.util.io;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.StringWriter;
 
-import org.apache.commons.lang.SystemUtils;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -22,9 +24,9 @@ public class StringIO
 		logger.trace("Writing Txt to "+f.getAbsolutePath());
 		try
 		{
-			BufferedWriter bw = new BufferedWriter(new FileWriter(f));
-			bw.write(content);
-			bw.close();
+			OutputStream os = new FileOutputStream(f);
+			IOUtils.write(content, os, "UTF-8");
+			os.flush();os.close();
 		}
 		catch (IOException e) {logger.error(e);}
 	}
@@ -35,18 +37,19 @@ public class StringIO
 	public static synchronized String loadTxt(File f,boolean ls)
 	{
 		logger.trace("Reading Txt from "+f.getAbsolutePath());
-		StringBuffer sb = new StringBuffer();
 		try
 		{
-			BufferedReader bw = new BufferedReader(new FileReader(f));
-			while(bw.ready())
-			{
-				sb.append(bw.readLine());
-				if(ls){sb.append(SystemUtils.LINE_SEPARATOR);}
-			}
-			bw.close();
+			InputStream is = new FileInputStream(f);
+			StringWriter writer = new StringWriter();
+			IOUtils.copy(is, writer, "UTF-8");
+			String theString = writer.toString();
+			return theString;
 		}
-		catch (IOException e) {logger.error(e);}
-		return sb.toString();
+		catch (FileNotFoundException e) {e.printStackTrace();}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
