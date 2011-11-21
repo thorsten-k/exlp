@@ -31,7 +31,7 @@ public class TestDir extends AbstractIoXmlTest
     public void testDir() throws FileNotFoundException
     {
     	Dir test = createDir(false,false);
-    	Dir ref = (Dir)JaxbUtil.loadJAXB(fDir.getAbsolutePath(), Dir.class);
+    	Dir ref = JaxbUtil.loadJAXB(fDir.getAbsolutePath(), Dir.class);
     	assertJaxbEquals(ref, test);
     }
     
@@ -69,7 +69,7 @@ public class TestDir extends AbstractIoXmlTest
     	if(withFiles){xml.getFile().addAll(TestFile.createFiles());}
     	if(withDirs){xml.getDir().addAll(TestDir.createDirs(true,false));}
     	
-    	xml.getPolicy().add(TestPolicy.createPolicy());
+    	xml.getPolicy().add(TestPolicy.create(false));
     	
     	return xml;
     }
