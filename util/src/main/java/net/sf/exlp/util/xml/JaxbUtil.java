@@ -36,10 +36,10 @@ public class JaxbUtil
 	static Log logger = LogFactory.getLog(JaxbUtil.class);
 	public static boolean useLog4j = true;
 	
-	public static synchronized Object loadJAXB(String xmlFile, Class<?> c) throws FileNotFoundException
+	public static synchronized <T extends Object> T loadJAXB(String xmlFile, Class<T> c) throws FileNotFoundException
 	{
 		MultiResourceLoader mrl = new MultiResourceLoader();
-		Object result = null;
+		T result = null;
 
 		InputStream is=null;
 		InputStream resourceIs = mrl.searchIs(xmlFile);
@@ -62,14 +62,15 @@ public class JaxbUtil
 
 		return result;
 	}
-	public static synchronized Object loadJAXB(InputStream is, Class<?> c)
+	@SuppressWarnings("unchecked")
+	public static synchronized <T extends Object> T loadJAXB(InputStream is, Class<T> c)
 	{
-		Object result = null;
+		T result = null;
 		try
 		{
 			JAXBContext jc = JAXBContext.newInstance(c);
 			Unmarshaller u = jc.createUnmarshaller();
-			result = u.unmarshal(is);
+			result = (T)u.unmarshal(is);
 		}
 		catch (JAXBException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
 		return result;

@@ -23,29 +23,30 @@ public class TestPolicy extends AbstractIoXmlTest
     @Test
     public void testFile() throws FileNotFoundException
     {
-    	Policy test = createPolicy();
-    	Policy ref = (Policy)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Policy.class);
+    	Policy test = create();
+    	Policy ref = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Policy.class);
     	assertJaxbEquals(ref, test);
     }
     
-    public void save()
-    {
-    	logger.debug("Saving Reference XML");
-    	Policy xml = createPolicy();
-    	JaxbUtil.debug2(this.getClass(),xml, getNsPrefixMapper());
-    	JaxbUtil.save(fXml, xml, getNsPrefixMapper(), true);
-    }
-    
-    public static Policy createPolicy()
+    private static Policy create(){return create(true);}
+    public static Policy create(boolean withChilds)
     {
     	Policy xml = new Policy();
     	xml.setId(1);
     	xml.setCode("myCode");
     	xml.setSys("Administrators");
     	xml.setName("myName");
-    	xml.getAcl().add(TestAcl.createAcl());
+    	
+    	if(withChilds)
+    	{
+    		xml.getAcl().add(TestAcl.create());
+    		xml.getAcl().add(TestAcl.create());
+    	}
+    	
     	return xml;
     }
+    
+    public void save() {save(create(),fXml);}
 	
 	public static void main(String[] args)
     {

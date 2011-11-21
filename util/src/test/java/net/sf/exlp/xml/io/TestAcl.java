@@ -21,22 +21,14 @@ public class TestAcl extends AbstractIoXmlTest
 	}
     
     @Test
-    public void testFile() throws FileNotFoundException
+    public void testXml() throws FileNotFoundException
     {
-    	Acl test = createAcl();
-    	Acl ref = (Acl)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Acl.class);
+    	Acl test = create();
+    	Acl ref = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Acl.class);
     	assertJaxbEquals(ref, test);
     }
-    
-    public void save()
-    {
-    	logger.debug("Saving Reference XML");
-    	Acl xml = createAcl();
-    	JaxbUtil.debug2(this.getClass(),xml, getNsPrefixMapper());
-    	JaxbUtil.save(fXml, xml, getNsPrefixMapper(), true);
-    }
-    
-    public static Acl createAcl()
+        
+    public static Acl create()
     {
     	Acl xml = new Acl();
     	xml.setId(1);
@@ -44,6 +36,8 @@ public class TestAcl extends AbstractIoXmlTest
     	xml.setPass(true);
     	return xml;
     }
+    
+    public void save() {save(create(),fXml);}
 	
 	public static void main(String[] args)
     {

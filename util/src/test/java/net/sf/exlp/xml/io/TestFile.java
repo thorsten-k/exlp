@@ -27,28 +27,21 @@ public class TestFile extends AbstractIoXmlTest
     @Test
     public void testFile() throws FileNotFoundException
     {
-    	File test = createFile();
-    	File ref = (File)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), File.class);
+    	File test = create();
+    	File ref = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), File.class);
     	assertJaxbEquals(ref, test);
-    }
-    
-    public void save()
-    {
-    	logger.debug("Saving Reference XML");
-    	File xml = createFile();
-    	JaxbUtil.debug2(this.getClass(),xml, getNsPrefixMapper());
-    	JaxbUtil.save(fXml, xml, getNsPrefixMapper(), true);
     }
 
     public static List<File> createFiles()
     {   	
     	List<File> list = new ArrayList<File>();
-    	list.add(createFile());
-    	list.add(createFile());
+    	list.add(create());
+    	list.add(create());
     	return list;
     }
     
-    public static File createFile()
+    private static File create(){return create(false);}
+    public static File create(boolean withChilds)
     {
     	Date d = DateUtil.getDateFromInt(2012, 1, 1,10,10,10);
     	
@@ -57,9 +50,17 @@ public class TestFile extends AbstractIoXmlTest
     	xml.setCode("code");
     	xml.setName("test.txt");
     	xml.setLastModifed(DateUtil.getXmlGc4D(d));
-    	xml.getPolicy().add(TestPolicy.createPolicy());
+    	
+    	if(withChilds)
+    	{
+    		xml.getPolicy().add(TestPolicy.create(false));
+    		xml.getPolicy().add(TestPolicy.create(false));
+    	}
+    	
     	return xml;
     }
+    
+    public void save() {save(create(),fXml);}
 	
 	public static void main(String[] args)
     {
