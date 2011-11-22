@@ -49,6 +49,8 @@ public class TestFile extends AbstractIoXmlTest
     	xml.setId(1);
     	xml.setCode("code");
     	xml.setName("test.txt");
+    	xml.setSize(123);
+    	xml.setMime("myMime");
     	xml.setLastModifed(DateUtil.getXmlGc4D(d));
     	
     	if(withChilds)
