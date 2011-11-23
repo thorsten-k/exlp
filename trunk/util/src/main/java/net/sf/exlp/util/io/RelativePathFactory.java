@@ -29,7 +29,9 @@ public class RelativePathFactory
 	{
 		String fNormalized = FilenameUtils.normalize(fullFixed, true);
 		String rNormalized = FilenameUtils.normalize(fullRelative, true);
-		 
+		
+		if(fNormalized.equals(rNormalized)){return ".";}
+		
 		String relative = getRelative(fNormalized,  rNormalized);
 		
 		if(quoteSpaces){relative = quoteSpaces(relative);}

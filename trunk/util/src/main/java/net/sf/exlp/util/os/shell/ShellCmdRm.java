@@ -20,7 +20,8 @@ public class ShellCmdRm extends AbstractShellCmd
 		switch(arch)
 		{
 			case Win32:  sb.append(rmDirWin(dir, onlySubEntries));break;
-			default: errorUnsupportedOS("copy fileA to fileB");break;
+			case OsX: 	 sb.append(rmDirOsx(dir, onlySubEntries));break;
+			default: errorUnsupportedOS("rm dirX and rm dirY (only subdirectories)");break;
 		}	
 		return sb.toString();
 	}
@@ -39,6 +40,18 @@ public class ShellCmdRm extends AbstractShellCmd
 			sb.append("rmdir");
 		}
 		sb.append(" ").append(dir);
+		return sb.toString();
+	}
+	
+	private String rmDirOsx(String dir, boolean onlySubEntries)
+	{
+		StringBuffer sb = new StringBuffer();
+		sb.append("rm -rf ");
+		sb.append(dir);
+		if(onlySubEntries)
+		{
+			sb.append("/*");
+		}
 		return sb.toString();
 	}
 }

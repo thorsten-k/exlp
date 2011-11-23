@@ -23,6 +23,8 @@ public abstract class AbstractShellCmd
 	{
 		logger.fatal("System "+ SystemUtils.OS_NAME + " not supported");
 		logger.fatal("We need to now the following command: "+cmd);
-		throw new ExlpUnsupportedOsException("Command ("+cmd+") not supported for :"+SystemUtils.OS_NAME);
+		ExlpUnsupportedOsException e = new ExlpUnsupportedOsException("Command ("+cmd+") not supported for :"+SystemUtils.OS_NAME);
+		e.printStackTrace();
+		throw e;
 	}
 }

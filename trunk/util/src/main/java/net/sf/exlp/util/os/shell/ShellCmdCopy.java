@@ -16,6 +16,7 @@ public class ShellCmdCopy extends AbstractShellCmd
 	
 	public String copyFile(String from, String to) throws ExlpUnsupportedOsException
 	{
+		System.out.println("arch:"+arch);
 		StringBuffer sb = new StringBuffer();
 		switch(arch)
 		{
