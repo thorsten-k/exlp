@@ -6,6 +6,7 @@ import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.io.RelativePathFactory;
 
 import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
@@ -93,6 +94,20 @@ public class TestRelativePathFactory
 		logger.debug("Relative: "+sRpf);
 	
 		Assert.assertEquals(FilenameUtils.separatorsToUnix(sRpf),"X");
+	}
+	
+	@Test
+	public void test()
+	{
+		File parent = new File("src/test/java");
+		File child = new File("src/test/java/net/sf/exlp/test/util/io");
+	
+		RelativePathFactory rpf = new RelativePathFactory();
+		String sRelative = rpf.relativate(parent, child);
+		
+		logger.debug(sRelative);
+		
+		if(SystemUtils.IS_OS_WINDOWS){Assert.assertEquals("net/sf/exlp/test/util/io",sRelative);}
 	}
 	
 	public static void main(String[] args)
