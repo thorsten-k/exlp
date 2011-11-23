@@ -1,7 +1,8 @@
-package net.sf.exlp.test.util.io;
+package net.sf.exlp.util.io;
 
 import java.io.File;
 
+import net.sf.exlp.test.ExlpTstBootstrap;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.io.RelativePathFactory;
 
@@ -110,13 +111,24 @@ public class TestRelativePathFactory
 		if(SystemUtils.IS_OS_WINDOWS){Assert.assertEquals("net/sf/exlp/test/util/io",sRelative);}
 	}
 	
+	@Test
+	public void equalFiles()
+	{
+		File parent = new File("src/test/java");
+		File child = new File("src/test/java");
+		
+		RelativePathFactory rpf = new RelativePathFactory();
+		String sRelative = rpf.relativate(parent, child);
+		
+		logger.debug(sRelative);
+		Assert.assertEquals(".", sRelative);
+	}
+	
 	public static void main(String[] args)
     {
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("src/test/resources/config");
-			loggerInit.init();
+		ExlpTstBootstrap.init();
 		
 		TestRelativePathFactory test = new TestRelativePathFactory();
-		test.testWinWithWindowsSeparator();
+		test.equalFiles();
     }
 }
