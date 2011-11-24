@@ -10,20 +10,31 @@ public class RelativePathFactory
 {
 	static Log logger = LogFactory.getLog(RelativePathFactory.class);
 	
-	private boolean quoteSpaces,unixSeparator;
+	public static enum PathSeparator {CURRENT,UNIX,WINDOWS}
 	
-	public RelativePathFactory(){this(true,true);}
-	public RelativePathFactory(boolean quoteSpaces, boolean unixSeparator)
+	private PathSeparator pathSeparator;
+	private boolean quoteSpaces;
+	private File fFixed;
+	
+	public RelativePathFactory(PathSeparator pathSeparator){this(null,pathSeparator);}
+	public RelativePathFactory(File fFixed,PathSeparator pathSeparator){this(fFixed,pathSeparator,true);}
+	public RelativePathFactory(PathSeparator pathSeparator, boolean quoteSpaces){this(null,pathSeparator,quoteSpaces);}
+	public RelativePathFactory(File fFixed,PathSeparator pathSeparator, boolean quoteSpaces)
 	{
+		this.fFixed=fFixed;
+		this.pathSeparator=pathSeparator;
 		this.quoteSpaces=quoteSpaces;
-		this.unixSeparator=unixSeparator;
 	}
 
+	public String relativate(File fullRelative)
+	{
+		if(fFixed==null){throw new NullPointerException("You have not set fFixed in constructor");}
+		return relativate(fFixed, fullRelative);
+	}
 	public String relativate(File fullFixed, File fullRelative)
 	{
 		return relativate(fullFixed.getAbsolutePath(), fullRelative.getAbsolutePath());
 	}
-	
 
 	public String relativate(String fullFixed, String fullRelative)
 	{
@@ -35,8 +46,13 @@ public class RelativePathFactory
 		String relative = getRelative(fNormalized,  rNormalized);
 		
 		if(quoteSpaces){relative = quoteSpaces(relative);}
-		if(unixSeparator){relative = FilenameUtils.separatorsToUnix(relative);}
-		else{relative = FilenameUtils.separatorsToWindows(relative);}
+		
+		switch(pathSeparator)
+		{
+			case CURRENT:	relative = FilenameUtils.separatorsToSystem(relative);break;
+			case UNIX:		relative = FilenameUtils.separatorsToUnix(relative);break;
+			case WINDOWS:	relative = FilenameUtils.separatorsToWindows(relative);break;
+		}
 		
 		return relative;
 	}

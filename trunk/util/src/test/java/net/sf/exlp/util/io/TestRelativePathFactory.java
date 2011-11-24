@@ -2,19 +2,16 @@ package net.sf.exlp.util.io;
 
 import java.io.File;
 
+import net.sf.exlp.test.AbstractExlpTest;
 import net.sf.exlp.test.ExlpTstBootstrap;
-import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.io.RelativePathFactory;
 
-import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang.SystemUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-public class TestRelativePathFactory
+public class TestRelativePathFactory extends AbstractExlpTest
 {
 	static Log logger = LogFactory.getLog(TestRelativePathFactory.class);
 	
@@ -23,27 +20,19 @@ public class TestRelativePathFactory
 		
 	}
 	
-	@BeforeClass
-    public static void initLogger()
-	{
-		LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-		loggerInit.addAltPath("src/test/resources/config");
-		loggerInit.init();
-    }
-	
 	@Test
 	public void testFile()
 	{
 		File fFixed = new File(".");
 		File fRelative = new File(".","target/x1.txt");
 		
-		RelativePathFactory rpf = new RelativePathFactory();
+		RelativePathFactory rpf = new RelativePathFactory(RelativePathFactory.PathSeparator.UNIX);
 		String sRpf = rpf.relativate(fFixed.getAbsolutePath(), fRelative.getAbsolutePath());
 		logger.debug("Current: "+fFixed.getAbsolutePath());
 		logger.debug("Absolute: "+fRelative.getAbsolutePath());
 		logger.debug("Relative: "+sRpf);
 	
-		Assert.assertEquals(FilenameUtils.separatorsToUnix(sRpf),"target/x1.txt");
+		Assert.assertEquals("target/x1.txt",sRpf);
 	}
 	
 	@Test
@@ -52,7 +41,7 @@ public class TestRelativePathFactory
 		String sBase = "C:\\Users\\Base";
 		String sAbsolute = "C:\\Users\\Base\\x.3\\a.txt";
 		
-		RelativePathFactory rpf = new RelativePathFactory(true,true);
+		RelativePathFactory rpf = new RelativePathFactory(RelativePathFactory.PathSeparator.UNIX);
 		String actual = rpf.relativate(sBase, sAbsolute);
 		String expected = "x.3/a.txt";
 		
@@ -70,7 +59,7 @@ public class TestRelativePathFactory
 		String sBase = "C:\\Users\\Base";
 		String sAbsolute = "C:\\Users\\Base\\x.3\\a.txt";
 		
-		RelativePathFactory rpf = new RelativePathFactory(true,false);
+		RelativePathFactory rpf = new RelativePathFactory(RelativePathFactory.PathSeparator.WINDOWS);
 		String actual = rpf.relativate(sBase, sAbsolute);
 		String expected = "x.3\\a.txt";
 		
@@ -88,13 +77,13 @@ public class TestRelativePathFactory
 		String sFixed = "/Base";
 		String sRelative = "/Base/X";
 		
-		RelativePathFactory rpf = new RelativePathFactory();
-		String sRpf = rpf.relativate(sFixed, sRelative);
+		RelativePathFactory rpf = new RelativePathFactory(RelativePathFactory.PathSeparator.UNIX);
+		String actual = rpf.relativate(sFixed, sRelative);
 		logger.debug("Current: "+sFixed);
 		logger.debug("Absolute: "+sRelative);
-		logger.debug("Relative: "+sRpf);
+		logger.debug("Relative: "+actual);
 	
-		Assert.assertEquals(FilenameUtils.separatorsToUnix(sRpf),"X");
+		Assert.assertEquals("X",actual);
 	}
 	
 	@Test
@@ -103,7 +92,7 @@ public class TestRelativePathFactory
 		File parent = new File("src/test/java");
 		File child = new File("src/test/java/net/sf/exlp/test/util/io");
 	
-		RelativePathFactory rpf = new RelativePathFactory();
+		RelativePathFactory rpf = new RelativePathFactory(RelativePathFactory.PathSeparator.UNIX);
 		String sRelative = rpf.relativate(parent, child);
 		
 		logger.debug(sRelative);
@@ -117,11 +106,24 @@ public class TestRelativePathFactory
 		File parent = new File("src/test/java");
 		File child = new File("src/test/java");
 		
-		RelativePathFactory rpf = new RelativePathFactory();
+		RelativePathFactory rpf = new RelativePathFactory(RelativePathFactory.PathSeparator.UNIX);
 		String sRelative = rpf.relativate(parent, child);
 		
 		logger.debug(sRelative);
 		Assert.assertEquals(".", sRelative);
+	}
+	
+	@Test
+	public void fixedConstructor()
+	{
+		File parent = new File("src/test/java");
+		File child = new File("src/test/java/test");
+		
+		RelativePathFactory rpf = new RelativePathFactory(parent,RelativePathFactory.PathSeparator.UNIX);
+		String sRelative = rpf.relativate(parent, child);
+		
+		logger.debug(sRelative);
+		Assert.assertEquals("test", sRelative);
 	}
 	
 	public static void main(String[] args)
@@ -129,6 +131,6 @@ public class TestRelativePathFactory
 		ExlpTstBootstrap.init();
 		
 		TestRelativePathFactory test = new TestRelativePathFactory();
-		test.equalFiles();
+		test.fixedConstructor();
     }
 }
