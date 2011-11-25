@@ -2,12 +2,12 @@ package net.sf.exlp.util.os.shell;
 
 import net.sf.exlp.util.exception.ExlpUnsupportedOsException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ShellSymbolicLink extends AbstractShellCmd
 {
-	static Log logger = LogFactory.getLog(ShellSymbolicLink.class);
+	final static Logger logger = LoggerFactory.getLogger(ShellSymbolicLink.class);
 	
 	public ShellSymbolicLink()
 	{

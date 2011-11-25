@@ -3,12 +3,12 @@ package net.sf.exlp.util.io;
 import java.io.File;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RelativePathFactory
 {
-	static Log logger = LogFactory.getLog(RelativePathFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(RelativePathFactory.class);
 	
 	public static enum PathSeparator {CURRENT,UNIX,WINDOWS}
 	

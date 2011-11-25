@@ -6,17 +6,16 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
 import org.apache.commons.io.DirectoryWalker;
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RecursiveFileFinder extends DirectoryWalker
 {
-	static Log logger = LogFactory.getLog(RecursiveFileFinder.class);
+	final static Logger logger = LoggerFactory.getLogger(RelativePathFactory.class);
 	
 	public RecursiveFileFinder(IOFileFilter dirFilter, IOFileFilter fileFilter)
 	{

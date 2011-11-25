@@ -8,13 +8,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 
 public class DomUtil
 {
-	static Log logger = LogFactory.getLog(DomUtil.class);
+	final static Logger logger = LoggerFactory.getLogger(DomUtil.class);
 	
 	public static synchronized void debugDocument(Document doc)
 	{
@@ -27,8 +27,8 @@ public class DomUtil
 			t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2");
 			t.transform(new DOMSource(doc), new StreamResult(System.out));
 		}
-		catch (TransformerConfigurationException e) {logger.error(e);} 
-		catch (TransformerException e) {logger.error(e);} 
+		catch (TransformerConfigurationException e) {logger.error("",e);} 
+		catch (TransformerException e) {logger.error("",e);} 
 	}
 	
 }

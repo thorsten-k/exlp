@@ -9,9 +9,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestSL4J extends AbstractExlpTest
+public class TestSLF4J extends AbstractExlpTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestSL4J.class);
+	final static Logger logger = LoggerFactory.getLogger(TestSLF4J.class);
 	    
     @Test
     public void debug() throws FileNotFoundException

@@ -15,12 +15,12 @@ import javax.xml.stream.XMLOutputFactory;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamWriter;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JaxbUtil6
 {
-	static Log logger = LogFactory.getLog(JaxbUtil6.class);
+	final static Logger logger = LoggerFactory.getLogger(JaxbUtil6.class);
 	
 	public static synchronized void debug(Class<?> c, Object jaxb){debug(c, jaxb, null);}
 	public static synchronized void debug(Class<?> c, Object jaxb, Object nsPrefixMapper)
@@ -44,8 +44,8 @@ public class JaxbUtil6
 			output(os, jaxb, nsPrefixMapper);
 			os.close();
 		}
-		catch (FileNotFoundException e) {logger.debug(e);}
-		catch (IOException e) {logger.debug(e);}
+		catch (FileNotFoundException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 	}
 	
 	public static synchronized void output(OutputStream os, Object jaxb){output(os, jaxb,null);}
@@ -62,8 +62,8 @@ public class JaxbUtil6
 			marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 			marshaller.marshal(jaxb, xmlStreamWriter);
 		}
-		catch (JAXBException e) {logger.error(e);}
-		catch (XMLStreamException e) {logger.error(e);}
-		catch (FactoryConfigurationError e) {logger.error(e);}
+		catch (JAXBException e) {logger.error("",e);}
+		catch (XMLStreamException e) {logger.error("",e);}
+		catch (FactoryConfigurationError e) {logger.error("",e);}
 	}
 }

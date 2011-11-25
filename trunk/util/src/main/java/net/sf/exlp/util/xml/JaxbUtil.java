@@ -23,18 +23,17 @@ import net.sf.exlp.util.io.StringBufferOutputStream;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jdom.DocType;
 import org.jdom.Document;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 public class JaxbUtil
 {
-	static Log logger = LogFactory.getLog(JaxbUtil.class);
-	public static boolean useLog4j = true;
+	final static Logger logger = LoggerFactory.getLogger(JaxbUtil.class);
 	
 	public static synchronized <T extends Object> T loadJAXB(String xmlFile, Class<T> c) throws FileNotFoundException
 	{
@@ -51,7 +50,7 @@ public class JaxbUtil
 				GZIPInputStream gzIs = new GZIPInputStream(resourceIs);
 				is=gzIs;
 			}
-			catch (IOException e) {logger.error(e);}
+			catch (IOException e) {logger.error("",e);}
 		}
 		else
 		{
@@ -72,7 +71,7 @@ public class JaxbUtil
 			Unmarshaller u = jc.createUnmarshaller();
 			result = (T)u.unmarshal(is);
 		}
-		catch (JAXBException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (JAXBException e) {logger.error("",e);}
 		return result;
 	}
 	
@@ -113,8 +112,8 @@ public class JaxbUtil
 			output(os, jaxb, nsPrefixMapper, doctype, formatted);
 			os.close();
 		}
-		catch (FileNotFoundException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (FileNotFoundException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 	}
 	
 	public static synchronized InputStream toInputStream(Object jaxb, Object nsPrefixMapper,boolean formatted){return toInputStream(jaxb, nsPrefixMapper, null, formatted);}
@@ -128,7 +127,7 @@ public class JaxbUtil
 			os.close();
 			return is;
 		}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {logger.error("",e);}
 		return null;
 	}
 	
@@ -145,7 +144,7 @@ public class JaxbUtil
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
 			m.marshal( jaxb, os);
 		}
-		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (JAXBException e) {logger.error("",e);}
 	}
 	
 	public static synchronized Document toDocument(Object jaxb){return toDocument(jaxb,null);}
@@ -166,9 +165,9 @@ public class JaxbUtil
 			InputStream is = new ByteArrayInputStream(out.toByteArray());
 			doc = new SAXBuilder().build(is);
 		}
-		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (JDOMException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (JAXBException e) {logger.error("",e);}
+		catch (JDOMException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 		return doc;
 	}
 	
@@ -184,7 +183,7 @@ public class JaxbUtil
 			}
 			m.marshal(jaxb, os);
 		}
-		catch (JAXBException e) {logger.error(e);}
+		catch (JAXBException e) {logger.error("",e);}
 	}
 	
 	public static synchronized String toString(Object jaxb){return toString(jaxb,null);}
@@ -228,10 +227,10 @@ public class JaxbUtil
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			doc = builder.parse(is);
 		}
-		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (ParserConfigurationException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (SAXException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (JAXBException e) {logger.error("",e);}
+		catch (ParserConfigurationException e) {logger.error("",e);}
+		catch (SAXException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 		return doc;
 	}
 }

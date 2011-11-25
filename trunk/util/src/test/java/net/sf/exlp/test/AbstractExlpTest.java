@@ -7,7 +7,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.io.TestSL4J;
+import net.sf.exlp.util.io.TestSLF4J;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;

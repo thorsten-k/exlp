@@ -8,12 +8,14 @@ import javax.naming.NamingException;
 import javax.naming.directory.InitialDirContext;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 public class ExlpContextFactory
 {
-	static Log logger = LogFactory.getLog(ExlpContextFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(ExlpContextFactory.class);
 	
 	public static InitialContext getJbossContext(Configuration config) throws NamingException
 	{
@@ -45,7 +47,7 @@ public class ExlpContextFactory
 			ht.put (Context.INITIAL_CONTEXT_FACTORY,"com.sun.jndi.ldap.LdapCtxFactory");
 			ht.put (Context.PROVIDER_URL, "ldap://"+host+":389/");
 		try {idc = new InitialDirContext(ht);}
-		catch (NamingException e) {logger.error(e);}
+		catch (NamingException e) {logger.error("",e);}
 		return idc;
 	}
 }

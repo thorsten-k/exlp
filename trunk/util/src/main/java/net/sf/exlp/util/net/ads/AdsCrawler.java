@@ -13,12 +13,12 @@ import net.sf.exlp.util.net.ads.data.AdGroup;
 import net.sf.exlp.util.net.ads.data.AdOu;
 import net.sf.exlp.util.net.ads.data.AdUser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AdsCrawler
 {
-	static Log logger = LogFactory.getLog(AdsCrawler.class);
+	final static Logger logger = LoggerFactory.getLogger(AdsCrawler.class);
 	
 	public static ArrayList<AdUser> getAllAdUser(String search, DirContext ctx)
 	{

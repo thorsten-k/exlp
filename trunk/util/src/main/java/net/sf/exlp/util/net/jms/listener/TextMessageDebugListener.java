@@ -7,12 +7,12 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.TextMessage;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TextMessageDebugListener implements MessageListener
 {
-	static Log logger = LogFactory.getLog(TextMessageDebugListener.class);
+	final static Logger logger = LoggerFactory.getLogger(TextMessageDebugListener.class);
 	
 	public TextMessageDebugListener()
 	{	

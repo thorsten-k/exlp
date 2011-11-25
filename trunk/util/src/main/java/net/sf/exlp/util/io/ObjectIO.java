@@ -27,13 +27,12 @@ import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipOutputStream;
 
-
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ObjectIO
 {
-	static Log logger = LogFactory.getLog(ObjectIO.class);
+	final static Logger logger = LoggerFactory.getLogger(ObjectIO.class);
 	
 	private static String HASHALGORITHM = "MD5";
 	private static int BLOCKLENGTH = 4096;
@@ -76,7 +75,7 @@ public class ObjectIO
     	
  
     	bHashFile = messagedigest.digest();
-    	logger.debug(bHashFile);
+    	logger.debug(new String(bHashFile));
     	return bHashFile;
     }
 	
@@ -94,7 +93,7 @@ public class ObjectIO
     		for ( int n = 0; (n = in.read(md)) > -1; )
     			{messagedigest.update( md, 0, n );}
     	}
-    	catch(IOException e) {logger.error(e);}
+    	catch(IOException e) {logger.error("",e);}
     	bHashFile = messagedigest.digest();
     	return bHashFile;
     }
@@ -227,7 +226,7 @@ public class ObjectIO
 			fos.close();
 			success=true;
 		}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e) {logger.error("",e);}
 		return success;
 	}
 	
@@ -344,13 +343,13 @@ public class ObjectIO
 				toOs.write( buffer, 0, len );
 			}
 		}
-	    catch( IOException e ) {logger.error(e);}
+	    catch( IOException e ) {logger.error("",e);}
 	    finally
 	    {
 	      if ( fromIs != null )
-	        try { fromIs.close(); } catch ( IOException e ) {logger.error(e);}
+	        try { fromIs.close(); } catch ( IOException e ) {logger.error("",e);}
 	      if ( toOs != null )
-	        try { toOs.close(); } catch ( IOException e ) {logger.error(e);}
+	        try { toOs.close(); } catch ( IOException e ) {logger.error("",e);}
 	    }
 	  }
 	

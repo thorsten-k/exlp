@@ -11,12 +11,12 @@ import java.util.ArrayList;
 import java.util.NoSuchElementException;
 
 import org.apache.commons.lang.SystemUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractTxtWriter
 {
-	static Log logger = LogFactory.getLog(AbstractTxtWriter.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractTxtWriter.class);
 	
 	protected String lineSeparator;	
 	private String encoding;
@@ -78,7 +78,7 @@ public abstract class AbstractTxtWriter
 			writeStream(os);
 			os.close();
 		}
-		catch (IOException e){logger.error(e);}  
+		catch (IOException e){logger.error("IOException",e);}  
 	}
 	
 	public void writeStream(OutputStream os)
@@ -91,7 +91,7 @@ public abstract class AbstractTxtWriter
 			for(String s : txt){bw.write(s+lineSeparator);}
 			bw.close();osw.close();
 		}
-		catch (IOException e){logger.error(e);}  
+		catch (IOException e){logger.error("IOException",e);}  
 	}
 	
 	protected String spaces(int indent)

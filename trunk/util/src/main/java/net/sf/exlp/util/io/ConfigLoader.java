@@ -12,12 +12,16 @@ import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
 import org.apache.commons.configuration.tree.xpath.XPathExpressionEngine;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 public class ConfigLoader
 {
-	static Log logger = LogFactory.getLog(ConfigLoader.class);
+	final static Marker fatal = MarkerFactory.getMarker("FATAL");
+	final static Logger logger = LoggerFactory.getLogger(ExlpCentralConfigPointer.class);
+	
 	private static enum Typ{UNKNOWN,XML,PROPERTIES}
 	
 	private static CompositeConfiguration c;
@@ -43,7 +47,7 @@ public class ConfigLoader
 		{
 			return initWithException();
 		}
-		catch (ConfigurationException e) {logger.error(e);}
+		catch (ConfigurationException e) {logger.error("",e);}
 		return null;
 	}
 	
@@ -81,7 +85,7 @@ public class ConfigLoader
 			xmlSave.setProperty(key, value);
 			xmlSave.save();
 		}
-		catch (ConfigurationException e) {logger.error(e);}
+		catch (ConfigurationException e) {logger.error("",e);}
 	}
 	
 	public static Properties loadProperties(String fileName)
@@ -92,15 +96,14 @@ public class ConfigLoader
 		{
 			logger.info("Lade Properties von "+propFile.getAbsolutePath());
 			try{p.load(new FileInputStream(propFile));}
-			catch (IOException e) {logger.fatal("IOException", e);}
+			catch (IOException e) {logger.error("IOException", e);}
 		}
 		else
 		{
 			int sec=15;
-			logger.fatal("Properties file "+propFile.getAbsolutePath()+" does not exist!");
-			logger.fatal("Shutting down application in "+sec+" seconds.");
-			try {Thread.sleep(sec*1000);}
-			catch (InterruptedException e) {logger.error(e);}
+			logger.error(fatal,"Properties file "+propFile.getAbsolutePath()+" does not exist!");
+			logger.error(fatal,"Shutting down application in "+sec+" seconds.");
+			try {Thread.sleep(sec*1000);}catch (InterruptedException e) {logger.error("",e);}
 			System.exit(-1);
 		}
 		return p;

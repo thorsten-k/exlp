@@ -8,12 +8,12 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import org.apache.commons.lang.SystemUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MultiResourceLoader
 {
-	static Log logger = LogFactory.getLog(MultiResourceLoader.class);
+	final static Logger logger = LoggerFactory.getLogger(MultiResourceLoader.class);
 	
 	public enum LoadType {FileIs, Jws};
 	private static ArrayList<String> alLoadError;

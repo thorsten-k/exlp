@@ -9,12 +9,12 @@ import java.io.OutputStream;
 import java.util.jar.JarEntry;
 import java.util.jar.JarOutputStream;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JarStream
 {
-	static Log logger = LogFactory.getLog(JarStream.class);
+	final static Logger logger = LoggerFactory.getLogger(JarStream.class);
 	
 	private ByteArrayOutputStream resultOs;
 	private JarOutputStream zipOs;
@@ -23,7 +23,7 @@ public class JarStream
 	{
 		resultOs = new ByteArrayOutputStream();
 		try {zipOs = new JarOutputStream(resultOs);}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e) {logger.error("",e);}
 	}
 	
 	public void add(String name, byte[] data)
@@ -33,13 +33,13 @@ public class JarStream
 			zipOs.putNextEntry(new JarEntry(name));
 			zipOs.write(data);
 		}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e) {logger.error("",e);}
 	}
 	
 	public OutputStream getJarStream()
 	{
 		try {zipOs.close();}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e) {logger.error("",e);}
 		return resultOs;
 	}
 	
@@ -52,7 +52,7 @@ public class JarStream
 			fos.write(baos.toByteArray());
 			fos.close();
 		}
-		catch (FileNotFoundException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}
+		catch (FileNotFoundException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 	}
 }

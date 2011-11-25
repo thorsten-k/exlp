@@ -11,13 +11,13 @@ import net.sf.exlp.util.net.ads.data.AdGroup;
 import net.sf.exlp.util.net.ads.data.AdOu;
 import net.sf.exlp.util.net.ads.data.AdUser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @SuppressWarnings("rawtypes")
 public class AdsRecordInspector
 {
-	static Log logger = LogFactory.getLog(AdsRecordInspector.class);
+	final static Logger logger = LoggerFactory.getLogger(AdsRecordInspector.class);
 	
 	public static enum Typ{ Unknown, USER, OU, GROUP, CONTACT }
 	
