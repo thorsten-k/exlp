@@ -4,12 +4,12 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExlpLocalhostCheck
 {
-	static Log logger = LogFactory.getLog(ExlpLocalhostCheck.class);
+	final static Logger logger = LoggerFactory.getLogger(ExlpLocalhostCheck.class);
 	
 	public static boolean checkServer(String serverName)
 	{
@@ -31,9 +31,9 @@ public class ExlpLocalhostCheck
 		}
 		catch (UnknownHostException e)
 		{
-			logger.fatal("Can not resolve localhost: "+e);
-			logger.fatal(e);
-			logger.fatal("Application will be shut down immedeatly!");
+			logger.error("Can not resolve localhost: "+e);
+			logger.error("",e);
+			logger.error("Application will be shut down immedeatly!");
 			System.exit(-1);
 		}
 		return hostName;
@@ -53,7 +53,7 @@ public class ExlpLocalhostCheck
 		}
 		catch (UnknownHostException e)
 		{
-			logger.fatal("Kann getLocalHost nicht aufloesen: "+e);
+			logger.error("Kann getLocalHost nicht aufloesen: "+e);
 		}
 		return hostIP;
 	}

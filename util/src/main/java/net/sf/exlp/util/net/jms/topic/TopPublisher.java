@@ -16,14 +16,14 @@ import javax.jms.TopicSession;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TopPublisher
 {
-	public static enum Typ{ String, Integer }
+	final static Logger logger = LoggerFactory.getLogger(TopPublisher.class);
 	
-	static Log logger = LogFactory.getLog(TopPublisher.class);
+	public static enum Typ{ String, Integer }
 	
 	TopicConnection tc=null;
 	TopicSession tSes = null;

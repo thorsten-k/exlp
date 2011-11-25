@@ -5,12 +5,16 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang.SystemUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 public class ArchUtil
 {
-	static Log logger = LogFactory.getLog(ArchUtil.class);
+	final static Marker fatal = MarkerFactory.getMarker("FATAL");
+	final static Logger logger = LoggerFactory.getLogger(ArchUtil.class);
+	
 	private static String fs = SystemUtils.FILE_SEPARATOR;
 	
 	public enum OsArch {Win32, OsX, Linux, Iphone};
@@ -34,12 +38,12 @@ public class ArchUtil
 	
 	private static void errorUnsupportedOS()
 	{
-		logger.fatal("System "+ SystemUtils.OS_NAME +" not supported");
-		logger.fatal("We need to now the following details:");
-		logger.fatal("  -UserDocumentDir");
-		logger.fatal("  -DesktopDir");
-		logger.fatal("  -ConsoleCharSet");
-		logger.fatal("  -ApplicationSettingsDir");
+		logger.error(fatal,"System "+ SystemUtils.OS_NAME +" not supported");
+		logger.error(fatal,"We need to now the following details:");
+		logger.error(fatal,"  -UserDocumentDir");
+		logger.error(fatal,"  -DesktopDir");
+		logger.error(fatal,"  -ConsoleCharSet");
+		logger.error(fatal,"  -ApplicationSettingsDir");
 		System.exit(-1);
 	}
 	

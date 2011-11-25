@@ -10,12 +10,12 @@ import java.io.OutputStream;
 import java.io.StringWriter;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class StringIO
 {
-	static Log logger = LogFactory.getLog(StringIO.class);
+	final static Logger logger = LoggerFactory.getLogger(StringIO.class);
 	
 	public static synchronized void writeTxt(String dirName, String fileName, String content){writeTxt(new File(dirName), fileName, content);}
 	public static synchronized void writeTxt(File fDir, String fileName, String content){writeTxt(new File(fDir,fileName), content);}
@@ -28,7 +28,7 @@ public class StringIO
 			IOUtils.write(content, os, "UTF-8");
 			os.flush();os.close();
 		}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e) {logger.error("",e);}
 	}
 	
 	public static synchronized String loadTxt(File fDir, String fileName){return loadTxt(new File(fDir,fileName));}

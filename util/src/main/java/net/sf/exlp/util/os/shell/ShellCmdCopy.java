@@ -2,12 +2,12 @@ package net.sf.exlp.util.os.shell;
 
 import net.sf.exlp.util.exception.ExlpUnsupportedOsException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ShellCmdCopy extends AbstractShellCmd
 {
-	static Log logger = LogFactory.getLog(ShellCmdCopy.class);
+	final static Logger logger = LoggerFactory.getLogger(ShellCmdCopy.class);
 	
 	public ShellCmdCopy()
 	{

@@ -23,12 +23,11 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.exlp.util.io.StringBufferOutputStream;
+import net.sf.exlp.util.io.TestSLF4J;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.exception.JDomUtilException;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jdom.DocType;
 import org.jdom.Document;
 import org.jdom.Element;
@@ -38,12 +37,13 @@ import org.jdom.Text;
 import org.jdom.input.SAXBuilder;
 import org.jdom.output.Format;
 import org.jdom.output.XMLOutputter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 public class JDomUtil
 {
-	static Log logger = LogFactory.getLog(JDomUtil.class);
-	public static boolean useLog4j = true;
+	final static Logger logger = LoggerFactory.getLogger(JDomUtil.class);
 	
 	public static synchronized Document txtToDoc(String txt) throws JDOMException
 	{
@@ -53,7 +53,7 @@ public class JDomUtil
 			Reader sr = new StringReader(txt);  
 			doc = new SAXBuilder().build(sr);
 		}
-		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){logger.error("Cannot create doc",e);}
 		return doc;
 	}
 	
@@ -66,7 +66,7 @@ public class JDomUtil
 			XMLOutputter xmlOut = new XMLOutputter(Format.getRawFormat());
 			xmlOut.output(doc, sbos);
 		}
-		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){logger.error("Cannot create XMLOutputter",e);}
 		return sbos.getStringBuffer().toString();
 	}
 	
@@ -77,21 +77,21 @@ public class JDomUtil
 			XMLOutputter xmlOut = new XMLOutputter(Format.getPrettyFormat());
 			xmlOut.output(element, System.out);
 		}
-		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){logger.error("Cannot create XMLOutputter",e);}
 	}
 	
 	public static synchronized void dissect(Document doc)
 	{
 		Element rootE = doc.getRootElement();
 		String logMsg="RootName="+rootE.getName();
-		if(useLog4j){logger.debug(logMsg);}else{System.out.println(logMsg);}
+		logger.debug(logMsg);
 		
 		for(Object o :rootE.getChildren())
 		{
 			Element e=(Element)o;
 			logger.debug(e.getName());
 			logMsg=e.getName();
-			if(useLog4j){logger.debug(logMsg);}else{System.out.println(logMsg);}
+			logger.debug(logMsg);
 			for(Object oContent : e.getContent())
 			{
 				if(org.jdom.Text.class.isInstance(oContent))
@@ -117,8 +117,8 @@ public class JDomUtil
 			if(doctype!=null){doc.setDocType(doctype);}
 			save(doc, f, format);
 		}
-		catch (JDOMException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (JDOMException e){logger.error("Cannot save doc",e);}
+		catch (IOException e){logger.error("Cannot save doc",e);}
 	}
 	public static synchronized InputStream toInputStream(Document doc, Format format)
 	{
@@ -130,7 +130,7 @@ public class JDomUtil
 			os.close();
 			return is;
 		}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {logger.error("toInputStream",e);}
 		return null;
 	}
 	public static synchronized InputStream toInputStream(Element rootElement, Format format)
@@ -143,7 +143,7 @@ public class JDomUtil
 			os.close();
 			return is;
 		}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {logger.error("toInputStream",e);}
 		return null;
 	}
 	public static synchronized void save(Document doc, File f, Format format){save(doc,f,format,"UTF-8");}
@@ -156,8 +156,8 @@ public class JDomUtil
 			outputStream(doc, os, format,encoding);
 			os.close();
 		}
-		catch (FileNotFoundException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e) {if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (FileNotFoundException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 	}
 	public static synchronized void debug(Document doc)
 	{
@@ -174,7 +174,7 @@ public class JDomUtil
 			xmlOut.output( doc, osw );
 			osw.close();
 		} 
-		catch (IOException e){if(useLog4j){logger.error(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){logger.error("",e);}
 	}
 	public static synchronized Object toJaxb(Document doc, Class<?> c)
 	{
@@ -186,7 +186,7 @@ public class JDomUtil
 			Unmarshaller u = jc.createUnmarshaller();
 			result = u.unmarshal(is);
 		}
-		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (JAXBException e){logger.error("",e);}
 		return result;
 	}
 	
@@ -200,7 +200,7 @@ public class JDomUtil
 			Unmarshaller u = jc.createUnmarshaller();
 			result = u.unmarshal(is);
 		}
-		catch (JAXBException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (JAXBException e){logger.error("",e);}
 		return result;
 	}
 	
@@ -214,9 +214,9 @@ public class JDomUtil
 			DocumentBuilder builder = factory.newDocumentBuilder();
 			w3cDoc = builder.parse(is);
 		}
-		catch (ParserConfigurationException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (SAXException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (ParserConfigurationException e) {logger.error("",e);}
+		catch (SAXException e){logger.error("",e);}
+		catch (IOException e){logger.error("",e);}
 		return w3cDoc;
 	}
 	
@@ -240,7 +240,7 @@ public class JDomUtil
 			xmlOut.output( e, osw );
 			osw.close();
 		} 
-		catch (IOException ex){if(useLog4j){logger.error(ex);}else{System.err.println(ex.getMessage());}}
+		catch (IOException ex){logger.error("",ex);}
 	}
 	
 	public static synchronized Document load(File f){return load(f, "UTF-8");}
@@ -261,7 +261,7 @@ public class JDomUtil
 		catch (IOException e)
 		{
 			String msg = e.getMessage()+" "+f.getAbsolutePath();
-			if(useLog4j){logger.error(msg);}else{System.err.println(msg);}
+			logger.error(msg,e);
 		}
 		return doc;
 	} 
@@ -285,7 +285,7 @@ public class JDomUtil
 		catch (IOException e)
 		{
 			String msg = e.getMessage()+" "+resourceName;
-			if(useLog4j){logger.error(msg);}else{System.err.println(msg);}
+			logger.error(msg,e);
 		}
 		return doc;
 	}
@@ -309,7 +309,7 @@ public class JDomUtil
 			XMLOutputter xmlOut = new XMLOutputter(Format.getRawFormat());
 			xmlOut.output(doctype, sbos);
 		}
-		catch (IOException e){if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e){logger.error("",e);}
 		return sbos.getStringBuffer().toString();
 	}
 	

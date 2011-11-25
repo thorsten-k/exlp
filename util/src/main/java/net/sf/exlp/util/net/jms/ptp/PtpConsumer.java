@@ -13,12 +13,13 @@ import javax.naming.NamingException;
 
 import net.sf.exlp.util.net.jms.listener.MessageRespondListener;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PtpConsumer
 {
-	static Log logger = LogFactory.getLog(PtpConsumer.class);
+	final static Logger logger = LoggerFactory.getLogger(PtpConsumer.class);
+	
 	private static enum Typ {Listener, Responder};
 	
 	private Typ typ;
@@ -80,8 +81,8 @@ public class PtpConsumer
 			recv.setMessageListener(ml);
 			logger.debug("PtpConsumer startet: queue="+queueName+" selector="+messageSelector);
 		}
-		catch (JMSException e){logger.error(e);}
-		catch (NamingException e){logger.error(e);}
+		catch (JMSException e){logger.error("",e);}
+		catch (NamingException e){logger.error("",e);}
 	}
 	
 	public void stop()
@@ -97,7 +98,7 @@ public class PtpConsumer
 			logger.debug("QueueConnection wird geschlossen");
 			conn.close();
 		}
-		catch (JMSException e) {logger.error(e);}
+		catch (JMSException e) {logger.error("",e);}
 	}
 	
 	private class PtpConsumerShutdownHook extends Thread

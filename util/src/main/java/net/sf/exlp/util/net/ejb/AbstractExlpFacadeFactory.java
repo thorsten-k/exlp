@@ -7,12 +7,15 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 public abstract class AbstractExlpFacadeFactory implements ExlpFacadeFactory
 {
-	static Log logger = LogFactory.getLog(AbstractExlpFacadeFactory.class);
+	final static Marker fatal = MarkerFactory.getMarker("FATAL");
+	final static Logger logger = LoggerFactory.getLogger(AbstractExlpFacadeFactory.class);
 	
 	private InitialContext context;
 	protected String jbossServer;
@@ -48,10 +51,8 @@ public abstract class AbstractExlpFacadeFactory implements ExlpFacadeFactory
 	
 	protected void exit(Exception e)
 	{
-		logger.error(e);
-		logger.fatal("Error binding remote facade.");
-		logger.fatal("System will exit");
-		e.printStackTrace();
+		logger.error("Error binding remote facade.",e);
+		logger.error(fatal,"System will exit",e);
 		System.exit(-1);
 	}
 }

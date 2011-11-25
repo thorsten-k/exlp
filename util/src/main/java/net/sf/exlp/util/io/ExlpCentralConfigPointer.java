@@ -10,12 +10,12 @@ import net.sf.exlp.xml.io.Dir;
 import net.sf.exlp.xml.io.File;
 import net.sf.exlp.xml.xpath.IoXpath;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExlpCentralConfigPointer
 {
-	static Log logger = LogFactory.getLog(ExlpCentralConfigPointer.class);
+	final static Logger logger = LoggerFactory.getLogger(ExlpCentralConfigPointer.class);
 	
 	public static java.io.File getFile(String codeApp) throws ExlpConfigurationException
 	{

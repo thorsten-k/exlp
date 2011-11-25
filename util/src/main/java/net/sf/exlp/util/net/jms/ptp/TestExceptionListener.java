@@ -3,12 +3,12 @@ package net.sf.exlp.util.net.jms.ptp;
 import javax.jms.ExceptionListener;
 import javax.jms.JMSException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestExceptionListener extends Thread implements ExceptionListener
 {
-	static Log logger = LogFactory.getLog(TestExceptionListener.class);
+	final static Logger logger = LoggerFactory.getLogger(TestExceptionListener.class);
 	
 	PtpConsumer ptpC;
 	

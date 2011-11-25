@@ -6,12 +6,12 @@ import java.io.InputStream;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JarExtractor
 {
-	static Log logger = LogFactory.getLog(JarExtractor.class);
+	final static Logger logger = LoggerFactory.getLogger(JarExtractor.class);
 	
 	public JarExtractor()
 	{
@@ -33,6 +33,6 @@ public class JarExtractor
 			fos.close();
 			is.close();
 		}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e) {logger.error("",e);}
 	}
 }

@@ -16,12 +16,12 @@ import javax.jms.TextMessage;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TextMessageRespondDebugListener implements MessageListener
 {
-	static Log logger = LogFactory.getLog(TextMessageRespondDebugListener.class);
+	final static Logger logger = LoggerFactory.getLogger(TextMessageRespondDebugListener.class);
 	
 	private QueueSession session;
 	private Random rnd;
@@ -36,8 +36,8 @@ public class TextMessageRespondDebugListener implements MessageListener
 			QueueConnection connect = fact.createQueueConnection();
 			session = connect.createQueueSession( false, Session.AUTO_ACKNOWLEDGE );
 		}
-		catch (NamingException e) {logger.error(e);}
-		catch (JMSException e) {logger.error(e);}
+		catch (NamingException e) {logger.error("",e);}
+		catch (JMSException e) {logger.error("",e);}
 	}
 	
 	public void stop()
@@ -46,7 +46,7 @@ public class TextMessageRespondDebugListener implements MessageListener
 		{
 			session.close();
 		}
-		catch (JMSException e) {logger.error(e);}
+		catch (JMSException e) {logger.error("",e);}
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -71,7 +71,7 @@ public class TextMessageRespondDebugListener implements MessageListener
 			answer.setText(tm.getText()+" "+rnd.nextInt(100));
 			
 			try {Thread.sleep(1000*rnd.nextInt(15));}
-			catch (InterruptedException e) {logger.error(e);}
+			catch (InterruptedException e) {logger.error("",e);}
 			
 			Queue queueReply = (Queue)msg.getJMSReplyTo();
 			QueueSender qSender = session.createSender(queueReply);

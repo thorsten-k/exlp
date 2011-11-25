@@ -26,12 +26,12 @@ import javax.naming.NamingException;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PtpPublisher
 {
-	static Log logger = LogFactory.getLog(PtpPublisher.class);
+	final static Logger logger = LoggerFactory.getLogger(PtpPublisher.class);
 	
 	private QueueConnection connection;
 	private QueueSession session;

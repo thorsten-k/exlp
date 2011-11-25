@@ -7,12 +7,12 @@ import java.util.Date;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.xml.io.Dir;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DirTreeScanner
 {
-	static Log logger = LogFactory.getLog(DirTreeScanner.class);
+	final static Logger logger = LoggerFactory.getLogger(DirTreeScanner.class);
 	
 	public static enum Type{dir,file,unknown}
 	
