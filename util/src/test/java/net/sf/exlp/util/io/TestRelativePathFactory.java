@@ -6,14 +6,14 @@ import net.sf.exlp.test.AbstractExlpTest;
 import net.sf.exlp.test.ExlpTstBootstrap;
 
 import org.apache.commons.lang.SystemUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestRelativePathFactory extends AbstractExlpTest
 {
-	static Log logger = LogFactory.getLog(TestRelativePathFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(TestRelativePathFactory.class);
 	
 	public TestRelativePathFactory()
 	{

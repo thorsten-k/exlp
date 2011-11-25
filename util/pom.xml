@@ -36,11 +36,6 @@
     		<type>pom</type>
     		<scope>provided</scope>
 		</dependency>
-      	<dependency>
-      		<groupId>commons-logging</groupId>
-      		<artifactId>commons-logging</artifactId>
-      		<type>jar</type>
-      	</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
@@ -56,12 +51,24 @@
 			<artifactId>commons-configuration</artifactId>
 			<type>jar</type>
 			<scope>compile</scope>
+			<exclusions>
+        		<exclusion>
+        			<artifactId>commons-logging</artifactId>
+        			<groupId>commons-logging</groupId>
+        		</exclusion>
+        	</exclusions>
 		</dependency>
    		<dependency>
    			<groupId>org.apache.httpcomponents</groupId>
    			<artifactId>httpclient</artifactId>
    			<type>jar</type>
    			<scope>compile</scope>
+   			<exclusions>
+        		<exclusion>
+        			<artifactId>commons-logging</artifactId>
+        			<groupId>commons-logging</groupId>
+        		</exclusion>
+        	</exclusions>
    		</dependency>
    		<dependency>
    			<groupId>commons-io</groupId>
@@ -98,5 +105,19 @@
    	   		<type>jar</type>
    	   		<scope>provided</scope>
    	   	</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>1.6.4</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+		</dependency>
 	</dependencies>
 </project>

@@ -6,14 +6,14 @@ import java.io.FileNotFoundException;
 import net.sf.exlp.test.AbstractExlpTest;
 import net.sf.exlp.util.exception.ExlpConfigurationException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Ignore;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestExlpCentralConfigPointer extends AbstractExlpTest
 {
-	static Log logger = LogFactory.getLog(TestExlpCentralConfigPointer.class);
+	final static Logger logger = LoggerFactory.getLogger(TestExlpCentralConfigPointer.class);
     
     @Test
     @Ignore

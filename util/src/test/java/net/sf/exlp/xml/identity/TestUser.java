@@ -6,14 +6,14 @@ import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestUser extends AbstractIdentityXmlTest
 {
-	static Log logger = LogFactory.getLog(TestUser.class);
+	final static Logger logger = LoggerFactory.getLogger(TestUser.class);
 		
 	@BeforeClass
 	public static void initFiles()

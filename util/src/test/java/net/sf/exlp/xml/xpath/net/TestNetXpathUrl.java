@@ -11,14 +11,14 @@ import net.sf.exlp.xml.net.Url;
 import net.sf.exlp.xml.net.Urls;
 import net.sf.exlp.xml.xpath.NetXpath;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestNetXpathUrl extends AbstractExlpTest
 {
-	static Log logger = LogFactory.getLog(TestNetXpathUrl.class);
+	final static Logger logger = LoggerFactory.getLogger(TestNetXpathUrl.class);
 	
 	private static Url url1,url2,url3,url4;
 	
