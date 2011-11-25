@@ -9,14 +9,14 @@ import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestFile extends AbstractIoXmlTest
 {
-	static Log logger = LogFactory.getLog(TestFile.class);
+	final static Logger logger = LoggerFactory.getLogger(TestFile.class);
 	
 	@BeforeClass
 	public static void initFiles()

@@ -7,14 +7,14 @@ import net.sf.exlp.xml.io.Dir;
 import net.sf.exlp.xml.io.File;
 import net.sf.exlp.xml.xpath.IoXpath;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestIoXpathFile extends AbstractExlpTest
 {
-	static Log logger = LogFactory.getLog(TestIoXpathFile.class);
+	final static Logger logger = LoggerFactory.getLogger(TestIoXpathFile.class);
 	
 	private static File f1,f2,f3,f4;
 	

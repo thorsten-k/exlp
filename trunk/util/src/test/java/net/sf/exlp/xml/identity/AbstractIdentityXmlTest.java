@@ -2,12 +2,12 @@ package net.sf.exlp.xml.identity;
 
 import net.sf.exlp.test.AbstractExlpTest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractIdentityXmlTest extends AbstractExlpTest
 {
-	static Log logger = LogFactory.getLog(AbstractIdentityXmlTest.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractIdentityXmlTest.class);
 	
 	protected static final String rootDir = "src/test/resources/data/xml/identity";
 	

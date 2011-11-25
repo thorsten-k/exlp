@@ -17,12 +17,13 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class XsltUtil
 {
-	static Log logger = LogFactory.getLog(XsltUtil.class);
+	final static Logger logger = LoggerFactory.getLogger(XsltUtil.class);
+	
 	public static boolean useLog4j = true;
 	
 	public static synchronized void debug(InputStream xml, String xslt){transform(xml,xslt,System.out);}
@@ -34,8 +35,8 @@ public class XsltUtil
 			transform(xml, xslt, os);
 			os.close();
 		}
-		catch (FileNotFoundException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (FileNotFoundException e) {if(useLog4j){logger.error("NYI",e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {if(useLog4j){logger.error("NYI",e);}else{System.err.println(e.getMessage());}}
 	}
 	public static synchronized InputStream toInputStream(InputStream xml, String xslt)
 	{
@@ -47,7 +48,7 @@ public class XsltUtil
 			os.close();
 			return is;
 		}
-		catch (IOException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (IOException e) {if(useLog4j){logger.error("NYI",e);}else{System.err.println(e.getMessage());}}
 		return null;
 	}
 	
@@ -63,7 +64,7 @@ public class XsltUtil
 			trans = transFact.newTransformer(xsltSource);
 			trans.transform(xmlSource, new StreamResult(os));
 		}
-		catch (TransformerConfigurationException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
-		catch (TransformerException e) {if(useLog4j){logger.debug(e);}else{System.err.println(e.getMessage());}}
+		catch (TransformerConfigurationException e) {if(useLog4j){logger.error("NYI",e);}else{System.err.println(e.getMessage());}}
+		catch (TransformerException e) {if(useLog4j){logger.error("NYI",e);}else{System.err.println(e.getMessage());}}
 	}
 }

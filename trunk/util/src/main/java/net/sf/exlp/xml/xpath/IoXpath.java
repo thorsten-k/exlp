@@ -8,12 +8,12 @@ import net.sf.exlp.xml.io.Dir;
 import net.sf.exlp.xml.io.File;
 
 import org.apache.commons.jxpath.JXPathContext;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IoXpath
 {
-	static Log logger = LogFactory.getLog(IoXpath.class);
+	final static Logger logger = LoggerFactory.getLogger(IoXpath.class);
 	
 	@SuppressWarnings("unchecked")
 	public static synchronized Dir getDir(Dir dir, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException

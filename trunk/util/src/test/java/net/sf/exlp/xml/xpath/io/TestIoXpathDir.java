@@ -6,14 +6,14 @@ import net.sf.exlp.util.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.xml.io.Dir;
 import net.sf.exlp.xml.xpath.IoXpath;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestIoXpathDir extends AbstractExlpTest
 {
-	static Log logger = LogFactory.getLog(TestIoXpathDir.class);
+	final static Logger logger = LoggerFactory.getLogger(TestIoXpathDir.class);
 	
 	private static Dir d1,d2,d3,d4;
 	

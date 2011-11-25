@@ -11,12 +11,12 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DateUtil
 {
-	static Log logger = LogFactory.getLog(DateUtil.class);
+	final static Logger logger = LoggerFactory.getLogger(DateUtil.class);
 	
 	public static GregorianCalendar getGC4D(Date d)
 	{
@@ -123,7 +123,7 @@ public class DateUtil
 			xmlGC.setSecond(gc.get(GregorianCalendar.SECOND));
 			if(withMilli){xmlGC.setMillisecond(gc.get(GregorianCalendar.MILLISECOND));}
 		}
-		catch (DatatypeConfigurationException e) {logger.error(e);}
+		catch (DatatypeConfigurationException e) {logger.error("XML", e);}
 		return xmlGC;
 	}
 	
