@@ -6,12 +6,13 @@ import java.util.NoSuchElementException;
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EhResultContainer extends AbstractEventHandler 
 {
-	static Log logger = LogFactory.getLog(EhResultContainer.class);
+	final static Logger logger = LoggerFactory.getLogger(EhResultContainer.class);
+	
 	static final long serialVersionUID=1;
 	
 	private ArrayList<LogEvent> alResults;

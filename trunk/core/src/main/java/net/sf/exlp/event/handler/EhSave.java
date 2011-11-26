@@ -5,12 +5,13 @@ import java.io.File;
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EhSave extends AbstractEventHandler 
 {
-	static Log logger = LogFactory.getLog(EhSave.class);
+	final static Logger logger = LoggerFactory.getLogger(EhSave.class);
+	
 	static final long serialVersionUID=1;
 	
 	private File dir;

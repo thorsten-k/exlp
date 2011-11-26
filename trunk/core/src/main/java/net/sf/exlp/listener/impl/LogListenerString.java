@@ -8,13 +8,12 @@ import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LogListenerString extends AbstractLogListener implements LogListener
 {
-	static Log logger = LogFactory.getLog(LogListenerString.class);
+	final static Logger logger = LoggerFactory.getLogger(LogListenerString.class);
 
 	private String s;
 	

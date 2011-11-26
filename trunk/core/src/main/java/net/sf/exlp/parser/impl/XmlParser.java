@@ -9,14 +9,14 @@ import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.util.xml.JDomUtil;
 
 import org.apache.commons.lang.SystemUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jdom.Document;
 import org.jdom.JDOMException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class XmlParser extends AbstractLogParser implements LogParser  
 {
-	static Log logger = LogFactory.getLog(XmlParser.class);
+	final static Logger logger = LoggerFactory.getLogger(XmlParser.class);
 
 	public XmlParser(LogEventHandler leh)
 	{

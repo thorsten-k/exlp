@@ -8,19 +8,18 @@ import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
 import org.apache.http.impl.client.DefaultHttpClient;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LogListenerHttp extends AbstractLogListener implements LogListener
 {
-	static Log logger = LogFactory.getLog(LogListenerHttp.class);
+	final static Logger logger = LoggerFactory.getLogger(LogListenerHttp.class);
 
 	private HttpClient httpclient;
 	
@@ -66,8 +65,8 @@ public class LogListenerHttp extends AbstractLogListener implements LogListener
 				result.add(line);
 			}
 		}
-		catch (ClientProtocolException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}
+		catch (ClientProtocolException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 		return result;
 	}
 	

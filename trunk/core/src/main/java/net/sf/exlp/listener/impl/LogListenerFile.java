@@ -16,12 +16,15 @@ import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 public class LogListenerFile extends AbstractLogListener implements LogListener
 {
-	static Log logger = LogFactory.getLog(LogListenerFile.class);
+	final static Marker fatal = MarkerFactory.getMarker("FATAL");
+	final static Logger logger = LoggerFactory.getLogger(LogListenerFile.class);
 	
 	private Pattern gzipPattern;
 	private BufferedReader myBufferedReader;
@@ -38,7 +41,7 @@ public class LogListenerFile extends AbstractLogListener implements LogListener
 		this.f=f;
 		if(!f.exists())
 		{
-			logger.fatal("File "+f.getAbsolutePath()+" does not exist!");
+			logger.error(fatal,"File "+f.getAbsolutePath()+" does not exist!");
 			System.exit(-1);
 		}
 		String s="[a-z0-9A-Z\\.]*\\.(gz)";

@@ -29,12 +29,6 @@
    </build>
    
 	<dependencies>
-      	<dependency>
-      		<groupId>commons-logging</groupId>
-      		<artifactId>commons-logging</artifactId>
-      		<type>jar</type>
-      		<scope>provided</scope>
-      	</dependency>
 		<dependency>
    			<groupId>log4j</groupId>
    			<artifactId>log4j</artifactId>
@@ -51,6 +45,12 @@
  			<artifactId>commons-configuration</artifactId>
       		<type>jar</type>
   			<scope>compile</scope>
+  			<exclusions>
+        		<exclusion>
+        			<artifactId>commons-logging</artifactId>
+        			<groupId>commons-logging</groupId>
+        		</exclusion>
+        	</exclusions>
       	</dependency>
 		<dependency>
    			<groupId>org.jdom</groupId>
@@ -63,6 +63,12 @@
    			<artifactId>httpclient</artifactId>
    			<type>jar</type>
    			<scope>compile</scope>
+   			<exclusions>
+        		<exclusion>
+        			<artifactId>commons-logging</artifactId>
+        			<groupId>commons-logging</groupId>
+        		</exclusion>
+        	</exclusions>
    		</dependency>
    		<dependency>
    			<groupId>net.sf.exlp</groupId>
