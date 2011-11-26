@@ -10,14 +10,14 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.Assert;
 import org.junit.BeforeClass;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class AbstractExlpAddonTest
 {
-	static Log logger = LogFactory.getLog(AbstractExlpAddonTest.class);	
+	final static Logger logger = LoggerFactory.getLogger(AbstractExlpAddonTest.class);
 	
 	private static NsPrefixMapperInterface nsPrefixMapper;
 	
