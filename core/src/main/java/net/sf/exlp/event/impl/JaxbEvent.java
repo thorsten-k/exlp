@@ -4,12 +4,13 @@ import net.sf.exlp.event.AbstractEvent;
 import net.sf.exlp.event.LogEvent;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class JaxbEvent extends AbstractEvent implements LogEvent
 {
-	static Log logger = LogFactory.getLog(JaxbEvent.class);
+	final static Logger logger = LoggerFactory.getLogger(JaxbEvent.class);
+	
 	static final long serialVersionUID=1;
 	
 	private Object o;

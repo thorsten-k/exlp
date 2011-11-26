@@ -8,12 +8,12 @@ import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.impl.DummyParser;
 import net.sf.exlp.util.io.LoggerInit;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TstListenerHttp
 {
-	static Log logger = LogFactory.getLog(TstListenerHttp.class);
+	final static Logger logger = LoggerFactory.getLogger(TstListenerHttp.class);
 	
 	public static void main(String args[])
 	{

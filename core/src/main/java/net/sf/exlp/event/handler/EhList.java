@@ -5,12 +5,13 @@ import java.util.List;
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EhList extends AbstractEventHandler 
 {
-	static Log logger = LogFactory.getLog(EhList.class);
+	final static Logger logger = LoggerFactory.getLogger(EhList.class);
+	
 	static final long serialVersionUID=1;
 	private List<LogEvent> list;
 	

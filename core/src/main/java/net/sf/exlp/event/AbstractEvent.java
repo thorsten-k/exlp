@@ -8,14 +8,16 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Random;
 
+import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.util.io.ObjectIO;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public abstract class AbstractEvent implements LogEvent,Serializable
 {
-	static Log logger = LogFactory.getLog(AbstractEvent.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractLogListener.class);
+	
 	static final long serialVersionUID=2;
 	
 	protected String fileName;

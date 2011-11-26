@@ -11,17 +11,17 @@ import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.jdom.Document;
 import org.jdom.Element;
 import org.jdom.JDOMException;
 import org.jdom.input.SAXBuilder;
 import org.jdom.xpath.XPath;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LogListenerXml extends AbstractLogListener implements LogListener
 {
-	static Log logger = LogFactory.getLog(LogListenerXml.class);
+	final static Logger logger = LoggerFactory.getLogger(LogListenerXml.class);
 	
 	BufferedReader myBufferedReader;
 	Document doc;
@@ -74,7 +74,7 @@ public class LogListenerXml extends AbstractLogListener implements LogListener
 				}
 			}
 		}
-		catch (JDOMException e) {logger.error(e);}
+		catch (JDOMException e) {logger.error("",e);}
 	}
 	
 	public void processMulti(String xPathExpression)
@@ -100,7 +100,7 @@ public class LogListenerXml extends AbstractLogListener implements LogListener
 				}
 			}
 		}
-		catch (JDOMException e) {logger.error(e);}
+		catch (JDOMException e) {logger.error("",e);}
 	}
 	
 	@Override

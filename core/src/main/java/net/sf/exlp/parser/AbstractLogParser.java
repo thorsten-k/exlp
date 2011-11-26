@@ -8,12 +8,15 @@ import java.util.regex.Pattern;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhDebug;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 public class AbstractLogParser
 {
-	static Log logger = LogFactory.getLog(AbstractLogParser.class);
+	final static Marker fatal = MarkerFactory.getMarker("FATAL");
+	final static Logger logger = LoggerFactory.getLogger(AbstractLogParser.class);
 	
 	protected List<Pattern> pattern;
 	protected List<LogParser> childParser;
@@ -59,9 +62,9 @@ public class AbstractLogParser
 	
 	private void exitCall(String call)
 	{
-		logger.fatal("Forbidden call: "+call);
-		logger.fatal("But you can ovveride this in you parser!");
-		logger.fatal("System will exit!");
+		logger.error(fatal,"Forbidden call: "+call);
+		logger.error(fatal,"But you can ovveride this in you parser!");
+		logger.error(fatal,"System will exit!");
 		System.exit(-1);
 	}
 }

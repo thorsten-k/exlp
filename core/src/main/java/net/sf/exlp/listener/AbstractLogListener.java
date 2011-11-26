@@ -4,12 +4,15 @@ import java.util.Properties;
 
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.slf4j.Marker;
+import org.slf4j.MarkerFactory;
 
 public abstract class AbstractLogListener
 {	
-	static Log logger = LogFactory.getLog(AbstractLogListener.class);
+	final static Marker fatal = MarkerFactory.getMarker("FATAL");
+	final static Logger logger = LoggerFactory.getLogger(AbstractLogListener.class);
 	
 	public Properties metaInfo;
 	protected LogParser lp;
@@ -26,7 +29,7 @@ public abstract class AbstractLogListener
 	
 	public void exit(String msg)
 	{
-		logger.fatal(msg);
+		logger.error(fatal,msg);
 		System.exit(-1);
 	}
 	
@@ -47,9 +50,9 @@ public abstract class AbstractLogListener
 	
 	private void exitCall(String call)
 	{
-		logger.fatal("Forbidden call: "+call);
-		logger.fatal("But you can ovveride this!");
-		logger.fatal("System will exit!");
+		logger.error(fatal,"Forbidden call: "+call);
+		logger.error(fatal,"But you can ovveride this!");
+		logger.error(fatal,"System will exit!");
 		System.exit(-1);
 	}
 }

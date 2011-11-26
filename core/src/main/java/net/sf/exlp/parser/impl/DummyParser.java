@@ -8,12 +8,12 @@ import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DummyParser extends AbstractLogParser implements LogParser  
 {
-	static Log logger = LogFactory.getLog(DummyParser.class);
+	final static Logger logger = LoggerFactory.getLogger(DummyParser.class);
 
 	private final static int maxP=1;
 	Pattern p[] = new Pattern[maxP];

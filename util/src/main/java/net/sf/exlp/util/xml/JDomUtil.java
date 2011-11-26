@@ -23,7 +23,6 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.exlp.util.io.StringBufferOutputStream;
-import net.sf.exlp.util.io.TestSLF4J;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.exception.JDomUtilException;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
