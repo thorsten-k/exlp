@@ -13,14 +13,14 @@ import net.sf.exlp.addon.openvpn.event.OpenVpnCertEvent;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.xml.identity.Certificate;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import pk.edu.niit.clarens.util.PEMBlock;
 
 public class OpenVpnCertParser
 {	
-	static Log logger = LogFactory.getLog(OpenVpnCertParser.class);
+	final static Logger logger = LoggerFactory.getLogger(OpenVpnCertParser.class);
 		
 	public OpenVpnCertParser()
 	{
@@ -39,9 +39,9 @@ public class OpenVpnCertParser
 			X509Certificate x509Cert = (X509Certificate)pem.getCertificate();
 			cert = getOpenVpnCert(x509Cert);
 		}
-		catch (FileNotFoundException e) {logger.error(e);}
-		catch (CertificateException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}
+		catch (FileNotFoundException e) {logger.error("",e);}
+		catch (CertificateException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 		return cert;
 	}
 	

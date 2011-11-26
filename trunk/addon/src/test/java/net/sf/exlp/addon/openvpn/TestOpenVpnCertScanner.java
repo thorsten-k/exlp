@@ -11,14 +11,14 @@ import net.sf.exlp.test.ExlpAddonTstBootstrap;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.identity.Certificate;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestOpenVpnCertScanner extends AbstractExlpAddonTest
 {
-	static Log logger = LogFactory.getLog(TestOpenVpnCertScanner.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractExlpAddonTest.class);
 	
 	private static final String dirSingle = "src/test/resources/data/openvpn/single";
 	private static final String dirMulti = "src/test/resources/data/openvpn/multi";

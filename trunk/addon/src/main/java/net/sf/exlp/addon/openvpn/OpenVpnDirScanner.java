@@ -7,18 +7,17 @@ import java.util.List;
 
 import net.sf.exlp.addon.openvpn.event.OpenVpnCertEvent;
 import net.sf.exlp.addon.openvpn.parser.OpenVpnCertParser;
-import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.io.RecursiveFileFinder;
 
 import org.apache.commons.io.filefilter.FileFilterUtils;
 import org.apache.commons.io.filefilter.HiddenFileFilter;
 import org.apache.commons.io.filefilter.IOFileFilter;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OpenVpnDirScanner
 {	
-	static Log logger = LogFactory.getLog(OpenVpnDirScanner.class);
+	final static Logger logger = LoggerFactory.getLogger(OpenVpnDirScanner.class);
 	
 	private RecursiveFileFinder rff;
 	private OpenVpnCertParser certParser;
@@ -46,7 +45,7 @@ public class OpenVpnDirScanner
 				list.add(cert);
 			}
 		}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e) {logger.error("",e);}
 		return list;
 	}
 }
