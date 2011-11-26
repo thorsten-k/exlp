@@ -8,18 +8,20 @@ import net.sf.exlp.addon.shell.event.PingEvent;
 import net.sf.exlp.addon.shell.parser.PingParser;
 import net.sf.exlp.event.LogEvent;
 import net.sf.exlp.event.LogEventHandler;
+import net.sf.exlp.event.handler.EhPersist;
 import net.sf.exlp.event.handler.EhQueue;
 import net.sf.exlp.io.spawn.Spawn;
 import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.util.exception.ExlpUnsupportedOsException;
 import net.sf.exlp.util.os.shell.ShellCmdPing;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class IcmpPing
 {
-	static Log logger = LogFactory.getLog(IcmpPing.class);
+	final static Logger logger = LoggerFactory.getLogger(IcmpPing.class);
+	
 	private static final long serialVersionUID = 1;
 	
 	private String pingAddress;
@@ -45,7 +47,7 @@ public class IcmpPing
 //			spawn.setWriter(new PrintWriter(System.out));
 			spawn.cmd();
 		}
-		catch (ExlpUnsupportedOsException e) {logger.error(e);}
+		catch (ExlpUnsupportedOsException e) {logger.error(""+e);}
 	}
 	
 	public List<PingEvent> ping()
@@ -61,7 +63,7 @@ public class IcmpPing
 				PingEvent event = (PingEvent)queue.take();
 				listPings.add(event);
 			}
-			catch (InterruptedException e) {logger.error(e);}
+			catch (InterruptedException e) {logger.error(""+e);}
 		}
 		return listPings;
 	}

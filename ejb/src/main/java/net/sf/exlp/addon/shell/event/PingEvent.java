@@ -5,12 +5,12 @@ import java.io.Serializable;
 import net.sf.exlp.event.AbstractEvent;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class PingEvent extends AbstractEvent implements LogEvent,Serializable
 {
-	static Log logger = LogFactory.getLog(PingEvent.class);
+	final static Logger logger = LoggerFactory.getLogger(PingEvent.class);
 	static final long serialVersionUID=1;
 	
 	private String hostIp;

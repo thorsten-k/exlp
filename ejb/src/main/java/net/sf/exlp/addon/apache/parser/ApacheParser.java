@@ -13,12 +13,12 @@ import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.PatternFactory;
 import net.sf.exlp.util.DateUtil;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ApacheParser extends AbstractLogParser implements LogParser  
 {
-	static Log logger = LogFactory.getLog(ApacheParser.class);
+	final static Logger logger = LoggerFactory.getLogger(ApacheParser.class);
 
 	private final static int maxP=1;
 	Pattern p[] = new Pattern[maxP];
@@ -94,8 +94,8 @@ public class ApacheParser extends AbstractLogParser implements LogParser
 			leh.handleEvent(event);
 	//		logger.debug(m.group(0));
 		}
-		catch (ParseException e) {logger.error(e);}
-		catch (NumberFormatException e) {logger.error(e);}
+		catch (ParseException e) {logger.error("",e);}
+		catch (NumberFormatException e) {logger.error("",e);}
 	}
 	
 	private int getSize(String s)

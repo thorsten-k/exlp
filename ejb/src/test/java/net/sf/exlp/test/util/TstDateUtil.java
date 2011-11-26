@@ -8,13 +8,12 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TstDateUtil
 {
-	static Log logger = LogFactory.getLog(TstDateUtil.class);
-	
+	final static Logger logger = LoggerFactory.getLogger(TstDateUtil.class);
 	
 	public TstDateUtil()
 	{
@@ -27,9 +26,9 @@ public class TstDateUtil
 		XMLGregorianCalendar xmlGcNow = DateUtil.getXmlGc4D(now);
 		Date nowBack = DateUtil.getDate4XmlGc(xmlGcNow);
 		
-		logger.debug(now);
-		logger.debug(xmlGcNow);
-		logger.debug(nowBack);
+		logger.debug(now.toString());
+		logger.debug(xmlGcNow.toString());
+		logger.debug(nowBack.toString());
 	}
 	
 	public void testQuarter()

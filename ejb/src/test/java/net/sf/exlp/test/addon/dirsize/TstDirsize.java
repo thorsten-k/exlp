@@ -9,12 +9,12 @@ import net.sf.exlp.addon.dirsize.data.ejb.ExlpDirectorySize;
 import net.sf.exlp.addon.dirsize.data.facade.exlp.ExlpDirsizeFacade;
 import net.sf.exlp.util.io.LoggerInit;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TstDirsize
 {
-	static Log logger = LogFactory.getLog(TstDirsize.class);
+	final static Logger logger = LoggerFactory.getLogger(TstDirsize.class);
 	
 	private ExlpDirsizeFacade fExlp;
 	
@@ -33,7 +33,7 @@ public class TstDirsize
 	public void insert()
 	{
 		ExlpDirectory dir = getFirst();
-		logger.debug(dir);
+		logger.debug(dir.toString());
 		
 		ExlpDirectorySize size = new ExlpDirectorySize();
 		size.setSize(100);

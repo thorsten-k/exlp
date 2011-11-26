@@ -8,12 +8,12 @@ import net.sf.exlp.util.net.ejb.ExlpContextFactory;
 import net.sf.exlp.util.net.jms.listener.TextMessageRespondDebugListener;
 import net.sf.exlp.util.net.jms.ptp.PtpConsumer;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TstPtpConsumer
 {
-	static Log logger = LogFactory.getLog(TstPtpConsumer.class);
+	final static Logger logger = LoggerFactory.getLogger(TstPtpConsumer.class);
 	
 	private PtpConsumer ptp;
 	
@@ -26,7 +26,7 @@ public class TstPtpConsumer
 	public void receive()
 	{
 		ptp.start();
-		try {Thread.sleep(1000*100);} catch (InterruptedException e) {logger.error(e);}
+		try {Thread.sleep(1000*100);} catch (InterruptedException e) {logger.error(""+e);}
 		ptp.stop();
 	}
 	

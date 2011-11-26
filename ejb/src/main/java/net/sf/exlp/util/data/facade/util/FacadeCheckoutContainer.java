@@ -5,12 +5,12 @@ import java.util.List;
 
 import net.sf.exlp.util.data.facade.exlp.ExlpCheckoutFacade;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class FacadeCheckoutContainer
 {
-	static Log logger = LogFactory.getLog(FacadeCheckoutContainer.class);
+	final static Logger logger = LoggerFactory.getLogger(FacadeCheckoutContainer.class);
 	
 	private List<ExlpCheckoutFacade> lFacade;
 	

@@ -12,14 +12,14 @@ import net.sf.exlp.addon.apache.ejb.ExlpApache;
 import net.sf.exlp.addon.apache.facade.exlp.ExlpApacheFacade;
 import net.sf.exlp.addon.common.data.facade.bean.AbstractExlpFacadeBean;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Stateful
 @Remote
 public class ExlpApacheFacadeBean extends AbstractExlpFacadeBean implements ExlpApacheFacade, Serializable
 {
-	static Log logger = LogFactory.getLog(ExlpApacheFacadeBean.class);
+	final static Logger logger = LoggerFactory.getLogger(ExlpApacheFacadeBean.class);
 	static final long serialVersionUID=10;
 	
 	public ExlpApache nExlpApache(ExlpApache apache)

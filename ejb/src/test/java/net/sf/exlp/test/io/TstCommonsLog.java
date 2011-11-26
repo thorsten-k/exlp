@@ -2,12 +2,12 @@ package net.sf.exlp.test.io;
 
 import net.sf.exlp.util.io.LoggerInit;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TstCommonsLog
 {
-	static Log logger = LogFactory.getLog(TstCommonsLog.class);
+	final static Logger logger = LoggerFactory.getLogger(TstCommonsLog.class);
 	
 	public TstCommonsLog()
 	{

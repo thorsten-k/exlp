@@ -12,12 +12,12 @@ import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
 import net.sf.exlp.event.AbstractEvent;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EximGreylistEvent extends AbstractEvent implements LogEvent
 {
-	static Log logger = LogFactory.getLog(EximGreylistEvent.class);
+	final static Logger logger = LoggerFactory.getLogger(EximGreylistEvent.class);
 	static final long serialVersionUID=1;
 	
 	private ExlpEmail from, rcpt;

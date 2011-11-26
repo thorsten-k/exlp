@@ -6,12 +6,12 @@ import java.util.regex.Pattern;
 import net.sf.exlp.parser.PatternFactory;
 import net.sf.exlp.util.io.LoggerInit;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TstMacAddressPattern
 {
-	static Log logger = LogFactory.getLog(TstMacAddressPattern.class);
+	final static Logger logger = LoggerFactory.getLogger(TstMacAddressPattern.class);
 	
 	public static void main(String args[])
 	{
@@ -21,6 +21,6 @@ public class TstMacAddressPattern
 			
 		Pattern p = Pattern.compile(PatternFactory.macPatter+"(.*)");
 		Matcher m=p.matcher("00:AB:12:AC:3F:EE");
-		logger.debug(m.matches());
+		logger.debug("Matches: "+m.matches());
 	}
 }

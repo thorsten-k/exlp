@@ -13,14 +13,14 @@ import net.sf.exlp.addon.dirsize.data.ejb.ExlpDirectory;
 import net.sf.exlp.addon.dirsize.data.ejb.ExlpDirectorySize;
 import net.sf.exlp.addon.dirsize.data.facade.exlp.ExlpDirsizeFacade;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Stateful
 @Remote
 public class ExlpDirsizeFacadeBean extends AbstractExlpFacadeBean implements ExlpDirsizeFacade, Serializable
 {
-	static Log logger = LogFactory.getLog(ExlpDirsizeFacadeBean.class);
+	final static Logger logger = LoggerFactory.getLogger(ExlpDirsizeFacadeBean.class);
 	static final long serialVersionUID=1;
 	
 	@SuppressWarnings("unchecked")

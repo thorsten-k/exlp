@@ -11,12 +11,12 @@ import net.sf.exlp.event.LogEvent;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhDebug;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EventDebugListener implements MessageListener
 {
-	static Log logger = LogFactory.getLog(EventDebugListener.class);
+	final static Logger logger = LoggerFactory.getLogger(EventDebugListener.class);
 	
 	LogEventHandler ehi;
 	

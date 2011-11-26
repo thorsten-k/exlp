@@ -3,12 +3,12 @@ package net.sf.exlp.io.arch;
 import java.util.Hashtable;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EnvironmentParameter
 {
-	static Log logger = LogFactory.getLog(EnvironmentParameter.class);
+	final static Logger logger = LoggerFactory.getLogger(EnvironmentParameter.class);
 	
 	private Hashtable<String,String> htEnvPar;
 

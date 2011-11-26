@@ -16,14 +16,14 @@ import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.addon.common.data.exception.ExlpNotFoundException;
 import net.sf.exlp.addon.common.data.facade.exlp.ExlpCommonFacade;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Stateful
 @Remote
 public class ExlpCommonFacadeBean extends AbstractExlpFacadeBean implements ExlpCommonFacade, Serializable
 {
-	static Log logger = LogFactory.getLog(ExlpCommonFacadeBean.class);
+	final static Logger logger = LoggerFactory.getLogger(ExlpCommonFacadeBean.class);
 	static final long serialVersionUID=10;
 	
 	public ExlpHost fExlpHost(String ip) throws ExlpNotFoundException
@@ -47,7 +47,7 @@ public class ExlpCommonFacadeBean extends AbstractExlpFacadeBean implements Exlp
 			sql.append(" WHERE country IS NULL");
 			sql.append(" LIMIT "+limit);
 		
-		logger.debug(sql);
+		logger.debug("SQL: "+sql);
 		Query q = getManager().createNativeQuery(sql.toString());
 		List<Object> l = q.getResultList();
 
