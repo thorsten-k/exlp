@@ -6,12 +6,13 @@ import java.util.Map;
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EhPersist extends AbstractEventHandler 
 {
-	static Log logger = LogFactory.getLog(EhPersist.class);
+	final static Logger logger = LoggerFactory.getLogger(EhPersist.class);
+	
 	static final long serialVersionUID=1;
 		
 	Map<String,Object> facades;

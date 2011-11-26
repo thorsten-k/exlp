@@ -13,12 +13,12 @@ import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
 import net.sf.exlp.util.net.ejb.AbstractExlpFacadeFactory;
 
 import org.apache.commons.configuration.Configuration;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ExlpFacadeFactory extends AbstractExlpFacadeFactory
 {
-	static Log logger = LogFactory.getLog(ExlpFacadeFactory.class);
+	final static Logger logger = LoggerFactory.getLogger(ExlpFacadeFactory.class);
 	
 	public ExlpFacadeFactory(){super("exlp");}
 	public ExlpFacadeFactory(String contextPrefix){super(contextPrefix);}

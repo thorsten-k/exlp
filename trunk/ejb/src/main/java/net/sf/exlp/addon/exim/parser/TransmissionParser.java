@@ -9,12 +9,12 @@ import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.PatternFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TransmissionParser extends AbstractLogParser implements LogParser  
 {
-	static Log logger = LogFactory.getLog(TransmissionParser.class);
+	final static Logger logger = LoggerFactory.getLogger(TransmissionParser.class);
 	
 	private Date record;
 	private String eximId;

@@ -5,12 +5,13 @@ import java.util.concurrent.LinkedBlockingQueue;
 import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.event.LogEvent;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EhQueue extends AbstractEventHandler 
 {
-	static Log logger = LogFactory.getLog(EhQueue.class);
+	final static Logger logger = LoggerFactory.getLogger(EhQueue.class);
+	
 	static final long serialVersionUID=1;
 	private LinkedBlockingQueue<LogEvent> queue;
 	
@@ -23,7 +24,7 @@ public class EhQueue extends AbstractEventHandler
 	{
 		count();
 		try{queue.put(event);}
-		catch (InterruptedException e) {logger.error(e);return false;}
+		catch (InterruptedException e) {logger.error(""+e);return false;}
 		return true;
 	}
 }

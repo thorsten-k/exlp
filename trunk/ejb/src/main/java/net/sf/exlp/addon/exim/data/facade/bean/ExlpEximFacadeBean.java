@@ -17,14 +17,14 @@ import net.sf.exlp.addon.exim.data.ejb.ExlpEmail;
 import net.sf.exlp.addon.exim.data.ejb.ExlpGreylist;
 import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Stateful
 @Remote
 public class ExlpEximFacadeBean extends AbstractExlpFacadeBean implements ExlpEximFacade, Serializable
 {
-	static Log logger = LogFactory.getLog(ExlpEximFacadeBean.class);
+	final static Logger logger = LoggerFactory.getLogger(ExlpEximFacadeBean.class);
 	static final long serialVersionUID=10;
 	
 	@SuppressWarnings("unchecked")
@@ -43,7 +43,7 @@ public class ExlpEximFacadeBean extends AbstractExlpFacadeBean implements ExlpEx
 				sql.append(" ORDER BY record DESC");
 				sql.append(" LIMIT 1");
 			
-			logger.debug(sql);
+			logger.debug("SQL: "+sql);
 			Query q = getManager().createNativeQuery(sql.toString());
 			List<Object> l = q.getResultList();
 	

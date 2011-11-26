@@ -5,12 +5,12 @@ import net.sf.exlp.util.os.ArchUtil;
 import net.sf.exlp.util.os.ArchUtil.OsArch;
 
 import org.apache.commons.lang.SystemUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ArchOpen
 {
-	static Log logger = LogFactory.getLog(ArchOpen.class);
+	final static Logger logger = LoggerFactory.getLogger(ArchOpen.class);
 	
 	protected static OsArch arch;
 	

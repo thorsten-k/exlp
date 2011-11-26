@@ -13,12 +13,12 @@ import java.util.zip.ZipOutputStream;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ZipperStream
 {
-	static Log logger = LogFactory.getLog(ZipperStream.class);
+	final static Logger logger = LoggerFactory.getLogger(ZipperStream.class);
 	
 	private ByteArrayOutputStream resultOs;
 	private ZipOutputStream zipOs;
@@ -38,7 +38,7 @@ public class ZipperStream
 			zipOs.putNextEntry(new ZipEntry(name));
 			zipOs.write(data);
 		}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e) {logger.error(""+e);}
 	}
 	
 	public void addFile(String zipName, String fileName)
@@ -49,14 +49,14 @@ public class ZipperStream
 			InputStream is = mrl.searchIs(fileName);
 			IOUtils.copy(is, zipOs);
 		}
-		catch (FileNotFoundException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}
+		catch (FileNotFoundException e) {logger.error(""+e);}
+		catch (IOException e) {logger.error(""+e);}
 	}
 	
 	public OutputStream getZipStream()
 	{
 		try {zipOs.close();}
-		catch (IOException e) {logger.error(e);}
+		catch (IOException e) {logger.error(""+e);}
 		return resultOs;
 	}
 	
@@ -69,7 +69,7 @@ public class ZipperStream
 			fos.write(baos.toByteArray());
 			fos.close();
 		}
-		catch (FileNotFoundException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}
+		catch (FileNotFoundException e) {logger.error(""+e);}
+		catch (IOException e) {logger.error(""+e);}
 	}
 }

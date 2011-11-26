@@ -5,12 +5,12 @@ import java.util.regex.Pattern;
 
 import net.sf.exlp.util.io.LoggerInit;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TstApachePattern
 {
-	static Log logger = LogFactory.getLog(TstApachePattern.class);
+	final static Logger logger = LoggerFactory.getLogger(TstApachePattern.class);
 	
 	public static void main(String args[])
 	{
@@ -20,6 +20,6 @@ public class TstApachePattern
 			
 		Pattern p = Pattern.compile("/index.php\\?id=([\\d]+)(.*)");
 		Matcher m=p.matcher("/index.php?id=408");
-		logger.debug(m.matches());
+		logger.debug("Matches: "+m.matches());
 	}
 }

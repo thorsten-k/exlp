@@ -9,12 +9,13 @@ import java.io.Writer;
 import net.sf.exlp.io.arch.EnvironmentParameter;
 import net.sf.exlp.parser.LogParser;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Spawn extends Thread
 {
-	static Log logger = LogFactory.getLog(Spawn.class);
+	final static Logger logger = LoggerFactory.getLogger(Spawn.class);
+	
 	public final static String exitValueIdentifier = "Exit-Code:";
 	
 	private String command, charSet;
@@ -91,7 +92,7 @@ public class Spawn extends Thread
 		}
 		catch (UnsupportedEncodingException uee){logger.error("UnsupportedEncodingException. charsets.jar in Path?",uee);}
 		catch (IOException e) {logger.error("Fehler beim ausführen von: "+command,e);}
-		catch (InterruptedException e) {logger.error(e);}
+		catch (InterruptedException e) {logger.error(""+e);}
 	}
 	
 	public void run()

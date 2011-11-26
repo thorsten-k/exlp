@@ -13,12 +13,12 @@ import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.PatternFactory;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RejectParser extends AbstractLogParser implements LogParser  
 {
-	static Log logger = LogFactory.getLog(RejectParser.class);
+	final static Logger logger = LoggerFactory.getLogger(RejectParser.class);
 	
 	private Date record;
 	private ExlpHost host;

@@ -7,14 +7,14 @@ import java.io.InputStream;
 
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ImageResourceLoader
 {
-	static Log logger = LogFactory.getLog(ImageResourceLoader.class);
+	final static Logger logger = LoggerFactory.getLogger(ImageResourceLoader.class);
 	
 	public ImageResourceLoader()
 	{

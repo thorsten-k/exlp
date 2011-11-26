@@ -4,12 +4,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class InputChoiceReader
 {
-	static Log logger = LogFactory.getLog(InputChoiceReader.class);
+	final static Logger logger = LoggerFactory.getLogger(InputChoiceReader.class);
 	
 	public static Enum<?> getEnumForChoice(Enum<?>[] choice) throws IllegalArgumentException
 	{

@@ -4,12 +4,12 @@ import java.io.UnsupportedEncodingException;
 
 import net.sf.exlp.util.io.LoggerInit;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class HexUtil
 {
-	static Log logger = LogFactory.getLog(HexUtil.class);
+	final static Logger logger = LoggerFactory.getLogger(HexUtil.class);
 	
 	static final byte[] HEX_CHAR_TABLE = {
 	    (byte)'0', (byte)'1', (byte)'2', (byte)'3',

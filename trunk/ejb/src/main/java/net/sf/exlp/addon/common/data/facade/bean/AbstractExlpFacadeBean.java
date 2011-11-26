@@ -12,13 +12,13 @@ import javax.persistence.PersistenceContext;
 
 import net.sf.exlp.addon.common.data.exception.ExlpIntegrityException;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @PersistenceContext(name="exlpEM", unitName="exlp")
 public abstract class AbstractExlpFacadeBean
 {
-	static Log logger = LogFactory.getLog(AbstractExlpFacadeBean.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractExlpFacadeBean.class);
 	static final long serialVersionUID=10;
 	
 	private EntityManager manager;
@@ -32,7 +32,7 @@ public abstract class AbstractExlpFacadeBean
 				InitialContext ctx = new InitialContext();
 				manager= (EntityManager)ctx.lookup("java:comp/env/exlpEM");
 			}
-			catch (NamingException e) {logger.error(e);}
+			catch (NamingException e) {logger.error("",e);}
 			logger.debug("manager==null .... but looked it up");
 		}
 		else{logger.debug("Manager active ...");}
@@ -74,7 +74,7 @@ public abstract class AbstractExlpFacadeBean
 		{
 			if(ex.getCausedByException().getClass().getSimpleName().equals(EntityExistsException.class.getSimpleName()))
 			{
-				logger.warn(ex.getCausedByException());
+				logger.warn("",ex.getCausedByException());
 			}
 			else {throw ex;}
 		}

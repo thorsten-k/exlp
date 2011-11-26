@@ -7,12 +7,12 @@ import net.sf.exlp.addon.dirsize.data.ejb.ExlpDirectory;
 import net.sf.exlp.addon.dirsize.data.ejb.ExlpDirectorySize;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class DirSizeScanner
 {
-	static Log logger = LogFactory.getLog(DirSizeScanner.class);
+	final static Logger logger = LoggerFactory.getLogger(DirSizeScanner.class);
 	
 	public DirSizeScanner()
 	{

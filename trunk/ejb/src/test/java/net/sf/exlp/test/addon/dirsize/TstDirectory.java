@@ -7,12 +7,12 @@ import net.sf.exlp.addon.dirsize.data.ejb.ExlpDirectory;
 import net.sf.exlp.addon.dirsize.data.facade.exlp.ExlpDirsizeFacade;
 import net.sf.exlp.util.io.LoggerInit;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TstDirectory
 {
-	static Log logger = LogFactory.getLog(TstDirectory.class);
+	final static Logger logger = LoggerFactory.getLogger(TstDirectory.class);
 		
 	private ExlpDirsizeFacade fExlp;
 	
@@ -32,7 +32,7 @@ public class TstDirectory
 	public void list()
 	{
 		List<ExlpDirectory> list = fExlp.allExlpDirectories();
-		logger.debug(list.size());
+		logger.debug("Size: "+list.size());
 	}
 	
 	public static void main (String[] args) throws Exception

@@ -12,12 +12,12 @@ import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
 import net.sf.exlp.parser.PatternFactory;
 import net.sf.exlp.util.DateUtil;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class EximRafDateSeeker
 {
-	static Log logger = LogFactory.getLog(EximRafDateSeeker.class);
+	final static Logger logger = LoggerFactory.getLogger(EximRafDateSeeker.class);
 	
 	private ExlpEximFacade fExim;
 	private Date lastEximDbRecord;
@@ -34,7 +34,7 @@ public class EximRafDateSeeker
 	{
 		long pos = 0;
 		lastEximDbRecord = fExim.fLastLogDate();
-		logger.debug(lastEximDbRecord);
+		logger.debug("Last: "+lastEximDbRecord);
 //		lastEximDbRecord = DateUtil.getDateFromInt(2010,8,24);
 //		logger.debug("But using: "+lastEximDbRecord);
 		
@@ -42,15 +42,15 @@ public class EximRafDateSeeker
 		{
 			File f = new File(fileName);
 			raf = new RandomAccessFile(f,"r");
-			logger.debug(raf.length());
+			logger.debug("Lenght: "+raf.length());
 			pos = search(0,1000000);
 			logger.debug("Found pos = "+pos);
 			raf.seek(pos);
 			raf.readLine();
 			logger.debug(raf.readLine());
 		}
-		catch (FileNotFoundException e) {logger.error(e);}
-		catch (IOException e) {logger.error(e);}
+		catch (FileNotFoundException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 		return pos;
 	}
 	
