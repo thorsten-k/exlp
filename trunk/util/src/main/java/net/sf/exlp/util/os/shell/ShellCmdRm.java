@@ -1,6 +1,7 @@
 package net.sf.exlp.util.os.shell;
 
 import net.sf.exlp.util.exception.ExlpUnsupportedOsException;
+import net.sf.exlp.util.os.ArchUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,15 +10,15 @@ public class ShellCmdRm extends AbstractShellCmd
 {
 	final static Logger logger = LoggerFactory.getLogger(ShellCmdRm.class);
 	
-	public ShellCmdRm()
+	private ShellCmdRm()
 	{
 		
 	}
 	
-	public String rmDir(String dir, boolean onlySubEntries) throws ExlpUnsupportedOsException
+	public static String rmDir(String dir, boolean onlySubEntries) throws ExlpUnsupportedOsException
 	{
 		StringBuffer sb = new StringBuffer();
-		switch(arch)
+		switch(ArchUtil.getArch())
 		{
 			case Win32:  sb.append(rmDirWin(dir, onlySubEntries));break;
 			case OsX: 	 sb.append(rmDirOsx(dir, onlySubEntries));break;
@@ -26,7 +27,7 @@ public class ShellCmdRm extends AbstractShellCmd
 		return sb.toString();
 	}
 	
-	private String rmDirWin(String dir, boolean onlySubEntries)
+	private static String rmDirWin(String dir, boolean onlySubEntries)
 	{
 		StringBuffer sb = new StringBuffer();
 		if(onlySubEntries)
@@ -43,7 +44,7 @@ public class ShellCmdRm extends AbstractShellCmd
 		return sb.toString();
 	}
 	
-	private String rmDirOsx(String dir, boolean onlySubEntries)
+	private static String rmDirOsx(String dir, boolean onlySubEntries)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append("rm -rf ");

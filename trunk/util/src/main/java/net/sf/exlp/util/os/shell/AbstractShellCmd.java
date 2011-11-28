@@ -19,10 +19,10 @@ public abstract class AbstractShellCmd
 	
 	public AbstractShellCmd()
 	{
-		arch = ArchUtil.setArch();
+		arch = ArchUtil.getArch();
 	}
 	
-	protected void errorUnsupportedOS(String cmd) throws ExlpUnsupportedOsException
+	protected static void errorUnsupportedOS(String cmd) throws ExlpUnsupportedOsException
 	{
 		logger.error(fatal,"System "+ SystemUtils.OS_NAME + " not supported");
 		logger.error(fatal,"We need to now the following command: "+cmd);

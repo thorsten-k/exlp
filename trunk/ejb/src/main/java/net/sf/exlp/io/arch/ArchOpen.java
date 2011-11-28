@@ -16,7 +16,7 @@ public class ArchOpen
 	
 	public static void setArch()
 	{
-		arch = ArchUtil.setArch();
+		arch = ArchUtil.getArch();
 	}
 	
 	public static void open(String filePath)
