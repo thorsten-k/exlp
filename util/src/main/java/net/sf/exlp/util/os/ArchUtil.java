@@ -22,11 +22,11 @@ public class ArchUtil
 	
 	public static String toArch()
 	{
-		if(arch==null){setArch();}
+		if(arch==null){getArch();}
 		return arch.toString().toLowerCase();
 	}
 
-	public static OsArch setArch()
+	public static OsArch getArch()
 	{
 		if(SystemUtils.IS_OS_MAC_OSX){arch=OsArch.OsX;}
 		else if(SystemUtils.IS_OS_WINDOWS){arch=OsArch.Win32;}
@@ -49,7 +49,7 @@ public class ArchUtil
 	
 	public static String getDocDir()
 	{
-		if(arch==null){setArch();}
+		if(arch==null){getArch();}
 		StringBuffer sb = new StringBuffer();
 		sb.append(SystemUtils.getUserHome());
 		switch(arch)
@@ -64,7 +64,7 @@ public class ArchUtil
 	
 	public static String getAppSettingsDir(String appName)
 	{
-		if(arch==null){setArch();}
+		if(arch==null){getArch();}
 		StringBuffer sb = new StringBuffer();
 		sb.append(SystemUtils.getUserHome());
 		switch(arch)
@@ -85,7 +85,7 @@ public class ArchUtil
 	
 	public static String getConsoleCharSet()
 	{
-		if(arch==null){setArch();}
+		if(arch==null){getArch();}
 		StringBuffer sb = new StringBuffer();
 		sb.append(SystemUtils.getUserHome());
 		switch(arch)
@@ -98,7 +98,7 @@ public class ArchUtil
 	
 	public static String getDesktopDir()
 	{
-		if(arch==null){setArch();}
+		if(arch==null){getArch();}
 		StringBuffer sb = new StringBuffer();
 		sb.append(System.getProperty("user.home"));
 		switch(arch)
@@ -112,7 +112,7 @@ public class ArchUtil
 	
 	public static String getClassPath(List<String> newLibs, String baseDir)
 	{
-		if(arch==null){setArch();}
+		if(arch==null){getArch();}
 		String cSep ="";
 		switch(arch)
 		{
@@ -137,7 +137,7 @@ public class ArchUtil
 	
 	public static boolean isAbsolute(String filePath)
 	{
-		if(arch==null){setArch();}
+		if(arch==null){getArch();}
 		boolean isAbsolute = false;
 		switch(arch)
 		{
@@ -153,7 +153,7 @@ public class ArchUtil
 	
 	public static boolean isUnixLike()
 	{
-		if(arch==null){setArch();}
+		if(arch==null){getArch();}
 		boolean isUnixLike = false;
 		switch(arch)
 		{

@@ -8,7 +8,6 @@ import net.sf.exlp.addon.shell.event.PingEvent;
 import net.sf.exlp.addon.shell.parser.PingParser;
 import net.sf.exlp.event.LogEvent;
 import net.sf.exlp.event.LogEventHandler;
-import net.sf.exlp.event.handler.EhPersist;
 import net.sf.exlp.event.handler.EhQueue;
 import net.sf.exlp.io.spawn.Spawn;
 import net.sf.exlp.parser.LogParser;
@@ -21,8 +20,6 @@ import org.slf4j.LoggerFactory;
 public class IcmpPing
 {
 	final static Logger logger = LoggerFactory.getLogger(IcmpPing.class);
-	
-	private static final long serialVersionUID = 1;
 	
 	private String pingAddress;
 	private int pings;
@@ -37,8 +34,7 @@ public class IcmpPing
 	{
 		try
 		{
-			ShellCmdPing ping = new ShellCmdPing();
-			String cmd = ping.ping(pingAddress, pings);
+			String cmd = ShellCmdPing.ping(pingAddress, pings);
 			
 			LogParser lp = new PingParser(eh);
 			
