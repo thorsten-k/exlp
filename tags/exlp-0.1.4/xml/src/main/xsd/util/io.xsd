@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://exlp.sf.net/io"
+    xmlns:io="http://exlp.sf.net/io"
+    xmlns:wiki="http://www.openfuxml.org/wiki"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="dir">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="io:dir" maxOccurs="unbounded"/>
+               	<xsd:element ref="io:file" maxOccurs="unbounded"/>
+               	<xsd:element ref="io:policy" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="lastModifed" type="xsd:dateTime"/>
+            <xsd:attribute name="allowCreate" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="file">
+        <xsd:complexType>
+        	<xsd:sequence>
+               	<xsd:element ref="io:policy" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="mime" type="xsd:string"/>
+            <xsd:attribute name="size" type="xsd:long"/>
+            <xsd:attribute name="lastModifed" type="xsd:dateTime"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="policy">
+        <xsd:complexType>
+        	<xsd:sequence>
+                <xsd:element ref="io:acl" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="code" type="xsd:string"/>
+            <xsd:attribute name="sys" type="xsd:string"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="acl">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="permission" type="xsd:string"/>
+            <xsd:attribute name="pass" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
