@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -19,7 +21,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import net.sf.exlp.util.io.StringBufferOutputStream;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
@@ -75,14 +76,11 @@ public class JaxbUtil
 		return result;
 	}
 	
-	@Deprecated
-	public static synchronized void debug(Object jaxb){debug(jaxb, null);}
+	@Deprecated public static synchronized void debug(Object jaxb){debug(jaxb, null);}
 	
-	@Deprecated
-	public static synchronized void debug(Object jaxb, Object nsPrefixMapper){debug(jaxb, nsPrefixMapper,null);}
+	@Deprecated public static synchronized void debug(Object jaxb, Object nsPrefixMapper){debug(jaxb, nsPrefixMapper,null);}
 	
-	@Deprecated
-	public static synchronized void debug(Object jaxb, Object nsPrefixMapper, DocType doctype)
+	@Deprecated public static synchronized void debug(Object jaxb, Object nsPrefixMapper, DocType doctype)
 	{
 		logger.warn("This method is deprecated. Use: JaxbUtil.debug(this.getClass(),jaxb);");
 		output(System.out, jaxb, nsPrefixMapper, doctype,true);
@@ -132,6 +130,7 @@ public class JaxbUtil
 	}
 	
 	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted){output(os, jaxb,null,null, formatted);}
+	public static synchronized void output(OutputStream os, Object jaxb, Object nsPrefixMapper){output(os, jaxb,nsPrefixMapper,null, true);}
 	public static synchronized void output(OutputStream os, Object jaxb, Object nsPrefixMapper, boolean formatted){output(os, jaxb,nsPrefixMapper,null, formatted);}
 	public static synchronized void output(OutputStream os, Object jaxb, Object nsPrefixMapper, DocType doctype, boolean formatted)
 	{
@@ -143,6 +142,28 @@ public class JaxbUtil
 			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
 			m.marshal( jaxb, os);
+		}
+		catch (JAXBException e) {logger.error("",e);}
+	}
+	
+	@Deprecated
+	public static void toOutputStream(Object xml, OutputStream os, NsPrefixMapperInterface nsPrefixMapper)
+	{
+		logger.warn("Deprecated. Use: output(os, xml, nsPrefixMapper)");
+		output(os, xml, nsPrefixMapper);
+	}
+	
+	public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper){output(w, xml, nsPrefixMapper,null,true);}
+	public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper, DocType doctype, boolean formatted)
+	{
+		try
+		{
+			JAXBContext context = JAXBContext.newInstance(xml.getClass());
+			Marshaller m = context.createMarshaller(); 
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
+			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
+			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
+			m.marshal(xml, w);
 		}
 		catch (JAXBException e) {logger.error("",e);}
 	}
@@ -171,37 +192,20 @@ public class JaxbUtil
 		return doc;
 	}
 	
-	public static void toOutputStream(Object jaxb, OutputStream os, NsPrefixMapperInterface nsPrefixMapper)
-	{
-		try
-		{
-			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
-			Marshaller m = context.createMarshaller(); 
-			if(nsPrefixMapper!=null)
-			{
-				m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);
-			}
-			m.marshal(jaxb, os);
-		}
-		catch (JAXBException e) {logger.error("",e);}
-	}
-	
 	public static synchronized String toString(Object jaxb){return toString(jaxb,null);}
 	public static synchronized String toString(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){return toString(jaxb,nsPrefixMapper,true);}
-	public static synchronized String toString(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean printPreamble)
+	public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper, boolean printPreamble)
 	{
-		StringBufferOutputStream sbo = new StringBufferOutputStream();
-		JaxbUtil.toOutputStream(jaxb, sbo, nsPrefixMapper);
+		Writer sw = new StringWriter();
 		
-		String s;
+		JaxbUtil.output(sw, xml, nsPrefixMapper);
+		
+		
+		String s = sw.toString();
 		if(!printPreamble)
 		{
-			int index = sbo.getStringBuffer().indexOf("?>");
-			s = sbo.getStringBuffer().substring(index+2);
-		}
-		else
-		{
-			s = sbo.getStringBuffer().toString();
+			int index = s.indexOf("?>");
+			s = s.substring(index+2);
 		}
 		
 		return s;
