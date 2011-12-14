@@ -60,6 +60,13 @@
 			<name>JBoss Repository</name>
 			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
 		</repository>
+		<repository>
+			<id>aht-3rdparty</id>
+			<name>AHT Nexus Third Party</name>
+			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
 	</repositories>
 	
 	<pluginRepositories>
@@ -68,7 +75,6 @@
 			<name>CodeHaus Plugin Snapshots</name>
 			<url>http://snapshots.repository.codehaus.org</url>
 			<releases><enabled>false</enabled></releases>
-			<snapshots />
 		</pluginRepository>
 	</pluginRepositories>
 	
