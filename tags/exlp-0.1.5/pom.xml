@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+    	<groupId>org.sonatype.oss</groupId>
+    	<artifactId>oss-parent</artifactId>
+    	<version>7</version>
+	</parent>
+
+	<groupId>net.sf.exlp</groupId>
+	<artifactId>exlp</artifactId>
+	<version>0.1.5</version>
+    <packaging>pom</packaging>
+    <name>ExLP</name>
+	<description>Extensible Logfile Processor</description>
+	<url>http://sourceforge.net/projects/exlp</url>
+
+	<licenses>
+		<license>
+			<name>GNU General Public License</name>
+			<url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+			<distribution>repo</distribution>
+		</license>
+	</licenses>
+
+	<scm>
+    	<connection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/tags/exlp-0.1.5</connection>
+    	<developerConnection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/tags/exlp-0.1.5</developerConnection>
+    	<url>https://exlp.svn.sourceforge.net/svnroot/exlp/tags/exlp-0.1.5</url>
+	</scm>
+	
+	<developers>
+		<developer>
+			<id>1</id>
+			<name>Thorsten Kisner</name>
+			<email>thorsten-k@sourceforge.net</email>
+		</developer>
+	</developers>
+
+    <properties>
+    	<my.build.directory>target</my.build.directory>
+    	<log4j.version>1.2.16</log4j.version>
+    
+    	<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+    	<compiler-source.version>1.6</compiler-source.version>
+    	<compiler-target.version>1.6</compiler-target.version>
+    	<maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
+    	<maven-javadoc-plugin.version>2.8</maven-javadoc-plugin.version>
+    	<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
+	</properties>
+
+	<prerequisites>
+		<maven>2.0.9</maven>
+	</prerequisites>
+
+	<repositories>
+		<repository>
+			<id>jboss-public</id>
+			<name>JBoss Repository</name>
+			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
+		</repository>
+		<repository>
+			<id>aht-public</id>
+			<name>AHT public</name>
+			<url>https://www.aht-group.com/nexus/content/groups/public/</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+	</repositories>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>codehaus.org</id>
+			<name>CodeHaus Plugin Snapshots</name>
+			<url>http://snapshots.repository.codehaus.org</url>
+			<releases><enabled>false</enabled></releases>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	<issueManagement>
+	</issueManagement>
+
+	<modules>
+		<module>addon</module>
+		<module>util</module>
+		<module>ejb</module>
+		<module>core</module>
+		<module>xml</module>
+	</modules>
+ 
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>javax.xml.bind</groupId>
+				<artifactId>jaxb-api</artifactId>
+				<version>2.2.2</version>
+			</dependency>
+			<dependency>
+  				<groupId>com.sun.xml.bind</groupId>
+    			<artifactId>jaxb-impl</artifactId>
+    			<version>2.2.2</version>
+    		</dependency>
+    		<dependency>
+ 				<groupId>com.sun.xml.bind</groupId>
+    			<artifactId>jaxb-xjc</artifactId>
+    			<version>2.2.2</version>
+  			</dependency>
+      		<dependency>
+   				<groupId>commons-configuration</groupId>
+   				<artifactId>commons-configuration</artifactId>
+   				<version>1.6</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>commons-io</groupId>
+   				<artifactId>commons-io</artifactId>
+   				<version>2.1</version>
+   			</dependency>
+   			<dependency>
+    			<groupId>commons-lang</groupId>
+      			<artifactId>commons-lang</artifactId>
+      			<version>2.6</version>
+    		</dependency>
+			<dependency>
+   				<groupId>commons-jxpath</groupId>
+   				<artifactId>commons-jxpath</artifactId>
+   				<version>1.3</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>log4j</groupId>
+   				<artifactId>log4j</artifactId>
+   				<version>1.2.16</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>org.jdom</groupId>
+   				<artifactId>jdom</artifactId>
+   				<version>1.1</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>org.apache.httpcomponents</groupId>
+   				<artifactId>httpclient</artifactId>
+   				<version>4.1.1</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>org.apache.ant</groupId>
+   				<artifactId>ant</artifactId>
+   				<version>1.8.2</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>junit</groupId>
+   				<artifactId>junit</artifactId>
+   				<version>4.10</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>net.sf.exlp</groupId>
+   				<artifactId>exlp-util</artifactId>
+   				<version>${project.version}</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>net.sf.exlp</groupId>
+   				<artifactId>exlp-core</artifactId>
+   				<version>${project.version}</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>net.sf.exlp</groupId>
+   				<artifactId>exlp-xml</artifactId>
+   				<version>${project.version}</version>
+   			</dependency>
+		</dependencies>
+	</dependencyManagement>
+	
+	<build>
+	<plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <version>1.0.1</version>
+        <executions>
+          <execution>
+            <id>enforce-banned-dependencies</id>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+            <configuration>
+              <rules>
+                <bannedDependencies>
+                  <excludes>
+                    <exclude>commons-logging:commons-logging</exclude>
+                  </excludes>
+                </bannedDependencies>
+              </rules>
+              <fail>true</fail>
+            			</configuration>
+          			</execution>
+        		</executions>
+      		</plugin>
+		</plugins>
+	</build>
+	
+	<profiles>
+		<profile>
+			<id>release-sign-artifacts</id>
+			<activation>
+				<property>
+					<name>performRelease</name>
+					<value>true</value>
+				</property>
+			</activation>
+			<build>
+				<directory>${my.build.directory}</directory>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>${maven-gpg-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals><goal>sign</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-javadoc-plugin</artifactId>
+						<version>${maven-javadoc-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>attach-javadocs</id>
+								<goals><goal>jar</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-source-plugin</artifactId>
+						<version>${maven-source-plugin.version}</version>
+						<executions>
+							<execution>
+								<id>attach-sources</id>
+								<goals><goal>jar</goal></goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+    		</build>
+  		</profile>
+    	<profile>
+       		<id>ram</id>
+       		<build>
+       			<directory>${my.build.directory}</directory>
+       		</build>
+   		</profile>
+	</profiles>
+
+</project>

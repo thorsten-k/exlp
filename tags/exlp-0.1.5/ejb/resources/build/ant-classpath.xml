@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+<project basedir="../../">
+	<path id="classpath">
+		<!-- Utils  -->
+		<pathelement location="${lib.dir}/${log4j.dir}/${log4j.lib}"/>
+		<pathelement location="${lib.dir}/${commonslang.dir}/${commonslang.lib}"/>
+		<pathelement location="${lib.dir}/${jdom.dir}/${jdom.lib}"/>
+		<pathelement location="${lib.dir}/${commonsconfig.dir}/${commonsconfig.lib}"/>
+		<pathelement location="${lib.dir}/${commonsio.dir}/${commonsio.lib}"/>
+		<pathelement location="${lib.dir}/${commonslogging.dir}/${commonslogging.lib}"/>
+		<pathelement location="${lib.dir}/${commonshttp.dir}/${commonshttp-core.lib}"/>
+		<pathelement location="${lib.dir}/${commonshttp.dir}/${commonshttp-client.lib}"/>
+		<pathelement location="${lib.dir}/${jclarens.dir}/${jclarens.lib}"/>
+		
+		<!-- JBoss  -->
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-ejb3.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-javaee.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-stax.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-client.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-system-jmx.lib}"/>
+		<pathelement location="${lib.dir}/${jboss.dir}/${jboss-ejb3extapi.lib}"/>
+		
+		<!-- Hibernate  -->
+		<pathelement location="${lib.dir}/${hibernate.dir}/${hibernate.lib}"/>
+		
+		<!-- Class files -->
+		<pathelement path ="${build.dir}"/>
+	</path>
+</project>
