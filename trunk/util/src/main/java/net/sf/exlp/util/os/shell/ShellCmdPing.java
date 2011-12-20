@@ -6,16 +6,11 @@ import net.sf.exlp.util.os.ArchUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ShellCmdPing extends AbstractShellCmd
+public class ShellCmdPing
 {
-	final static Logger logger = LoggerFactory.getLogger(ShellCmdPing.class);
+	final static  Logger logger = LoggerFactory.getLogger(ShellCmdPing.class);
 	
-	private ShellCmdPing()
-	{
-		
-	}
-	
-	public static String ping(String host, int anzahl) throws ExlpUnsupportedOsException
+	public static synchronized String ping(String host, int anzahl) throws ExlpUnsupportedOsException
 	{
 		StringBuffer sb = new StringBuffer();
 		switch(ArchUtil.getArch())
@@ -23,7 +18,7 @@ public class ShellCmdPing extends AbstractShellCmd
 			case Win32: sb.append("ping -n "+anzahl+" "+host);break;
 			case OsX:	sb.append("ping -c "+anzahl+" "+host);break;
 			case Linux:	sb.append("ping -c "+anzahl+" "+host);break;
-			default:	errorUnsupportedOS("ping -number target");break;
+			default:	ArchUtil.errorUnsupportedOS("ping -number target");break;
 		}	
 		return sb.toString();
 	}

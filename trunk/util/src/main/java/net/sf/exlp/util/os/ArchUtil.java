@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import net.sf.exlp.util.exception.ExlpUnsupportedOsException;
+
 import org.apache.commons.lang.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,11 +30,14 @@ public class ArchUtil
 
 	public static OsArch getArch()
 	{
-		if(SystemUtils.IS_OS_MAC_OSX){arch=OsArch.OsX;}
-		else if(SystemUtils.IS_OS_WINDOWS){arch=OsArch.Win32;}
-		else if(SystemUtils.IS_OS_LINUX){arch=OsArch.Linux;}
-		else if(SystemUtils.OS_NAME.equals("Darwin")){arch=OsArch.Iphone;}
-		else {errorUnsupportedOS();}
+		if(arch==null)
+		{
+			if(SystemUtils.IS_OS_MAC_OSX){arch=OsArch.OsX;}
+			else if(SystemUtils.IS_OS_WINDOWS){arch=OsArch.Win32;}
+			else if(SystemUtils.IS_OS_LINUX){arch=OsArch.Linux;}
+			else if(SystemUtils.OS_NAME.equals("Darwin")){arch=OsArch.Iphone;}
+			else {errorUnsupportedOS();}
+		}
 		return arch;
 	}
 	
@@ -45,6 +50,15 @@ public class ArchUtil
 		logger.error(fatal,"  -ConsoleCharSet");
 		logger.error(fatal,"  -ApplicationSettingsDir");
 		System.exit(-1);
+	}
+	
+	public static void errorUnsupportedOS(String cmd) throws ExlpUnsupportedOsException
+	{
+		logger.error(fatal,"System "+ SystemUtils.OS_NAME + " not supported");
+		logger.error(fatal,"We need to now the following command: "+cmd+" to implement this feature");
+		ExlpUnsupportedOsException e = new ExlpUnsupportedOsException("Command ("+cmd+") not supported for :"+SystemUtils.OS_NAME);
+		e.printStackTrace();
+		throw e;
 	}
 	
 	public static String getDocDir()
