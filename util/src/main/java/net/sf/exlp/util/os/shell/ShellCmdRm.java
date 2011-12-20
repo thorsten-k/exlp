@@ -6,23 +6,18 @@ import net.sf.exlp.util.os.ArchUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ShellCmdRm extends AbstractShellCmd
+public class ShellCmdRm
 {
 	final static Logger logger = LoggerFactory.getLogger(ShellCmdRm.class);
 	
-	private ShellCmdRm()
-	{
-		
-	}
-	
-	public static String rmDir(String dir, boolean onlySubEntries) throws ExlpUnsupportedOsException
+	public static synchronized String rmDir(String dir, boolean onlySubEntries) throws ExlpUnsupportedOsException
 	{
 		StringBuffer sb = new StringBuffer();
 		switch(ArchUtil.getArch())
 		{
 			case Win32:  sb.append(rmDirWin(dir, onlySubEntries));break;
 			case OsX: 	 sb.append(rmDirOsx(dir, onlySubEntries));break;
-			default: errorUnsupportedOS("rm dirX and rm dirY (only subdirectories)");break;
+			default: ArchUtil.errorUnsupportedOS("rm dirX and rm dirY (only subdirectories)");break;
 		}	
 		return sb.toString();
 	}
