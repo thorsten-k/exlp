@@ -3,7 +3,7 @@ package net.sf.exlp.util.io.dir;
 import java.io.File;
 import java.io.IOException;
 
-import net.sf.exlp.test.AbstractExlpTest;
+import net.sf.exlp.test.AbstractExlpTst;
 import net.sf.exlp.util.exception.ExlpConfigurationException;
 
 import org.apache.commons.io.FileUtils;
@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestDirChecker extends AbstractExlpTest
+public class TestDirChecker extends AbstractExlpTst
 {
 	final static Logger logger = LoggerFactory.getLogger(TestDirChecker.class);
     

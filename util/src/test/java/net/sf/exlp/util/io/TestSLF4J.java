@@ -3,13 +3,13 @@ package net.sf.exlp.util.io;
 import java.io.FileNotFoundException;
 
 import junit.framework.Assert;
-import net.sf.exlp.test.AbstractExlpTest;
+import net.sf.exlp.test.AbstractExlpTst;
 
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestSLF4J extends AbstractExlpTest
+public class TestSLF4J extends AbstractExlpTst
 {
 	final static Logger logger = LoggerFactory.getLogger(TestSLF4J.class);
 	    

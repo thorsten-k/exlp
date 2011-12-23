@@ -1,11 +1,11 @@
 package net.sf.exlp.xml.identity;
 
-import net.sf.exlp.test.AbstractExlpTest;
+import net.sf.exlp.test.AbstractExlpTst;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractIdentityXmlTest extends AbstractExlpTest
+public abstract class AbstractIdentityXmlTest extends AbstractExlpTst
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractIdentityXmlTest.class);
 	
