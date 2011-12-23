@@ -16,9 +16,9 @@ import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AbstractExlpTest
+public class AbstractExlpTst
 {
-	final static Logger logger = LoggerFactory.getLogger(AbstractExlpTest.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractExlpTst.class);
 	
 	private static NsPrefixMapperInterface nsPrefixMapper;
 	protected static File fTarget;
@@ -32,7 +32,7 @@ public class AbstractExlpTest
 		setfTarget(new File(dirTarget));
 		logger.debug("Using targeDir "+fTarget.getAbsolutePath());
 	}
-	protected static void setfTarget(File fTarget) {AbstractExlpTest.fTarget = fTarget;}
+	protected static void setfTarget(File fTarget) {AbstractExlpTst.fTarget = fTarget;}
 	
 	@BeforeClass
     public static void initLogger()

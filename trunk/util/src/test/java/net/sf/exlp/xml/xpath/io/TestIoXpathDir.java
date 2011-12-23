@@ -1,6 +1,6 @@
 package net.sf.exlp.xml.xpath.io;
 
-import net.sf.exlp.test.AbstractExlpTest;
+import net.sf.exlp.test.AbstractExlpTst;
 import net.sf.exlp.util.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.util.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.xml.io.Dir;
@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestIoXpathDir extends AbstractExlpTest
+public class TestIoXpathDir extends AbstractExlpTst
 {
 	final static Logger logger = LoggerFactory.getLogger(TestIoXpathDir.class);
 	

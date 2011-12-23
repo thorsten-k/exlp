@@ -6,7 +6,7 @@ import java.util.List;
 
 import junit.framework.Assert;
 import net.sf.exlp.addon.openvpn.event.OpenVpnCertEvent;
-import net.sf.exlp.test.AbstractExlpAddonTest;
+import net.sf.exlp.test.AbstractExlpAddonTst;
 import net.sf.exlp.test.ExlpAddonTstBootstrap;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.identity.Certificate;
@@ -16,9 +16,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestOpenVpnCertScanner extends AbstractExlpAddonTest
+public class TestOpenVpnCertScanner extends AbstractExlpAddonTst
 {
-	final static Logger logger = LoggerFactory.getLogger(AbstractExlpAddonTest.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractExlpAddonTst.class);
 	
 	private static final String dirSingle = "src/test/resources/data/openvpn/single";
 	private static final String dirMulti = "src/test/resources/data/openvpn/multi";

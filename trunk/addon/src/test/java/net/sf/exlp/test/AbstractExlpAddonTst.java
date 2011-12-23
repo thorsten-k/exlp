@@ -15,9 +15,9 @@ import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AbstractExlpAddonTest
+public class AbstractExlpAddonTst
 {
-	final static Logger logger = LoggerFactory.getLogger(AbstractExlpAddonTest.class);
+	final static Logger logger = LoggerFactory.getLogger(AbstractExlpAddonTst.class);
 	
 	private static NsPrefixMapperInterface nsPrefixMapper;
 	

@@ -3,7 +3,7 @@ package net.sf.exlp.xml.xpath.net;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.exlp.test.AbstractExlpTest;
+import net.sf.exlp.test.AbstractExlpTst;
 import net.sf.exlp.util.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.util.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.io.LoggerInit;
@@ -16,7 +16,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestNetXpathUrl extends AbstractExlpTest
+public class TestNetXpathUrl extends AbstractExlpTst
 {
 	final static Logger logger = LoggerFactory.getLogger(TestNetXpathUrl.class);
 	

@@ -2,7 +2,7 @@ package net.sf.exlp.util.io;
 
 import java.io.File;
 
-import net.sf.exlp.test.AbstractExlpTest;
+import net.sf.exlp.test.AbstractExlpTst;
 import net.sf.exlp.test.ExlpTstBootstrap;
 
 import org.apache.commons.lang.SystemUtils;
@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestRelativePathFactory extends AbstractExlpTest
+public class TestRelativePathFactory extends AbstractExlpTst
 {
 	final static Logger logger = LoggerFactory.getLogger(TestRelativePathFactory.class);
 	
