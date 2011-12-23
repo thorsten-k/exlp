@@ -7,7 +7,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.io.TestSLF4J;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
@@ -22,13 +21,28 @@ public class AbstractExlpTest
 	final static Logger logger = LoggerFactory.getLogger(AbstractExlpTest.class);
 	
 	private static NsPrefixMapperInterface nsPrefixMapper;
+	protected static File fTarget;
+	
+	@BeforeClass
+	public static void initFile()
+	{
+		if(!LoggerInit.isLog4jInited()){initLogger();}
+		String dirTarget = System.getProperty("targetDir");
+		if(dirTarget==null){dirTarget="target";}
+		setfTarget(new File(dirTarget));
+		logger.debug("Using targeDir "+fTarget.getAbsolutePath());
+	}
+	protected static void setfTarget(File fTarget) {AbstractExlpTest.fTarget = fTarget;}
 	
 	@BeforeClass
     public static void initLogger()
 	{
-		LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-		loggerInit.addAltPath("exlp-util.test");
-		loggerInit.init();
+		if(!LoggerInit.isLog4jInited())
+		{
+			LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
+			loggerInit.addAltPath("exlp-util.test");
+			loggerInit.init();
+		}
     }
 	
 	protected void assertJaxbEquals(Object ref, Object test)
