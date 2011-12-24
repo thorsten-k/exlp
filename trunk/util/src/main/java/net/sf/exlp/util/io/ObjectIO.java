@@ -96,30 +96,6 @@ public class ObjectIO
     	catch(IOException e) {logger.error("",e);}
     	bHashFile = messagedigest.digest();
     	return bHashFile;
-    }
-	
-	public static byte[] getHash(File f)
-    {
-    	byte[] bHashFile;
-    	bHashFile = new byte[128];
-    	MessageDigest messagedigest=null;
-    	try{ messagedigest = MessageDigest.getInstance(HASHALGORITHM);} 
-    	catch (NoSuchAlgorithmException e){e.printStackTrace();}
-    	
-    	byte md[] = new byte[BLOCKLENGTH];  
-    	try 
-    	{
-    		FileInputStream in  = new FileInputStream(f);
-      		// Zerhacken des Dateiinhalts in Bloecke, damit nicht die ganze Datei im Speicher stehen muss
-    		for ( int n = 0; (n = in.read(md)) > -1; )
-    			{messagedigest.update( md, 0, n );}
-    	}
-    	catch(IOException ioe)
-    	{
-    		logger.error("File "+f.getAbsolutePath()+" does not exist.");
-    	}
-    	bHashFile = messagedigest.digest();
-    	return bHashFile;
     } 
 	
 	public Object socketChallengeResponse(Object out, String serverIP, int serverPort, boolean debug)
