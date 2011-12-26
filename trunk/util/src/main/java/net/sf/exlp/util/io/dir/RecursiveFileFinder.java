@@ -8,18 +8,22 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.io.DirectoryWalker;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-public class RecursiveFileRemover extends DirectoryWalker<File>
+public class RecursiveFileFinder extends DirectoryWalker<File>
 {
+	final static Logger logger = LoggerFactory.getLogger(RecursiveFileFinder.class);
+	
 	private FileFilter filter;
 	
-	public RecursiveFileRemover(FileFilter filter)
+	public RecursiveFileFinder(FileFilter filter)
     {
 		super();
 		this.filter=filter;
     }
 
-	public List<File> clean(File startDirectory) throws IOException
+	public List<File> find(File startDirectory) throws IOException
 	{
 		List<File> results = new ArrayList<File>();
 		walk(startDirectory, results);
@@ -35,7 +39,6 @@ public class RecursiveFileRemover extends DirectoryWalker<File>
     {
     	if(filter.accept(file))
     	{
-    		file.delete();
     		results.add(file);
     	}
     }
