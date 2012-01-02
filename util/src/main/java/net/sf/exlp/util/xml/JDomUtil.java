@@ -189,15 +189,16 @@ public class JDomUtil
 		return result;
 	}
 	
-	public static synchronized Object toJaxb(Element rootElement, Class<?> c)
+	@SuppressWarnings("unchecked")
+	public static synchronized <T extends Object> T toJaxb(Element rootElement, Class<T> c)
 	{
 		InputStream is = toInputStream(rootElement, Format.getRawFormat());
-		Object result = null;
+		T result = null;
 		try
 		{
 			JAXBContext jc = JAXBContext.newInstance(c);
 			Unmarshaller u = jc.createUnmarshaller();
-			result = u.unmarshal(is);
+			result = (T)u.unmarshal(is);
 		}
 		catch (JAXBException e){logger.error("",e);}
 		return result;
