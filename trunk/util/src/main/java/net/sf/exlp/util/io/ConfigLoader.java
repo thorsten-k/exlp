@@ -114,6 +114,7 @@ public class ConfigLoader
 		Typ typ = Typ.UNKNOWN;
 		if(configName.endsWith(".xml")){typ=Typ.XML;}
 		else if(configName.endsWith(".properties")){typ=Typ.PROPERTIES;}
+		else if(configName.endsWith(".txt")){typ=Typ.PROPERTIES;}
 		return typ;
 	}
 }
