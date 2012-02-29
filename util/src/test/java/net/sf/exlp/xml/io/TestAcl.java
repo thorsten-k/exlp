@@ -34,6 +34,7 @@ public class TestAcl extends AbstractIoXmlTest
     	xml.setId(1);
     	xml.setPermission("r");
     	xml.setPass(true);
+    	xml.setDescription("myDescription");
     	return xml;
     }
     

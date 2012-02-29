@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <io:dir xmlns:io="http://exlp.sf.net/io" id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true">
-    <io:policy id="1" code="myCode" sys="Administrators" name="myName"/>
+    <io:policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
 </io:dir>

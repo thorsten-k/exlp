@@ -34,7 +34,9 @@ public class TestPolicy extends AbstractIoXmlTest
     	Policy xml = new Policy();
     	xml.setId(1);
     	xml.setCode("myCode");
-    	xml.setSys("Administrators");
+    	xml.setGroup("Administrators");
+    	xml.setUser("Administrator");
+    	xml.setDescription("myDescription");
     	xml.setName("myName");
     	
     	if(withChilds)

@@ -37,13 +37,16 @@
             </xsd:sequence>
             <xsd:attribute name="id" type="xsd:long"/>
             <xsd:attribute name="code" type="xsd:string"/>
-            <xsd:attribute name="sys" type="xsd:string"/>
+            <xsd:attribute name="user" type="xsd:string"/>
+            <xsd:attribute name="group" type="xsd:string"/>
+            <xsd:attribute name="description" type="xsd:string"/>
             <xsd:attribute name="name" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
     <xsd:element name="acl">
         <xsd:complexType>
             <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="description" type="xsd:string"/>
             <xsd:attribute name="permission" type="xsd:string"/>
             <xsd:attribute name="pass" type="xsd:boolean"/>
         </xsd:complexType>
