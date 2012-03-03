@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang.SystemUtils;
 import org.slf4j.Logger;
@@ -16,15 +17,23 @@ public class MultiResourceLoader
 	final static Logger logger = LoggerFactory.getLogger(MultiResourceLoader.class);
 	
 	public enum LoadType {FileIs, Jws};
-	private static ArrayList<String> alLoadError;
-	private static ArrayList<String> alLoadDebug;
-	public static String lastAbsolutPath;
+	private ArrayList<String> alLoadError;
+	private ArrayList<String> alLoadDebug;
+	public String lastAbsolutPath;
 	public boolean debugInfo,debugError;
+	
+	private List<String> paths;
 
 	public MultiResourceLoader()
 	{
 		debugInfo = false;
 		debugError = true;
+		paths = new ArrayList<String>();
+	}
+	
+	public void addPath(String... path)
+	{
+		for(String s : path){paths.add(s);}
 	}
 	
 	public boolean isAvailable(String resourceName)
@@ -50,20 +59,44 @@ public class MultiResourceLoader
 		alLoadError = new ArrayList<String>();
 		alLoadDebug = new ArrayList<String>();
 		InputStream is = null;
-		for(LoadType lt : LoadType.values())
+		if(paths.size()==0){paths.add("");}
+		
+		for(String path : paths)
 		{
-			switch (lt)
+			String resourcePath;
+			if(path.length()==0){resourcePath=resourceName;}
+			else{resourcePath=path+SystemUtils.FILE_SEPARATOR+resourceName;}
+			for(LoadType lt : LoadType.values())
 			{
-				case FileIs: 	is=getFileIs(resourceName);break;
-				case Jws:		is=getJwsIs(cl,resourceName);break;
+				switch (lt)
+				{
+					case FileIs: 	is=getFileIs(resourcePath);break;
+					case Jws:		is=getJwsIs(cl,resourcePath);break;
+				}
+				if(is!=null){break;}
 			}
 			if(is!=null){break;}
 		}
+		
 		if(debugInfo){for(String s : alLoadDebug){logger.debug(s);}}
 		if(is==null)
 		{
-			if(debugError){for(String s : alLoadError){logger.debug(s);}}
-			throw new FileNotFoundException("Missing File: "+resourceName);
+			boolean altPaths = (paths.size()>0 && paths.get(0).length()>0);
+			StringBuffer sb = new StringBuffer();
+			for(String path : paths){sb.append(path+",");}
+			sb = new StringBuffer(sb.substring(0, sb.length()-1));
+			
+			if(debugError)
+			{
+				for(String s : alLoadError){logger.debug(s);}
+				if(altPaths){logger.debug("... in paths: "+sb);}
+			}
+			
+			StringBuffer sbError = new StringBuffer();
+			sbError.append("Missing File: ").append(resourceName);
+			if(altPaths){sbError.append("in paths: "+sb);}
+			
+			throw new FileNotFoundException(sbError.toString());
 		}
 		return is;
 	}
