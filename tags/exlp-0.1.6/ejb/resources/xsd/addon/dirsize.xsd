@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://exlp.sourceforge.net/dirsize"
+    xmlns:dir="http://exlp.sourceforge.net/dirsize"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc"
+    xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+    elementFormDefault="qualified"
+    attributeFormDefault="unqualified"
+    jaxb:extensionBindingPrefixes="xjc">
+    <xsd:element name="dirFile">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="dir:dirFile" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:int"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="type" type="xsd:string"/>
+            <xsd:attribute name="lastModifed" type="xsd:dateTime"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="dir">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element ref="dir:dir" maxOccurs="unbounded"/>
+                <xsd:element ref="dir:file" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="id" type="xsd:int"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="lastModifed" type="xsd:dateTime"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="file">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:int"/>
+            <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="lastModifed" type="xsd:dateTime"/>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

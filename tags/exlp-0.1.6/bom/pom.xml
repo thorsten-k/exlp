@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+    <parent>
+    	<groupId>net.sf.exlp</groupId>
+    	<artifactId>exlp</artifactId>
+    	<version>0.1.6</version>
+        <relativePath>../pom.xml</relativePath>
+	</parent>
+    
+    <artifactId>exlp-bom</artifactId>
+    <packaging>pom</packaging>
+    <name>ExLP BOM</name>
+
+    <dependencyManagement>
+        <dependencies>
+        
+        	<!-- EXLP -->
+			<dependency>
+   				<groupId>net.sf.exlp</groupId>
+   				<artifactId>exlp-util</artifactId>
+   				<version>${project.version}</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>net.sf.exlp</groupId>
+   				<artifactId>exlp-core</artifactId>
+   				<version>${project.version}</version>
+   			</dependency>
+   			<dependency>
+   				<groupId>net.sf.exlp</groupId>
+   				<artifactId>exlp-xml</artifactId>
+   				<version>${project.version}</version>
+   			</dependency>
+        
+        	<!-- Commons -->
+        	<dependency>
+				<groupId>commons-io</groupId>
+				<artifactId>commons-io</artifactId>
+				<version>2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>commons-codec</groupId>
+				<artifactId>commons-codec</artifactId>
+				<version>1.6</version>
+			</dependency>
+			<dependency>
+   				<groupId>commons-configuration</groupId>
+   				<artifactId>commons-configuration</artifactId>
+   				<version>1.6</version>
+   			</dependency>
+   			<dependency>
+    			<groupId>commons-lang</groupId>
+      			<artifactId>commons-lang</artifactId>
+      			<version>2.6</version>
+    		</dependency>
+			<dependency>
+   				<groupId>commons-jxpath</groupId>
+   				<artifactId>commons-jxpath</artifactId>
+   				<version>1.3</version>
+   			</dependency>
+        
+        	<!-- XML -->
+        	<dependency>
+   				<groupId>org.jdom</groupId>
+   				<artifactId>jdom</artifactId>
+   				<version>1.1</version>
+   			</dependency>
+        
+       		<!-- JAXB -->
+			<dependency>
+    	   		<groupId>javax.xml.bind</groupId>
+    	   		<artifactId>jaxb-api</artifactId>
+    	   		<version>2.2.2</version>
+    	   	</dependency>
+    	   	<dependency>
+    	   		<groupId>com.sun.xml.bind</groupId>
+    	   		<artifactId>jaxb-impl</artifactId>
+    	   		<version>2.2.2</version>
+    	   	</dependency>
+    	   	<dependency>
+    	   		<groupId>com.sun.xml.bind</groupId>
+    	   		<artifactId>jaxb-xjc</artifactId>
+    	   		<version>2.2.2</version>
+    	   	</dependency>    	   	
+    	   	
+    	   	<!-- Logging -->
+    	   	<dependency>
+    	   		<groupId>log4j</groupId>
+    	   		<artifactId>log4j</artifactId>
+    	   		<version>1.2.16</version>
+    	   	</dependency>
+	        <dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-api</artifactId>
+				<version>1.6.4</version>
+			</dependency>
+			<dependency>
+	  			<groupId>org.slf4j</groupId>
+	  			<artifactId>slf4j-log4j12</artifactId>
+	  			<version>1.6.4</version>
+	  		</dependency>
+			<dependency>
+    			<groupId>org.slf4j</groupId>
+   	 			<artifactId>jcl-over-slf4j</artifactId>
+    			<version>1.6.4</version>
+			</dependency>
+			
+        </dependencies>
+    </dependencyManagement>
+</project>
