@@ -13,6 +13,18 @@
     <packaging>jar</packaging>
     <name>ExLP EJB</name>
 
+	<dependencyManagement>
+		<dependencies>      	         
+			<dependency>
+				<groupId>net.sf.exlp</groupId>
+				<artifactId>exlp-bom</artifactId>
+				<version>0.1.6-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.clarens</groupId>
