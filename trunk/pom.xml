@@ -10,7 +10,7 @@
 
 	<groupId>net.sf.exlp</groupId>
 	<artifactId>exlp</artifactId>
-	<version>0.1.6-SNAPSHOT</version>
+	<version>0.1.6</version>
     <packaging>pom</packaging>
     <name>ExLP</name>
 	<description>Extensible Logfile Processor</description>
@@ -25,9 +25,9 @@
 	</licenses>
 
 	<scm>
-    	<connection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/trunk</connection>
-    	<developerConnection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/trunk</developerConnection>
-    	<url>https://exlp.svn.sourceforge.net/svnroot/exlp/trunk</url>
+    	<connection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/tags/exlp-0.1.6</connection>
+    	<developerConnection>scm:svn:https://exlp.svn.sourceforge.net/svnroot/exlp/tags/exlp-0.1.6</developerConnection>
+    	<url>https://exlp.svn.sourceforge.net/svnroot/exlp/tags/exlp-0.1.6</url>
 	</scm>
 	
 	<developers>
