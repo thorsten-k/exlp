@@ -18,7 +18,7 @@
 			<dependency>
 				<groupId>net.sf.exlp</groupId>
 				<artifactId>exlp-bom</artifactId>
-				<version>0.1.6-SNAPSHOT</version>
+				<version>${project.version}</version>
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
