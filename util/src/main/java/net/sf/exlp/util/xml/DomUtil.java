@@ -1,5 +1,13 @@
 package net.sf.exlp.util.xml;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerConfigurationException;
@@ -11,6 +19,7 @@ import javax.xml.transform.stream.StreamResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
+import org.w3c.dom.Element;
 
 public class DomUtil
 {
@@ -31,4 +40,35 @@ public class DomUtil
 		catch (TransformerException e) {logger.error("",e);} 
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static synchronized <T extends Object> T toJaxb(Element element, Class<T> clJaxb)
+	{
+		try
+		{
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			TransformerFactory tf = TransformerFactory.newInstance(); 
+			Transformer t = tf.newTransformer();
+			
+			t.setOutputProperty(OutputKeys.INDENT,"yes");
+			t.transform(new DOMSource(element), new StreamResult(os));
+			
+			InputStream is = new ByteArrayInputStream(os.toByteArray());
+			
+			T result = null;
+			try
+			{
+				JAXBContext jc = JAXBContext.newInstance(clJaxb);
+				Unmarshaller u = jc.createUnmarshaller();
+				result = (T)u.unmarshal(is);
+			}
+			catch (JAXBException e){logger.error("",e);}
+			return result;
+			
+		}
+		catch (TransformerConfigurationException e){e.printStackTrace();}
+		catch (TransformerException e) {e.printStackTrace();}
+		
+		return null;
+		
+	}
 }

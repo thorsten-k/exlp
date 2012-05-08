@@ -109,6 +109,7 @@ public class DateUtil
 	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d){return getXmlGc4D(d,false);}
 	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d, boolean withMilli)
 	{
+		// http://stackoverflow.com/questions/835889/java-util-date-to-xmlgregoriancalendar
 		XMLGregorianCalendar xmlGC = null;
 		try
 		{
