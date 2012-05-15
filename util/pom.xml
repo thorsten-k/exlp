@@ -76,6 +76,7 @@
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		<!-- 
    		<dependency>
    			<groupId>org.apache.httpcomponents</groupId>
    			<artifactId>httpclient</artifactId>
@@ -87,7 +88,7 @@
         			<groupId>commons-logging</groupId>
         		</exclusion>
         	</exclusions>
-   		</dependency>
+   		</dependency> -->
    		<dependency>
    			<groupId>commons-io</groupId>
    			<artifactId>commons-io</artifactId>
