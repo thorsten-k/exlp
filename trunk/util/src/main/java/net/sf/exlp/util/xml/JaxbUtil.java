@@ -76,22 +76,54 @@ public class JaxbUtil
 		return result;
 	}
 	
-	@Deprecated public static synchronized void debug(Object jaxb){debug(jaxb, null);}
-	
-	@Deprecated public static synchronized void debug(Object jaxb, Object nsPrefixMapper){debug(jaxb, nsPrefixMapper,null);}
-	
-	@Deprecated public static synchronized void debug(Object jaxb, Object nsPrefixMapper, DocType doctype)
+	public static synchronized void trace(Class<?> c, Object jaxb){debug(c, jaxb, null);}
+	public static synchronized void trace(Class<?> c, Object jaxb, Object nsPrefixMapper)
 	{
-		logger.warn("This method is deprecated. Use: JaxbUtil.debug(this.getClass(),jaxb);");
-		output(System.out, jaxb, nsPrefixMapper, doctype,true);
+		if(logger.isTraceEnabled())
+		{
+			logger.trace("JAXB Debug from class "+c.getSimpleName());
+			output(System.out, jaxb, nsPrefixMapper, null,true);
+		}
 	}
 	
-	public static synchronized void debug(Class<?> c, Object jaxb){debug2(c, jaxb, null);}
-	public static synchronized void debug2(Class<?> c, Object jaxb, Object nsPrefixMapper){debug(c, jaxb, nsPrefixMapper,null);}
-	public static synchronized void debug(Class<?> c, Object jaxb, Object nsPrefixMapper, DocType doctype)
+	public static synchronized void debug(Class<?> c, Object jaxb){debug(c, jaxb, null);}
+	public static synchronized void debug(Class<?> c, Object jaxb, Object nsPrefixMapper)
 	{
-		logger.debug("JAXB Debug from class "+c.getSimpleName());
-		output(System.out, jaxb, nsPrefixMapper, doctype,true);
+		if(logger.isDebugEnabled())
+		{
+			logger.debug("JAXB Debug from class "+c.getSimpleName());
+			output(System.out, jaxb, nsPrefixMapper, null,true);
+		}
+	}
+	
+	public static synchronized void info(Class<?> c, Object jaxb){debug(c, jaxb, null);}
+	public static synchronized void info(Class<?> c, Object jaxb, Object nsPrefixMapper)
+	{
+		if(logger.isInfoEnabled())
+		{
+			logger.info("JAXB Debug from class "+c.getSimpleName());
+			output(System.out, jaxb, nsPrefixMapper, null,true);
+		}
+	}
+	
+	public static synchronized void warn(Class<?> c, Object jaxb){debug(c, jaxb, null);}
+	public static synchronized void warn(Class<?> c, Object jaxb, Object nsPrefixMapper)
+	{
+		if(logger.isWarnEnabled())
+		{
+			logger.warn("JAXB Debug from class "+c.getSimpleName());
+			output(System.out, jaxb, nsPrefixMapper, null,true);
+		}
+	}
+	
+	public static synchronized void error(Class<?> c, Object jaxb){debug(c, jaxb, null);}
+	public static synchronized void error(Class<?> c, Object jaxb, Object nsPrefixMapper)
+	{
+		if(logger.isErrorEnabled())
+		{
+			logger.error("JAXB Debug from class "+c.getSimpleName());
+			output(System.out, jaxb, nsPrefixMapper, null,true);
+		}
 	}
 	
 	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f, jaxb, null, null,formatted);}

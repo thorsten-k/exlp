@@ -47,11 +47,11 @@ public class TestDir extends AbstractIoXmlTest
     {
     	logger.debug("Saving Reference XML");
     	Dir xml = createDir(false,false);
-    	JaxbUtil.debug2(this.getClass(),xml, getNsPrefixMapper());
+    	JaxbUtil.debug(this.getClass(),xml, getNsPrefixMapper());
     	JaxbUtil.save(fDir, xml, getNsPrefixMapper(), true);
     	
     	Dir xmlComplex = createDir(true,true);
-    	JaxbUtil.debug2(this.getClass(),xmlComplex, getNsPrefixMapper());
+    	JaxbUtil.debug(this.getClass(),xmlComplex, getNsPrefixMapper());
     	JaxbUtil.save(fComplex, xmlComplex, getNsPrefixMapper(), true);
     }
     
