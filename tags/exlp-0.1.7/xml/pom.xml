@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+    	<groupId>net.sf.exlp</groupId>
+    	<artifactId>exlp</artifactId>
+    	<version>0.1.7</version>
+        <relativePath>../pom.xml</relativePath>
+	</parent>
+	
+    <artifactId>exlp-xml</artifactId>
+    <packaging>jar</packaging>
+    <name>ExLP XML</name>
+    
+	<dependencyManagement>
+		<dependencies>      	         
+			<dependency>
+				<groupId>net.sf.exlp</groupId>
+				<artifactId>exlp-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+    
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<inherited>true</inherited>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${compiler-source.version}</source>
+					<target>${compiler-target.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	
+	<dependencies>
+      	<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+    		<type>jar</type>
+    		<scope>test</scope>
+		</dependency>
+		<dependency>
+  			<groupId>com.sun.xml.bind</groupId>
+    		<artifactId>jaxb-impl</artifactId>
+    		<type>jar</type>
+    		<scope>provided</scope>
+    	</dependency>
+   		<dependency>
+ 			<groupId>com.sun.xml.bind</groupId>
+    		<artifactId>jaxb-xjc</artifactId>
+    		<type>jar</type>
+    		<scope>test</scope>
+  		</dependency>
+	</dependencies>
+</project>

@@ -1,0 +1,139 @@
+<?xml version="1.0" ?>
+<project name="ExLP"  basedir="../..">
+
+	<property file="resources/properties/user.properties"/>
+	<property file="resources/properties/ant.properties"/>
+
+	<property name="src.dir" location="${basedir}/src" />
+	<property name="dist.dir" location="${basedir}/dist/" />
+	<property name="resource.dir" location="${basedir}/resources" />
+	<property name="xsd.dir" location="${resource.dir}/xsd" />
+	<property name="build.dir" location="${dist.dir}/build/" />
+	<property name="lib.dir" location="${basedir}/lib" />
+	<property name="rsrc.dir" location="${basedir}/resources" />
+	<property name="xsd.dir" location="${rsrc.dir}/config/xsd" />
+	
+	<import file="ant-libs.xml"/>
+	<import file="ant-classpath.xml"/>
+	
+    <target name="01 - clean" description="Removes build artifacts">
+        <delete dir="${build.dir}"/>
+    	<delete dir="${dist.dir}"/>
+    	<delete dir="${locallib.dir}"/>
+    </target>
+	
+    <target name="02 - Init" description="Init ...">
+		<mkdir dir="${build.dir}"/>
+		<mkdir dir="${dist.dir}"/>
+    	<mkdir dir="${locallib.dir}"/>
+		<echo level="info">Creating metalib with ${metalib.dir} in ${locallib.dir}</echo>
+		<echo level="info">Class-Path: ${meta.jar}</echo>
+		<jar destfile="${locallib.dir}/meta-libs.jar">
+			<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Implementation-Version"  value="${ear.version}"/>
+				<attribute name="Class-Path" value="${meta.jar}"/>
+			</manifest>        	
+		</jar>
+    </target>
+	
+    <target name="03 - Loc" description="Task definition">
+    	<taskdef name="loc" classname="net.sf.exlp.loc.LoccerTask" classpath="${build.dir}" loaderref="${build.dir}"/>
+    	<loc>
+    		<fileset dir="${basedir}">
+    			<include name="**/*.java"/>
+    			<include name="**/*.xml"/>
+    		</fileset>
+    	</loc>
+    </target>
+	
+	<target name="04 - JAXB">
+		<echo level="info">Generating JAXB</echo>
+		<java classname="com.sun.tools.xjc.XJCFacade"
+				fork="true" failonerror="true"  maxmemory="128m">
+			<arg value="-extension"/>
+			<arg value="${xsd.dir}/exlp.xsd"/>
+			<arg value="-d"/><arg value="${src.dir}"/>
+			<arg value="-b"/><arg value="${xsd.dir}/exlp.xjb"/>
+			<classpath>
+				<pathelement location="${lib.dir}/${jaxb.dir}/${jaxbimpl.lib}"/>
+	         	<pathelement location="${lib.dir}/${jaxb.dir}/${jaxbxjc.lib}"/>
+			</classpath>
+		</java>
+	</target> 
+	
+	<target name="04 - Compile" depends="02 - Init" description="Compile the source">
+		<echo level="info">Compiling with ${java-version}</echo>
+		<javac	srcdir="${src.dir}"
+				destdir="${build.dir}"
+				debug="true"
+				debuglevel="lines,vars,source" 
+				deprecation="on"
+				optimize="on"
+				target="${java-version}"
+				classpathref="classpath">
+			<include name="**"/>
+		</javac>
+	</target>
+	
+	<target name="05 - Copy Libs" depends="02 - Init">
+    	<!-- Utils  -->
+    		<copy file="${lib.dir}/${log4j.dir}/${log4j.lib}" todir="${dist.dir}/lib"/>
+			<copy file="${lib.dir}/${commonslang.dir}/${commonslang.lib}" todir="${dist.dir}/lib"/>
+	</target>  
+	
+	<target name="06 - ExLP" description="ExLP" depends="04 - Compile,05 - Copy Libs">
+		<echo level="info">Create exlp-${exlp-version}.jar</echo>
+    	<jar destfile="${dist.dir}/exlp-${exlp-version}.jar">
+    		<fileset dir="${build.dir}">
+    			<include name="net/sf/exlp/**"/>
+    			<exclude name="net/sf/exlp/util/translation/**"/>
+    		</fileset>
+    		<manifest>
+				<attribute name="Built-By" value="${user.name}"/>
+				<attribute name="Implementation-Version"  value="${exlp-version}"/>
+    			<attribute name="Built-Date" value="${version} ${TODAY}"/> 
+			</manifest>        	
+		</jar>
+	</target>
+	
+	<target name="07 - EAR" description="ExLP" depends="04 - Compile,05 - Copy Libs">
+		<echo level="info">Creating Exlp EJB </echo>
+		<delete dir="${build.dir}/META-INF"/>
+		<copy file="${rsrc.dir}/config/persistence/exlp-persistence.xml" tofile="${build.dir}/META-INF/persistence.xml"/> 
+		<jar destfile="${dist.dir}/xx-exlp-EJB3.jar" basedir="${build.dir}">
+			<include name="net/sf/exlp/addon/common/data/ejb/**/*.class"/>
+			<include name="net/sf/exlp/addon/dirsize/data/ejb/**/*.class"/>
+			<include name="META-INF/*.xml"/>
+		</jar>	
+		<delete dir="${build.dir}/META-INF"/>
+		<echo level="info">Creating ERP SessionBeans </echo>
+		<mkdir dir="${build.dir}/META-INF"/>
+		<copy file="${rsrc.dir}/config/jboss/ejb-jar.xml" tofile="${build.dir}/META-INF/ejb-jar.xml"/>
+		<jar destfile="${dist.dir}/xy-exlp-SB.jar" basedir="${build.dir}">
+			<include name="net/sf/exlp/addon/common/data/exception/**/*.class"/>
+			<include name="net/sf/exlp/addon/common/data/facade/**/*.class"/>
+			<include name="net/sf/exlp/addon/dirsize/data/facade/**/*.class"/>
+			<include name="META-INF/*.xml"/>
+		</jar>	
+    	<delete dir="${build.dir}/META-INF"/>
+		
+		<echo level="warn">Creating EAR</echo>
+		<delete dir="${dist.dir}/tmp"/> 
+		<mkdir dir="${dist.dir}/tmp"/>
+		<mkdir dir="${dist.dir}/tmp/META-INF"/>
+		<mkdir dir="${dist.dir}/tmp/lib"/>
+		
+		<copy file="${dist.dir}/xx-exlp-EJB3.jar" todir="${dist.dir}/tmp"/>
+		<copy file="${dist.dir}/xy-exlp-SB.jar" todir="${dist.dir}/tmp"/>
+	
+		<copy file="${rsrc.dir}/config/jboss/jboss-app.xml" todir="${dist.dir}/tmp/META-INF"/>
+		<copy file="${rsrc.dir}/config/jboss/application.xml" todir="${dist.dir}/tmp/META-INF"/>
+			
+		<jar destfile="${dist.dir}/exlp.ear" basedir="${dist.dir}/tmp">
+			<include name="**/*"/>
+		</jar>			
+		<delete dir="${dist.dir}/tmp"/> 
+	</target>
+	
+</project>
