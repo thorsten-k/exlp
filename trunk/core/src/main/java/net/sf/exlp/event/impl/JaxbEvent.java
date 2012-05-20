@@ -23,7 +23,7 @@ public class JaxbEvent extends AbstractEvent implements LogEvent
 	public void debug()
 	{
 		super.debug();
-		JaxbUtil.debug(this.getClass(),o);
+		JaxbUtil.debug(o);
 	}
 	
 	public Object getObject() {return o;}

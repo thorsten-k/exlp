@@ -65,7 +65,7 @@ public class AbstractExlpTst
 	protected void save(Object xml, File f)
 	{
 		logger.debug("Saving Reference XML");
-		JaxbUtil.debug(this.getClass(),xml, getNsPrefixMapper());
+		JaxbUtil.debug(xml, getNsPrefixMapper());
     	JaxbUtil.save(f, xml, getNsPrefixMapper(), true);
 	}
 }
