@@ -76,52 +76,71 @@ public class JaxbUtil
 		return result;
 	}
 	
-	public static synchronized void trace(Class<?> c, Object jaxb){debug(c, jaxb, null);}
-	public static synchronized void trace(Class<?> c, Object jaxb, Object nsPrefixMapper)
+	private static synchronized String getCaller()
+	{
+		StackTraceElement ste = Thread.currentThread().getStackTrace()[4];
+		
+		StringBuffer sb = new StringBuffer();
+		sb.append("Output invoked by: ");
+		sb.append(ste.getClassName());
+		sb.append(".").append(ste.getMethodName());
+		sb.append("()");
+		sb.append("-").append(ste.getLineNumber());
+		sb.append(" (").append(ste.getFileName()).append(")");
+		return sb.toString();
+	}
+	
+	public static synchronized void trace(Object jaxb){trace(jaxb, null,true);}
+	public static synchronized void trace(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){trace(jaxb, nsPrefixMapper,true);}
+	private static synchronized void trace(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
 	{
 		if(logger.isTraceEnabled())
 		{
-			logger.trace("JAXB Debug from class "+c.getSimpleName());
+			logger.debug(getCaller());
 			output(System.out, jaxb, nsPrefixMapper, null,true);
 		}
 	}
 	
-	public static synchronized void debug(Class<?> c, Object jaxb){debug(c, jaxb, null);}
-	public static synchronized void debug(Class<?> c, Object jaxb, Object nsPrefixMapper)
+	public static synchronized void debug(Object jaxb){debug(jaxb, null,true);}
+	public static synchronized void debug(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){debug(jaxb, nsPrefixMapper,true);}
+	private static synchronized void debug(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
 	{
 		if(logger.isDebugEnabled())
 		{
-			logger.debug("JAXB Debug from class "+c.getSimpleName());
+			logger.debug(getCaller());
 			output(System.out, jaxb, nsPrefixMapper, null,true);
 		}
 	}
 	
-	public static synchronized void info(Class<?> c, Object jaxb){debug(c, jaxb, null);}
-	public static synchronized void info(Class<?> c, Object jaxb, Object nsPrefixMapper)
+	public static synchronized void info(Object jaxb){info(jaxb, null);}
+	public static synchronized void info(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){info(jaxb, nsPrefixMapper,true);}
+	private static synchronized void info(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
 	{
 		if(logger.isInfoEnabled())
 		{
-			logger.info("JAXB Debug from class "+c.getSimpleName());
+			logger.info(getCaller());
 			output(System.out, jaxb, nsPrefixMapper, null,true);
 		}
 	}
 	
-	public static synchronized void warn(Class<?> c, Object jaxb){debug(c, jaxb, null);}
-	public static synchronized void warn(Class<?> c, Object jaxb, Object nsPrefixMapper)
+	public static synchronized void warn(Object jaxb){warn(jaxb, null,true);}
+	public static synchronized void warn(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){warn(jaxb, null,true);}
+	private static synchronized void warn(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
 	{
 		if(logger.isWarnEnabled())
 		{
-			logger.warn("JAXB Debug from class "+c.getSimpleName());
+			logger.warn(getCaller());
 			output(System.out, jaxb, nsPrefixMapper, null,true);
 		}
 	}
 	
-	public static synchronized void error(Class<?> c, Object jaxb){debug(c, jaxb, null);}
-	public static synchronized void error(Class<?> c, Object jaxb, Object nsPrefixMapper)
+	public static synchronized void error(Object jaxb){error(jaxb, null,true);}
+	public static synchronized void error(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){error(jaxb, nsPrefixMapper,true);}
+	private static synchronized void error(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
 	{
 		if(logger.isErrorEnabled())
 		{
-			logger.error("JAXB Debug from class "+c.getSimpleName());
+			logger.error(getCaller());
 			output(System.out, jaxb, nsPrefixMapper, null,true);
 		}
 	}
