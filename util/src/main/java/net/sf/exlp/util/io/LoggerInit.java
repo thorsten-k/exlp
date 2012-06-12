@@ -121,11 +121,11 @@ public class LoggerInit
 	private void resourceLoad(ClassLoader cl,String l4jName)
 	{
 		URL url = this.getClass().getClassLoader().getResource(l4jName);
-		String confInfo = "LoggerInit.getClass().getClassLoader().getResource("+l4jName+")";
+		String confInfo = "rsrc "+l4jName;
 		if(url!=null)
 		{	//Konfiguration fürs Package
 			DOMConfigurator.configure(url);
-			logger.info("log4j configured with "+confInfo);
+			logger.debug("log4j configured with "+confInfo);
 			log4jInited=true;
 		}
 		else {alErrors.add("Not found "+confInfo);}
