@@ -25,7 +25,7 @@ public class AbstractExlpAddonTst
     public static void initLogger()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-		loggerInit.addAltPath("src/test/resources/exlp-addon");
+		loggerInit.addAltPath("exlp-addon.test");
 		loggerInit.init();
     }
 	
