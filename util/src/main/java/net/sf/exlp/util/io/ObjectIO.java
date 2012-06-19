@@ -81,7 +81,7 @@ public class ObjectIO
 	
 	public static byte[] getHash(String s)
     {
-    	byte[] bHashFile = new byte[128];
+    	
     	MessageDigest messagedigest=null;
     	try{ messagedigest = MessageDigest.getInstance(HASHALGORITHM);} 
     	catch (NoSuchAlgorithmException e){e.printStackTrace();}
@@ -94,6 +94,7 @@ public class ObjectIO
     			{messagedigest.update( md, 0, n );}
     	}
     	catch(IOException e) {logger.error("",e);}
+    	byte[] bHashFile = new byte[128];
     	bHashFile = messagedigest.digest();
     	return bHashFile;
     } 
