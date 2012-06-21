@@ -24,11 +24,22 @@ public class MultiResourceLoader
 	
 	private List<String> paths;
 
+	private ClassLoader classLoader;
+	
+	public MultiResourceLoader(ClassLoader classLoader)
+	{
+		debugInfo = false;
+		debugError = true;
+		paths = new ArrayList<String>();
+		this.classLoader = classLoader;
+	}
+	
 	public MultiResourceLoader()
 	{
 		debugInfo = false;
 		debugError = true;
 		paths = new ArrayList<String>();
+		classLoader = this.getClass().getClassLoader();
 	}
 	
 	public void addPath(String... path)
@@ -50,12 +61,6 @@ public class MultiResourceLoader
 	
 	public synchronized InputStream searchIs(String resourceName) throws FileNotFoundException
 	{
-		ClassLoader cl = this.getClass().getClassLoader();
-		return searchIs(cl, resourceName);
-	}
-	
-	public synchronized InputStream searchIs(ClassLoader cl, String resourceName) throws FileNotFoundException
-	{
 		alLoadError = new ArrayList<String>();
 		alLoadDebug = new ArrayList<String>();
 		InputStream is = null;
@@ -71,7 +76,7 @@ public class MultiResourceLoader
 				switch (lt)
 				{
 					case FileIs: 	is=getFileIs(resourcePath);break;
-					case Jws:		is=getJwsIs(cl,resourcePath);break;
+					case Jws:		is=getJwsIs(resourcePath);break;
 				}
 				if(is!=null){break;}
 			}
@@ -101,15 +106,15 @@ public class MultiResourceLoader
 		return is;
 	}
 	
-	private InputStream getJwsIs(ClassLoader cl, String resourceName)
+	private InputStream getJwsIs(String resourceName)
 	{
 		InputStream is=null;
 		resourceName = resourceName.replace(SystemUtils.FILE_SEPARATOR, "/");
-		URL url = cl.getResource(resourceName);
+		URL url = classLoader.getResource(resourceName);
 		String confInfo = "ClassLoader.getResourceAsStream("+resourceName+")";
 		if(url!=null)
 		{
-			is = cl.getResourceAsStream(resourceName);
+			is = classLoader.getResourceAsStream(resourceName);
 			alLoadDebug.add("Found: "+confInfo+" "+url.getPath()+" "+is.getClass().getSimpleName()+".");
 		}
 		else
