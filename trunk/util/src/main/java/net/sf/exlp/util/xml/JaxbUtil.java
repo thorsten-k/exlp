@@ -36,9 +36,20 @@ public class JaxbUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(JaxbUtil.class);
 	
+	public static synchronized <T extends Object> T loadJAXB(ClassLoader classLoader, String xmlFile, Class<T> c) throws FileNotFoundException
+	{
+		MultiResourceLoader mrl = new MultiResourceLoader(classLoader);
+		return loadJAXB(mrl,xmlFile,c);
+	}
 	public static synchronized <T extends Object> T loadJAXB(String xmlFile, Class<T> c) throws FileNotFoundException
 	{
 		MultiResourceLoader mrl = new MultiResourceLoader();
+		return loadJAXB(mrl,xmlFile,c);
+	}
+	
+	private static synchronized <T extends Object> T loadJAXB(MultiResourceLoader mrl, String xmlFile, Class<T> c) throws FileNotFoundException
+	{
+		
 		T result = null;
 
 		InputStream is=null;
