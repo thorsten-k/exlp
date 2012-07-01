@@ -24,7 +24,6 @@ import javax.naming.Context;
 import javax.naming.NamingException;
 
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -204,10 +203,10 @@ public class PtpPublisher
 	public Object requestAnswer(Serializable myOb) {return requestAnswer(myOb, null,null);}
 	
 	// JAXB Messages
-	public void sendJaxb(Object jaxb, NsPrefixMapperInterface nsPrefixMapper) throws JMSException
+	public void sendJaxb(Object jaxb) throws JMSException
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		JaxbUtil.output(baos, jaxb, nsPrefixMapper, true);
+		JaxbUtil.output(baos, jaxb, true);
 		
 		BytesMessage byteMsg = session.createBytesMessage();
 		byteMsg.writeBytes(baos.toByteArray());

@@ -9,7 +9,6 @@ import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
-import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -20,7 +19,6 @@ public class AbstractExlpTst
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractExlpTst.class);
 	
-	private static NsPrefixMapperInterface nsPrefixMapper;
 	protected static File fTarget;
 	
 	@BeforeClass
@@ -45,6 +43,12 @@ public class AbstractExlpTst
 		}
     }
 	
+	@BeforeClass
+	public static void initPrefixMapper()
+	{
+		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());
+	}
+	
 	protected void assertJaxbEquals(Object ref, Object test)
 	{
 		Assert.assertEquals(JaxbUtil.toString(ref),JaxbUtil.toString(test));
@@ -56,16 +60,10 @@ public class AbstractExlpTst
 		return DateUtil.getXmlGc4D(d);
 	}
 	
-	protected static NsPrefixMapperInterface getNsPrefixMapper()
-	{
-		if(nsPrefixMapper==null){nsPrefixMapper = new ExlpNsPrefixMapper();}
-		return nsPrefixMapper;
-	}
-	
 	protected void save(Object xml, File f)
 	{
 		logger.debug("Saving Reference XML");
-		JaxbUtil.debug(xml, getNsPrefixMapper());
-    	JaxbUtil.save(f, xml, getNsPrefixMapper(), true);
+		JaxbUtil.debug(xml);
+    	JaxbUtil.save(f, xml, true);
 	}
 }
