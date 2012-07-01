@@ -33,8 +33,8 @@ public class TestUser extends AbstractIdentityXmlTest
     {
     	logger.debug("Saving Reference XML");
     	User xml = createUser();
-    	JaxbUtil.debug(xml, new ExlpNsPrefixMapper());
-    	JaxbUtil.save(fXml, xml, getNsPrefixMapper(), true);
+    	JaxbUtil.debug(xml);
+    	JaxbUtil.save(fXml, xml, true);
     }
     
     public static User createUser()

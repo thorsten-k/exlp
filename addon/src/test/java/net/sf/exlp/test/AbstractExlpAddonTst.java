@@ -39,10 +39,4 @@ public class AbstractExlpAddonTst
 		Date d = DateUtil.getDateFromInt(2011, 11, 11, 11, 11, 11);
 		return DateUtil.getXmlGc4D(d);
 	}
-	
-	protected static NsPrefixMapperInterface getNsPrefixMapper()
-	{
-		if(nsPrefixMapper==null){nsPrefixMapper = new ExlpNsPrefixMapper();}
-		return nsPrefixMapper;
-	}
 }

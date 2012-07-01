@@ -36,6 +36,13 @@ public class JaxbUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(JaxbUtil.class);
 	
+	private static NsPrefixMapperInterface nsPrefixMapper;
+	
+	public static void setNsPrefixMapper(NsPrefixMapperInterface nsPrefixMapper)
+	{
+		if(JaxbUtil.nsPrefixMapper != null){logger.warn(NsPrefixMapperInterface.class.getSimpleName()+" already set.");}
+		JaxbUtil.nsPrefixMapper = nsPrefixMapper;
+	}
 	public static synchronized <T extends Object> T loadJAXB(ClassLoader classLoader, String xmlFile, Class<T> c) throws FileNotFoundException
 	{
 		MultiResourceLoader mrl = new MultiResourceLoader(classLoader);
@@ -101,64 +108,53 @@ public class JaxbUtil
 		return sb.toString();
 	}
 	
-	public static synchronized void trace(Object jaxb){trace(jaxb, null,true);}
-	public static synchronized void trace(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){trace(jaxb, nsPrefixMapper,true);}
-	private static synchronized void trace(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
+	public static synchronized void trace(Object jaxb)
 	{
 		if(logger.isTraceEnabled())
 		{
-			logger.debug(getCaller());
-			output(System.out, jaxb, nsPrefixMapper, null,true);
+			logger.trace(getCaller());
+			output(System.out, jaxb, null,true);
 		}
 	}
 	
-	public static synchronized void debug(Object jaxb){debug(jaxb, null,true);}
-	public static synchronized void debug(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){debug(jaxb, nsPrefixMapper,true);}
-	private static synchronized void debug(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
+	public static synchronized void debug(Object jaxb)
 	{
 		if(logger.isDebugEnabled())
 		{
 			logger.debug(getCaller());
-			output(System.out, jaxb, nsPrefixMapper, null,true);
+			output(System.out, jaxb, null,true);
 		}
 	}
 	
-	public static synchronized void info(Object jaxb){info(jaxb, null);}
-	public static synchronized void info(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){info(jaxb, nsPrefixMapper,true);}
-	private static synchronized void info(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
+	public static synchronized void info(Object jaxb)
 	{
 		if(logger.isInfoEnabled())
 		{
 			logger.info(getCaller());
-			output(System.out, jaxb, nsPrefixMapper, null,true);
+			output(System.out, jaxb, null,true);
 		}
 	}
 	
-	public static synchronized void warn(Object jaxb){warn(jaxb, null,true);}
-	public static synchronized void warn(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){warn(jaxb, null,true);}
-	private static synchronized void warn(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
+	public static synchronized void warn(Object jaxb)
 	{
 		if(logger.isWarnEnabled())
 		{
 			logger.warn(getCaller());
-			output(System.out, jaxb, nsPrefixMapper, null,true);
+			output(System.out, jaxb , null,true);
 		}
 	}
 	
-	public static synchronized void error(Object jaxb){error(jaxb, null,true);}
-	public static synchronized void error(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){error(jaxb, nsPrefixMapper,true);}
-	private static synchronized void error(Object jaxb, NsPrefixMapperInterface nsPrefixMapper, boolean dummy)
+	public static synchronized void error(Object jaxb)
 	{
 		if(logger.isErrorEnabled())
 		{
 			logger.error(getCaller());
-			output(System.out, jaxb, nsPrefixMapper, null,true);
+			output(System.out, jaxb, null,true);
 		}
 	}
 	
-	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f, jaxb, null, null,formatted);}
-	public static synchronized void save(File f, Object jaxb, Object nsPrefixMapper,boolean formatted){save(f, jaxb, nsPrefixMapper,null,formatted);}
-	public static synchronized void save(File f, Object jaxb, Object nsPrefixMapper, DocType doctype, boolean formatted)
+	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f, jaxb ,null,formatted);}
+	public static synchronized void save(File f, Object jaxb, DocType doctype, boolean formatted)
 	{
 		OutputStream os=null;
 		try
@@ -169,20 +165,20 @@ public class JaxbUtil
 			}
 			else {os = new FileOutputStream(f);}
 			
-			output(os, jaxb, nsPrefixMapper, doctype, formatted);
+			output(os, jaxb, doctype, formatted);
 			os.close();
 		}
 		catch (FileNotFoundException e) {logger.error("",e);}
 		catch (IOException e) {logger.error("",e);}
 	}
 	
-	public static synchronized InputStream toInputStream(Object jaxb, Object nsPrefixMapper,boolean formatted){return toInputStream(jaxb, nsPrefixMapper, null, formatted);}
-	public static synchronized InputStream toInputStream(Object jaxb, Object nsPrefixMapper, DocType doctype, boolean formatted)
+	public static synchronized InputStream toInputStream(Object jaxb, boolean formatted){return toInputStream(jaxb, null, formatted);}
+	public static synchronized InputStream toInputStream(Object jaxb, DocType doctype, boolean formatted)
 	{
 		try
 		{
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			output(os, jaxb, nsPrefixMapper, doctype, formatted);
+			output(os, jaxb, doctype, formatted);
 			InputStream is = new ByteArrayInputStream(os.toByteArray());
 			os.close();
 			return is;
@@ -191,10 +187,9 @@ public class JaxbUtil
 		return null;
 	}
 	
-	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted){output(os, jaxb,null,null, formatted);}
-	public static synchronized void output(OutputStream os, Object jaxb, Object nsPrefixMapper){output(os, jaxb,nsPrefixMapper,null, true);}
-	public static synchronized void output(OutputStream os, Object jaxb, Object nsPrefixMapper, boolean formatted){output(os, jaxb,nsPrefixMapper,null, formatted);}
-	public static synchronized void output(OutputStream os, Object jaxb, Object nsPrefixMapper, DocType doctype, boolean formatted)
+	public static synchronized void output(OutputStream os, Object jaxb){output(os, jaxb,null, true);}
+	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted){output(os, jaxb,null, formatted);}
+	public static synchronized void output(OutputStream os, Object jaxb, DocType doctype, boolean formatted)
 	{
 		try
 		{
@@ -209,10 +204,10 @@ public class JaxbUtil
 	}
 	
 	@Deprecated
-	public static void toOutputStream(Object xml, OutputStream os, NsPrefixMapperInterface nsPrefixMapper)
+	public static void toOutputStream(Object xml, OutputStream os)
 	{
 		logger.warn("Deprecated. Use: output(os, xml, nsPrefixMapper)");
-		output(os, xml, nsPrefixMapper);
+		output(os, xml);
 	}
 	
 	public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper){output(w, xml, nsPrefixMapper,null,true);}

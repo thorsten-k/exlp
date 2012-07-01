@@ -12,7 +12,8 @@ public class TstJaxbUtil
 		Dir xml = TestDir.createDir(true, true);
 		
 		JaxbUtil.debug(xml);
-		JaxbUtil.debug(xml, new ExlpNsPrefixMapper());
+		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());
+		JaxbUtil.debug(xml);
 	}
 	
 	
