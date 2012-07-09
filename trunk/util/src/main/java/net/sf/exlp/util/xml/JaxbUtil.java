@@ -96,7 +96,13 @@ public class JaxbUtil
 	
 	private static synchronized String getCaller()
 	{
-		StackTraceElement ste = Thread.currentThread().getStackTrace()[4];
+		int index;
+		logger.debug("StackTraceSize"+Thread.currentThread().getStackTrace().length);
+		StackTraceElement[] steList = Thread.currentThread().getStackTrace();
+		if(steList.length==4){index=3;}
+		else{index=4;}
+		
+		StackTraceElement ste = Thread.currentThread().getStackTrace()[index];
 		
 		StringBuffer sb = new StringBuffer();
 		sb.append("Output invoked by: ");
