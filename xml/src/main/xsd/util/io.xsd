@@ -48,7 +48,9 @@
             <xsd:attribute name="id" type="xsd:long"/>
             <xsd:attribute name="description" type="xsd:string"/>
             <xsd:attribute name="permission" type="xsd:string"/>
-            <xsd:attribute name="pass" type="xsd:boolean"/>
+            <xsd:attribute name="oi" type="xsd:boolean"/>
+            <xsd:attribute name="ci" type="xsd:boolean"/>
+            <xsd:attribute name="io" type="xsd:boolean"/>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>

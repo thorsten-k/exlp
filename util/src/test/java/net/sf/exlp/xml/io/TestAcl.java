@@ -32,9 +32,11 @@ public class TestAcl extends AbstractIoXmlTest
     {
     	Acl xml = new Acl();
     	xml.setId(1);
-    	xml.setPermission("r");
-    	xml.setPass(true);
     	xml.setDescription("myDescription");
+    	xml.setPermission("r");
+    	xml.setIo(true);
+    	xml.setCi(true);
+    	xml.setOi(true);
     	return xml;
     }
     

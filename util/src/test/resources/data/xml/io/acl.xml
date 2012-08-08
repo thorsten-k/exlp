@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<io:acl xmlns:io="http://exlp.sf.net/io" id="1" description="myDescription" permission="r" pass="true"/>
+<acl xmlns="http://exlp.sf.net/io" id="1" description="myDescription" permission="r" oi="true" ci="true" io="true"/>
