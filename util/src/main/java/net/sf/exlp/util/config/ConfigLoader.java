@@ -1,10 +1,12 @@
-package net.sf.exlp.util.io;
+package net.sf.exlp.util.config;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
+
+import net.sf.exlp.util.io.ExlpCentralConfigPointer;
 
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
