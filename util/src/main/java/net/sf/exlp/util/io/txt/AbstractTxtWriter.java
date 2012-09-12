@@ -104,19 +104,6 @@ public abstract class AbstractTxtWriter
 		return sb.toString();
 	}
 	
-	public void tex()
-	{
-		//TODO move this to a separate class
-		ArrayList<String> tmp = new ArrayList<String>();
-		for(String s : txt)
-		{
-			s=s.replaceAll("#", "\\\\#");
-			s=s.replaceAll("∞","\\$ \\\\inf \\$");
-			tmp.add(s);
-		}
-		txt=tmp;
-	}
-	
 	public String getEncoding() {return encoding;}
 	public void setEncoding(String encoding) {this.encoding = encoding;}
 	
