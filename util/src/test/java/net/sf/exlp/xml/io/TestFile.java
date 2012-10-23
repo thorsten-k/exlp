@@ -8,6 +8,7 @@ import java.util.List;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,7 +28,7 @@ public class TestFile extends AbstractIoXmlTest
     @Test
     public void testFile() throws FileNotFoundException
     {
-    	File test = create();
+    	File test = create(true);
     	File ref = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), File.class);
     	assertJaxbEquals(ref, test);
     }
@@ -35,12 +36,11 @@ public class TestFile extends AbstractIoXmlTest
     public static List<File> createFiles()
     {   	
     	List<File> list = new ArrayList<File>();
-    	list.add(create());
-    	list.add(create());
+    	list.add(create(false));
+    	list.add(create(false));
     	return list;
     }
     
-    private static File create(){return create(false);}
     public static File create(boolean withChilds)
     {
     	Date d = DateUtil.getDateFromInt(2012, 1, 1,10,10,10);
@@ -52,9 +52,10 @@ public class TestFile extends AbstractIoXmlTest
     	xml.setSize(123);
     	xml.setMime("myMime");
     	xml.setLastModifed(DateUtil.getXmlGc4D(d));
-    	
+
     	if(withChilds)
     	{
+    		xml.setData(new byte[] {1,3});
     		xml.getPolicy().add(TestPolicy.create(false));
     		xml.getPolicy().add(TestPolicy.create(false));
     	}
@@ -62,13 +63,15 @@ public class TestFile extends AbstractIoXmlTest
     	return xml;
     }
     
-    public void save() {save(create(),fXml);}
+    public void save() {save(create(true),fXml);}
 	
 	public static void main(String[] args)
     {
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
 			loggerInit.addAltPath("src/test/resources/config");
 			loggerInit.init();		
+		
+		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());	
 			
 		TestFile.initFiles();	
 		TestFile test = new TestFile();

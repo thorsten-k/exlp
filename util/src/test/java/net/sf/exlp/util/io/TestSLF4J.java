@@ -46,6 +46,6 @@ public class TestSLF4J extends AbstractExlpTst
     	Assert.assertEquals(false, logger.isDebugEnabled());
     	Assert.assertEquals(false, logger.isInfoEnabled());
     	Assert.assertEquals(false, logger.isWarnEnabled());
-    	Assert.assertEquals(true, logger.isErrorEnabled());
+    	Assert.assertEquals(true,  logger.isErrorEnabled());
     }
 }
