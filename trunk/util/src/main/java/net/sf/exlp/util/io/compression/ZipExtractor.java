@@ -37,7 +37,6 @@ public class ZipExtractor
         ZipEntry entry;
         while ((entry = zis.getNextEntry()) != null)
         {
-            System.out.println("entry: " + entry.getName() );
             File xmlFile = XmlFileFactory.build(entry.getName()); 
 
             byte[] bytes = IOUtils.toByteArray(zis);
