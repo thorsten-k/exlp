@@ -133,5 +133,9 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
 	</dependencies>
 </project>

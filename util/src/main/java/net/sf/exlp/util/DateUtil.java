@@ -11,6 +11,8 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.joda.time.DateMidnight;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -205,5 +207,17 @@ public class DateUtil
 		gc.setTime(d);
 		gc.set(GregorianCalendar.MILLISECOND, 0);
 		return gc.getTimeInMillis();
+	}
+	
+	public static Date midnightBeginOfMonth(Date date)
+	{
+		DateMidnight dm = new DateMidnight(date);
+		return dm.withDayOfMonth(1).toDate();
+	}
+	
+	public static Date midnightEndOfMonth(Date date)
+	{
+		DateMidnight dm = new DateMidnight(date);
+		return dm.withDayOfMonth(1).plusMonths(1).toDate();
 	}
 }
