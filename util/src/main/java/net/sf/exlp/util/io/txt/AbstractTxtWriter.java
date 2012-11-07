@@ -46,12 +46,13 @@ public abstract class AbstractTxtWriter
 		df = new DecimalFormat(s);
 	}
 	
-	public void debug()
+	public void debug() {debug(logger);}
+	public void debug(Logger mylogger)
 	{
-		logger.debug("Debugging TXT content");
+		mylogger.debug("Debugging TXT content");
 		for(String s : txt)
 		{
-			logger.debug(s);
+			mylogger.debug(s);
 		}
 	}
 	
