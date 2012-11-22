@@ -269,22 +269,31 @@ public class JDomUtil
 	public static synchronized Document load(String resourceName){return load(resourceName, "UTF-8");}
 	public static synchronized Document load(String resourceName, String encoding)
 	{
-		Document doc = null;
 		try
 		{
 			MultiResourceLoader mrl = new MultiResourceLoader();
 			InputStream is = mrl.searchIs(resourceName);
+			return load(is,encoding);
+		}
+		catch (FileNotFoundException e) {e.printStackTrace();}
+		return null;
+	}
+	public static Document load(InputStream is, String encoding)
+	{
+		Document doc = null;
+		try
+		{
 			InputStreamReader isr = new InputStreamReader(is, encoding);
 			doc = new SAXBuilder().build(isr);
 		}
 		catch (JDOMException e)
 		{
-			String msg = e.getMessage()+" "+resourceName;
+			String msg = e.getMessage();
 			throw new JDomUtilException(msg);
 		}
 		catch (IOException e)
 		{
-			String msg = e.getMessage()+" "+resourceName;
+			String msg = e.getMessage();
 			logger.error(msg,e);
 		}
 		return doc;
