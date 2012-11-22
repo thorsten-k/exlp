@@ -284,7 +284,9 @@ public class JDomUtil
 		try
 		{
 			InputStreamReader isr = new InputStreamReader(is, encoding);
-			doc = new SAXBuilder().build(isr);
+			SAXBuilder sax = new SAXBuilder();
+		
+			doc = sax.build(isr);
 		}
 		catch (JDOMException e)
 		{
