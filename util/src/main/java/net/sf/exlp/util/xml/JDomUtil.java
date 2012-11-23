@@ -285,7 +285,7 @@ public class JDomUtil
 		{
 			InputStreamReader isr = new InputStreamReader(is, encoding);
 			SAXBuilder sax = new SAXBuilder();
-		
+			sax.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
 			doc = sax.build(isr);
 		}
 		catch (JDOMException e)
