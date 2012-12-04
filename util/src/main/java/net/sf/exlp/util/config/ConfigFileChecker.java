@@ -1,4 +1,4 @@
-package net.sf.exlp.io.config;
+package net.sf.exlp.util.config;
 
 import java.io.File;
 
