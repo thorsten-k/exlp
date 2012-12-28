@@ -13,7 +13,6 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
-import org.apache.commons.configuration.tree.xpath.XPathExpressionEngine;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -55,7 +54,6 @@ public class ConfigLoader
 	
 	public synchronized static Configuration initWithException() throws ConfigurationException
 	{
-		XPathExpressionEngine exEngine = new XPathExpressionEngine();
 		c = new CompositeConfiguration();
 		c.setThrowExceptionOnMissing(true);
 		for(String configName : alConfigNames)
@@ -63,7 +61,6 @@ public class ConfigLoader
 			switch(getTyp(configName))
 			{
 				case XML:	XMLConfiguration xCnf = new XMLConfiguration(configName);
-							xCnf.setExpressionEngine(exEngine);
 							if(xmlSave==null){xmlSave=xCnf;}
 							c.addConfiguration(xCnf);break;
 				case PROPERTIES:	PropertiesConfiguration pCnf = new PropertiesConfiguration(configName);
