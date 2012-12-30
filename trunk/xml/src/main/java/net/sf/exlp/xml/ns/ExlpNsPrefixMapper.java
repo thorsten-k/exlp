@@ -7,6 +7,7 @@ public class ExlpNsPrefixMapper extends NamespacePrefixMapper implements NsPrefi
     public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix)
     {
         if("http://exlp.sf.net/io".equals(namespaceUri) ){return "io";}
+        if("http://exlp.sf.net/net".equals(namespaceUri) ){return "net";}
         if("http://exlp.sf.net/identity".equals(namespaceUri) ){return "id";}
   
         return suggestion;
