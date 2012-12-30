@@ -2,6 +2,7 @@ package net.sf.exlp.xml.identity;
 
 import java.io.FileNotFoundException;
 
+import net.sf.exlp.test.ExlpTstBootstrap;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
@@ -45,9 +46,7 @@ public class TestXmlCertificate extends AbstractIdentityXmlTest
 	
 	public static void main(String[] args)
     {
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("src/test/resources/config");
-			loggerInit.init();		
+		ExlpTstBootstrap.init();
 			
 		TestXmlCertificate.initFiles();	
 		TestXmlCertificate test = new TestXmlCertificate();
