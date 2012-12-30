@@ -10,9 +10,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestContainer extends AbstractIdentityXmlTest
+public class TestXmlContainer extends AbstractIdentityXmlTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestContainer.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlContainer.class);
 		
 	@BeforeClass
 	public static void initFiles()
@@ -35,8 +35,8 @@ public class TestContainer extends AbstractIdentityXmlTest
     	
     	if(withChilds)
     	{
-    		xml.getCertificate().add(TestCertificate.create());
-    		xml.getUser().add(TestUser.createUser());
+    		xml.getCertificate().add(TestXmlCertificate.create());
+    		xml.getUser().add(TestXmlUser.createUser());
     	}
     	
     	return xml;
@@ -50,8 +50,8 @@ public class TestContainer extends AbstractIdentityXmlTest
 			loggerInit.addAltPath("src/test/resources/config");
 			loggerInit.init();		
 			
-		TestContainer.initFiles();	
-		TestContainer test = new TestContainer();
+		TestXmlContainer.initFiles();	
+		TestXmlContainer test = new TestXmlContainer();
 		test.save();
     }
 }

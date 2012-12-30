@@ -10,9 +10,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestCertificate extends AbstractIdentityXmlTest
+public class TestXmlCertificate extends AbstractIdentityXmlTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestCertificate.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlCertificate.class);
 		
 	@BeforeClass
 	public static void initFiles()
@@ -24,7 +24,7 @@ public class TestCertificate extends AbstractIdentityXmlTest
     public void testFile() throws FileNotFoundException
     {
     	Certificate test = create();
-    	Certificate ref = (Certificate)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Certificate.class);
+    	Certificate ref = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Certificate.class);
     	assertJaxbEquals(ref, test);
     }
     
@@ -49,8 +49,8 @@ public class TestCertificate extends AbstractIdentityXmlTest
 			loggerInit.addAltPath("src/test/resources/config");
 			loggerInit.init();		
 			
-		TestCertificate.initFiles();	
-		TestCertificate test = new TestCertificate();
+		TestXmlCertificate.initFiles();	
+		TestXmlCertificate test = new TestXmlCertificate();
 		test.save();
     }
 }
