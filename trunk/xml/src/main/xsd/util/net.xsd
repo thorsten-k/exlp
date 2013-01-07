@@ -26,4 +26,14 @@
             <xsd:attribute name="port" type="xsd:int"/>
         </xsd:complexType>
     </xsd:element>
+    <xsd:element name="database">
+        <xsd:complexType>
+            <xsd:attribute name="id" type="xsd:long"/>
+            <xsd:attribute name="user" type="xsd:string"/>
+            <xsd:attribute name="password" type="xsd:string"/>
+            <xsd:attribute name="database" type="xsd:string"/>
+            <xsd:attribute name="schema" type="xsd:string"/>
+            <xsd:attribute name="type" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
 </xsd:schema>
