@@ -17,8 +17,11 @@ public class TstMultiResourceLoader extends AbstractExlpTst
 		mrl1.addPath("dir1","dir2","dir3");
 		mrl1.addPath("exlp-util.test");
 		mrl1.searchIs("log4j.xml");
+		System.out.println(mrl1.getSearchPath());
 		
-		MultiResourceLoader mrl2 = new MultiResourceLoader();
-		mrl2.searchIs("exlp-util.test/log4j.xml");
+		MultiResourceLoader mrl3 = new MultiResourceLoader();
+		mrl3.addPath("dir1","dir2","dir3");
+		mrl3.addPath("exlp-util.test");
+		System.out.println(mrl3.getLocation("log4j.xml"));
 	}
 }
