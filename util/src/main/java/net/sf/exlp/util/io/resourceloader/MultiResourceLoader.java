@@ -16,10 +16,11 @@ public class MultiResourceLoader
 {
 	final static Logger logger = LoggerFactory.getLogger(MultiResourceLoader.class);
 	
-	public enum LoadType {FileIs, Jws};
+	public enum LoadType {FILE, RESOURCE};
 	private ArrayList<String> alLoadError;
 	private ArrayList<String> alLoadDebug;
-	public String lastAbsolutPath;
+	private String searchPath;
+	
 	public boolean debugInfo,debugError;
 	
 	private List<String> paths;
@@ -49,14 +50,12 @@ public class MultiResourceLoader
 	
 	public boolean isAvailable(String resourceName)
 	{
-		boolean available=false;
 		try
 		{
 			searchIs(resourceName);
-			available = true;
+			return true;
 		}
-		catch (FileNotFoundException e) {}
-		return available;
+		catch (FileNotFoundException e) {return false;}
 	}
 	
 	public synchronized InputStream searchIs(String resourceName) throws FileNotFoundException
@@ -68,6 +67,7 @@ public class MultiResourceLoader
 		
 		for(String path : paths)
 		{
+			searchPath = path;
 			String resourcePath;
 			if(path.length()==0){resourcePath=resourceName;}
 			else{resourcePath=path+SystemUtils.FILE_SEPARATOR+resourceName;}
@@ -75,8 +75,8 @@ public class MultiResourceLoader
 			{
 				switch (lt)
 				{
-					case FileIs: 	is=getFileIs(resourcePath);break;
-					case Jws:		is=getJwsIs(resourcePath);break;
+					case FILE: 		is=getFileIs(resourcePath);break;
+					case RESOURCE:	is=getResource(resourcePath);break;
 				}
 				if(is!=null){break;}
 			}
@@ -106,7 +106,7 @@ public class MultiResourceLoader
 		return is;
 	}
 	
-	private InputStream getJwsIs(String resourceName)
+	private InputStream getResource(String resourceName)
 	{
 		InputStream is=null;
 		resourceName = resourceName.replace(SystemUtils.FILE_SEPARATOR, "/");
@@ -128,20 +128,27 @@ public class MultiResourceLoader
 	{
 		InputStream is=null;
 		File f = new File(resourceName);
-		lastAbsolutPath = f.getAbsolutePath();
 		if(f.exists())
 		{
-			alLoadDebug.add("Gefunden: File("+lastAbsolutPath+")");
+			alLoadDebug.add("Gefunden: File("+searchPath+")");
 			try {is = new FileInputStream(f);}
 			catch (FileNotFoundException e) {e.printStackTrace();}
 		}
 		else
 		{
-			alLoadError.add("Not found: File("+lastAbsolutPath+")");
+			alLoadError.add("Not found: File("+searchPath+")");
 			f=null;
 		}
 		return is;
 	}
+	
+	public String getLocation(String resourceName) throws FileNotFoundException
+	{
+		this.searchIs(resourceName);
+		return this.getSearchPath();
+	}
+	
+	public String getSearchPath() {return searchPath;}
 	
 	public boolean isDebugInfo() {return debugInfo;}
 	public void setDebugInfo(boolean debug) {this.debugInfo = debug;}
