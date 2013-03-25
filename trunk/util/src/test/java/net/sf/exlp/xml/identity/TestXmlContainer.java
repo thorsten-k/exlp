@@ -3,7 +3,6 @@ package net.sf.exlp.xml.identity;
 import java.io.FileNotFoundException;
 
 import net.sf.exlp.test.ExlpTstBootstrap;
-import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.junit.BeforeClass;

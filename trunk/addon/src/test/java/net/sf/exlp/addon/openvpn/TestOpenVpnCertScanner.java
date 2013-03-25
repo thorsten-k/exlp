@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 
-import junit.framework.Assert;
 import net.sf.exlp.addon.openvpn.event.OpenVpnCertEvent;
 import net.sf.exlp.test.AbstractExlpAddonTst;
 import net.sf.exlp.test.ExlpAddonTstBootstrap;
@@ -12,6 +11,7 @@ import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.identity.Certificate;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
+import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

@@ -2,9 +2,9 @@ package net.sf.exlp.util.io;
 
 import java.io.FileNotFoundException;
 
-import junit.framework.Assert;
 import net.sf.exlp.test.AbstractExlpTst;
 
+import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
