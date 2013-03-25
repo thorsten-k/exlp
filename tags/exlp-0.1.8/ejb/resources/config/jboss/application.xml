@@ -1,0 +1,6 @@
+<application>
+    <display-name>Extensible LogParser (ExLP)</display-name>
+ 
+    <module><ejb>xx-exlp-EJB3.jar</ejb></module>
+    <module><ejb>xy-exlp-SB.jar</ejb></module>
+</application>
