@@ -76,6 +76,7 @@ public class TopPublisher
 //		System.out.println(this.getClass().getName()+".setupPubSub: abgeschlossen");
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public void sendObject(Serializable myOb, Hashtable<TopPublisher.Typ,Hashtable> p)
 	{
 		try

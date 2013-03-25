@@ -25,6 +25,7 @@ public class EventDebugListener implements MessageListener
 		ehi = new EhDebug();
 	}
 	
+	@SuppressWarnings({ "unchecked", "unused" })
 	public void onMessage(Message msg)
 	{
 		try
@@ -43,15 +44,13 @@ public class EventDebugListener implements MessageListener
 //		try
 		{	
 			LogEvent event;
-			try {
+			try
+			{
 				event = (LogEvent)((ObjectMessage)msg).getObject();
-			} catch (JMSException e) {
-				try {
-					throw new Exception("s");
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+			}
+			catch (JMSException e)
+			{
+				e.printStackTrace();
 			}
 //			ehi.handleEvent(event);
 		}

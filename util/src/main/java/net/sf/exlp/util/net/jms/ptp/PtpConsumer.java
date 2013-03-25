@@ -22,6 +22,7 @@ public class PtpConsumer
 	
 	private static enum Typ {Listener, Responder};
 	
+	@SuppressWarnings("unused")
 	private Typ typ;
 	
 	InitialContext ctx;

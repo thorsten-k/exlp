@@ -14,8 +14,10 @@ import net.sf.exlp.parser.LogParser;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.JDOMException;
+import org.jdom2.filter.Filters;
 import org.jdom2.input.SAXBuilder;
-import org.jdom2.xpath.XPath;
+import org.jdom2.xpath.XPathExpression;
+import org.jdom2.xpath.XPathFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,52 +57,39 @@ public class LogListenerXml extends AbstractLogListener implements LogListener
 	public void processSingle(String xPathExpression)
 	{
 		logger.debug("Evaluating xPath:"+xPathExpression);
-		try
+
+		XPathExpression<Element> xpath = XPathFactory.instance().compile(xPathExpression, Filters.element());
+		List<Element> elements = xpath.evaluate(doc);
+		for(Element e : elements)
 		{
-			XPath x = XPath.newInstance(xPathExpression);
-			List<?> l = x.selectNodes(doc);
-			if(l!=null && l.size()>0)
+			String content = e.getText();
+			StringTokenizer st = new StringTokenizer(content,"\n");
+			while(st.hasMoreElements())
 			{
-				for(Object o : l)
-				{
-					Element e = (Element)o;
-					String content = e.getText();
-					StringTokenizer st = new StringTokenizer(content,"\n");
-					while(st.hasMoreElements())
-					{
-						lp.parseLine((String)st.nextElement());
-					}
-					
-				}
+				lp.parseLine((String)st.nextElement());
 			}
+			
 		}
-		catch (JDOMException e) {logger.error("",e);}
 	}
 	
 	public void processMulti(String xPathExpression)
 	{
 		logger.debug("Evaluating xPath:"+xPathExpression);
-		try
+		
+		XPathExpression<Element> xpath = XPathFactory.instance().compile(xPathExpression, Filters.element());
+		List<Element> elements = xpath.evaluate(doc);
+		
+		for(Element e : elements)
 		{
-			XPath x = XPath.newInstance(xPathExpression);
-			List<?> l = x.selectNodes(doc);
-			if(l!=null && l.size()>0)
+			String content = e.getText();
+			StringTokenizer st = new StringTokenizer(content,"\n");
+			ArrayList<String> lines = new ArrayList<String>();
+			while(st.hasMoreElements())
 			{
-				for(Object o : l)
-				{
-					Element e = (Element)o;
-					String content = e.getText();
-					StringTokenizer st = new StringTokenizer(content,"\n");
-					ArrayList<String> lines = new ArrayList<String>();
-					while(st.hasMoreElements())
-					{
-						lines.add((String)st.nextElement());
-					}
-					lp.parseItem(lines);
-				}
+				lines.add((String)st.nextElement());
 			}
+			lp.parseItem(lines);
 		}
-		catch (JDOMException e) {logger.error("",e);}
 	}
 	
 	@Override
