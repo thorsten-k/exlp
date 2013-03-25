@@ -78,7 +78,7 @@ public class Loccer
         	case xml: ob = new AllCounter(f);break;
         	case jsp: ob = new AllCounter(f);break;
         	case css: ob = new AllCounter(f);break;
-        	case unknown: ob = new UnknownCounter(f);break;
+        	default: ob = new UnknownCounter(f);break;
         }
         
         if (ob != null)
