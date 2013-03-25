@@ -3,11 +3,11 @@ package net.sf.exlp.util.io.compression;
 import java.io.File;
 import java.io.IOException;
 
-import junit.framework.Assert;
 import net.sf.exlp.test.AbstractExlpTst;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.io.Dir;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;

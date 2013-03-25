@@ -30,6 +30,7 @@ public class FileIO
 		{
 			messagedigest.update(md,0,n);
 		}
+		in.close();
 
     	return new String(Hex.encodeHex(messagedigest.digest()));
     }

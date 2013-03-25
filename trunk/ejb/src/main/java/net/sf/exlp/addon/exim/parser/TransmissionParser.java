@@ -12,6 +12,7 @@ import net.sf.exlp.parser.PatternFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+@SuppressWarnings("unused")
 public class TransmissionParser extends AbstractLogParser implements LogParser  
 {
 	final static Logger logger = LoggerFactory.getLogger(TransmissionParser.class);
