@@ -344,7 +344,6 @@ public class JDomUtil
 		return e;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static synchronized Document unsetNameSpace(Document doc)
 	{
 		Namespace ns = Namespace.getNamespace("");

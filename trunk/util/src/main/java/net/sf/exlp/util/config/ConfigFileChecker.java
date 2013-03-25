@@ -12,6 +12,7 @@ public class ConfigFileChecker
 	final static Marker fatal = MarkerFactory.getMarker("FATAL");
 	final static Logger logger = LoggerFactory.getLogger(ConfigFileChecker.class);
 	
+	@SuppressWarnings("unused")
 	private boolean info,exit;
 	
 	public ConfigFileChecker(boolean info, boolean exit)
