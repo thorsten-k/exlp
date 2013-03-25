@@ -9,8 +9,8 @@ import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.util.xml.JDomUtil;
 
 import org.apache.commons.lang.SystemUtils;
-import org.jdom.Document;
-import org.jdom.JDOMException;
+import org.jdom2.Document;
+import org.jdom2.JDOMException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

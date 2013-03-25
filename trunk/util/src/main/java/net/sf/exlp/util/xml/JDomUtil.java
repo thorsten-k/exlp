@@ -27,15 +27,15 @@ import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.exception.JDomUtilException;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
-import org.jdom.DocType;
-import org.jdom.Document;
-import org.jdom.Element;
-import org.jdom.JDOMException;
-import org.jdom.Namespace;
-import org.jdom.Text;
-import org.jdom.input.SAXBuilder;
-import org.jdom.output.Format;
-import org.jdom.output.XMLOutputter;
+import org.jdom2.DocType;
+import org.jdom2.Document;
+import org.jdom2.Element;
+import org.jdom2.JDOMException;
+import org.jdom2.Namespace;
+import org.jdom2.Text;
+import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
@@ -93,12 +93,12 @@ public class JDomUtil
 			logger.debug(logMsg);
 			for(Object oContent : e.getContent())
 			{
-				if(org.jdom.Text.class.isInstance(oContent))
+				if(org.jdom2.Text.class.isInstance(oContent))
 				{
 					Text txt = (Text)oContent;
 					logger.debug("\t"+oContent.getClass().getSimpleName()+": "+txt.getText());
 				}
-				else if(org.jdom.Element.class.isInstance(oContent))
+				else if(org.jdom2.Element.class.isInstance(oContent))
 				{
 					Element child = (Element)oContent;
 					logger.debug("\t"+oContent.getClass().getSimpleName()+": "+child.getName());
