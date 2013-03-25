@@ -171,6 +171,7 @@ public class ObjectIO
 	    	FileInputStream fis = new FileInputStream(f);
 	    	byte[] b = new byte[fis.available()];
 	    	fis.read(b);
+	    	fis.close();
 	    	return b;
 	    }
 	    catch( IOException e ){e.printStackTrace();}

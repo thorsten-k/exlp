@@ -7,8 +7,6 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
-import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -18,9 +16,7 @@ import org.slf4j.LoggerFactory;
 public class AbstractExlpAddonTst
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractExlpAddonTst.class);
-	
-	private static NsPrefixMapperInterface nsPrefixMapper;
-	
+		
 	@BeforeClass
     public static void initLogger()
 	{
