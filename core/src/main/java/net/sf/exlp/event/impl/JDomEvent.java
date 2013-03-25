@@ -4,7 +4,7 @@ import net.sf.exlp.event.AbstractEvent;
 import net.sf.exlp.event.LogEvent;
 import net.sf.exlp.util.xml.JDomUtil;
 
-import org.jdom.Document;
+import org.jdom2.Document;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
