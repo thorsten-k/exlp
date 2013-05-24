@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.sf.exlp.util.exception.ExlpUnsupportedOsException;
+import net.sf.exlp.exception.ExlpUnsupportedOsException;
 
 import org.apache.commons.lang.SystemUtils;
 import org.slf4j.Logger;
