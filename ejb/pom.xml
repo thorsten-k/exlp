@@ -108,6 +108,12 @@
    			<type>jar</type>
    			<scope>compile</scope>
    		</dependency>
+   		<dependency>
+   			<groupId>net.sf.exlp</groupId>
+   			<artifactId>exlp-shell</artifactId>
+   			<type>jar</type>
+   			<scope>compile</scope>
+   		</dependency>
 	</dependencies>
    
 	<build>

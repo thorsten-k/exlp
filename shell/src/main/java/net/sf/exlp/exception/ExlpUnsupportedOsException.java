@@ -1,4 +1,4 @@
-package net.sf.exlp.util.exception;
+package net.sf.exlp.exception;
 
 import java.io.Serializable;
 

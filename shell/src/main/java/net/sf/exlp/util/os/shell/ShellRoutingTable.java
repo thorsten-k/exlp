@@ -1,6 +1,6 @@
 package net.sf.exlp.util.os.shell;
 
-import net.sf.exlp.util.exception.ExlpUnsupportedOsException;
+import net.sf.exlp.exception.ExlpUnsupportedOsException;
 import net.sf.exlp.util.os.ArchUtil;
 
 import org.slf4j.Logger;
