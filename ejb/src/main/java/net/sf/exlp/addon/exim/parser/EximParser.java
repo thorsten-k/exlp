@@ -8,7 +8,7 @@ import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
-import net.sf.exlp.parser.PatternFactory;
+import net.sf.exlp.parser.PatternLibrary;
 import net.sf.exlp.util.DateUtil;
 
 import org.slf4j.Logger;
@@ -21,10 +21,10 @@ public class EximParser extends AbstractLogParser implements LogParser
 	private HostConnectionParser hostConnectionParser;
 	private TransmissionParser transmissionParser;
 	
-	public static String hBracket = "\\(("+PatternFactory.hostPattern+")\\)";
-	public static String iBracket = "\\[("+PatternFactory.ipPattern+")\\]";
-	public static String dHiBracket = "\\(\\[("+PatternFactory.ipPattern+")\\]\\)";
-	public static String dIhBracket = "\\[\\(("+PatternFactory.ipPattern+")\\)\\]";
+	public static String hBracket = "\\(("+PatternLibrary.hostPattern+")\\)";
+	public static String iBracket = "\\[("+PatternLibrary.ipPattern+")\\]";
+	public static String dHiBracket = "\\(\\[("+PatternLibrary.ipPattern+")\\]\\)";
+	public static String dIhBracket = "\\[\\(("+PatternLibrary.ipPattern+")\\)\\]";
 	
 	public EximParser(LogEventHandler leh)
 	{
@@ -32,14 +32,14 @@ public class EximParser extends AbstractLogParser implements LogParser
 		hostConnectionParser = new HostConnectionParser(leh);childParser.add(hostConnectionParser);
 		transmissionParser = new TransmissionParser(leh);childParser.add(transmissionParser);
 		
-		String prefix = PatternFactory.eximPrefix;
+		String prefix = PatternLibrary.eximPrefix;
 		
-		pattern.add(Pattern.compile(prefix+PatternFactory.eximId+" (.*)"));
+		pattern.add(Pattern.compile(prefix+PatternLibrary.eximId+" (.*)"));
 		
 		pattern.add(Pattern.compile(prefix+"H="+hBracket+" "+iBracket+" (.*)"));
-		pattern.add(Pattern.compile(prefix+"H=("+PatternFactory.hostPattern+") "+iBracket+" (.*)"));
-		pattern.add(Pattern.compile(prefix+"H=("+PatternFactory.hostPattern+") "+hBracket+" "+iBracket+" (.*)"));
-		pattern.add(Pattern.compile(prefix+"H=("+PatternFactory.hostPattern+") "+dHiBracket+" "+iBracket+" (.*)"));
+		pattern.add(Pattern.compile(prefix+"H=("+PatternLibrary.hostPattern+") "+iBracket+" (.*)"));
+		pattern.add(Pattern.compile(prefix+"H=("+PatternLibrary.hostPattern+") "+hBracket+" "+iBracket+" (.*)"));
+		pattern.add(Pattern.compile(prefix+"H=("+PatternLibrary.hostPattern+") "+dHiBracket+" "+iBracket+" (.*)"));
 		pattern.add(Pattern.compile(prefix+"H="+dHiBracket+" "+iBracket+" (.*)"));
 		pattern.add(Pattern.compile(prefix+"H="+iBracket+" (.*)"));
 		

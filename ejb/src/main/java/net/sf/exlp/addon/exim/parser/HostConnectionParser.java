@@ -8,7 +8,7 @@ import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
-import net.sf.exlp.parser.PatternFactory;
+import net.sf.exlp.parser.PatternLibrary;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,12 +28,12 @@ public class HostConnectionParser extends AbstractLogParser implements LogParser
 		rejectParser = new RejectParser(leh);childParser.add(rejectParser);
 		clear();
 		
-		pattern.add(Pattern.compile("F=<("+PatternFactory.email+")> (.*)"));		
-		pattern.add(Pattern.compile("U="+PatternFactory.hostPattern+" F=<("+PatternFactory.email+")> (.*)"));
-		pattern.add(Pattern.compile("U=("+PatternFactory.hostPattern+") F=<> (.*)"));
+		pattern.add(Pattern.compile("F=<("+PatternLibrary.email+")> (.*)"));		
+		pattern.add(Pattern.compile("U="+PatternLibrary.hostPattern+" F=<("+PatternLibrary.email+")> (.*)"));
+		pattern.add(Pattern.compile("U=("+PatternLibrary.hostPattern+") F=<> (.*)"));
 		
-		pattern.add(Pattern.compile("sender verify fail for <("+PatternFactory.email+")>: (.*)"));
-		pattern.add(Pattern.compile("sender verify defer for <("+PatternFactory.email+")>: (.*)"));
+		pattern.add(Pattern.compile("sender verify fail for <("+PatternLibrary.email+")>: (.*)"));
+		pattern.add(Pattern.compile("sender verify defer for <("+PatternLibrary.email+")>: (.*)"));
 	}
 
 	public void parseLine(String line)

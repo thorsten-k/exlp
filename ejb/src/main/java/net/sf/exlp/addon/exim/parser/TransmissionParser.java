@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
-import net.sf.exlp.parser.PatternFactory;
+import net.sf.exlp.parser.PatternLibrary;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,16 +36,16 @@ public class TransmissionParser extends AbstractLogParser implements LogParser
 		pattern.add(Pattern.compile("cancelled by timeout_frozen_after(.*)"));
 		pattern.add(Pattern.compile("Frozen \\(delivery error message\\)(.*)"));
 		pattern.add(Pattern.compile("Spool file is locked \\(another process is handling this message\\)(.*)"));
-		pattern.add(Pattern.compile("lowest numbered MX record points to local host: "+PatternFactory.hostPattern+"(.*)"));
+		pattern.add(Pattern.compile("lowest numbered MX record points to local host: "+PatternLibrary.hostPattern+"(.*)"));
 		
-		pattern.add(Pattern.compile(PatternFactory.hostPattern+" "+EximParser.iBracket+" Connection timed out(.*)"));
-		pattern.add(Pattern.compile(PatternFactory.hostPattern+" "+EximParser.iBracket+" Connection refused(.*)"));
-		pattern.add(Pattern.compile(PatternFactory.hostPattern+" "+EximParser.iBracket+" No route to host(.*)"));
-		pattern.add(Pattern.compile("Remote host "+PatternFactory.hostPattern+" "+EximParser.iBracket+" after initial connection: Connection timed out(.*)"));
-		pattern.add(Pattern.compile("Remote host "+PatternFactory.hostPattern+" "+EximParser.iBracket+" closed connection in response to initial connection(.*)"));
-		pattern.add(Pattern.compile("SMTP timeout while connected to "+PatternFactory.hostPattern+" "+EximParser.iBracket+" closed connection in response to initial connection(.*)"));
-		pattern.add(Pattern.compile("SMTP timeout while connected to "+PatternFactory.hostPattern+" "+EximParser.iBracket+" after initial connection: Connection timed out(.*)"));
-		pattern.add(Pattern.compile(PatternFactory.email+": error ignored(.*)"));
+		pattern.add(Pattern.compile(PatternLibrary.hostPattern+" "+EximParser.iBracket+" Connection timed out(.*)"));
+		pattern.add(Pattern.compile(PatternLibrary.hostPattern+" "+EximParser.iBracket+" Connection refused(.*)"));
+		pattern.add(Pattern.compile(PatternLibrary.hostPattern+" "+EximParser.iBracket+" No route to host(.*)"));
+		pattern.add(Pattern.compile("Remote host "+PatternLibrary.hostPattern+" "+EximParser.iBracket+" after initial connection: Connection timed out(.*)"));
+		pattern.add(Pattern.compile("Remote host "+PatternLibrary.hostPattern+" "+EximParser.iBracket+" closed connection in response to initial connection(.*)"));
+		pattern.add(Pattern.compile("SMTP timeout while connected to "+PatternLibrary.hostPattern+" "+EximParser.iBracket+" closed connection in response to initial connection(.*)"));
+		pattern.add(Pattern.compile("SMTP timeout while connected to "+PatternLibrary.hostPattern+" "+EximParser.iBracket+" after initial connection: Connection timed out(.*)"));
+		pattern.add(Pattern.compile(PatternLibrary.email+": error ignored(.*)"));
 		
 	}
 	

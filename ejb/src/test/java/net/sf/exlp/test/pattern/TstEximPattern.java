@@ -3,7 +3,7 @@ package net.sf.exlp.test.pattern;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.sf.exlp.parser.PatternFactory;
+import net.sf.exlp.parser.PatternLibrary;
 import net.sf.exlp.util.io.LoggerInit;
 
 import org.slf4j.Logger;
@@ -22,7 +22,7 @@ public class TstEximPattern
 //		String hBracket = EximParser.hBracket;
 //		String iBracket = EximParser.iBracket;
 			
-		Pattern p = Pattern.compile(PatternFactory.eximPrefix+"H=[\\(]?[\\[]?("+PatternFactory.hostPattern+")[\\]]?[\\)]? \\(("+PatternFactory.hostPattern+")\\)(.*)");
+		Pattern p = Pattern.compile(PatternLibrary.eximPrefix+"H=[\\(]?[\\[]?("+PatternLibrary.hostPattern+")[\\]]?[\\)]? \\(("+PatternLibrary.hostPattern+")\\)(.*)");
 		Matcher m=p.matcher("2010-08-03 05:33:10 H=c-76-119-39-200.hsd1.ma.comcast.net (kyweyk) [76.119.39.200] F=<apiersanti@ig.com.br> temporarily rejected RCPT <vanWissen@aht-group.com>: GreyListed: please try again later");
 		logger.debug("matches: "+m.matches());
 		if(m.matches())
