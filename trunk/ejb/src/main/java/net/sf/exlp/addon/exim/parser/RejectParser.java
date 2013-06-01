@@ -11,7 +11,7 @@ import net.sf.exlp.event.LogEvent;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
-import net.sf.exlp.parser.PatternFactory;
+import net.sf.exlp.parser.PatternLibrary;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,13 +29,13 @@ public class RejectParser extends AbstractLogParser implements LogParser
 	{
 		super(leh);
 		
-		pattern.add(Pattern.compile("temporarily rejected RCPT <("+PatternFactory.email+")>: GreyListed: please try again later(.*)"));
-		pattern.add(Pattern.compile("temporarily rejected RCPT <"+PatternFactory.email+">: Could not complete sender verify(.*)"));
-		pattern.add(Pattern.compile("rejected RCPT <"+PatternFactory.email+">: Previous \\(cached\\) callout verification failure(.*)"));
-		pattern.add(Pattern.compile("rejected RCPT <"+PatternFactory.email+">: Sender verify failed(.*)"));
-		pattern.add(Pattern.compile("rejected RCPT "+PatternFactory.email+": Sender verify failed(.*)"));
-		pattern.add(Pattern.compile("rejected RCPT <"+PatternFactory.email+">: relay not permitted(.*)"));
-		pattern.add(Pattern.compile("rejected RCPT <"+PatternFactory.email+">: response to \"RCPT TO:<"+PatternFactory.email+">\" from 192.168.1.4 \\[192.168.1.4\\] was: 550 5.1.1 User unknown(.*)"));
+		pattern.add(Pattern.compile("temporarily rejected RCPT <("+PatternLibrary.email+")>: GreyListed: please try again later(.*)"));
+		pattern.add(Pattern.compile("temporarily rejected RCPT <"+PatternLibrary.email+">: Could not complete sender verify(.*)"));
+		pattern.add(Pattern.compile("rejected RCPT <"+PatternLibrary.email+">: Previous \\(cached\\) callout verification failure(.*)"));
+		pattern.add(Pattern.compile("rejected RCPT <"+PatternLibrary.email+">: Sender verify failed(.*)"));
+		pattern.add(Pattern.compile("rejected RCPT "+PatternLibrary.email+": Sender verify failed(.*)"));
+		pattern.add(Pattern.compile("rejected RCPT <"+PatternLibrary.email+">: relay not permitted(.*)"));
+		pattern.add(Pattern.compile("rejected RCPT <"+PatternLibrary.email+">: response to \"RCPT TO:<"+PatternLibrary.email+">\" from 192.168.1.4 \\[192.168.1.4\\] was: 550 5.1.1 User unknown(.*)"));
 	}
 
 	public void parseLine(String line)

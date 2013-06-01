@@ -1,6 +1,6 @@
 package net.sf.exlp.parser;
 
-public class PatternFactory
+public class PatternLibrary
 {
 	public static String hostPattern="[\\w\\.-]+";
 	public static String ipPattern="[0-9]+\\.[0-9]+\\.[0-9]+\\.[0-9]+";

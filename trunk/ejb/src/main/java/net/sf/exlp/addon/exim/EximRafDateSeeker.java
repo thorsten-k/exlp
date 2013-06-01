@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
-import net.sf.exlp.parser.PatternFactory;
+import net.sf.exlp.parser.PatternLibrary;
 import net.sf.exlp.util.DateUtil;
 
 import org.slf4j.Logger;
@@ -27,7 +27,7 @@ public class EximRafDateSeeker
 	public EximRafDateSeeker(ExlpEximFacade fExim)
 	{
 		this.fExim=fExim;
-		p=Pattern.compile(PatternFactory.eximDate+" "+PatternFactory.eximTime+"(.*)");
+		p=Pattern.compile(PatternLibrary.eximDate+" "+PatternLibrary.eximTime+"(.*)");
 	}
 	
 	public long seek(String fileName)

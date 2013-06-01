@@ -3,7 +3,7 @@ package net.sf.exlp.test.pattern;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.sf.exlp.parser.PatternFactory;
+import net.sf.exlp.parser.PatternLibrary;
 import net.sf.exlp.util.io.LoggerInit;
 
 import org.slf4j.Logger;
@@ -19,7 +19,7 @@ public class TstMacAddressPattern
 			loggerInit.addAltPath("resources/config");
 			loggerInit.init();
 			
-		Pattern p = Pattern.compile(PatternFactory.macPatter+"(.*)");
+		Pattern p = Pattern.compile(PatternLibrary.macPatter+"(.*)");
 		Matcher m=p.matcher("00:AB:12:AC:3F:EE");
 		logger.debug("Matches: "+m.matches());
 	}

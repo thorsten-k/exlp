@@ -10,7 +10,7 @@ import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.parser.AbstractLogParser;
 import net.sf.exlp.parser.LogParser;
-import net.sf.exlp.parser.PatternFactory;
+import net.sf.exlp.parser.PatternLibrary;
 import net.sf.exlp.util.DateUtil;
 
 import org.slf4j.Logger;
@@ -28,14 +28,14 @@ public class ApacheParser extends AbstractLogParser implements LogParser
 		super(leh);
 		int i=0;
 		StringBuffer sb = new StringBuffer();
-			sb.append(PatternFactory.ipPattern);
+			sb.append(PatternLibrary.ipPattern);
 			sb.append(" - ");
 			sb.append("[\\w-\"]+");
 			sb.append(" \\[(\\d+)/(\\w+)/(\\d+):");
 			sb.append("(\\d+):(\\d+):(\\d+)");
 			sb.append(" ([+-]\\d+)\\]");
 			sb.append(" \"(\\w+) ");
-			sb.append("("+PatternFactory.urlPattern+")");
+			sb.append("("+PatternLibrary.urlPattern+")");
 			sb.append("[\\s\\w/]*[\\d\\.\\d]*\"");
 			sb.append(" (\\d+) ([\\-\\d+])(.*)");
 		p[i] = Pattern.compile(sb.toString());i++;
