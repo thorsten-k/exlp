@@ -5,6 +5,7 @@ import java.io.File;
 import net.sf.exlp.util.io.LoggerInit;
 
 import org.junit.BeforeClass;
+import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,4 +36,6 @@ public class AbstractExlpShellTest
 			loggerInit.init();
 		}
     }
+	
+	@Test public void dummy(){}
 }

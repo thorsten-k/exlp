@@ -4,8 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-import net.sf.exlp.util.os.ArchUtil.OsArch;
-
 import org.apache.commons.lang.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +19,7 @@ public class OsTempDirFactory
 	
 	private String appId;
 	
+	@SuppressWarnings("unused")
 	private List<String> subDirectories;
 	private File osTmpDir;
 	
@@ -34,7 +33,7 @@ public class OsTempDirFactory
 		switch(ArchUtil.getArch())
 		{
 			case OsX: buildOsX();break;
-			default : throw new IOException("Sorry, the current architecture is not supported");
+			default : throw new IOException("Sorry, the current architecture "+ArchUtil.getArch()+" is not supported");
 		}
 		return osTmpDir;
 	}
