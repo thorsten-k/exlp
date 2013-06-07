@@ -53,7 +53,7 @@ public class OsTempDirFactory
 	
 	private void build(String dirName) throws IOException
 	{
-		osTmpDir = new File(System.getProperty("user.home")+fs+"Library"+fs+"Caches"+fs+appId);
+		osTmpDir = new File(dirName);
 		if(osTmpDir.exists() && !osTmpDir.isDirectory())
 		{
 			throw new IOException("TMP directory exists, but is not a directory: "+osTmpDir.getAbsolutePath());
