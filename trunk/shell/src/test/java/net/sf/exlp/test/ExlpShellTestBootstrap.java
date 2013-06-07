@@ -1,8 +1,6 @@
 package net.sf.exlp.test;
 
 import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

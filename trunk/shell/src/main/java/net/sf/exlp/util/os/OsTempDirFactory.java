@@ -16,6 +16,7 @@ public class OsTempDirFactory
 	final static Logger logger = LoggerFactory.getLogger(OsTempDirFactory.class);
 	
 	private static String fs = SystemUtils.FILE_SEPARATOR;
+	private static String tmpProperty = "java.io.tmpdir";
 	
 	private String appId;
 	
@@ -33,12 +34,24 @@ public class OsTempDirFactory
 		switch(ArchUtil.getArch())
 		{
 			case OsX: buildOsX();break;
-			default : throw new IOException("Sorry, the current architecture "+ArchUtil.getArch()+" is not supported");
+			default : buildDefault();
 		}
 		return osTmpDir;
 	}
 	
+	private void buildDefault() throws IOException
+	{
+		String tempDir = System.getProperty(tmpProperty);
+		if(tempDir==null){throw new IOException("Sorry, but on the  current architecture "+ArchUtil.getArch()+" "+tmpProperty+" is not available");}
+		build(tempDir+fs+appId);
+	}
+	
 	private void buildOsX() throws IOException
+	{
+		build(System.getProperty("user.home")+fs+"Library"+fs+"Caches"+fs+appId);
+	}
+	
+	private void build(String dirName) throws IOException
 	{
 		osTmpDir = new File(System.getProperty("user.home")+fs+"Library"+fs+"Caches"+fs+appId);
 		if(osTmpDir.exists() && !osTmpDir.isDirectory())
