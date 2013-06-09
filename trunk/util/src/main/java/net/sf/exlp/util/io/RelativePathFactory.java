@@ -81,4 +81,6 @@ public class RelativePathFactory
 		}
 		return path;
 	}
+	
+	public File getfFixed() {return fFixed;}
 }
