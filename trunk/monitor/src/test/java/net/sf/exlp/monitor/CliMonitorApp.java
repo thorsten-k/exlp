@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.monitoring;
+package net.sf.exlp.monitor;
 
 import net.sf.exlp.test.ExlpAddonTestBootstrap;
 

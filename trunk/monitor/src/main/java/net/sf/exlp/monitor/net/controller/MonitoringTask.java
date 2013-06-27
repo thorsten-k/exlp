@@ -1,10 +1,10 @@
-package net.sf.exlp.addon.monitoring.controller;
+package net.sf.exlp.monitor.net.controller;
 
 import java.util.TimerTask;
 import java.util.concurrent.CompletionService;
 
-import net.sf.exlp.addon.monitoring.dns.DnsResult;
-import net.sf.exlp.addon.monitoring.dns.DnsTask;
+import net.sf.exlp.monitor.net.dns.DnsResult;
+import net.sf.exlp.monitor.net.dns.DnsTask;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

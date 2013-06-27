@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.monitoring.dns;
+package net.sf.exlp.monitor.net.dns;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

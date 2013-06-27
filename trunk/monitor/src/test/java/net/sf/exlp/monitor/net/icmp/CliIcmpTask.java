@@ -1,12 +1,13 @@
-package net.sf.exlp.addon.monitoring.dns;
+package net.sf.exlp.monitor.net.icmp;
 
-import net.sf.exlp.addon.monitoring.dns.DnsStressTest;
+import net.sf.exlp.monitor.net.dns.DnsStressTest;
+import net.sf.exlp.monitor.net.icmp.IcmpTask;
 import net.sf.exlp.test.ExlpAddonTestBootstrap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CliDnsStressTest
+public class CliIcmpTask
 {
 	final static Logger logger = LoggerFactory.getLogger(DnsStressTest.class);
 	
@@ -14,7 +15,8 @@ public class CliDnsStressTest
 	{
 		ExlpAddonTestBootstrap.init();
 		
-		DnsStressTest dnsTest = new DnsStressTest();
+		IcmpTask task = new IcmpTask("web.de");
+		task.call();
 		
 	}
 }

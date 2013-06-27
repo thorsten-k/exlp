@@ -1,9 +1,9 @@
-package net.sf.exlp.addon.monitoring.icmp;
+package net.sf.exlp.monitor.net.icmp;
 
 import java.net.InetAddress;
 import java.util.concurrent.Callable;
 
-import net.sf.exlp.addon.monitoring.dns.DnsResult;
+import net.sf.exlp.monitor.net.dns.DnsResult;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
