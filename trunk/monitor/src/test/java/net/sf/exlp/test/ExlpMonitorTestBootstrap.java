@@ -5,9 +5,9 @@ import net.sf.exlp.util.io.LoggerInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ExlpAddonTestBootstrap
+public class ExlpMonitorTestBootstrap
 {
-	final static Logger logger = LoggerFactory.getLogger(ExlpAddonTestBootstrap.class);
+	final static Logger logger = LoggerFactory.getLogger(ExlpMonitorTestBootstrap.class);
 	
 	public static void init()
 	{

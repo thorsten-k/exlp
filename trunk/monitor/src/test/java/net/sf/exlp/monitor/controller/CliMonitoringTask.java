@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 import net.sf.exlp.monitor.net.controller.MonitoringTask;
 import net.sf.exlp.monitor.net.dns.DnsStressTest;
-import net.sf.exlp.test.ExlpAddonTestBootstrap;
+import net.sf.exlp.test.ExlpMonitorTestBootstrap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,7 +17,7 @@ public class CliMonitoringTask
 	
 	public static void main (String... arguments )
 	{
-		ExlpAddonTestBootstrap.init();
+		ExlpMonitorTestBootstrap.init();
 		
 	    TimerTask fetchMail  = new MonitoringTask(1);
 
