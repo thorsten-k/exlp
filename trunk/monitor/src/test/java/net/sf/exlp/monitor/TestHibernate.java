@@ -8,13 +8,17 @@ import javax.persistence.Persistence;
 
 import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
 import net.sf.exlp.monitor.model.MonitoringTestSeries;
+import net.sf.exlp.monitor.net.controller.MonitoringTask;
 import net.sf.exlp.test.ExlpMonitorTestBootstrap;
 
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestHibernate
 {
-
+	final static Logger logger = LoggerFactory.getLogger(TestHibernate.class);
+	
 	@Test public void dummy(){}
  
      
@@ -27,8 +31,7 @@ public class TestHibernate
         EntityManager em = emf.createEntityManager();
              
         // Creating Contact entity that will be save to the sqlite database
-        MonitoringTestSeries myContact = new MonitoringTestSeries(3, "My Name", "my_email@email.com");
-        MonitoringTestSeries yourContact = new MonitoringTestSeries(24, "Your Name", "your_email@email.com");
+        MonitoringTestSeries myContact = new MonitoringTestSeries("My Name");
            
         em.getTransaction().begin();
         em.persist(myContact);
@@ -37,9 +40,9 @@ public class TestHibernate
         UtilsFacadeBean ufb = new UtilsFacadeBean(em);        
         List<MonitoringTestSeries> contactList = ufb.all(MonitoringTestSeries.class);
 
-        for (MonitoringTestSeries contact : contactList) {
-            System.out.println("Id: " + contact.getId() + " | Name:"  + contact.getName() + " | Email:" + contact.getEmail());
+        for (MonitoringTestSeries mts : contactList)
+        {
+            logger.debug(mts.toString());
         }
-
     }
 }

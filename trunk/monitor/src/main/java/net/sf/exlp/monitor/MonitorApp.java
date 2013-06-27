@@ -13,7 +13,6 @@ import net.sf.exlp.monitor.net.dns.DnsResult;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xbill.DNS.Lookup;
 
 public class MonitorApp
 {
@@ -40,13 +39,13 @@ public class MonitorApp
                 Future<DnsResult> result = csDns.take();
                 
                 DnsResult l = result.get();
-                
+/*                
         	    if(l.getResult()==Lookup.HOST_NOT_FOUND){logger.info("HOST_NOT_FOUND");}
         	    else if(l.getResult()==Lookup.SUCCESSFUL){logger.info("SUCCESSFUL");}
         	    else if(l.getResult()==Lookup.TRY_AGAIN){logger.info("TRY_AGAIN");}
         	    else if(l.getResult()==Lookup.TYPE_NOT_FOUND){logger.info("TYPE_NOT_FOUND");}
         	    else if(l.getResult()==Lookup.UNRECOVERABLE){logger.info("UNRECOVERABLE");}
-            }
+*/            }
             catch (InterruptedException e) {e.printStackTrace();}
             catch (ExecutionException e) {e.printStackTrace();}
         }
