@@ -6,7 +6,7 @@ import java.util.List;
 
 import net.sf.exlp.addon.openvpn.event.OpenVpnCertEvent;
 import net.sf.exlp.test.AbstractExlpAddonTst;
-import net.sf.exlp.test.ExlpAddonTstBootstrap;
+import net.sf.exlp.test.ExlpAddonTestBootstrap;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.identity.Certificate;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
@@ -69,7 +69,7 @@ public class TestOpenVpnCertScanner extends AbstractExlpAddonTst
 	public static void main(String[] args) throws FileNotFoundException
     {
 		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());
-		ExlpAddonTstBootstrap.init();
+		ExlpAddonTestBootstrap.init();
 					
 		TestOpenVpnCertScanner.initFiles();
 		TestOpenVpnCertScanner test = new TestOpenVpnCertScanner();
