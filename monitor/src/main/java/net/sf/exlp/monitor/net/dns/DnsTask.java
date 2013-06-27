@@ -1,7 +1,8 @@
-package net.sf.exlp.addon.monitoring.dns;
+package net.sf.exlp.monitor.net.dns;
 
 import java.net.UnknownHostException;
 import java.util.concurrent.Callable;
+
 
 
 import org.slf4j.Logger;

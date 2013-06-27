@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.monitoring.dns;
+package net.sf.exlp.monitor.net.dns;
 
 import java.net.UnknownHostException;
 import java.util.concurrent.CompletionService;
@@ -8,14 +8,13 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xbill.DNS.Lookup;
 
 public class DnsStressTest
 {
-	final static Logger logger = LoggerFactory.getLogger(CliDnsStressTest.class);
+	final static Logger logger = LoggerFactory.getLogger(DnsStressTest.class);
 	
 	public DnsStressTest() throws UnknownHostException
 	{

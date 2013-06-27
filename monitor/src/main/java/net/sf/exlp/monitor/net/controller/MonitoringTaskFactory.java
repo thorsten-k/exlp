@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.monitoring.controller;
+package net.sf.exlp.monitor.net.controller;
 
 import java.util.Date;
 import java.util.Timer;
@@ -9,7 +9,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import net.sf.exlp.addon.monitoring.dns.DnsResult;
+import net.sf.exlp.monitor.net.dns.DnsResult;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

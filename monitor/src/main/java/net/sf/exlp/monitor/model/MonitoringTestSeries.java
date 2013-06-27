@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.monitoring.model;
+package net.sf.exlp.monitor.model;
 
 import java.util.Date;
 

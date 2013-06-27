@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.monitoring;
+package net.sf.exlp.monitor;
 
 import java.util.concurrent.CompletionService;
 import java.util.concurrent.ExecutionException;
@@ -7,9 +7,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 
-import net.sf.exlp.addon.monitoring.controller.MonitoringTask;
-import net.sf.exlp.addon.monitoring.controller.MonitoringTaskFactory;
-import net.sf.exlp.addon.monitoring.dns.DnsResult;
+import net.sf.exlp.monitor.net.controller.MonitoringTask;
+import net.sf.exlp.monitor.net.controller.MonitoringTaskFactory;
+import net.sf.exlp.monitor.net.dns.DnsResult;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
