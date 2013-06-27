@@ -9,9 +9,9 @@
         <relativePath>../pom.xml</relativePath>
 	</parent>
 	
-    <artifactId>exlp-addon</artifactId>
+    <artifactId>exlp-monitor</artifactId>
     <packaging>jar</packaging>
-    <name>ExLP Addon</name>
+    <name>ExLP Monitor</name>
    
    	<dependencyManagement>
 		<dependencies>      	         

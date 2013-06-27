@@ -1,0 +1,54 @@
+package net.sf.exlp.addon.monitoring;
+
+import java.util.concurrent.CompletionService;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
+import net.sf.exlp.addon.monitoring.controller.MonitoringTask;
+import net.sf.exlp.addon.monitoring.controller.MonitoringTaskFactory;
+import net.sf.exlp.addon.monitoring.dns.DnsResult;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xbill.DNS.Lookup;
+
+public class MonitorApp
+{
+	final static Logger logger = LoggerFactory.getLogger(MonitoringTask.class);
+	
+	public MonitorApp()
+	{
+		ExecutorService taskExecutor = Executors.newFixedThreadPool(10);
+        CompletionService<DnsResult> csDns = new ExecutorCompletionService<DnsResult>(taskExecutor);
+        
+        logger.debug("Creating "+MonitoringTaskFactory.class.getSimpleName());
+        MonitoringTaskFactory mtf = new MonitoringTaskFactory();
+        mtf.setCsDns(csDns);
+        logger.debug("Created "+MonitoringTaskFactory.class.getSimpleName());
+        
+        Thread tMtf = new Thread(mtf);
+        logger.info("Starting  "+MonitoringTaskFactory.class.getSimpleName());
+        tMtf.start();
+        
+        while(true)
+        {
+            try
+            {
+                Future<DnsResult> result = csDns.take();
+                
+                DnsResult l = result.get();
+                
+        	    if(l.getResult()==Lookup.HOST_NOT_FOUND){logger.info("HOST_NOT_FOUND");}
+        	    else if(l.getResult()==Lookup.SUCCESSFUL){logger.info("SUCCESSFUL");}
+        	    else if(l.getResult()==Lookup.TRY_AGAIN){logger.info("TRY_AGAIN");}
+        	    else if(l.getResult()==Lookup.TYPE_NOT_FOUND){logger.info("TYPE_NOT_FOUND");}
+        	    else if(l.getResult()==Lookup.UNRECOVERABLE){logger.info("UNRECOVERABLE");}
+            }
+            catch (InterruptedException e) {e.printStackTrace();}
+            catch (ExecutionException e) {e.printStackTrace();}
+        }
+	}
+}
