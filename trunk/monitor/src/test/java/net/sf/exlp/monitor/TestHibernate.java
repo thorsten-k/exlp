@@ -10,15 +10,13 @@ import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
 import net.sf.exlp.monitor.model.MonitoringTestSeries;
 import net.sf.exlp.test.ExlpMonitorTestBootstrap;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.service.ServiceRegistry;
+import org.junit.Test;
 
 public class TestHibernate
 {
-	private static SessionFactory sessionFactory = null;  
-    private static ServiceRegistry serviceRegistry = null;  
-       
-  
+
+	@Test public void dummy(){}
+ 
      
     public static void main(String[] args)
     {
@@ -42,8 +40,6 @@ public class TestHibernate
         for (MonitoringTestSeries contact : contactList) {
             System.out.println("Id: " + contact.getId() + " | Name:"  + contact.getName() + " | Email:" + contact.getEmail());
         }
-             
-        
-       
+
     }
 }
