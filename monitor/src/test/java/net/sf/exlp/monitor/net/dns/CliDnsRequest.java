@@ -1,18 +1,18 @@
 package net.sf.exlp.monitor.net.dns;
 
 import net.sf.exlp.monitor.net.dns.DnsStressTest;
-import net.sf.exlp.test.ExlpAddonTestBootstrap;
+import net.sf.exlp.test.ExlpMonitorTestBootstrap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class CliDnsStressTest
+public class CliDnsRequest
 {
 	final static Logger logger = LoggerFactory.getLogger(DnsStressTest.class);
 	
 	public static void main(String args[]) throws Exception
 	{
-		ExlpAddonTestBootstrap.init();
+		ExlpMonitorTestBootstrap.init();
 		
 		DnsStressTest dnsTest = new DnsStressTest();
 		

@@ -1,6 +1,6 @@
 package net.sf.exlp.monitor;
 
-import net.sf.exlp.test.ExlpAddonTestBootstrap;
+import net.sf.exlp.test.ExlpMonitorTestBootstrap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ public class CliMonitorApp
 	
 	public static void main (String[] args)
 	{
-		ExlpAddonTestBootstrap.init();
+		ExlpMonitorTestBootstrap.init();
 		
 	    new MonitorApp();
 
