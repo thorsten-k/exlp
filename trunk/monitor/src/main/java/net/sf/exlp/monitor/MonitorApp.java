@@ -1,15 +1,21 @@
 package net.sf.exlp.monitor;
 
 import java.util.concurrent.CompletionService;
-import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
 
-import net.sf.exlp.monitor.net.controller.MonitoringTask;
-import net.sf.exlp.monitor.net.controller.MonitoringTaskFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+
+import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
+import net.sf.exlp.bootstrap.ExlpMonitorBootstrap;
+import net.sf.exlp.monitor.controller.MonitoringTask;
+import net.sf.exlp.monitor.controller.MonitoringTaskFactory;
 import net.sf.exlp.monitor.net.dns.DnsResult;
+import net.sf.exlp.monitor.net.dns.DnsResultProcessor;
+import net.sf.exlp.monitor.net.icmp.IcmpResult;
+import net.sf.exlp.monitor.net.icmp.IcmpResultProcessor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,34 +26,34 @@ public class MonitorApp
 	
 	public MonitorApp()
 	{
-		ExecutorService taskExecutor = Executors.newFixedThreadPool(10);
+    	EntityManagerFactory emf = ExlpMonitorBootstrap.buildEmf(true);
+        EntityManager em = emf.createEntityManager();
+		
+		ExecutorService taskExecutor = Executors.newFixedThreadPool(100);
         CompletionService<DnsResult> csDns = new ExecutorCompletionService<DnsResult>(taskExecutor);
+        CompletionService<IcmpResult> csIcmp = new ExecutorCompletionService<IcmpResult>(taskExecutor);
         
         logger.debug("Creating "+MonitoringTaskFactory.class.getSimpleName());
         MonitoringTaskFactory mtf = new MonitoringTaskFactory();
         mtf.setCsDns(csDns);
-        logger.debug("Created "+MonitoringTaskFactory.class.getSimpleName());
+        mtf.setCsIcmp(csIcmp);
         
-        Thread tMtf = new Thread(mtf);
-        logger.info("Starting  "+MonitoringTaskFactory.class.getSimpleName());
-        tMtf.start();
+        Thread tMonitoringTaskFactory = new Thread(mtf);
+        tMonitoringTaskFactory.start();
         
-        while(true)
+        Thread dnsResultProcessor = new Thread(new DnsResultProcessor(emf.createEntityManager(),csDns));
+        dnsResultProcessor.start();
+        
+        Thread icmpResultProcessor = new Thread(new IcmpResultProcessor(emf.createEntityManager(),csIcmp));
+        icmpResultProcessor.start();
+        
+        UtilsFacadeBean ufb = new UtilsFacadeBean(em);
+        for(int i=0;i<30;i++)
         {
-            try
-            {
-                Future<DnsResult> result = csDns.take();
-                
-                DnsResult l = result.get();
-/*                
-        	    if(l.getResult()==Lookup.HOST_NOT_FOUND){logger.info("HOST_NOT_FOUND");}
-        	    else if(l.getResult()==Lookup.SUCCESSFUL){logger.info("SUCCESSFUL");}
-        	    else if(l.getResult()==Lookup.TRY_AGAIN){logger.info("TRY_AGAIN");}
-        	    else if(l.getResult()==Lookup.TYPE_NOT_FOUND){logger.info("TYPE_NOT_FOUND");}
-        	    else if(l.getResult()==Lookup.UNRECOVERABLE){logger.info("UNRECOVERABLE");}
-*/            }
+            logger.debug("DNS:"+ufb.all(DnsResult.class).size()+" ICMP:"+ufb.all(IcmpResult.class).size());
+            try {Thread.sleep(1000);}
             catch (InterruptedException e) {e.printStackTrace();}
-            catch (ExecutionException e) {e.printStackTrace();}
         }
+        logger.info("Stopping Threads ...");
 	}
 }

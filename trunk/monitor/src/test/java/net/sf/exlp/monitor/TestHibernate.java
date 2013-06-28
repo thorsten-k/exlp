@@ -8,7 +8,6 @@ import javax.persistence.Persistence;
 
 import net.sf.ahtutils.controller.facade.UtilsFacadeBean;
 import net.sf.exlp.monitor.model.MonitoringTestSeries;
-import net.sf.exlp.monitor.net.controller.MonitoringTask;
 import net.sf.exlp.test.ExlpMonitorTestBootstrap;
 
 import org.junit.Test;
@@ -25,24 +24,24 @@ public class TestHibernate
     public static void main(String[] args)
     {
     	ExlpMonitorTestBootstrap.init();
-    	
        
     	EntityManagerFactory emf = Persistence.createEntityManagerFactory("exlp");
         EntityManager em = emf.createEntityManager();
              
         // Creating Contact entity that will be save to the sqlite database
-        MonitoringTestSeries myContact = new MonitoringTestSeries("My Name");
+        MonitoringTestSeries mts = new MonitoringTestSeries();
+        mts.setName("myName");
            
         em.getTransaction().begin();
-        em.persist(myContact);
+        em.persist(mts);
         em.getTransaction().commit();
         
         UtilsFacadeBean ufb = new UtilsFacadeBean(em);        
         List<MonitoringTestSeries> contactList = ufb.all(MonitoringTestSeries.class);
 
-        for (MonitoringTestSeries mts : contactList)
+        for (MonitoringTestSeries item : contactList)
         {
-            logger.debug(mts.toString());
+            logger.debug(item.toString());
         }
     }
 }

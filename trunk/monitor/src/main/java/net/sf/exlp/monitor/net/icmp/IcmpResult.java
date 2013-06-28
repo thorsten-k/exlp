@@ -1,4 +1,4 @@
-package net.sf.exlp.monitor.net.dns;
+package net.sf.exlp.monitor.net.icmp;
 
 import java.util.Date;
 
@@ -10,20 +10,19 @@ import javax.persistence.Id;
 import net.sf.ahtutils.model.interfaces.with.EjbWithRecord;
 
 @Entity
-public class DnsResult  implements EjbWithRecord
+public class IcmpResult  implements EjbWithRecord
 {
-	public static enum Code {SUCCESSFUL,UNRECOVERABLE,TRY_AGAIN,HOST_NOT_FOUND,TYPE_NOT_FOUND}
-	
+	public static enum Code {REACHABLE,TIMEOUT,UNKNOWN_HOST,ERROR}
 	
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private long id;
-		
-	private long duration;
-		
+	
 	private Date record;
 	
-	private Code code;
+	private long duration;
 	
+	private Code code;
+			
 	// ********   Getter/Setter   *********** //
 	
 	public long getId() {return id;}
