@@ -76,15 +76,37 @@
 	    	<artifactId>dns</artifactId>
 	    	<version>2.1.5</version>
    		</dependency>
+   		
+   		<!-- Utils -->
+   		<dependency>
+        	<groupId>net.sf.ahtutils</groupId>
+        	<artifactId>ahtutils-ejb</artifactId>
+        	<version>0.2.5-SNAPSHOT</version>
+        	<type>ejb</type>
+        </dependency>
+        <dependency>
+        	<groupId>net.sf.ahtutils</groupId>
+        	<artifactId>ahtutils-interfaces</artifactId>
+        	<version>0.2.5-SNAPSHOT</version>
+        	<type>jar</type>
+        </dependency>
+        <dependency>
+        	<groupId>net.sf.ahtutils</groupId>
+        	<artifactId>ahtutils-xml</artifactId>
+        	<version>0.2.5-SNAPSHOT</version>
+        	<type>jar</type>
+        </dependency>
+   		
+   		<!-- Hibernate -->
+   		<dependency>
+        	<groupId>org.hsqldb</groupId>
+        	<artifactId>hsqldb</artifactId>
+        	<version>2.2.6</version>
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
             <version>4.3.0.Beta3</version>
-        </dependency>
-        <dependency>
-        	<groupId>org.hsqldb</groupId>
-        	<artifactId>hsqldb</artifactId>
-        	<version>2.2.6</version>
         </dependency>
         <dependency>
         	<groupId>org.hibernate</groupId>
@@ -92,11 +114,37 @@
         	<version>4.3.0.Beta3</version>
         	<type>jar</type>
         </dependency>
+        
+        <!-- REST -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.1.Final</version>
+			<exclusions>
+            	<exclusion>
+            		<artifactId>commons-logging</artifactId>
+            		<groupId>commons-logging</groupId>
+            	</exclusion>
+            	<exclusion>
+            		<artifactId>slf4j-simple</artifactId>
+            		<groupId>org.slf4j</groupId>
+            	</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxb-provider</artifactId>
+			<version>3.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>3.0.1.Final</version>
+		</dependency>
         <dependency>
-        	<groupId>net.sf.ahtutils</groupId>
-        	<artifactId>ahtutils-ejb</artifactId>
-        	<version>0.2.5-SNAPSHOT</version>
-        	<type>ejb</type>
+        	<groupId>org.jboss.resteasy</groupId>
+        	<artifactId>jaxrs-api</artifactId>
+        	<version>3.0.1.Final</version>
         </dependency>
 	</dependencies>
 </project>
