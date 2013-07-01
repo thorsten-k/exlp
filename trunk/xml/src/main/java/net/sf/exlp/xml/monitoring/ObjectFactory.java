@@ -1,5 +1,5 @@
 
-package net.sf.exlp.xml.identity;
+package net.sf.exlp.xml.monitoring;
 
 import javax.xml.bind.annotation.XmlRegistry;
 
@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRegistry;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the net.sf.exlp.xml.identity package. 
+ * generated in the net.sf.exlp.xml.monitoring package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -23,34 +23,18 @@ public class ObjectFactory {
 
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: net.sf.exlp.xml.identity
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: net.sf.exlp.xml.monitoring
      * 
      */
     public ObjectFactory() {
     }
 
     /**
-     * Create an instance of {@link Certificate }
+     * Create an instance of {@link Monitoring }
      * 
      */
-    public Certificate createCertificate() {
-        return new Certificate();
-    }
-
-    /**
-     * Create an instance of {@link IdentityContainer }
-     * 
-     */
-    public IdentityContainer createIdentityContainer() {
-        return new IdentityContainer();
-    }
-
-    /**
-     * Create an instance of {@link User }
-     * 
-     */
-    public User createUser() {
-        return new User();
+    public Monitoring createMonitoring() {
+        return new Monitoring();
     }
 
 }

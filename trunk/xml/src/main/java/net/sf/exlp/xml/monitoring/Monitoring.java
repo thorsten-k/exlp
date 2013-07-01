@@ -1,5 +1,5 @@
 
-package net.sf.exlp.xml.net;
+package net.sf.exlp.xml.monitoring;
 
 import java.io.Serializable;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -19,8 +19,6 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="port" type="{http://www.w3.org/2001/XMLSchema}int" />
  *     &lt;/restriction>
  *   &lt;/complexContent>
  * &lt;/complexType>
@@ -30,18 +28,14 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
-@XmlRootElement(name = "host")
-public class Host
+@XmlRootElement(name = "monitoring")
+public class Monitoring
     implements Serializable
 {
 
     private final static long serialVersionUID = 1L;
     @XmlAttribute(name = "id")
     protected Long id;
-    @XmlAttribute(name = "name")
-    protected String name;
-    @XmlAttribute(name = "port")
-    protected Integer port;
 
     /**
      * Gets the value of the id property.
@@ -73,66 +67,6 @@ public class Host
 
     public void unsetId() {
         this.id = null;
-    }
-
-    /**
-     * Gets the value of the name property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Sets the value of the name property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
-     */
-    public void setName(String value) {
-        this.name = value;
-    }
-
-    public boolean isSetName() {
-        return (this.name!= null);
-    }
-
-    /**
-     * Gets the value of the port property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link Integer }
-     *     
-     */
-    public int getPort() {
-        return port;
-    }
-
-    /**
-     * Sets the value of the port property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link Integer }
-     *     
-     */
-    public void setPort(int value) {
-        this.port = value;
-    }
-
-    public boolean isSetPort() {
-        return (this.port!= null);
-    }
-
-    public void unsetPort() {
-        this.port = null;
     }
 
 }
