@@ -26,6 +26,7 @@
 			<arg value="${xsd.dir}/xsd.xsd"/>
 			<arg value="-d"/><arg value="${src.dir}"/>
 			<arg value="-b"/><arg value="${xjb.dir}/xsd.xjb"/>
+	    	<arg value="-no-header"/>
 			<classpath>
 				<pathelement location="${jaxb-api.lib}"/>
 				<pathelement location="${jaxb-impl.lib}"/>
