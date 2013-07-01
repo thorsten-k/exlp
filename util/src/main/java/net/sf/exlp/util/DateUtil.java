@@ -6,12 +6,14 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.TimeZone;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.joda.time.DateMidnight;
+import org.joda.time.DateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -105,6 +107,24 @@ public class DateUtil
 			if(hour>0 || day>0){sb.append((int)hour+"h ");}
 			sb.append((int)min+"min");
 		return sb.toString();
+	}
+	
+	public static XMLGregorianCalendar toXmlGc(Date d){return toXmlGc(d,true);}
+	public static XMLGregorianCalendar toXmlGc(Date d,boolean respectTimezone)
+	{
+		XMLGregorianCalendar xmlGc=null;
+		try
+		{
+			GregorianCalendar gc = new DateTime(d).toGregorianCalendar();
+			if(!respectTimezone){gc.setTimeZone(TimeZone.getTimeZone("GMT"));}
+			xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
+		}
+		catch (DatatypeConfigurationException e)
+		{
+			logger.warn(e.getMessage()+", but using fallback");
+			xmlGc = getXmlGc4D(d);
+		}
+		return xmlGc;
 	}
 	
 	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d){return getXmlGc4D(d,false);}
