@@ -38,15 +38,6 @@ public class TestOpenVpnCertScanner extends AbstractExlpAddonTst
     	process(false);
     }
     
-    @Test
-    public void testMulti() throws FileNotFoundException 
-    {
-    	OpenVpnDirScanner ods = new OpenVpnDirScanner();
-		List<OpenVpnCertEvent> list = ods.getCertEvents(dirMulti);
-		
-		Assert.assertEquals(2, list.size());
-    }
-    
     private void process(boolean save) throws FileNotFoundException
     {
     	OpenVpnDirScanner ods = new OpenVpnDirScanner();
@@ -64,6 +55,15 @@ public class TestOpenVpnCertScanner extends AbstractExlpAddonTst
 			Certificate ref = (Certificate)JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Certificate.class);
 			assertJaxbEquals(ref, test);
 		}
+    }
+    
+    @Test
+    public void testMulti() throws FileNotFoundException 
+    {
+    	OpenVpnDirScanner ods = new OpenVpnDirScanner();
+		List<OpenVpnCertEvent> list = ods.getCertEvents(dirMulti);
+		
+		Assert.assertEquals(2, list.size());
     }
 	
 	public static void main(String[] args) throws FileNotFoundException

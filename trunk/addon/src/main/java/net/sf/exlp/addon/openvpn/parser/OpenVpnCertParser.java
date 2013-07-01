@@ -48,8 +48,8 @@ public class OpenVpnCertParser
 	private OpenVpnCertEvent getOpenVpnCert(X509Certificate x509Cert)
 	{
 		Certificate cert = new Certificate();
-		cert.setNotAfter(DateUtil.getXmlGc4D(x509Cert.getNotAfter(),true));
-		cert.setNotBefore(DateUtil.getXmlGc4D(x509Cert.getNotBefore(),true));
+		cert.setNotAfter(DateUtil.toXmlGc(x509Cert.getNotAfter(),false));
+		cert.setNotBefore(DateUtil.toXmlGc(x509Cert.getNotBefore(),false));
 		cert.setSerial(x509Cert.getSerialNumber().intValue());
 		cert.setEmail(getEmail(x509Cert.getSubjectDN().getName()));
 		cert.setCn(getCn(x509Cert.getSubjectDN().getName()));
