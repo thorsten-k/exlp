@@ -11,7 +11,7 @@
 	
     <artifactId>exlp-shell</artifactId>
     <packaging>jar</packaging>
-    <name>ExLP Shell</name>
+    <name>ExLP - Shell</name>
    
 	<dependencyManagement>
 		<dependencies>      	         

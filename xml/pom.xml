@@ -11,7 +11,7 @@
 	
     <artifactId>exlp-xml</artifactId>
     <packaging>jar</packaging>
-    <name>ExLP XML</name>
+    <name>ExLP - XML</name>
     
 	<dependencyManagement>
 		<dependencies>      	         

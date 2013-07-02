@@ -11,7 +11,7 @@
 	
     <artifactId>exlp-interfaces</artifactId>
     <packaging>jar</packaging>
-    <name>ExLP - Interfaces Core</name>
+    <name>ExLP - Interfaces</name>
    
 	<dependencyManagement>
 		<dependencies>      	         

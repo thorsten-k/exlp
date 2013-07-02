@@ -11,7 +11,7 @@
 	
     <artifactId>exlp-core</artifactId>
     <packaging>jar</packaging>
-    <name>ExLP Core</name>
+    <name>ExLP - Core</name>
    
 	<dependencyManagement>
 		<dependencies>      	         

@@ -11,7 +11,7 @@
 	
     <artifactId>exlp-util</artifactId>
     <packaging>jar</packaging>
-    <name>ExLP Util</name>
+    <name>ExLP - Util</name>
    
 	<dependencyManagement>
 		<dependencies>      	         
