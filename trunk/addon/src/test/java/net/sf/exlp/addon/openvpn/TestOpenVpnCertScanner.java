@@ -7,6 +7,7 @@ import java.util.List;
 import net.sf.exlp.addon.openvpn.event.OpenVpnCertEvent;
 import net.sf.exlp.test.AbstractExlpAddonTst;
 import net.sf.exlp.test.ExlpAddonTestBootstrap;
+import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.identity.Certificate;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
@@ -30,6 +31,7 @@ public class TestOpenVpnCertScanner extends AbstractExlpAddonTst
 	public static void initFiles()
 	{
 		fXml = new File("src/test/resources/data/openvpn/single.xml");
+		DateUtil.ignoreTimeZone=true;
 	}
     
     @Test

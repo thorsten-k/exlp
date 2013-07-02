@@ -12,7 +12,7 @@
 	<artifactId>exlp</artifactId>
 	<version>0.1.9-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>ExLP</name>
+    <name>ExLP (Extensible Logfile Processor)</name>
 	<description>ExLP (Extensible Logfile Processor)</description>
 	<url>http://sourceforge.net/projects/exlp</url>
 	

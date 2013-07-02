@@ -11,7 +11,7 @@
     
     <artifactId>exlp-ejb</artifactId>
     <packaging>jar</packaging>
-    <name>ExLP EJB</name>
+    <name>ExLP - EJB</name>
 
 	<dependencyManagement>
 		<dependencies>      	         

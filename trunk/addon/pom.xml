@@ -11,7 +11,7 @@
 	
     <artifactId>exlp-addon</artifactId>
     <packaging>jar</packaging>
-    <name>ExLP Addon</name>
+    <name>ExLP - Addon</name>
    
    	<dependencyManagement>
 		<dependencies>      	         

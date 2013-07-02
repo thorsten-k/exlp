@@ -11,7 +11,7 @@
     
     <artifactId>exlp-bom</artifactId>
     <packaging>pom</packaging>
-    <name>ExLP BOM</name>
+    <name>ExLP - BOM</name>
 
     <dependencyManagement>
         <dependencies>

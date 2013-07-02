@@ -21,6 +21,8 @@ public class DateUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(DateUtil.class);
 	
+	public static boolean ignoreTimeZone=false;
+	
 	public static GregorianCalendar getGC4D(Date d)
 	{
 		GregorianCalendar gc = new GregorianCalendar();
@@ -109,14 +111,13 @@ public class DateUtil
 		return sb.toString();
 	}
 	
-	public static XMLGregorianCalendar toXmlGc(Date d){return toXmlGc(d,true);}
-	public static XMLGregorianCalendar toXmlGc(Date d,boolean respectTimezone)
+	public static XMLGregorianCalendar toXmlGc(Date d)
 	{
 		XMLGregorianCalendar xmlGc=null;
 		try
 		{
 			GregorianCalendar gc = new DateTime(d).toGregorianCalendar();
-			if(!respectTimezone){gc.setTimeZone(TimeZone.getTimeZone("GMT"));}
+			if(DateUtil.ignoreTimeZone){gc.setTimeZone(TimeZone.getTimeZone("GMT"));}
 			xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
 		}
 		catch (DatatypeConfigurationException e)
