@@ -6,12 +6,12 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 import net.sf.exlp.addon.shell.event.PingEvent;
 import net.sf.exlp.addon.shell.parser.PingParser;
-import net.sf.exlp.event.LogEvent;
-import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhQueue;
 import net.sf.exlp.exception.ExlpUnsupportedOsException;
+import net.sf.exlp.interfaces.LogEvent;
+import net.sf.exlp.interfaces.LogEventHandler;
+import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.io.spawn.Spawn;
-import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.shell.cmd.ShellCmdPing;
 
 import org.slf4j.Logger;
