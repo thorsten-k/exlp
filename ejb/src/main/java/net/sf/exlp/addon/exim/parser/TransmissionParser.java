@@ -4,9 +4,9 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.sf.exlp.event.LogEventHandler;
+import net.sf.exlp.interfaces.LogEventHandler;
+import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.parser.AbstractLogParser;
-import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.PatternLibrary;
 
 import org.slf4j.Logger;
