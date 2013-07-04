@@ -42,6 +42,11 @@
    				<artifactId>exlp-shell</artifactId>
    				<version>${project.version}</version>
    			</dependency>
+   			<dependency>
+   				<groupId>net.sf.exlp</groupId>
+   				<artifactId>exlp-interfaces</artifactId>
+   				<version>${project.version}</version>
+   			</dependency>
         
         <!-- Commons -->
         	<dependency>
