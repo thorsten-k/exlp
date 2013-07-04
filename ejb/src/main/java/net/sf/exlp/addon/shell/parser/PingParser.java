@@ -59,10 +59,8 @@ public class PingParser extends AbstractLogParser implements LogParser
 	
 	public void event(String anzBytes, String host, String time)
 	{
-		//int iAnzBytes = new Integer(anzBytes);
 		double dTime = new Double(time);
 		PingEvent event = new PingEvent(host,dTime);
 		leh.handleEvent(event);
 	}
 }
-

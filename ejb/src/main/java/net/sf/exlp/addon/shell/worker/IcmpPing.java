@@ -12,7 +12,7 @@ import net.sf.exlp.event.handler.EhQueue;
 import net.sf.exlp.exception.ExlpUnsupportedOsException;
 import net.sf.exlp.io.spawn.Spawn;
 import net.sf.exlp.parser.LogParser;
-import net.sf.exlp.util.os.shell.ShellCmdPing;
+import net.sf.exlp.shell.cmd.ShellCmdPing;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
