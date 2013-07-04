@@ -14,6 +14,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
+import org.joda.time.MutableDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -221,12 +222,11 @@ public class DateUtil
 		return gc.get(GregorianCalendar.YEAR);
 	}
 	
-	public synchronized static long timeWithoutMilli(Date d)
+	public synchronized static Date withoutMillis(Date d)
 	{
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.setTime(d);
-		gc.set(GregorianCalendar.MILLISECOND, 0);
-		return gc.getTimeInMillis();
+		MutableDateTime mdt = new MutableDateTime(d);
+		mdt.setMillisOfSecond(0);
+		return mdt.toDate();
 	}
 	
 	public static Date midnightBeginOfMonth(Date date)
