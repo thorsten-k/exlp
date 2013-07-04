@@ -7,9 +7,9 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
-import net.sf.exlp.event.LogEvent;
-import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhDebug;
+import net.sf.exlp.interfaces.LogEvent;
+import net.sf.exlp.interfaces.LogEventHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
