@@ -41,6 +41,10 @@
 	</build>
 	
 	<dependencies>
+		<dependency>
+			<groupId>net.sf.exlp</groupId>
+			<artifactId>exlp-interfaces</artifactId>
+		</dependency>
    		<dependency>
    			<groupId>junit</groupId>
    			<artifactId>junit</artifactId>
