@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
-import net.sf.exlp.parser.LogParser;
 
 import org.jdom2.Document;
 import org.jdom2.Element;

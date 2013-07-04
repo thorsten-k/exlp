@@ -5,8 +5,9 @@ import java.util.List;
 import java.util.Properties;
 import java.util.regex.Pattern;
 
-import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhDebug;
+import net.sf.exlp.interfaces.LogEventHandler;
+import net.sf.exlp.interfaces.LogParser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

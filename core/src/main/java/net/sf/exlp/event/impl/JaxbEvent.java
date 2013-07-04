@@ -1,7 +1,7 @@
 package net.sf.exlp.event.impl;
 
 import net.sf.exlp.event.AbstractEvent;
-import net.sf.exlp.event.LogEvent;
+import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.util.xml.JaxbUtil;
 
 import org.slf4j.Logger;
