@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-import net.sf.exlp.shell.architecture.OsTempDirFactory;
+import net.sf.exlp.shell.os.OsTempDirFactory;
 import net.sf.exlp.test.AbstractExlpShellTest;
 
 import org.junit.After;

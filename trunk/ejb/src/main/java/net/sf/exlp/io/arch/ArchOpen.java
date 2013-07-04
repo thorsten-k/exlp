@@ -1,7 +1,7 @@
 package net.sf.exlp.io.arch;
 
-import net.sf.exlp.shell.architecture.OsArchitectureUtil;
-import net.sf.exlp.shell.architecture.OsArchitectureUtil.OsArch;
+import net.sf.exlp.shell.os.OsArchitectureUtil;
+import net.sf.exlp.shell.os.OsArchitectureUtil.OsArch;
 import net.sf.exlp.shell.spawn.Spawn;
 
 import org.apache.commons.lang.SystemUtils;

@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.shell.architecture.OsEnvironmentParameter;
+import net.sf.exlp.shell.os.OsEnvironmentParameter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
