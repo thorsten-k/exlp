@@ -2,6 +2,8 @@ package net.sf.exlp.event;
 
 import java.io.Serializable;
 
+import net.sf.exlp.interfaces.LogEventHandler;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

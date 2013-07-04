@@ -3,7 +3,7 @@ package net.sf.exlp.event.handler;
 import java.util.List;
 
 import net.sf.exlp.event.AbstractEventHandler;
-import net.sf.exlp.event.LogEvent;
+import net.sf.exlp.interfaces.LogEvent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
