@@ -1,4 +1,4 @@
-package net.sf.exlp.io.spawn;
+package net.sf.exlp.shell.spawn;
 
 import java.io.File;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.io.arch.EnvironmentParameter;
+import net.sf.exlp.shell.architecture.EnvironmentParameter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

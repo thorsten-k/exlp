@@ -1,4 +1,4 @@
-package net.sf.exlp.io.spawn;
+package net.sf.exlp.shell.spawn;
 
 import java.io.BufferedReader;
 import java.io.IOException;

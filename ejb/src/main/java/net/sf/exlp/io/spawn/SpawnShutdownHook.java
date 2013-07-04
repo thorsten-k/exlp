@@ -3,6 +3,8 @@ package net.sf.exlp.io.spawn;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
+import net.sf.exlp.shell.spawn.Spawn;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

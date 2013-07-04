@@ -9,8 +9,8 @@ import net.sf.exlp.exception.ExlpUnsupportedOsException;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.io.spawn.Spawn;
 import net.sf.exlp.shell.cmd.ShellCmdPing;
+import net.sf.exlp.shell.spawn.Spawn;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

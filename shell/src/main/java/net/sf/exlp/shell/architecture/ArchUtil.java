@@ -1,4 +1,4 @@
-package net.sf.exlp.shell.util;
+package net.sf.exlp.shell.architecture;
 
 import java.util.List;
 import java.util.regex.Matcher;
