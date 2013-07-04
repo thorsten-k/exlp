@@ -8,6 +8,7 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Random;
 
+import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.util.io.ObjectIO;
 
