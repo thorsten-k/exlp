@@ -6,13 +6,13 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EnvironmentParameter
+public class OsEnvironmentParameter
 {
-	final static Logger logger = LoggerFactory.getLogger(EnvironmentParameter.class);
+	final static Logger logger = LoggerFactory.getLogger(OsEnvironmentParameter.class);
 	
 	private Hashtable<String,String> htEnvPar;
 
-	public EnvironmentParameter()
+	public OsEnvironmentParameter()
 	{
 		htEnvPar = new Hashtable<String,String>();
 		htEnvPar.putAll(System.getenv());

@@ -1,7 +1,7 @@
 package net.sf.exlp.io.arch;
 
-import net.sf.exlp.shell.architecture.ArchUtil;
-import net.sf.exlp.shell.architecture.ArchUtil.OsArch;
+import net.sf.exlp.shell.architecture.OsArchitectureUtil;
+import net.sf.exlp.shell.architecture.OsArchitectureUtil.OsArch;
 import net.sf.exlp.shell.spawn.Spawn;
 
 import org.apache.commons.lang.SystemUtils;
@@ -16,7 +16,7 @@ public class ArchOpen
 	
 	public static void setArch()
 	{
-		arch = ArchUtil.getArch();
+		arch = OsArchitectureUtil.getArch();
 	}
 	
 	public static void open(String filePath)
