@@ -1,10 +1,10 @@
 package net.sf.exlp.test.listener;
 
-import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.handler.EhDebug;
+import net.sf.exlp.interfaces.LogEventHandler;
+import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.listener.LogListener;
 import net.sf.exlp.listener.impl.LogListenerTail;
-import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.impl.DummyParser;
 import net.sf.exlp.util.io.LoggerInit;
 
