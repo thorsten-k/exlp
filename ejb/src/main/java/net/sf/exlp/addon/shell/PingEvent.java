@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.shell.event;
+package net.sf.exlp.addon.shell;
 
 import java.io.Serializable;
 

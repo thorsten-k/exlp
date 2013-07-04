@@ -1,11 +1,9 @@
-package net.sf.exlp.addon.shell.worker;
+package net.sf.exlp.addon.shell;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import net.sf.exlp.addon.shell.event.PingEvent;
-import net.sf.exlp.addon.shell.parser.PingParser;
 import net.sf.exlp.event.handler.EhQueue;
 import net.sf.exlp.exception.ExlpUnsupportedOsException;
 import net.sf.exlp.interfaces.LogEvent;
