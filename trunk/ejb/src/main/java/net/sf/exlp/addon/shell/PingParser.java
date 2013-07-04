@@ -1,11 +1,10 @@
-package net.sf.exlp.addon.shell.parser;
+package net.sf.exlp.addon.shell;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.sf.exlp.addon.shell.event.PingEvent;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.parser.AbstractLogParser;
