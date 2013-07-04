@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
+import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.io.arch.EnvironmentParameter;
-import net.sf.exlp.parser.LogParser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

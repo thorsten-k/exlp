@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-import net.sf.exlp.parser.LogParser;
+import net.sf.exlp.interfaces.LogParser;
 
 import org.apache.commons.lang.SystemUtils;
 
