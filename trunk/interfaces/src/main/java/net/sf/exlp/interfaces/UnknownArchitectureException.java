@@ -1,4 +1,4 @@
-package net.sf.exlp.io.arch;
+package net.sf.exlp.interfaces;
 
 public class UnknownArchitectureException extends Exception 
 {
