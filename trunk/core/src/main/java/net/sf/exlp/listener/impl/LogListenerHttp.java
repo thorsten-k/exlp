@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
-import net.sf.exlp.parser.LogParser;
 
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;

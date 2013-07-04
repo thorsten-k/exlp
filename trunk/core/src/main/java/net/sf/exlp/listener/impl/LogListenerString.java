@@ -4,9 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 
+import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.listener.LogListener;
-import net.sf.exlp.parser.LogParser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

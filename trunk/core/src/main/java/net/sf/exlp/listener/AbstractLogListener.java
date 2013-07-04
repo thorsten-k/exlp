@@ -2,7 +2,7 @@ package net.sf.exlp.listener;
 
 import java.util.Properties;
 
-import net.sf.exlp.parser.LogParser;
+import net.sf.exlp.interfaces.LogParser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
