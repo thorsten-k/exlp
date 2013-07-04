@@ -1,4 +1,4 @@
-package net.sf.exlp.io.arch;
+package net.sf.exlp.shell.architecture;
 
 import java.util.Hashtable;
 import java.util.Map;
