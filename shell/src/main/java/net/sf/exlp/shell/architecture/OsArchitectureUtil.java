@@ -12,10 +12,10 @@ import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
 
-public class ArchUtil
+public class OsArchitectureUtil
 {
 	final static Marker fatal = MarkerFactory.getMarker("FATAL");
-	final static Logger logger = LoggerFactory.getLogger(ArchUtil.class);
+	final static Logger logger = LoggerFactory.getLogger(OsArchitectureUtil.class);
 	
 	private static String fs = SystemUtils.FILE_SEPARATOR;
 	

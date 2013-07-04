@@ -33,7 +33,7 @@ public class OsTempDirFactory
 
 	public File build() throws IOException
 	{
-		switch(ArchUtil.getArch())
+		switch(OsArchitectureUtil.getArch())
 		{
 			case OsX: buildOsX();break;
 			default : buildDefault();
@@ -44,7 +44,7 @@ public class OsTempDirFactory
 	private void buildDefault() throws IOException
 	{
 		String tempDir = System.getProperty(tmpProperty);
-		if(tempDir==null){throw new IOException("Sorry, but on the  current architecture "+ArchUtil.getArch()+" "+tmpProperty+" is not available");}
+		if(tempDir==null){throw new IOException("Sorry, but on the  current architecture "+OsArchitectureUtil.getArch()+" "+tmpProperty+" is not available");}
 		build(tempDir+fs+appId);
 	}
 	

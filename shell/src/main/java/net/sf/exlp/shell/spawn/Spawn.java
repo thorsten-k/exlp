@@ -7,7 +7,7 @@ import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.shell.architecture.EnvironmentParameter;
+import net.sf.exlp.shell.architecture.OsEnvironmentParameter;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class Spawn extends Thread
 	private Writer writer;
 	private LogParser lp;
 	private File workingDir;
-	private EnvironmentParameter envParameter;
+	private OsEnvironmentParameter envParameter;
 	
 	private int exitValue;
 	
@@ -35,7 +35,7 @@ public class Spawn extends Thread
 	private void checkPreRequisites()
 	{
 		checkWorkingDir();
-		if(envParameter==null){envParameter = new EnvironmentParameter();}
+		if(envParameter==null){envParameter = new OsEnvironmentParameter();}
 	}
 	
 	private void checkWorkingDir()
@@ -112,5 +112,5 @@ public class Spawn extends Thread
 	public void setWriter(Writer writer) {this.writer = writer;}
 	public void setLp(LogParser lp) {this.lp = lp;}
 	public void setWorkingDir(File workingDir) {this.workingDir = workingDir;}
-	public void setEnvParameter(EnvironmentParameter envParameter) {this.envParameter = envParameter;}
+	public void setEnvParameter(OsEnvironmentParameter envParameter) {this.envParameter = envParameter;}
 }

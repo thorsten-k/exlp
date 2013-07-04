@@ -1,7 +1,7 @@
 package net.sf.exlp.shell.cmd;
 
 import net.sf.exlp.exception.ExlpUnsupportedOsException;
-import net.sf.exlp.shell.architecture.ArchUtil;
+import net.sf.exlp.shell.architecture.OsArchitectureUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,11 +13,11 @@ public class ShellCmdRm
 	public static synchronized String rmDir(String dir, boolean onlySubEntries) throws ExlpUnsupportedOsException
 	{
 		StringBuffer sb = new StringBuffer();
-		switch(ArchUtil.getArch())
+		switch(OsArchitectureUtil.getArch())
 		{
 			case Win32:  sb.append(rmDirWin(dir, onlySubEntries));break;
 			case OsX: 	 sb.append(rmDirOsx(dir, onlySubEntries));break;
-			default: ArchUtil.errorUnsupportedOS("rm dirX and rm dirY (only subdirectories)");break;
+			default: OsArchitectureUtil.errorUnsupportedOS("rm dirX and rm dirY (only subdirectories)");break;
 		}	
 		return sb.toString();
 	}
