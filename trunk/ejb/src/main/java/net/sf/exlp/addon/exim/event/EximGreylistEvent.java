@@ -10,7 +10,7 @@ import net.sf.exlp.addon.exim.data.ejb.ExlpEmail;
 import net.sf.exlp.addon.exim.data.ejb.ExlpGreylist;
 import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
 import net.sf.exlp.event.AbstractEvent;
-import net.sf.exlp.event.LogEvent;
+import net.sf.exlp.interfaces.LogEvent;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

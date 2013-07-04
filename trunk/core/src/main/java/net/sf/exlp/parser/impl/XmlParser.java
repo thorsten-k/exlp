@@ -2,10 +2,10 @@ package net.sf.exlp.parser.impl;
 
 import java.util.List;
 
-import net.sf.exlp.event.LogEventHandler;
 import net.sf.exlp.event.impl.JDomEvent;
+import net.sf.exlp.interfaces.LogEventHandler;
+import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.parser.AbstractLogParser;
-import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.util.xml.JDomUtil;
 
 import org.apache.commons.lang.SystemUtils;

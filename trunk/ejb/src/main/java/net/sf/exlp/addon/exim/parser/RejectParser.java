@@ -7,10 +7,10 @@ import java.util.regex.Pattern;
 import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.addon.exim.data.ejb.ExlpEmail;
 import net.sf.exlp.addon.exim.event.EximGreylistEvent;
-import net.sf.exlp.event.LogEvent;
-import net.sf.exlp.event.LogEventHandler;
+import net.sf.exlp.interfaces.LogEvent;
+import net.sf.exlp.interfaces.LogEventHandler;
+import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.parser.AbstractLogParser;
-import net.sf.exlp.parser.LogParser;
 import net.sf.exlp.parser.PatternLibrary;
 
 import org.slf4j.Logger;
