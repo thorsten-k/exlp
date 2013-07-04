@@ -1,6 +1,6 @@
-package net.sf.exlp.io.arch;
+package net.sf.exlp.shell.os;
 
-import net.sf.exlp.shell.os.OsArchitectureUtil;
+import net.sf.exlp.interfaces.UnknownArchitectureException;
 import net.sf.exlp.shell.os.OsArchitectureUtil.OsArch;
 import net.sf.exlp.shell.spawn.Spawn;
 
@@ -8,9 +8,9 @@ import org.apache.commons.lang.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ArchOpen
+public class OsOpenFile
 {
-	final static Logger logger = LoggerFactory.getLogger(ArchOpen.class);
+	final static Logger logger = LoggerFactory.getLogger(OsOpenFile.class);
 	
 	protected static OsArch arch;
 	

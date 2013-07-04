@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.shell;
+package net.sf.exlp.shell.spawn.ping;
 
 import java.io.Serializable;
 

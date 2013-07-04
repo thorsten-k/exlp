@@ -1,4 +1,4 @@
-package net.sf.exlp.util.os;
+package net.sf.exlp.shell.os;
 
 import java.io.File;
 import java.io.IOException;

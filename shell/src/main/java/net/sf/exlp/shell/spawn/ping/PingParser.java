@@ -1,4 +1,4 @@
-package net.sf.exlp.addon.shell;
+package net.sf.exlp.shell.spawn.ping;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,7 +31,7 @@ public class PingParser extends AbstractLogParser implements LogParser
 
 	public void parseLine(String line)
 	{
-		logger.trace(line);
+		logger.debug(line);
 		jetzt = new Date();
 		for(int i=0;i<maxChainPattern;i++)
 		{

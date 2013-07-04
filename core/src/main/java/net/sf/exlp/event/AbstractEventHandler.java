@@ -7,7 +7,7 @@ import net.sf.exlp.interfaces.LogEventHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public abstract class AbstractEventHandler implements Serializable,LogEventHandler  
+public abstract class AbstractEventHandler implements Serializable,LogEventHandler
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractEventHandler.class);
 	
