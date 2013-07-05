@@ -80,14 +80,13 @@ public class Spawn extends Thread
 				slhErr.setWriter(writer);
 				slhErr.setLp(lp);
 				
-			logger.trace("ThreadHandler will be started");
 			slhIn.start();
 			slhErr.start();
 			
-			logger.debug("Waiting for Process End");
+			logger.trace("Waiting for Process End");
 			p.waitFor();
 			Thread.sleep(100);
-			logger.debug("process ended");
+			logger.trace("process ended");
 			
 			exitValue=p.exitValue();
 			

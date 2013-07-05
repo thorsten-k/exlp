@@ -25,9 +25,9 @@ public class ExlpCentralConfigPointer
 	public static java.io.File getFile(String codeApp, String codeConf) throws ExlpConfigurationException
 	{
 		java.io.File fHome = new java.io.File(System.getProperty("user.home"));
-		if(!fHome.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
 		java.io.File fMvn = new java.io.File(fHome,".m2");
-		
+		if(!fHome.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
+		if(!fMvn.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fMvn.getAbsolutePath());}
 		return getFile(fMvn, "exlp.xml", codeApp, codeConf);
 	}
 	
