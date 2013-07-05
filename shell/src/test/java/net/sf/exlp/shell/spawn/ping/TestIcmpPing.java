@@ -3,7 +3,7 @@ package net.sf.exlp.shell.spawn.ping;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.exlp.event.handler.EhList;
+import net.sf.exlp.core.handler.EhList;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.test.AbstractExlpShellTest;
@@ -22,7 +22,7 @@ public class TestIcmpPing extends AbstractExlpShellTest
 		
 		List<LogEvent> list = new ArrayList<LogEvent>();
 		LogEventHandler leh = new EhList(list);
-		IcmpPing ping = new IcmpPing("localhost",10);
+		IcmpPing ping = new IcmpPing("www.google.de",10);
 		ping.ping(leh);
 		logger.info("Wating for size ");
 		logger.info("Size"+list.size());

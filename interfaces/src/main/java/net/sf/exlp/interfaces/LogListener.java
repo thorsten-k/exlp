@@ -1,4 +1,4 @@
-package net.sf.exlp.listener;
+package net.sf.exlp.interfaces;
 
 import java.util.Properties;
 

@@ -1,4 +1,4 @@
-package net.sf.exlp.parser.impl;
+package net.sf.exlp.core.parser;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.parser.AbstractLogParser;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

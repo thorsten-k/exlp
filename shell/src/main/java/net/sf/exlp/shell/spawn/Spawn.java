@@ -83,12 +83,16 @@ public class Spawn extends Thread
 			logger.trace("ThreadHandler will be started");
 			slhIn.start();
 			slhErr.start();
-			logger.trace("Waiting for Process End");
 			
+			logger.debug("Waiting for Process End");
 			p.waitFor();
+			Thread.sleep(100);
+			logger.debug("process ended");
+			
 			exitValue=p.exitValue();
+			
 			String exitCode = exitValueIdentifier+exitValue;
-			logger.trace("Process finished with "+exitCode);
+			logger.debug("Process finished with "+exitCode);
 		}
 		catch (UnsupportedEncodingException uee){logger.error("UnsupportedEncodingException. charsets.jar in Path?",uee);}
 		catch (IOException e) {logger.error("Fehler beim ausführen von: "+command,e);}

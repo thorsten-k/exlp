@@ -1,4 +1,4 @@
-package net.sf.exlp.listener.impl;
+package net.sf.exlp.core.listener;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -7,9 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringTokenizer;
 
+import net.sf.exlp.interfaces.LogListener;
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.listener.AbstractLogListener;
-import net.sf.exlp.listener.LogListener;
 
 import org.jdom2.Document;
 import org.jdom2.Element;

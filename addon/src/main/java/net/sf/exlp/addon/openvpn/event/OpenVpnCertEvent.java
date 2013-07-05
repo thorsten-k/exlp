@@ -1,6 +1,6 @@
 package net.sf.exlp.addon.openvpn.event;
 
-import net.sf.exlp.event.AbstractEvent;
+import net.sf.exlp.core.event.AbstractEvent;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.xml.identity.Certificate;
 

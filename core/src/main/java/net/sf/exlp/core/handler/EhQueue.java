@@ -1,14 +1,15 @@
-package net.sf.exlp.event.handler;
+package net.sf.exlp.core.handler;
 
+import java.io.Serializable;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import net.sf.exlp.event.AbstractEventHandler;
 import net.sf.exlp.interfaces.LogEvent;
+import net.sf.exlp.interfaces.LogEventHandler;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class EhQueue extends AbstractEventHandler 
+public class EhQueue extends AbstractEventHandler implements Serializable,LogEventHandler 
 {
 	final static Logger logger = LoggerFactory.getLogger(EhQueue.class);
 	

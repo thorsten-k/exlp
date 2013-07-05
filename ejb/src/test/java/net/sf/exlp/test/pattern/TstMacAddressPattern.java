@@ -3,7 +3,7 @@ package net.sf.exlp.test.pattern;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.sf.exlp.parser.PatternLibrary;
+import net.sf.exlp.interfaces.util.PatternLibrary;
 import net.sf.exlp.util.io.LoggerInit;
 
 import org.slf4j.Logger;

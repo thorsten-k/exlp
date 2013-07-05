@@ -7,7 +7,7 @@ import javax.jms.Message;
 import javax.jms.MessageListener;
 import javax.jms.ObjectMessage;
 
-import net.sf.exlp.event.handler.EhDebug;
+import net.sf.exlp.core.handler.EhDebug;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.interfaces.LogEventHandler;
 
