@@ -1,4 +1,4 @@
-package net.sf.exlp.parser;
+package net.sf.exlp.interfaces.util;
 
 public class PatternLibrary
 {

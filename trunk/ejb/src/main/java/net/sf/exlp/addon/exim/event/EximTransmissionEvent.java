@@ -2,7 +2,7 @@ package net.sf.exlp.addon.exim.event;
 
 import net.sf.exlp.addon.apache.ejb.ExlpApache;
 import net.sf.exlp.addon.common.data.ejb.ExlpHost;
-import net.sf.exlp.event.AbstractEvent;
+import net.sf.exlp.core.event.AbstractEvent;
 import net.sf.exlp.interfaces.LogEvent;
 
 import org.slf4j.Logger;

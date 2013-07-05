@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import net.sf.exlp.event.handler.EhQueue;
+import net.sf.exlp.core.handler.EhQueue;
 import net.sf.exlp.exception.ExlpUnsupportedOsException;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.interfaces.LogEventHandler;
@@ -40,6 +40,7 @@ public class IcmpPing
 			spawn.setLp(lp);
 //			spawn.setWriter(new PrintWriter(System.out));
 			spawn.cmd();
+
 		}
 		catch (ExlpUnsupportedOsException e) {logger.error(""+e);}
 	}

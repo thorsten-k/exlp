@@ -2,7 +2,7 @@ package net.sf.exlp.shell.spawn.ping;
 
 import java.io.Serializable;
 
-import net.sf.exlp.event.AbstractEvent;
+import net.sf.exlp.core.event.AbstractEvent;
 import net.sf.exlp.interfaces.LogEvent;
 
 import org.slf4j.Logger;

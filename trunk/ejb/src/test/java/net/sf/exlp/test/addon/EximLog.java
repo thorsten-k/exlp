@@ -1,11 +1,11 @@
 package net.sf.exlp.test.addon;
 
 import net.sf.exlp.addon.exim.parser.EximParser;
-import net.sf.exlp.event.handler.EhDebug;
+import net.sf.exlp.core.handler.EhDebug;
+import net.sf.exlp.core.listener.LogListenerFile;
 import net.sf.exlp.interfaces.LogEventHandler;
+import net.sf.exlp.interfaces.LogListener;
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.listener.LogListener;
-import net.sf.exlp.listener.impl.LogListenerFile;
 import net.sf.exlp.util.io.LoggerInit;
 
 public class EximLog

@@ -1,6 +1,5 @@
-package net.sf.exlp.event.impl;
+package net.sf.exlp.core.event;
 
-import net.sf.exlp.event.AbstractEvent;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.util.xml.JDomUtil;
 

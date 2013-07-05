@@ -1,4 +1,4 @@
-package net.sf.exlp.event;
+package net.sf.exlp.core.event;
 
 import java.io.File;
 import java.io.Serializable;
@@ -8,8 +8,8 @@ import java.util.Hashtable;
 import java.util.Map;
 import java.util.Random;
 
+import net.sf.exlp.core.listener.AbstractLogListener;
 import net.sf.exlp.interfaces.LogEvent;
-import net.sf.exlp.listener.AbstractLogListener;
 import net.sf.exlp.util.io.ObjectIO;
 
 import org.slf4j.Logger;

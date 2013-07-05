@@ -1,4 +1,4 @@
-package net.sf.exlp.listener.impl;
+package net.sf.exlp.core.listener;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -12,9 +12,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.zip.GZIPInputStream;
 
+import net.sf.exlp.interfaces.LogListener;
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.listener.AbstractLogListener;
-import net.sf.exlp.listener.LogListener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
