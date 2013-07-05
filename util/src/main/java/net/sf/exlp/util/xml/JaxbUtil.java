@@ -97,7 +97,7 @@ public class JaxbUtil
 	private static synchronized String getCaller()
 	{
 		int index;
-		logger.debug("StackTraceSize"+Thread.currentThread().getStackTrace().length);
+		logger.trace("StackTraceSize"+Thread.currentThread().getStackTrace().length);
 		StackTraceElement[] steList = Thread.currentThread().getStackTrace();
 		if(steList.length==4){index=3;}
 		else{index=4;}
