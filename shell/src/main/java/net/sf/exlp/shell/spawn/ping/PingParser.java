@@ -17,35 +17,39 @@ public class PingParser extends AbstractLogParser implements LogParser
 {
 	final static Logger logger = LoggerFactory.getLogger(PingParser.class);
 	
-	private final static int maxChainPattern=2;
-	Pattern myChainPattern[] = new Pattern[maxChainPattern];
 	Date jetzt;
 	
 	public PingParser(LogEventHandler leh)
 	{
 		super(leh);
-		int i=0;
-		myChainPattern[i] = Pattern.compile("([0-9]*) bytes from ("+PatternLibrary.ipPattern+"): icmp_seq=([0-9]*) ttl=([0-9]*) time=([0-9\\.]*)(.*)");i++;
-		myChainPattern[i] = Pattern.compile("Antwort von ("+PatternLibrary.ipPattern+"): Bytes=([0-9]*) Zeit=([0-9]*)ms TTL=([0-9]*)(.*)");i++;
+		pattern.add(Pattern.compile("([0-9]*) bytes from ("+PatternLibrary.ipPattern+"): icmp_seq=([0-9]*) ttl=([0-9]*) time=([0-9\\.]*)(.*)"));
+		
+		//Windows
+		pattern.add(Pattern.compile("Antwort von ("+PatternLibrary.ipPattern+"): Bytes=([0-9]*) Zeit=([0-9]*)ms TTL=([0-9]*)(.*)"));
+		pattern.add(Pattern.compile("Reply from ("+PatternLibrary.ipPattern+"): bytes=([0-9]*) time=([0-9]*)ms TTL=([0-9]*)(.*)"));
 	}
 
 	public void parseLine(String line)
 	{
-		logger.debug(line);
+		logger.trace(line);
 		jetzt = new Date();
-		for(int i=0;i<maxChainPattern;i++)
+		boolean matched = false;
+		for(int i=0;i<pattern.size();i++)
 		{
-			Matcher m=myChainPattern[i].matcher(line);
+			Matcher m=pattern.get(i).matcher(line);
 			if(m.matches())
 			{
+				matched=true;
 				switch(i)
 				{
 					case 0: event(m.group(1),m.group(2),m.group(5));break;
 					case 1: event(m.group(2),m.group(1),m.group(3));break;
+					case 2: event(m.group(2),m.group(1),m.group(3));break;
 				}
-				i=maxChainPattern;
+				i=pattern.size();
 			}
 		}
+		if(!matched){logger.warn("Unknown Pattern: "+line);}
 	}
 
 	public void parseItem(ArrayList<String> item)
@@ -58,6 +62,7 @@ public class PingParser extends AbstractLogParser implements LogParser
 	
 	public void event(String anzBytes, String host, String time)
 	{
+		logger.debug("event");
 		double dTime = new Double(time);
 		PingEvent event = new PingEvent(host,dTime);
 		leh.handleEvent(event);
