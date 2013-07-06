@@ -48,6 +48,10 @@ public class JaxbUtil
 		MultiResourceLoader mrl = new MultiResourceLoader(classLoader);
 		return loadJAXB(mrl,xmlFile,c);
 	}
+	public static synchronized <T extends Object> T loadJAXB(File xmlFile, Class<T> c) throws FileNotFoundException
+	{
+		return loadJAXB(xmlFile.getAbsolutePath(),c);
+	}
 	public static synchronized <T extends Object> T loadJAXB(String xmlFile, Class<T> c) throws FileNotFoundException
 	{
 		MultiResourceLoader mrl = new MultiResourceLoader();
