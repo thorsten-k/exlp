@@ -9,15 +9,15 @@ public class ByteCount
 	
 	public static String si(long bytes)
 	{
-		return humanReadableByteCount(bytes,true);
+		return human(bytes,true);
 	}
 	
 	public static String binary(long bytes)
 	{
-		return humanReadableByteCount(bytes,false);
+		return human(bytes,false);
 	}
 	
-	private static String humanReadableByteCount(long bytes, boolean si)
+	public static String human(long bytes, boolean si)
 	{
 	    int unit = si ? 1000 : 1024;
 	    if (bytes < unit) return bytes + " B";
