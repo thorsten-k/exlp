@@ -17,7 +17,7 @@ public class ByteCount
 		return human(bytes,false);
 	}
 	
-	public static String human(long bytes, boolean si)
+	public static String human(Long bytes, Boolean si)
 	{
 	    int unit = si ? 1000 : 1024;
 	    if (bytes < unit) return bytes + " B";
