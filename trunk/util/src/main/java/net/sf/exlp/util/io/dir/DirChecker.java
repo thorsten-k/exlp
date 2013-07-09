@@ -2,7 +2,7 @@ package net.sf.exlp.util.io.dir;
 
 import java.io.File;
 
-import net.sf.exlp.util.exception.ExlpConfigurationException;
+import net.sf.exlp.exception.ExlpConfigurationException;
 
 public class DirChecker
 {

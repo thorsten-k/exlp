@@ -3,8 +3,8 @@ package net.sf.exlp.util.io;
 import java.io.File;
 import java.io.FileNotFoundException;
 
+import net.sf.exlp.exception.ExlpConfigurationException;
 import net.sf.exlp.test.AbstractExlpTst;
-import net.sf.exlp.util.exception.ExlpConfigurationException;
 
 import org.junit.Ignore;
 import org.junit.Test;
