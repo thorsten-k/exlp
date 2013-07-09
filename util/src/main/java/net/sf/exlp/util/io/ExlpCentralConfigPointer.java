@@ -2,9 +2,9 @@ package net.sf.exlp.util.io;
 
 import java.io.FileNotFoundException;
 
-import net.sf.exlp.util.exception.ExlpConfigurationException;
-import net.sf.exlp.util.exception.ExlpXpathNotFoundException;
-import net.sf.exlp.util.exception.ExlpXpathNotUniqueException;
+import net.sf.exlp.exception.ExlpConfigurationException;
+import net.sf.exlp.exception.ExlpXpathNotFoundException;
+import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.io.Dir;
 import net.sf.exlp.xml.io.File;
