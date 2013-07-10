@@ -20,7 +20,7 @@ public class FileIO
 	public static String getHash(File f) throws IOException
     {
     	MessageDigest messagedigest=null;
-    	try{ messagedigest = MessageDigest.getInstance(HASHALGORITHM);} 
+    	try{messagedigest = MessageDigest.getInstance(HASHALGORITHM);} 
     	catch (NoSuchAlgorithmException e){e.printStackTrace();}
     	
     	byte md[] = new byte[BLOCKLENGTH];  
