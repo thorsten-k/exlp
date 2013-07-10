@@ -1,4 +1,4 @@
-package net.sf.exlp.controller.factory.xml.io;
+package net.sf.exlp.factory.xml.io;
 
 import java.util.zip.ZipEntry;
 

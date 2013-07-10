@@ -7,7 +7,7 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import net.sf.exlp.controller.factory.xml.io.XmlFileFactory;
+import net.sf.exlp.factory.xml.io.XmlFileFactory;
 import net.sf.exlp.xml.io.Dir;
 import net.sf.exlp.xml.io.File;
 
