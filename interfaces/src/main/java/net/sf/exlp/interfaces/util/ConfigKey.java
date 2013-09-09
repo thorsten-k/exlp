@@ -1,4 +1,4 @@
-package net.sf.exlp.util.config;
+package net.sf.exlp.interfaces.util;
 
 public interface ConfigKey
 {
@@ -8,6 +8,13 @@ public interface ConfigKey
 	public final static String netEjbHost ="net.ejb.host";
 	public final static String netEjbUser ="net.ejb.user";
 	public final static String netEjbPwd  ="net.ejb.pwd";
+	
+	public final static String netDbHost ="net.db.host";
+	public final static String netDbPort ="net.db.port";
+	public final static String netDbName ="net.db.name";
+	public final static String netDbScheme ="net.db.scheme";
+	public final static String netDbUser ="net.db.user";
+	public final static String netDbPwd  ="net.db.pwd";
 	
 	public final static String netImapHost  ="net.imap.host";
 	public final static String netImapPort  ="net.imap.port";

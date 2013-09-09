@@ -13,6 +13,8 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.StringReader;
+import java.io.StringWriter;
+import java.io.Writer;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -222,9 +224,10 @@ public class JDomUtil
 	
 	public static String toString(Document doc)
 	{
-		StringBufferOutputStream sbos = new StringBufferOutputStream();
-		outputStream(doc, sbos, Format.getPrettyFormat());
-		return sbos.getStringBuffer().toString().trim();
+		StringWriter sw = new StringWriter();
+//		StringBufferOutputStream sbos = new StringBufferOutputStream();
+		outputWriter(doc, sw, Format.getPrettyFormat());
+		return sw.toString().trim();
 	}
 	
 	public static synchronized void debug(Element e)
@@ -239,6 +242,17 @@ public class JDomUtil
 			OutputStreamWriter osw = new OutputStreamWriter(os,"UTF-8");
 			xmlOut.output( e, osw );
 			osw.close();
+		} 
+		catch (IOException ex){logger.error("",ex);}
+	}
+	private static synchronized void outputWriter(Document doc, Writer w, Format format)
+	{
+		try
+		{
+			XMLOutputter xmlOut = new XMLOutputter(format);
+			xmlOut.output(doc,w);
+			w.flush();
+			w.close();
 		} 
 		catch (IOException ex){logger.error("",ex);}
 	}
