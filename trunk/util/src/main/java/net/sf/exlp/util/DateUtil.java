@@ -112,22 +112,23 @@ public class DateUtil
 		return sb.toString();
 	}
 	
-	public static XMLGregorianCalendar toXmlGc(Date d)
-	{
-		XMLGregorianCalendar xmlGc=null;
-		try
-		{
-			GregorianCalendar gc = new DateTime(d).toGregorianCalendar();
-			if(DateUtil.ignoreTimeZone){gc.setTimeZone(TimeZone.getTimeZone("GMT"));}
-			xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
-		}
-		catch (DatatypeConfigurationException e)
-		{
-			logger.warn(e.getMessage()+", but using fallback");
-			xmlGc = getXmlGc4D(d);
-		}
-		return xmlGc;
-	}
+	public static XMLGregorianCalendar toXmlGc(Date d) {return toXmlGc(d,DateUtil.ignoreTimeZone);}
+    public static XMLGregorianCalendar toXmlGc(Date d, boolean ignoreTimeZone)
+    {
+        XMLGregorianCalendar xmlGc=null;
+        try
+        {
+            GregorianCalendar gc = new DateTime(d).toGregorianCalendar();
+            if(ignoreTimeZone){gc.setTimeZone(TimeZone.getTimeZone("GMT"));}
+            xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
+        }
+        catch (DatatypeConfigurationException e)
+        {
+            logger.warn(e.getMessage()+", but using fallback");
+            xmlGc = getXmlGc4D(d);
+        }
+        return xmlGc;
+    }
 	
 	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d){return getXmlGc4D(d,false);}
 	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d, boolean withMilli)
