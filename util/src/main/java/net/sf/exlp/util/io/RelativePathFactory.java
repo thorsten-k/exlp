@@ -16,6 +16,7 @@ public class RelativePathFactory
 	private boolean quoteSpaces;
 	private File fFixed;
 	
+	public RelativePathFactory(File fFixed){this(fFixed,PathSeparator.CURRENT);}
 	public RelativePathFactory(PathSeparator pathSeparator){this(null,pathSeparator);}
 	public RelativePathFactory(File fFixed,PathSeparator pathSeparator){this(fFixed,pathSeparator,true);}
 	public RelativePathFactory(PathSeparator pathSeparator, boolean quoteSpaces){this(null,pathSeparator,quoteSpaces);}
