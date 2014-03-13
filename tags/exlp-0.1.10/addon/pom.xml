@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+    	<groupId>net.sf.exlp</groupId>
+    	<artifactId>exlp</artifactId>
+    	<version>0.1.10</version>
+        <relativePath>../pom.xml</relativePath>
+	</parent>
+	
+    <artifactId>exlp-addon</artifactId>
+    <packaging>jar</packaging>
+    <name>ExLP - Addon</name>
+   
+   	<dependencyManagement>
+		<dependencies>      	         
+			<dependency>
+				<groupId>net.sf.exlp</groupId>
+				<artifactId>exlp-bom</artifactId>
+				<version>${project.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+   
+	<build>
+		<plugins>
+			<plugin>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<inherited>true</inherited>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${compiler-source.version}</source>
+					<target>${compiler-target.version}</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+      </plugins>
+   </build>
+   
+	<dependencies>
+		<dependency>
+			<groupId>net.sf.clarens</groupId>
+			<artifactId>jclarens</artifactId>
+			<version>0.6.2</version>
+		</dependency>
+   		<dependency>
+   			<groupId>net.sf.exlp</groupId>
+   			<artifactId>exlp-util</artifactId>
+   			<type>jar</type>
+   			<scope>compile</scope>
+   		</dependency>
+   		<dependency>
+   			<groupId>net.sf.exlp</groupId>
+   			<artifactId>exlp-xml</artifactId>
+   		</dependency>
+   		<dependency>
+   			<groupId>net.sf.exlp</groupId>
+   			<artifactId>exlp-core</artifactId>
+   		</dependency>
+   		<dependency>
+   			<groupId>junit</groupId>
+   			<artifactId>junit</artifactId>
+   			<scope>test</scope>
+   		</dependency>
+   		<dependency>
+   			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<type>jar</type>
+			<scope>provided</scope>
+		</dependency>
+   		<dependency>
+   			<groupId>org.slf4j</groupId>
+   			<artifactId>slf4j-log4j12</artifactId>
+   			<scope>test</scope>
+   		</dependency>
+   		<dependency>
+	    	<groupId>org.xbill</groupId>
+	    	<artifactId>dns</artifactId>
+	    	<version>2.1.5</version>
+	    	<scope>provided</scope>
+   		</dependency>
+	</dependencies>
+</project>
