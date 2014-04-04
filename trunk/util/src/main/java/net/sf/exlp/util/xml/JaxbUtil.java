@@ -220,8 +220,11 @@ public class JaxbUtil
 		output(os, xml);
 	}
 	
-	public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper){output(w, xml, nsPrefixMapper,null,true);}
-	public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper, DocType doctype, boolean formatted)
+	@Deprecated public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper){output(w, xml, nsPrefixMapper,null,true);}
+	@Deprecated public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper, DocType doctype, boolean formatted){output(w, xml,null,true);}
+	
+	public static synchronized void output(Writer w, Object xml){output(w, xml,null,true);}
+	public static synchronized void output(Writer w, Object xml, DocType doctype, boolean formatted)
 	{
 		try
 		{
@@ -259,14 +262,15 @@ public class JaxbUtil
 		return doc;
 	}
 	
-	public static synchronized String toString(Object jaxb){return toString(jaxb,null);}
-	public static synchronized String toString(Object jaxb, NsPrefixMapperInterface nsPrefixMapper){return toString(jaxb,nsPrefixMapper,true);}
-	public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper, boolean printPreamble)
+	
+	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper){return toString(xml,nsPrefixMapper,true);}
+	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper, boolean printPreamble){return toString(xml,true);}
+	
+	public static synchronized String toString(Object xml){return toString(xml,true);}
+	public static synchronized String toString(Object xml, boolean printPreamble)
 	{
 		Writer sw = new StringWriter();
-		
-		JaxbUtil.output(sw, xml, nsPrefixMapper);
-		
+		JaxbUtil.output(sw, xml);
 		
 		String s = sw.toString();
 		if(!printPreamble)
