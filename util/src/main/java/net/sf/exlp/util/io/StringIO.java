@@ -17,9 +17,36 @@ public class StringIO
 {
 	final static Logger logger = LoggerFactory.getLogger(StringIO.class);
 	
+	public static void writeTxtIfDiffers(String content, File fTarget)
+	{
+		boolean doCopy = false;
+		if(!fTarget.exists())
+		{
+			logger.debug(fTarget.getAbsolutePath()+" does not exist, so write");
+			doCopy=true;
+		}
+		else
+		{
+			try
+			{
+				String hashExisting = HashUtil.hash(fTarget);
+				String hashNew = HashUtil.hash(content);
+				logger.debug("hashExisting "+hashExisting);
+				logger.debug("hashNew      "+hashNew);
+				if(!hashExisting.equals(hashNew)){doCopy=true;}
+				logger.debug("Hash evaluated: COPY:"+doCopy);
+			}
+			catch (IOException e) {e.printStackTrace();}
+		}
+		
+		if(doCopy){writeTxt(content,fTarget);}
+		else{logger.debug("Dont copy");}
+	}
+	
 	public static synchronized void writeTxt(String dirName, String fileName, String content){writeTxt(new File(dirName), fileName, content);}
 	public static synchronized void writeTxt(File fDir, String fileName, String content){writeTxt(new File(fDir,fileName), content);}
-	public static synchronized void writeTxt(File f, String content)
+	public static synchronized void writeTxt(File f, String content){writeTxt(content,f);}
+	public static synchronized void writeTxt(String content, File f)
 	{
 		logger.trace("Writing Txt to "+f.getAbsolutePath());
 		try

@@ -1,6 +1,8 @@
 package net.sf.exlp.util.io;
 
 import java.io.ByteArrayInputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -34,5 +36,23 @@ public class HashUtil
     	}
     	catch(IOException e) {logger.error("",e);}
     	return new String(Hex.encodeHex(messagedigest.digest()));
-    } 
+    }
+	
+	public static String hash(File f) throws IOException
+    {
+    	MessageDigest messagedigest=null;
+    	try{messagedigest = MessageDigest.getInstance(HASHALGORITHM);} 
+    	catch (NoSuchAlgorithmException e){e.printStackTrace();}
+    	
+    	byte md[] = new byte[BLOCKLENGTH];  
+
+		FileInputStream in  = new FileInputStream(f);
+		for(int n=0; (n = in.read(md))>-1;)
+		{
+			messagedigest.update(md,0,n);
+		}
+		in.close();
+
+    	return new String(Hex.encodeHex(messagedigest.digest()));
+    }
 }

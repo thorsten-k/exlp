@@ -1,5 +1,6 @@
 package net.sf.exlp.util.io;
 
+import java.io.File;
 import java.io.IOException;
 
 import net.sf.exlp.test.AbstractExlpTst;
@@ -14,23 +15,43 @@ public class TestHashUtil extends AbstractExlpTst
 {
 	final static Logger logger = LoggerFactory.getLogger(TestHashUtil.class);
     
-	private String inputS;
-	private byte[] inputB;
+	public static String expected = "5056b09f63be4ef1f44e97df450151d1";
+	public static String inputString = "This is a simple hash test";
+	
+	private byte[] inputByte;
+	private File inputFile;
 	
 	@Before
 	public void init() throws IOException
 	{
-		inputS = "This is a simple hash test";
-		inputB = inputS.getBytes();
+		inputByte = inputString.getBytes();
+		
+		inputFile = new File(fTarget,"hash");
+		StringIO.writeTxt(inputFile, inputString);
 	}
 	
     @Test
-    public void testHash() throws IOException 
+    public void hashString() throws IOException 
     {
-    	Assert.assertEquals("5056b09f63be4ef1f44e97df450151d1", HashUtil.hash(inputB));
-    	Assert.assertEquals("5056b09f63be4ef1f44e97df450151d1", HashUtil.hash(inputS));
+    	Assert.assertEquals(expected, HashUtil.hash(inputString));
     }
-   
+	
+    @Test
+    public void hashByte() throws IOException 
+    {
+    	Assert.assertEquals(expected, HashUtil.hash(inputByte));
+    }
+  
+    @Test
+    public void hashFile() throws IOException 
+    {
+    	Assert.assertEquals(expected, HashUtil.hash(inputFile));
+    }
     
+    @Test(expected=IOException.class)
+    public void hasFileNotFound() throws IOException 
+    {
+    	HashUtil.hash(new File(fTarget,"skdjvnjkdsv"));
+    }
 
 }
