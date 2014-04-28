@@ -21,6 +21,7 @@
         <xsd:complexType>
         	<xsd:sequence>
                	<xsd:element ref="io:policy" maxOccurs="unbounded"/>
+               	<xsd:element ref="io:hash" maxOccurs="1"/>
         	    <xsd:element name="data">
         	        <xsd:simpleType>
         	            <xsd:restriction base="xsd:hexBinary"/>
@@ -56,6 +57,14 @@
             <xsd:attribute name="oi" type="xsd:boolean"/>
             <xsd:attribute name="ci" type="xsd:boolean"/>
             <xsd:attribute name="io" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="hash">
+        <xsd:complexType>
+            <xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                </xsd:extension>
+            </xsd:simpleContent>
         </xsd:complexType>
     </xsd:element>
 </xsd:schema>

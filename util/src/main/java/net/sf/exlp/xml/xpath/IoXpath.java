@@ -36,4 +36,19 @@ public class IoXpath
 		else if(list.size()>1){throw new ExlpXpathNotUniqueException("Multiple "+File.class.getSimpleName()+"s for code="+code);}
 		return list.get(0);
 	}
+	
+	public static synchronized File getFileByName(Dir dir, String name) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
+	{
+		for(File f : dir.getFile())
+		{
+			if(name.equals(f.getName())){return f;}
+		}
+		throw new ExlpXpathNotFoundException("No "+File.class.getSimpleName()+" for name="+name);
+/*		JXPathContext context = JXPathContext.newContext(dir);
+		
+		List<File> list = (List<File>)context.selectNodes("file[@name='"+name+"']");
+		if(list.size()==0){}
+		else if(list.size()>1){throw new ExlpXpathNotUniqueException("Multiple "+File.class.getSimpleName()+"s for name="+name);}
+		return list.get(0);
+*/	}
 }
