@@ -27,6 +27,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element ref="{http://exlp.sf.net/io}policy" maxOccurs="unbounded"/>
+ *         &lt;element ref="{http://exlp.sf.net/io}hash"/>
  *         &lt;element name="data">
  *           &lt;simpleType>
  *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}hexBinary">
@@ -50,6 +51,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
     "policy",
+    "hash",
     "data"
 })
 @XmlRootElement(name = "file")
@@ -60,6 +62,8 @@ public class File
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<Policy> policy;
+    @XmlElement(required = true)
+    protected Hash hash;
     @XmlElement(namespace = "", required = true, type = String.class)
     @XmlJavaTypeAdapter(HexBinaryAdapter.class)
     protected byte[] data;
@@ -112,6 +116,34 @@ public class File
 
     public void unsetPolicy() {
         this.policy = null;
+    }
+
+    /**
+     * Gets the value of the hash property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Hash }
+     *     
+     */
+    public Hash getHash() {
+        return hash;
+    }
+
+    /**
+     * Sets the value of the hash property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Hash }
+     *     
+     */
+    public void setHash(Hash value) {
+        this.hash = value;
+    }
+
+    public boolean isSetHash() {
+        return (this.hash!= null);
     }
 
     /**

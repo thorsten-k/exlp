@@ -30,6 +30,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Hash }
+     * 
+     */
+    public Hash createHash() {
+        return new Hash();
+    }
+
+    /**
      * Create an instance of {@link Acl }
      * 
      */

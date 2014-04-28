@@ -15,9 +15,9 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class TestFile extends AbstractIoXmlTest
+public class TestXmlFile extends AbstractIoXmlTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestFile.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlFile.class);
 	
 	@BeforeClass
 	public static void initFiles()
@@ -58,6 +58,7 @@ public class TestFile extends AbstractIoXmlTest
     		xml.setData(new byte[] {1,3});
     		xml.getPolicy().add(TestPolicy.create(false));
     		xml.getPolicy().add(TestPolicy.create(false));
+    		xml.setHash(TestXmlHash.create(false));
     	}
     	
     	return xml;
@@ -73,8 +74,8 @@ public class TestFile extends AbstractIoXmlTest
 		
 		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());	
 			
-		TestFile.initFiles();	
-		TestFile test = new TestFile();
+		TestXmlFile.initFiles();	
+		TestXmlFile test = new TestXmlFile();
 		test.save();
     }
 }
