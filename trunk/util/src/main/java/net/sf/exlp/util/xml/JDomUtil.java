@@ -292,6 +292,7 @@ public class JDomUtil
 		catch (FileNotFoundException e) {e.printStackTrace();}
 		return null;
 	}
+	public static Document load(InputStream is){return load(is,"UTF-8");}
 	public static Document load(InputStream is, String encoding)
 	{
 		Document doc = null;
