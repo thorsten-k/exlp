@@ -14,6 +14,6 @@ public class ExlpTxtWriter extends AbstractTxtWriter
 		
 	}
 	
-	public void add(String line){txt.add(line);}
+	public void add(String line){if(line!=null){txt.add(line);}}
 	public void add(List<String> lines){txt.addAll(lines);}
 }
