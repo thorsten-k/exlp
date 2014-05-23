@@ -22,6 +22,7 @@ public abstract class AbstractTxtWriter
 	private String encoding;
 	
 	protected ArrayList<String> txt;
+
 	protected String dirName,fileName;
 	
 	protected DecimalFormat df;
@@ -46,13 +47,21 @@ public abstract class AbstractTxtWriter
 		df = new DecimalFormat(s);
 	}
 	
-	public void debug() {debug(logger);}
-	public void debug(Logger mylogger)
+	public void debug()
 	{
-		mylogger.debug("Debugging TXT content");
+		logger.debug("Debugging TXT content");
 		for(String s : txt)
 		{
-			mylogger.debug(s);
+			logger.debug(s);
+		}
+	}
+	
+	public void debugSystemOut()
+	{
+		logger.debug("Debugging TXT content to system.out");
+		for(String s : txt)
+		{
+			System.out.println(s);
 		}
 	}
 	
