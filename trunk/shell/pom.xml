@@ -50,29 +50,39 @@
 			<artifactId>exlp-core</artifactId>
 			<scope>provided</scope>
 		</dependency>
-   		<dependency>
-   			<groupId>junit</groupId>
-   			<artifactId>junit</artifactId>
-   			<type>jar</type>
-   			<scope>test</scope>
-   		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
+			<groupId>net.sf.exlp</groupId>
+			<artifactId>exlp-util</artifactId>
+			<scope>test</scope>
 		</dependency>
+		
+		<!-- Commons -->
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.exlp</groupId>
-			<artifactId>exlp-util</artifactId>
-			<scope>test</scope>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+		
+   		<!-- Logging -->
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>test</scope>
 		</dependency>
+		
+		<!-- Test -->
+		<dependency>
+   			<groupId>junit</groupId>
+   			<artifactId>junit</artifactId>
+   			<type>jar</type>
+   			<scope>test</scope>
+   		</dependency>
 	</dependencies>
 </project>
