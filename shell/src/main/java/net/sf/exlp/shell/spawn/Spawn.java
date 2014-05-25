@@ -9,6 +9,7 @@ import java.io.Writer;
 import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.shell.os.OsEnvironmentParameter;
 
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,7 +36,11 @@ public class Spawn extends Thread
 	private void checkPreRequisites()
 	{
 		checkWorkingDir();
-		if(envParameter==null){envParameter = new OsEnvironmentParameter();}
+		if(envParameter==null)
+		{
+			logger.info("Building OS Environemnt Parameter");
+			envParameter = new OsEnvironmentParameter();
+		}
 	}
 	
 	private void checkWorkingDir()
@@ -49,6 +54,7 @@ public class Spawn extends Thread
 			if(!workingDir.exists()){logger.warn(workingDir.getAbsoluteFile()+" does not exist!");}
 			if(!workingDir.isDirectory()){logger.warn(workingDir.getAbsoluteFile()+" is no directory!");}
 		}
+		workingDir = new File(FilenameUtils.normalize(workingDir.getAbsolutePath()));
 	}
 	
 	public void cmd()
@@ -56,7 +62,8 @@ public class Spawn extends Thread
 		checkPreRequisites();
 		try
 		{	
-			logger.debug("Spawn: "+command+" (wd="+workingDir.getAbsolutePath()+")");
+			logger.debug("Spawning command in workingd dir: "+workingDir.getAbsolutePath()+")");
+			logger.trace("\t"+command);
 						
 			p = Runtime.getRuntime().exec(command, envParameter.get(), workingDir);
 			logger.trace("Process started");
@@ -107,6 +114,13 @@ public class Spawn extends Thread
 	{
 		logger.debug("Kill will be send");
 		p.destroy();
+	}
+	
+	public void debug()
+	{
+		checkPreRequisites();
+		logger.info("Environment "+(envParameter==null));
+		envParameter.debug();
 	}
 	
 	public int getExitValue() {return exitValue;}
