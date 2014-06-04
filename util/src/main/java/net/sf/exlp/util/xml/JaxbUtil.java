@@ -22,6 +22,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
+import net.sf.exlp.xml.cdata.CdataXmlEscapeHandler;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 import org.jdom2.DocType;
@@ -60,7 +61,6 @@ public class JaxbUtil
 	
 	private static synchronized <T extends Object> T loadJAXB(MultiResourceLoader mrl, String xmlFile, Class<T> c) throws FileNotFoundException
 	{
-		
 		T result = null;
 
 		InputStream is=null;
@@ -204,7 +204,8 @@ public class JaxbUtil
 		try
 		{
 			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
-			Marshaller m = context.createMarshaller(); 
+			Marshaller m = context.createMarshaller();
+			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
 			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
@@ -230,6 +231,7 @@ public class JaxbUtil
 		{
 			JAXBContext context = JAXBContext.newInstance(xml.getClass());
 			Marshaller m = context.createMarshaller(); 
+			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
 			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}

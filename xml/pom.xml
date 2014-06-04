@@ -53,6 +53,24 @@
     		<type>jar</type>
     		<scope>provided</scope>
     	</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.1.Final</version>
+			<scope>provided</scope>
+			<exclusions>
+            	<exclusion>
+            		<artifactId>commons-logging</artifactId>
+            		<groupId>commons-logging</groupId>
+            	</exclusion>
+            	<exclusion>
+            		<artifactId>slf4j-simple</artifactId>
+            		<groupId>org.slf4j</groupId>
+            	</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- Test -->
    		<dependency>
  			<groupId>com.sun.xml.bind</groupId>
     		<artifactId>jaxb-xjc</artifactId>
