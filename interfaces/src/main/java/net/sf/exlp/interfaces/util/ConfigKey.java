@@ -2,6 +2,8 @@ package net.sf.exlp.interfaces.util;
 
 public interface ConfigKey
 {
+	public final static String dirTmp = "dir.tmp";
+	
 	public final static String netRestUrl  = "net.rest.url";
 	public final static String netRestPort = "net.rest.port";
 	
