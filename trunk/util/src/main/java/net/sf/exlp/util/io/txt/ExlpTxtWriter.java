@@ -2,10 +2,12 @@ package net.sf.exlp.util.io.txt;
 
 import java.util.List;
 
+import net.sf.exlp.interfaces.util.TextWriter;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ExlpTxtWriter extends AbstractTxtWriter
+public class ExlpTxtWriter extends AbstractTxtWriter implements TextWriter
 {
 	final static Logger logger = LoggerFactory.getLogger(ExlpTxtWriter.class);
 	
