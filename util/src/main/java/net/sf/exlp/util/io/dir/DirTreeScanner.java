@@ -46,37 +46,42 @@ public class DirTreeScanner
 	//Dir
 	public Dir getDir(String rootDir) throws FileNotFoundException
 	{
-		File f = new File(rootDir);
-		checkRoot(f);
-		return getDirTree(f);
+		return getDir(rootDir,true);
 	}
 	
-	private Dir getDirTree(File f)
+	public Dir getDir(String rootDir,boolean recursive) throws FileNotFoundException
+	{
+		File f = new File(rootDir);
+		checkRoot(f);
+		return getDirTree(f,recursive);
+	}
+	
+	public Dir getDirTree(File f,boolean recursive)
 	{
 		Dir dir = new Dir();
 		if(qDir.isSetName()){dir.setName(f.getName());}
 		if(qDir.isSetLastModifed()){dir.setLastModifed(DateUtil.getXmlGc4D(new Date(f.lastModified())));}
 		for(File subF : f.listFiles())
 		{
-			if(subF.isDirectory())
+			if(subF.isDirectory() && recursive)
 			{
-				dir.getDir().add(getDirTree(subF));
+				dir.getDir().add(getDirTree(subF,recursive));
 			}
 			else if (subF.isFile() && qDir.isSetFile())
 			{
-				dir.getFile().add(getFile(subF));
+				dir.getFile().add(getFile(subF,qDir.getFile().get(0)));
 			}
 		}
 		
 		return dir;
 	}
 	
-	private net.sf.exlp.xml.io.File getFile(File f)
+	private net.sf.exlp.xml.io.File getFile(File f,net.sf.exlp.xml.io.File qFile)
 	{
 		net.sf.exlp.xml.io.File file = new net.sf.exlp.xml.io.File();
-		//TODO logic deactivated
-//		if(qDir.getFile().get(0).isSetName()){file.setName(f.getName());}
-//		if(qDir.getFile().get(0).isSetLastModifed()){file.setLastModifed(DateUtil.getXmlGc4D(new Date(f.lastModified())));}
+		if(qFile.isSetName()){file.setName(f.getName());}
+		if(qFile.isSetSize()){file.setSize(f.length());}
+		if(qFile.isSetLastModifed()){file.setLastModifed(DateUtil.getXmlGc4D(new Date(f.lastModified())));}
 		return file;
 	}
 }
