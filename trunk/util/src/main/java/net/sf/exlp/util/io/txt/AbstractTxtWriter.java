@@ -98,7 +98,13 @@ public abstract class AbstractTxtWriter
 			OutputStreamWriter osw = new  OutputStreamWriter(os, encoding); 
 
 			BufferedWriter bw = new BufferedWriter(osw);
-			for(String s : txt){bw.write(s+lineSeparator);}
+			boolean first = true;
+			for(String s : txt)
+			{
+				if(!first){bw.write(lineSeparator);}
+				bw.write(s);
+				first = false;
+			}
 			bw.close();osw.close();
 		}
 		catch (IOException e){logger.error("IOException",e);}  
