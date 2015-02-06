@@ -37,7 +37,82 @@
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
-		</plugins>
+		<!-- 
+            <plugin>
+                <groupId>org.jvnet.jaxb2.maven2</groupId>
+                <artifactId>maven-jaxb2-plugin</artifactId>
+                <version>0.11.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                        <configuration>
+                        	<schemaDirectory>src/main/xsd</schemaDirectory>
+									<schemaIncludes><include>*.xsd</include></schemaIncludes>
+									    <schemaExcludes>
+        <exclude>geojsf.xsd</exclude>
+    </schemaExcludes>
+
+<bindingDirectory>src/main/ant</bindingDirectory>
+<bindingIncludes>
+    <include>**/*.xjb</include>
+</bindingIncludes>
+<specVersion>2.2</specVersion>
+<generateDirectory>${project.basedir}/src/main/java</generateDirectory>
+<packageLevelAnnotations>false</packageLevelAnnotations>
+<noFileHeader>true</noFileHeader>
+<cleanPackageDirectories>true</cleanPackageDirectories>
+<forceRegenerate>true</forceRegenerate>
+
+<encoding>${project.build.sourceEncoding}</encoding>
+<locale>en</locale>
+<addCompileSourceRoot>false</addCompileSourceRoot>
+<addTestCompileSourceRoot>false</addTestCompileSourceRoot>
+
+    <schema>
+        <url>http://www.geojsf.org</url>
+        <excludes>
+                <exclude>*.xsd</exclude>
+            </excludes>
+    </schema>
+
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin> -->
+        </plugins>
+        <pluginManagement>
+      	<plugins>
+      		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+      		<plugin>
+      			<groupId>org.eclipse.m2e</groupId>
+      			<artifactId>lifecycle-mapping</artifactId>
+      			<version>1.0.0</version>
+      			<configuration>
+      				<lifecycleMappingMetadata>
+      					<pluginExecutions>
+      						<pluginExecution>
+      							<pluginExecutionFilter>
+      								<groupId>org.jvnet.jaxb2.maven2</groupId>
+                					<artifactId>maven-jaxb2-plugin</artifactId>
+      								<versionRange>
+      									[0.1.10,)
+      								</versionRange>
+      								<goals>
+      									<goal>generate</goal>
+      								</goals>
+      							</pluginExecutionFilter>
+      							<action>
+      								<ignore />
+      							</action>
+      						</pluginExecution>
+      					</pluginExecutions>
+      				</lifecycleMappingMetadata>
+      			</configuration>
+      		</plugin>
+      	</plugins>
+      </pluginManagement>
 	</build>
 	
 	<dependencies>
@@ -78,4 +153,5 @@
     		<scope>test</scope>
   		</dependency>
 	</dependencies>
+	
 </project>
