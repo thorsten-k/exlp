@@ -38,7 +38,7 @@ public class Spawn extends Thread
 		checkWorkingDir();
 		if(envParameter==null)
 		{
-			logger.info("Building OS Environemnt Parameter");
+			logger.debug("Building OS Environemnt Parameter");
 			envParameter = new OsEnvironmentParameter();
 		}
 	}
