@@ -21,5 +21,11 @@
             <jxb:package name="net.sf.exlp.xml.identity"/>
         </jxb:schemaBindings>
     </jxb:bindings>
+    
+	<jxb:bindings schemaLocation="../xsd/util/config.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="net.sf.exlp.xml.config"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
    
 </jxb:bindings>
