@@ -39,6 +39,21 @@ public class DomUtil
 		catch (TransformerException e) {logger.error("",e);} 
 	}
 	
+	public static synchronized void debugDocument(Element element)
+	{
+		try
+		{
+			TransformerFactory tf = TransformerFactory.newInstance(); 
+			Transformer t = tf.newTransformer();
+			//Setup indenting to "pretty print"
+			t.setOutputProperty(OutputKeys.INDENT,"yes");
+			t.setOutputProperty("{http://xml.apache.org/xslt}indent-amount","2");
+			t.transform(new DOMSource(element), new StreamResult(System.out));
+		}
+		catch (TransformerConfigurationException e) {logger.error("",e);} 
+		catch (TransformerException e) {logger.error("",e);} 
+	}
+	
 	@SuppressWarnings("unchecked")
 	public static synchronized <T extends Object> T toJaxb(Element element, Class<T> clJaxb)
 	{
