@@ -92,10 +92,10 @@
 			<dependency>
 		  		<groupId>commons-validator</groupId>
 		  		<artifactId>commons-validator</artifactId>
-		  		<version>1.4.0</version>
+		  		<version>1.4.1</version>
 		  	</dependency>
         
-        <!-- XML -->
+			<!-- XML -->
         	<dependency>
 				<groupId>org.jdom</groupId>
 				<artifactId>jdom</artifactId>
@@ -104,7 +104,7 @@
 			<dependency>
 				<groupId>org.jdom</groupId>
 				<artifactId>jdom2</artifactId>
-				<version>2.0.5</version>
+				<version>2.0.6</version>
 			</dependency>
 			<dependency>
 				<groupId>jaxen</groupId>
@@ -112,7 +112,7 @@
 				<version>1.1.4</version>
 			</dependency>
         
-       	<!-- JAXB -->
+       		<!-- JAXB -->
 			<dependency>
 				<groupId>javax.xml.bind</groupId>
 				<artifactId>jaxb-api</artifactId>
@@ -161,12 +161,29 @@
     			<version>1.7.12</version>
 			</dependency>
 			
-			<!-- Time -->
+			<!-- Utils -->
+			<dependency>
+   				<groupId>org.apache.ant</groupId>
+   				<artifactId>ant</artifactId>
+   				<version>1.9.6</version>
+   			</dependency>
 			<dependency>
 	            <groupId>joda-time</groupId>
 	            <artifactId>joda-time</artifactId>
-	            <version>2.7</version>
+	            <version>2.8.1</version>
 	        </dependency>
+	        
+	        <!-- Testing -->
+	        <dependency>
+   				<groupId>junit</groupId>
+   				<artifactId>junit</artifactId>
+   				<version>4.12</version>
+   			</dependency>
+	        <dependency>
+   				<groupId>junit</groupId>
+   				<artifactId>junit</artifactId>
+   				<version>4.12</version>
+   			</dependency>
         </dependencies>
     </dependencyManagement>
 </project>

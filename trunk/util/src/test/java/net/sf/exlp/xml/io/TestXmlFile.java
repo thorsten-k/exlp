@@ -5,15 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import net.sf.exlp.util.DateUtil;
-import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.test.ExlpTstBootstrap;
+import net.sf.exlp.util.DateUtil;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestXmlFile extends AbstractIoXmlTest
 {
@@ -55,7 +54,7 @@ public class TestXmlFile extends AbstractIoXmlTest
 
     	if(withChilds)
     	{
-    		xml.setData(new byte[] {1,3});
+    		xml.setData(TestXmlData.create(false));
     		xml.getPolicy().add(TestPolicy.create(false));
     		xml.getPolicy().add(TestPolicy.create(false));
     		xml.setHash(TestXmlHash.create(false));
@@ -68,11 +67,7 @@ public class TestXmlFile extends AbstractIoXmlTest
 	
 	public static void main(String[] args)
     {
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("src/test/resources/config");
-			loggerInit.init();		
-		
-		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());	
+		ExlpTstBootstrap.init();
 			
 		TestXmlFile.initFiles();	
 		TestXmlFile test = new TestXmlFile();

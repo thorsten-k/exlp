@@ -69,4 +69,12 @@ public class ObjectFactory {
         return new Policy();
     }
 
+    /**
+     * Create an instance of {@link Data }
+     * 
+     */
+    public Data createData() {
+        return new Data();
+    }
+
 }

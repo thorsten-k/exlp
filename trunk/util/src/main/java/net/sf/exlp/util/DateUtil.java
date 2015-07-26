@@ -230,12 +230,14 @@ public class DateUtil
 		return mdt.toDate();
 	}
 	
+	@Deprecated
 	public static Date midnightBeginOfMonth(Date date)
 	{
 		DateMidnight dm = new DateMidnight(date);
 		return dm.withDayOfMonth(1).toDate();
 	}
 	
+	@Deprecated
 	public static Date midnightEndOfMonth(Date date)
 	{
 		DateMidnight dm = new DateMidnight(date);

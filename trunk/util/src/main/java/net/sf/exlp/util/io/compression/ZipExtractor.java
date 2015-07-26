@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import net.sf.exlp.factory.xml.io.XmlDataFactory;
 import net.sf.exlp.factory.xml.io.XmlFileFactory;
 import net.sf.exlp.xml.io.Dir;
 import net.sf.exlp.xml.io.File;
@@ -41,7 +42,7 @@ public class ZipExtractor
 
             byte[] bytes = IOUtils.toByteArray(zis);
             xmlFile.setSize(bytes.length);
-            if(withContent && bytes.length>0){xmlFile.setData(bytes);}
+            if(withContent && bytes.length>0){xmlFile.setData(XmlDataFactory.build(bytes));}
             
             xmlDir.getFile().add(xmlFile);
 

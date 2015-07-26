@@ -1,6 +1,7 @@
 package net.sf.exlp.util.io;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -53,5 +54,19 @@ public class FileIO
 			catch (FileNotFoundException e) {e.printStackTrace();}
 			catch (IOException e) {e.printStackTrace();}
 		}
+	}
+	
+	public static byte[] loadByte(File f)
+	{
+		try
+	    {
+	    	FileInputStream fis = new FileInputStream(f);
+	    	byte[] b = new byte[fis.available()];
+	    	fis.read(b);
+	    	fis.close();
+	    	return b;
+	    }
+	    catch( IOException e ){e.printStackTrace();}
+	    return null;
 	}
 }

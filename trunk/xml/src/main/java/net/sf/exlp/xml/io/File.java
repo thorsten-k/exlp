@@ -11,8 +11,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.adapters.HexBinaryAdapter;
-import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import javax.xml.datatype.XMLGregorianCalendar;
 
 
@@ -28,12 +26,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;sequence>
  *         &lt;element ref="{http://exlp.sf.net/io}policy" maxOccurs="unbounded"/>
  *         &lt;element ref="{http://exlp.sf.net/io}hash"/>
- *         &lt;element name="data">
- *           &lt;simpleType>
- *             &lt;restriction base="{http://www.w3.org/2001/XMLSchema}hexBinary">
- *             &lt;/restriction>
- *           &lt;/simpleType>
- *         &lt;/element>
+ *         &lt;element ref="{http://exlp.sf.net/io}data"/>
  *       &lt;/sequence>
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
@@ -64,9 +57,8 @@ public class File
     protected List<Policy> policy;
     @XmlElement(required = true)
     protected Hash hash;
-    @XmlElement(namespace = "", required = true, type = String.class)
-    @XmlJavaTypeAdapter(HexBinaryAdapter.class)
-    protected byte[] data;
+    @XmlElement(required = true)
+    protected Data data;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "code")
@@ -151,10 +143,10 @@ public class File
      * 
      * @return
      *     possible object is
-     *     {@link String }
+     *     {@link Data }
      *     
      */
-    public byte[] getData() {
+    public Data getData() {
         return data;
     }
 
@@ -163,11 +155,11 @@ public class File
      * 
      * @param value
      *     allowed object is
-     *     {@link String }
+     *     {@link Data }
      *     
      */
-    public void setData(byte[] value) {
-        this.data = ((byte[]) value);
+    public void setData(Data value) {
+        this.data = value;
     }
 
     public boolean isSetData() {

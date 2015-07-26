@@ -214,8 +214,7 @@ public class JaxbUtil
 		catch (JAXBException e) {logger.error("",e);}
 	}
 	
-	@Deprecated
-	public static void toOutputStream(Object xml, OutputStream os)
+	@Deprecated public static void toOutputStream(Object xml, OutputStream os)
 	{
 		logger.warn("Deprecated. Use: output(os, xml, nsPrefixMapper)");
 		output(os, xml);
@@ -263,7 +262,6 @@ public class JaxbUtil
 		catch (IOException e) {logger.error("",e);}
 		return doc;
 	}
-	
 	
 	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper){return toString(xml,nsPrefixMapper,true);}
 	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper, boolean printPreamble){return toString(xml,true);}
