@@ -3,5 +3,5 @@
     <io:policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
     <io:policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
     <io:hash>myValue</io:hash>
-    <data>0103</data>
+    <io:data>01032B</io:data>
 </io:file>

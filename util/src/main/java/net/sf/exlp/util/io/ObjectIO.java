@@ -164,18 +164,10 @@ public class ObjectIO
 		return buffer.length;
 	}
 	
+	@Deprecated
 	public static byte[] loadByte(File f)
 	{
-		try
-	    {
-	    	FileInputStream fis = new FileInputStream(f);
-	    	byte[] b = new byte[fis.available()];
-	    	fis.read(b);
-	    	fis.close();
-	    	return b;
-	    }
-	    catch( IOException e ){e.printStackTrace();}
-	    return null;
+		return FileIO.loadByte(f);
 	}
 	
 	public synchronized static void saveByte(byte[] b,File f)

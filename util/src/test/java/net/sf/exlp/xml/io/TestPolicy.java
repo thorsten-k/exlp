@@ -2,13 +2,13 @@ package net.sf.exlp.xml.io;
 
 import java.io.FileNotFoundException;
 
-import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.xml.JaxbUtil;
-
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.test.ExlpTstBootstrap;
+import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestPolicy extends AbstractIoXmlTest
 {
@@ -52,9 +52,7 @@ public class TestPolicy extends AbstractIoXmlTest
 	
 	public static void main(String[] args)
     {
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("src/test/resources/config");
-			loggerInit.init();		
+		ExlpTstBootstrap.init();	
 			
 		TestPolicy.initFiles();	
 		TestPolicy test = new TestPolicy();

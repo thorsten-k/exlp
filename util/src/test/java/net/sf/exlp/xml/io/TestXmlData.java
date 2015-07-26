@@ -10,34 +10,24 @@ import org.slf4j.LoggerFactory;
 import net.sf.exlp.test.ExlpTstBootstrap;
 import net.sf.exlp.util.xml.JaxbUtil;
 
-public class TestXmlHash extends AbstractIoXmlTest
+public class TestXmlData extends AbstractIoXmlTest
 {
-	final static Logger logger = LoggerFactory.getLogger(TestXmlHash.class);
+	final static Logger logger = LoggerFactory.getLogger(TestXmlData.class);
 	
-	@BeforeClass
-	public static void initFiles()
-	{
-		fXml = new java.io.File(rootDir,Hash.class.getSimpleName()+".xml");
-	}
+	@BeforeClass public static void initFiles(){fXml = new java.io.File(rootDir,Data.class.getSimpleName()+".xml");}
     
     @Test
     public void testFile() throws FileNotFoundException
     {
-    	Hash test = create(true);
-    	Hash ref = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Hash.class);
+    	Data test = create(true);
+    	Data ref = JaxbUtil.loadJAXB(fXml.getAbsolutePath(), Data.class);
     	assertJaxbEquals(ref, test);
     }
     
-    public static Hash create(boolean withChilds)
+    public static Data create(boolean withChilds)
     {
-    	Hash xml = new Hash();
-    	xml.setValue("myValue");
-
-    	if(withChilds)
-    	{
-    		
-    	}
-    	
+    	Data xml = new Data();
+    	xml.setValue(new byte[] {1,3,43});    	
     	return xml;
     }
     
@@ -47,8 +37,8 @@ public class TestXmlHash extends AbstractIoXmlTest
     {
 		ExlpTstBootstrap.init();
 			
-		TestXmlHash.initFiles();	
-		TestXmlHash test = new TestXmlHash();
+		TestXmlData.initFiles();	
+		TestXmlData test = new TestXmlData();
 		test.save();
     }
 }
