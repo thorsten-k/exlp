@@ -36,16 +36,16 @@
 	</licenses>
 
 	<scm>
-    	<connection>scm:svn:https://svn.code.sf.net/p/exlp/code/trunk</connection>
-    	<developerConnection>scm:svn:https://svn.code.sf.net/p/exlp/code/trunk</developerConnection>
-    	<url>https://svn.code.sf.net/p/exlp/code/trunk</url>
+		<url>https://github.com/thorsten-k/exlp.git</url>
+		<connection>scm:git:git://github.com/thorsten-k/exlp.git</connection>
+		<developerConnection>scm:git:git@github.com/thorsten-k/exlp.git</developerConnection>
 	</scm>
 	
 	<developers>
 		<developer>
 			<id>1</id>
 			<name>Thorsten Kisner</name>
-			<email>thorsten-k@sourceforge.net</email>
+			<email>t.kisner@web.de</email>
 		</developer>
 	</developers>
 
