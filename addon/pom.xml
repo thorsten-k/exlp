@@ -25,21 +25,6 @@
 		</dependencies>
 	</dependencyManagement>
    
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<inherited>true</inherited>
-				<version>${maven-compiler-plugin.version}</version>
-				<configuration>
-					<source>${compiler-source.version}</source>
-					<target>${compiler-target.version}</target>
-					<encoding>${project.build.sourceEncoding}</encoding>
-				</configuration>
-			</plugin>
-      </plugins>
-   </build>
-   
 	<dependencies>
 		<dependency>
 			<groupId>net.sf.clarens</groupId>
