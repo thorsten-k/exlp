@@ -73,7 +73,7 @@ public class HashUtil
     			messagedigest.update(md, 0, n);
     		}
     	}
-    	catch(IOException e) {logger.error("",e);}
+    	catch(IOException e) {logger.error(e.getMessage());}
     	return messagedigest.digest();
     }
 }
