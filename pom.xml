@@ -36,9 +36,9 @@
 	</licenses>
 
 	<scm>
-		<url>https://github.com/thorsten-k/exlp.git</url>
-		<connection>scm:git:git://github.com/thorsten-k/exlp.git</connection>
-		<developerConnection>scm:git:git@github.com/thorsten-k/exlp.git</developerConnection>
+    	<connection>scm:svn:https://github.com/thorsten-k/exlp.git</connection>
+    	<developerConnection>scm:svn:https://github.com/thorsten-k/exlp.git</developerConnection>
+    	<url>https://github.com/thorsten-k/exlp.git</url>
 	</scm>
 	
 	<developers>
