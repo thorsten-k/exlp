@@ -10,7 +10,7 @@
 
 	<groupId>net.sf.exlp</groupId>
 	<artifactId>exlp</artifactId>
-	<version>0.1.11</version>
+	<version>0.1.11-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ExLP (Extensible Logfile Processor)</name>
 	<description>ExLP (Extensible Logfile Processor)</description>
@@ -36,9 +36,9 @@
 	</licenses>
 
 	<scm>
-    	<connection>scm:svn:https://github.com/thorsten-k/exlp.git/tags/exlp-0.1.11</connection>
-    	<developerConnection>scm:svn:https://github.com/thorsten-k/exlp.git/tags/exlp-0.1.11</developerConnection>
-    	<url>https://github.com/thorsten-k/exlp.git/tags/exlp-0.1.11</url>
+		<url>https://github.com/thorsten-k/exlp.git</url>
+		<connection>scm:git:git://github.com/thorsten-k/exlp.git</connection>
+		<developerConnection>scm:git:git@github.com/thorsten-k/exlp.git</developerConnection>
 	</scm>
 	
 	<developers>
