@@ -24,7 +24,7 @@ public class OsBashFile
 		return prefix;
 	}
 	
-	public static String comment(String comment)
+	public static String comment(String comment) throws ExlpUnsupportedOsException
 	{
 		StringBuffer sb = new StringBuffer();
 		
@@ -32,7 +32,8 @@ public class OsBashFile
 		{
 			case Linux: sb.append("# ");break;
 			case OsX: sb.append("# ");break;
-			default: break;
+			case Win32: sb.append("REM ");break;
+			default: OsArchitectureUtil.errorUnsupportedOS("rm dirX and rm dirY (only subdirectories)"); break;
 		}
 		sb.append(comment);
 		
