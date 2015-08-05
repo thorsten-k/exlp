@@ -1,6 +1,5 @@
 package net.sf.exlp.util.io;
 
-import org.apache.commons.codec.EncoderException;
 import org.apache.commons.codec.net.URLCodec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,5 +36,25 @@ public class ByteUtil
 	{
 		URLCodec dec = new URLCodec();
 		return new String(dec.encode(bytes));
+	}
+	
+	public static byte[] concat(byte[]...arrays)
+	{
+	    int totalLength = 0;
+	    for (int i = 0; i < arrays.length; i++)
+	    {
+	        totalLength += arrays[i].length;
+	    }
+
+	    byte[] result = new byte[totalLength];
+
+	    int currentIndex = 0;
+	    for (int i = 0; i < arrays.length; i++)
+	    {
+	        System.arraycopy(arrays[i], 0, result, currentIndex, arrays[i].length);
+	        currentIndex += arrays[i].length;
+	    }
+
+	    return result;
 	}
 }
