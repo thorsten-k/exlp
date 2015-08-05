@@ -2,12 +2,11 @@ package net.sf.exlp.shell.os;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.slf4j.Marker;
-import org.slf4j.MarkerFactory;
+
+import net.sf.exlp.exception.ExlpUnsupportedOsException;
 
 public class OsBashFile
 {
-	final static Marker fatal = MarkerFactory.getMarker("FATAL");
 	final static Logger logger = LoggerFactory.getLogger(OsBashFile.class);
 	
 	private final static String prefixBinBash = "#!/bin/sh";
@@ -38,5 +37,16 @@ public class OsBashFile
 		sb.append(comment);
 		
 		return sb.toString();
+	}
+	
+	public static String fileExtention() throws ExlpUnsupportedOsException
+	{
+		switch(OsArchitectureUtil.getArch())
+		{
+			case Linux: return "sh";
+			case OsX: return "sh";
+			case Win32: return "bat";
+			default: OsArchitectureUtil.errorUnsupportedOS("rm dirX and rm dirY (only subdirectories)"); return "";
+		}
 	}
 }
