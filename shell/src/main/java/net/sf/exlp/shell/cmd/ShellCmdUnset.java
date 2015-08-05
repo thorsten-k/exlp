@@ -15,17 +15,25 @@ public class ShellCmdUnset
 		StringBuffer sb = new StringBuffer();
 		switch(OsArchitectureUtil.getArch())
 		{
-			case OsX: 	 sb.append(exportOsx(variable));break;
+			case OsX: 	 sb.append(osx(variable));break;
+			case Win32:	 sb.append(windows(variable));break;
 			default: OsArchitectureUtil.errorUnsupportedOS("unset xxx");break;
 		}	
 		return sb.toString();
 	}
 	
-	private static String exportOsx(String variable)
+	private static String osx(String variable)
 	{
 		StringBuffer sb = new StringBuffer();
 		sb.append("unset ").append(variable);
 		
+		return sb.toString();
+	}
+	
+	private static String windows(String variable)
+	{
+		StringBuffer sb = new StringBuffer();
+		sb.append("SET ").append(variable).append("=");	
 		return sb.toString();
 	}
 }
