@@ -1,5 +1,7 @@
 package net.sf.exlp.util.io;
 
+import java.nio.ByteBuffer;
+
 import org.apache.commons.codec.net.URLCodec;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,5 +58,10 @@ public class ByteUtil
 	    }
 
 	    return result;
+	}
+	
+	public static byte[] toByteArray(int i)
+	{
+		return ByteBuffer.allocate(4).putInt(i).array();
 	}
 }
