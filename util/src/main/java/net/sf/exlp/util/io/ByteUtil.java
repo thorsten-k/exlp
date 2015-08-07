@@ -64,4 +64,9 @@ public class ByteUtil
 	{
 		return ByteBuffer.allocate(4).putInt(i).array();
 	}
+	
+	public static int toInt(byte[] bytes)
+	{
+		return ByteBuffer.wrap(bytes).getInt();
+	}
 }
