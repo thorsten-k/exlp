@@ -69,4 +69,22 @@ public class ByteUtil
 	{
 		return ByteBuffer.wrap(bytes).getInt();
 	}
+	
+	public static int toUnsignedInt(byte[] bytes)
+	{
+		if(bytes.length==1)
+		{
+			return bytes[0] & 0xFF;
+		}
+		if(bytes.length==2)
+		{
+			return ByteBuffer.wrap(bytes).getShort() & 0xffff;
+		}
+		else
+		{
+			logger.warn("UNTESTED");
+			return ByteBuffer.wrap(bytes).getInt();
+		}
+		
+	}
 }
