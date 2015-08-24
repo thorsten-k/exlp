@@ -31,9 +31,9 @@ public class HashUtil
     	try 
     	{
     		ByteArrayInputStream in  = new ByteArrayInputStream(input);
-    		for ( int n = 0; (n = in.read(md)) > -1; )
+    		for (int n=0; (n = in.read(md)) > -1; )
     		{
-    			messagedigest.update( md, 0, n );
+    			messagedigest.update(md, 0, n);
     		}
     	}
     	catch(IOException e) {logger.error("",e);}
