@@ -18,7 +18,8 @@ public class ShellCmdChmod
 		switch(OsArchitectureUtil.getArch())
 		{
 			case OsX: 	 sb.append(executeableOsx(f));break;
-			default: OsArchitectureUtil.errorUnsupportedOS("EXPORT xxx = yyy");break;
+			case Linux: 	 sb.append(executeableOsx(f));break;
+			default: OsArchitectureUtil.errorUnsupportedOS("chmod +x");break;
 		}	
 		return sb.toString();
 	}

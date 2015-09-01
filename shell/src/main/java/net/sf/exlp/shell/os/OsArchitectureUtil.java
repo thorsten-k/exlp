@@ -56,7 +56,7 @@ public class OsArchitectureUtil
 	{
 		logger.error("System "+ SystemUtils.OS_NAME + " ("+getArch()+") not supported");
 		logger.error("We need to now the following command: "+cmd+" to implement this feature");
-		ExlpUnsupportedOsException e = new ExlpUnsupportedOsException("Command ("+cmd+") not supported for :"+SystemUtils.OS_NAME);
+		ExlpUnsupportedOsException e = new ExlpUnsupportedOsException("Command ("+cmd+") not supported for "+SystemUtils.OS_NAME);
 		e.printStackTrace();
 		throw e;
 	}

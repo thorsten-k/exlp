@@ -16,6 +16,7 @@ public class ShellCmdUnset
 		switch(OsArchitectureUtil.getArch())
 		{
 			case OsX: 	 sb.append(osx(variable));break;
+			case Linux:  sb.append(osx(variable));break;
 			case Win32:	 sb.append(windows(variable));break;
 			default: OsArchitectureUtil.errorUnsupportedOS("unset xxx");break;
 		}	

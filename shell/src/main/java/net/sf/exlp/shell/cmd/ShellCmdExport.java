@@ -16,6 +16,7 @@ public class ShellCmdExport
 		switch(OsArchitectureUtil.getArch())
 		{
 			case OsX: 	 sb.append(exportOsx(variable, value));break;
+			case Linux:  sb.append(exportOsx(variable, value));break;
 			case Win32:	 sb.append(exportWindows(variable, value));break;
 			default: OsArchitectureUtil.errorUnsupportedOS("EXPORT xxx = yyy");break;
 		}	
