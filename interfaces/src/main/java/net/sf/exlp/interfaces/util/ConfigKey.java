@@ -5,6 +5,9 @@ public interface ConfigKey
 	public final static String dirTmp = "dir.tmp";
 	
 	public final static String netRestUrl  = "net.rest.url";
+	public final static String netRestUrlImport  = "net.rest.url.import";
+	public final static String netRestUrlExport  = "net.rest.url.export";
+	
 	public final static String netRestPort = "net.rest.port";
 	
 	public final static String netEjbHost = "net.ejb.host";
