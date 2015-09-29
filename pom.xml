@@ -66,12 +66,12 @@
 
 	<repositories>
 		<repository>
-			<id>jboss-public</id>
+			<id>jboss.public</id>
 			<name>JBoss Repository</name>
 			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
 		</repository>
 		<repository>
-			<id>aht-public</id>
+			<id>aht.public</id>
 			<name>AHT public</name>
 			<url>https://www.aht-group.com/nexus/content/groups/public/</url>
 			<releases><enabled>true</enabled></releases>
