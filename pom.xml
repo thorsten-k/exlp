@@ -71,9 +71,9 @@
 			<url>http://repository.jboss.org/nexus/content/groups/public-jboss/</url>
 		</repository>
 		<repository>
-			<id>aht.public</id>
+			<id>aht.3rd</id>
 			<name>AHT public</name>
-			<url>https://www.aht-group.com/nexus/content/groups/public/</url>
+			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty</url>
 			<releases><enabled>true</enabled></releases>
 			<snapshots><enabled>false</enabled></snapshots>
 		</repository>
