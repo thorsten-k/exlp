@@ -28,6 +28,6 @@ public interface ConfigKey
 	
 	public final static String netSmtpHost = "net.smtp.host";
 	public final static String netSmtpPort = "net.smtp.port";
-	public final static String netSmtpUser = "net.smtp.user";
-	public final static String netSmtpPwd  = "net.smtp.pwd";
+	public final static String netSmtpUser = "net.smtp.auth.user";
+	public final static String netSmtpPwd  = "net.smtp.auth.pwd";
 }
