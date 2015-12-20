@@ -191,4 +191,16 @@
    			</dependency>
         </dependencies>
     </dependencyManagement>
+    
+	<build>
+		<plugins>
+			<plugin>
+		        <groupId>org.codehaus.mojo</groupId>
+		        <artifactId>versions-maven-plugin</artifactId>
+		        <configuration>
+					<rulesUri>file://${basedir}/../doc/src/main/resources/listing.exlp/development/exlp-versions.xml</rulesUri>
+		        </configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
