@@ -87,7 +87,7 @@
 		        <groupId>org.codehaus.mojo</groupId>
 		        <artifactId>versions-maven-plugin</artifactId>
 		        <configuration>
-					<rulesUri>file://${basedir}/../doc/src/main/resources/listing.exlp/development/exlp-versions.xml</rulesUri>
+					<rulesUri>${maven.ignore}</rulesUri>
 		        </configuration>
 			</plugin>
 		</plugins>

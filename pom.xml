@@ -60,6 +60,7 @@
     	<maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
     	<maven-javadoc-plugin.version>2.8</maven-javadoc-plugin.version>
     	<maven-source-plugin.version>2.1.2</maven-source-plugin.version>
+    	<maven.ignore>file://${basedir}/../maven/src/main/resources/exlp/maven/exlp-versions.xml</maven.ignore>
 	</properties>
 
 	<prerequisites>

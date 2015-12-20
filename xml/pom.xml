@@ -25,6 +25,45 @@
 		</dependencies>
 	</dependencyManagement>
     
+    <dependencies>
+      	<dependency>
+			<groupId>javax.xml.bind</groupId>
+			<artifactId>jaxb-api</artifactId>
+    		<type>jar</type>
+    		<scope>test</scope>
+		</dependency>
+		<dependency>
+  			<groupId>com.sun.xml.bind</groupId>
+    		<artifactId>jaxb-impl</artifactId>
+    		<type>jar</type>
+    		<scope>provided</scope>
+    	</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>3.0.1.Final</version>
+			<scope>provided</scope>
+			<exclusions>
+            	<exclusion>
+            		<artifactId>commons-logging</artifactId>
+            		<groupId>commons-logging</groupId>
+            	</exclusion>
+            	<exclusion>
+            		<artifactId>slf4j-simple</artifactId>
+            		<groupId>org.slf4j</groupId>
+            	</exclusion>
+			</exclusions>
+		</dependency>
+		
+		<!-- Test -->
+   		<dependency>
+ 			<groupId>com.sun.xml.bind</groupId>
+    		<artifactId>jaxb-xjc</artifactId>
+    		<type>jar</type>
+    		<scope>test</scope>
+  		</dependency>
+	</dependencies>
+    
 	<build>
 		<plugins>
 		<!-- 
@@ -75,7 +114,7 @@
 		        <groupId>org.codehaus.mojo</groupId>
 		        <artifactId>versions-maven-plugin</artifactId>
 		        <configuration>
-					<rulesUri>file://${basedir}/../doc/src/main/resources/listing.exlp/development/exlp-versions.xml</rulesUri>
+					<rulesUri>${maven.ignore}</rulesUri>
 		        </configuration>
 			</plugin>
         </plugins>
@@ -111,44 +150,5 @@
       	</plugins>
       </pluginManagement>
 	</build>
-	
-	<dependencies>
-      	<dependency>
-			<groupId>javax.xml.bind</groupId>
-			<artifactId>jaxb-api</artifactId>
-    		<type>jar</type>
-    		<scope>test</scope>
-		</dependency>
-		<dependency>
-  			<groupId>com.sun.xml.bind</groupId>
-    		<artifactId>jaxb-impl</artifactId>
-    		<type>jar</type>
-    		<scope>provided</scope>
-    	</dependency>
-		<dependency>
-			<groupId>org.jboss.resteasy</groupId>
-			<artifactId>resteasy-jaxrs</artifactId>
-			<version>3.0.1.Final</version>
-			<scope>provided</scope>
-			<exclusions>
-            	<exclusion>
-            		<artifactId>commons-logging</artifactId>
-            		<groupId>commons-logging</groupId>
-            	</exclusion>
-            	<exclusion>
-            		<artifactId>slf4j-simple</artifactId>
-            		<groupId>org.slf4j</groupId>
-            	</exclusion>
-			</exclusions>
-		</dependency>
-		
-		<!-- Test -->
-   		<dependency>
- 			<groupId>com.sun.xml.bind</groupId>
-    		<artifactId>jaxb-xjc</artifactId>
-    		<type>jar</type>
-    		<scope>test</scope>
-  		</dependency>
-	</dependencies>
 	
 </project>
