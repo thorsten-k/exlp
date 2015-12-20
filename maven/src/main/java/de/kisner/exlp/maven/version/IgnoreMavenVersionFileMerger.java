@@ -39,6 +39,11 @@ public class IgnoreMavenVersionFileMerger
 	
 	public void add(String resourceName) throws FileNotFoundException
 	{
+		if(!mrl.isAvailable(resourceName))
+		{
+			resourceName = "/src/main/resources/"+resourceName;
+		}
+		
 		Document d = JDomUtil.load(mrl.searchIs(resourceName));
 		
 		Element r = d.getRootElement().getChild("rules",ns);
