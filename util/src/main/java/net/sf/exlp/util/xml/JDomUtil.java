@@ -165,8 +165,8 @@ public class JDomUtil
 		outputStream(doc, System.out, Format.getPrettyFormat());
 		System.out.flush();
 	}
-	private static synchronized void outputStream(Document doc, OutputStream os, Format format){outputStream(doc, os, format, "UTF-8");}
-	private static synchronized void outputStream(Document doc, OutputStream os, Format format, String encoding)
+	public static synchronized void outputStream(Document doc, OutputStream os, Format format){outputStream(doc, os, format, "UTF-8");}
+	public static synchronized void outputStream(Document doc, OutputStream os, Format format, String encoding)
 	{
 		try
 		{
