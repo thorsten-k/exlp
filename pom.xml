@@ -23,6 +23,7 @@
 		<module>doc</module>
 		<module>ejb</module>
 		<module>interfaces</module>
+		<module>maven</module>
 		<module>shell</module>
 		<module>util</module>
 		<module>xml</module>
