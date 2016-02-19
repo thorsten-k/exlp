@@ -135,13 +135,13 @@ public class JaxbUtil
 			output(System.out, jaxb, null,true);
 		}
 	}
-	
-	public static synchronized void info(Object jaxb)
+	public static synchronized void info(Object jaxb){info(jaxb,true);}
+	public static synchronized void info(Object jaxb, boolean formatted)
 	{
 		if(logger.isInfoEnabled())
 		{
 			logger.info(getCaller());
-			output(System.out, jaxb, null,true);
+			output(System.out, jaxb, null,formatted);
 		}
 	}
 	
@@ -163,7 +163,7 @@ public class JaxbUtil
 		}
 	}
 	
-	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f, jaxb ,null,formatted);}
+	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f,jaxb,null,formatted);}
 	public static synchronized void save(File f, Object jaxb, DocType doctype, boolean formatted)
 	{
 		OutputStream os=null;
