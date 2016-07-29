@@ -14,6 +14,11 @@ public class StringUtil
 		return StringUtils.repeat("*", number);
     }
 	
+	public static String tab(int number)
+	{
+		return StringUtils.repeat("\t", number);
+	}
+	
 	
 	public static String dash2Dot(String text){return text.replaceAll("/", ".");}
 	public static String dash2Camel(String text)
