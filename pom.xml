@@ -14,7 +14,7 @@
     <packaging>pom</packaging>
     <name>ExLP (Extensible Logfile Processor)</name>
 	<description>ExLP (Extensible Logfile Processor)</description>
-	<url>http://sourceforge.net/projects/exlp</url>
+	<url>https://github.com/thorsten-k/exlp</url>
 	
 	<modules>
 		<module>addon</module>
@@ -242,5 +242,4 @@
        		</build>
    		</profile>
 	</profiles>
-
 </project>
