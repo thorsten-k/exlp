@@ -5,7 +5,7 @@
 	<parent>
     	<groupId>net.sf.exlp</groupId>
     	<artifactId>exlp</artifactId>
-    	<version>0.1.11</version>
+    	<version>0.1.11-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
 	</parent>
 	
@@ -26,18 +26,27 @@
 	</dependencyManagement>
     
     <dependencies>
-      	<dependency>
+    
+    	<!-- JAXB -->
+      	<dependency><!-- Deprecated -->
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
     		<type>jar</type>
     		<scope>test</scope>
 		</dependency>
-		<dependency>
+		<dependency><!-- Deprecated -->
   			<groupId>com.sun.xml.bind</groupId>
     		<artifactId>jaxb-impl</artifactId>
     		<type>jar</type>
     		<scope>provided</scope>
     	</dependency>
+    	<dependency><!-- Deprecated -->
+ 			<groupId>com.sun.xml.bind</groupId>
+    		<artifactId>jaxb-xjc</artifactId>
+    		<type>jar</type>
+    		<scope>test</scope>
+  		</dependency>
+  		
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-jaxrs</artifactId>
@@ -53,15 +62,7 @@
             		<groupId>org.slf4j</groupId>
             	</exclusion>
 			</exclusions>
-		</dependency>
-		
-		<!-- Test -->
-   		<dependency>
- 			<groupId>com.sun.xml.bind</groupId>
-    		<artifactId>jaxb-xjc</artifactId>
-    		<type>jar</type>
-    		<scope>test</scope>
-  		</dependency>
+		</dependency>   		
 	</dependencies>
     
 	<build>

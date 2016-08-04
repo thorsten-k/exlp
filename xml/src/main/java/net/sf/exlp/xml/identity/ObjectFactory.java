@@ -30,14 +30,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Certificate }
-     * 
-     */
-    public Certificate createCertificate() {
-        return new Certificate();
-    }
-
-    /**
      * Create an instance of {@link IdentityContainer }
      * 
      */
@@ -51,6 +43,14 @@ public class ObjectFactory {
      */
     public User createUser() {
         return new User();
+    }
+
+    /**
+     * Create an instance of {@link Certificate }
+     * 
+     */
+    public Certificate createCertificate() {
+        return new Certificate();
     }
 
 }

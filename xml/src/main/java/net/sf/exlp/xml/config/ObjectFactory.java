@@ -30,19 +30,19 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Parameter }
-     * 
-     */
-    public Parameter createParameter() {
-        return new Parameter();
-    }
-
-    /**
      * Create an instance of {@link Parameters }
      * 
      */
     public Parameters createParameters() {
         return new Parameters();
+    }
+
+    /**
+     * Create an instance of {@link Parameter }
+     * 
+     */
+    public Parameter createParameter() {
+        return new Parameter();
     }
 
 }

@@ -4,7 +4,7 @@
 	
 	<groupId>net.sf.exlp</groupId>
 	<artifactId>exlp</artifactId>
-	<version>0.1.11</version>
+	<version>0.1.11-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ExLP (Extensible Logfile Processor)</name>
 	<description>ExLP (Extensible Logfile Processor)</description>
@@ -120,6 +120,30 @@
           			</execution>
         		</executions>
       		</plugin>
+      		<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>1.6.7</version>
+				<extensions>true</extensions>
+				<configuration>
+					<serverId>ossrh</serverId>
+					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
+					<autoReleaseAfterClose>false</autoReleaseAfterClose>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-javadoc-plugin</artifactId>
+				<version>2.9.1</version>
+				<executions>
+					<execution>
+						<id>attach-javadocs</id>
+						<goals><goal>jar</goal></goals>
+					</execution>
+				</executions>
+			</plugin>
+      		
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -151,17 +175,6 @@
 			        <groupId>org.codehaus.mojo</groupId>
 			        <artifactId>versions-maven-plugin</artifactId>
 			        <version>2.2</version>
-				</plugin>
-				<plugin>
-					<groupId>org.sonatype.plugins</groupId>
-					<artifactId>nexus-staging-maven-plugin</artifactId>
-					<version>1.6.7</version>
-					<extensions>true</extensions>
-					<configuration>
-						<serverId>ossrh</serverId>
-						<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-						<autoReleaseAfterClose>false</autoReleaseAfterClose>
-					</configuration>
 				</plugin>
     		</plugins>
   		</pluginManagement>

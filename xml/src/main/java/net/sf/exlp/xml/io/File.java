@@ -20,23 +20,23 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
- *   &lt;complexContent>
- *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
- *       &lt;sequence>
- *         &lt;element ref="{http://exlp.sf.net/io}policy" maxOccurs="unbounded"/>
- *         &lt;element ref="{http://exlp.sf.net/io}hash"/>
- *         &lt;element ref="{http://exlp.sf.net/io}data"/>
- *       &lt;/sequence>
- *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="mime" type="{http://www.w3.org/2001/XMLSchema}string" />
- *       &lt;attribute name="size" type="{http://www.w3.org/2001/XMLSchema}long" />
- *       &lt;attribute name="lastModifed" type="{http://www.w3.org/2001/XMLSchema}dateTime" />
- *     &lt;/restriction>
- *   &lt;/complexContent>
- * &lt;/complexType>
+ * &lt;complexType&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element ref="{http://exlp.sf.net/io}policy" maxOccurs="unbounded"/&gt;
+ *         &lt;element ref="{http://exlp.sf.net/io}hash"/&gt;
+ *         &lt;element ref="{http://exlp.sf.net/io}data"/&gt;
+ *       &lt;/sequence&gt;
+ *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" /&gt;
+ *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="mime" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="size" type="{http://www.w3.org/2001/XMLSchema}long" /&gt;
+ *       &lt;attribute name="lastModifed" type="{http://www.w3.org/2001/XMLSchema}dateTime" /&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
  * </pre>
  * 
  * 

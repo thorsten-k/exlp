@@ -30,22 +30,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Hash }
-     * 
-     */
-    public Hash createHash() {
-        return new Hash();
-    }
-
-    /**
-     * Create an instance of {@link Acl }
-     * 
-     */
-    public Acl createAcl() {
-        return new Acl();
-    }
-
-    /**
      * Create an instance of {@link Dir }
      * 
      */
@@ -67,6 +51,22 @@ public class ObjectFactory {
      */
     public Policy createPolicy() {
         return new Policy();
+    }
+
+    /**
+     * Create an instance of {@link Acl }
+     * 
+     */
+    public Acl createAcl() {
+        return new Acl();
+    }
+
+    /**
+     * Create an instance of {@link Hash }
+     * 
+     */
+    public Hash createHash() {
+        return new Hash();
     }
 
     /**

@@ -30,14 +30,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link Host }
-     * 
-     */
-    public Host createHost() {
-        return new Host();
-    }
-
-    /**
      * Create an instance of {@link Urls }
      * 
      */
@@ -51,6 +43,14 @@ public class ObjectFactory {
      */
     public Url createUrl() {
         return new Url();
+    }
+
+    /**
+     * Create an instance of {@link Host }
+     * 
+     */
+    public Host createHost() {
+        return new Host();
     }
 
     /**
