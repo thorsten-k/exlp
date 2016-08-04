@@ -1,5 +1,4 @@
 <?xml version="1.0" ?>
-
 <project name="ExLP-XML"  basedir="../../..">
 
 	<property name="src.dir" location="${basedir}/src/main/java" />
