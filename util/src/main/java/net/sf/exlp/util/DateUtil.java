@@ -12,7 +12,6 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.joda.time.DateMidnight;
 import org.joda.time.DateTime;
 import org.joda.time.MutableDateTime;
 import org.slf4j.Logger;
@@ -230,17 +229,15 @@ public class DateUtil
 		return mdt.toDate();
 	}
 	
-	@Deprecated
 	public static Date midnightBeginOfMonth(Date date)
 	{
-		DateMidnight dm = new DateMidnight(date);
-		return dm.withDayOfMonth(1).toDate();
+		DateTime dt = new DateTime(date);
+		return dt.withDayOfMonth(1).withTimeAtStartOfDay().toDate();
 	}
 	
-	@Deprecated
 	public static Date midnightEndOfMonth(Date date)
 	{
-		DateMidnight dm = new DateMidnight(date);
-		return dm.withDayOfMonth(1).plusMonths(1).toDate();
+		DateTime dt = new DateTime(date);
+		return dt.withDayOfMonth(1).withTimeAtStartOfDay().plusMonths(1).toDate();
 	}
 }
