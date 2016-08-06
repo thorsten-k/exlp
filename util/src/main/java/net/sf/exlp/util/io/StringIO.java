@@ -72,11 +72,8 @@ public class StringIO
 			String theString = writer.toString();
 			return theString;
 		}
-		catch (FileNotFoundException e) {e.printStackTrace();}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		catch (FileNotFoundException e) {logger.error(e.getMessage());}
+		catch (IOException e) {logger.error(e.getMessage());}
 		return null;
 	}
 }

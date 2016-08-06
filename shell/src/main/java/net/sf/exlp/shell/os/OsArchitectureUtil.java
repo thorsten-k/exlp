@@ -155,11 +155,12 @@ public class OsArchitectureUtil
 		boolean isAbsolute = false;
 		switch(arch)
 		{
-			case OsX:	if(filePath.substring(0,1).equals("/")){isAbsolute=true;};break;
-			case Linux:	if(filePath.substring(0,1).equals("/")){isAbsolute=true;};break;
+			case OsX:	if(filePath.substring(0,1).equals("/")){isAbsolute=true;} break;
+			case Linux:	if(filePath.substring(0,1).equals("/")){isAbsolute=true;} break;
 			case Win32: Pattern p = Pattern.compile("([a-zA-Z]):(/\\\\)*(.*)");
 						Matcher m=p.matcher(filePath);
-						if(m.matches()){isAbsolute=true;};break;
+						if(m.matches()){isAbsolute=true;}
+						break;
 			default:	errorUnsupportedOS();break;
 		}	
 		return isAbsolute;

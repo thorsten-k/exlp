@@ -21,7 +21,6 @@ public class EximTransmissionEvent extends AbstractEvent implements LogEvent
 	public void debug()
 	{
 		super.debug();
-
+		logger.trace("NYI");
 	}
-	
 }

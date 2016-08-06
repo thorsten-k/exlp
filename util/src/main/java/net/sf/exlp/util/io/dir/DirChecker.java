@@ -13,8 +13,10 @@ public class DirChecker
 			checkFileIsDirectory(f);
 			return true;
 		}
-		catch (ExlpConfigurationException e) {}
-		return false;
+		catch (ExlpConfigurationException e)
+		{
+			return false;
+		}
 	}
 	
 	public static void checkFileIsDirectory(File f) throws ExlpConfigurationException

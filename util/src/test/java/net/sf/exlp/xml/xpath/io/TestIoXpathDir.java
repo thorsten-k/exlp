@@ -17,8 +17,6 @@ public class TestIoXpathDir extends AbstractExlpTst
 	
 	private static Dir d1,d2,d3,d4;
 	
-	private String x;
-	
 	@BeforeClass
 	public static void initUrls()
 	{

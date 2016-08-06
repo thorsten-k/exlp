@@ -25,6 +25,10 @@
 		</dependencies>
 	</dependencyManagement>
    
+   	<dependencies>
+		
+	</dependencies>
+   
 	<build>
 		<plugins>
 			<plugin>
@@ -47,8 +51,47 @@
 			</plugin>
 		</plugins>
 	</build>
-   
-	<dependencies>
-		
-	</dependencies>
+   	
+	<profiles>
+   		<profile>
+		  <id>only-eclipse</id>
+		  <activation>
+		    <property>
+		      <name>m2e.version</name>
+		    </property>
+		  </activation>
+		  <build>
+		    <pluginManagement>
+		      <plugins>
+		        <plugin>
+		          <groupId>org.eclipse.m2e</groupId>
+		          <artifactId>lifecycle-mapping</artifactId>
+		          <version>1.0.0</version>
+		          <configuration>
+	      				<lifecycleMappingMetadata>
+	      					<pluginExecutions>
+	      						<pluginExecution>
+	      							<pluginExecutionFilter>
+	      								<groupId>org.jvnet.jaxb2.maven2</groupId>
+	                					<artifactId>maven-jaxb2-plugin</artifactId>
+	      								<versionRange>
+	      									[0.1.10,)
+	      								</versionRange>
+	      								<goals>
+	      									<goal>generate</goal>
+	      								</goals>
+	      							</pluginExecutionFilter>
+	      							<action>
+	      								<ignore />
+	      							</action>
+	      						</pluginExecution>
+	      					</pluginExecutions>
+	      				</lifecycleMappingMetadata>
+	      			</configuration>
+		        </plugin>
+		      </plugins>
+		    </pluginManagement>
+		  </build>
+		</profile>
+	</profiles>
 </project>

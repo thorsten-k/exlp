@@ -95,12 +95,12 @@ public class JDomUtil
 			logger.debug(logMsg);
 			for(Object oContent : e.getContent())
 			{
-				if(org.jdom2.Text.class.isInstance(oContent))
+				if(Text.class.isInstance(oContent))
 				{
 					Text txt = (Text)oContent;
 					logger.debug("\t"+oContent.getClass().getSimpleName()+": "+txt.getText());
 				}
-				else if(org.jdom2.Element.class.isInstance(oContent))
+				else if(Element.class.isInstance(oContent))
 				{
 					Element child = (Element)oContent;
 					logger.debug("\t"+oContent.getClass().getSimpleName()+": "+child.getName());

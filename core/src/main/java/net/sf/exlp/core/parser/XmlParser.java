@@ -38,7 +38,7 @@ public class XmlParser extends AbstractLogParser implements LogParser
 			JDomEvent e = new JDomEvent(doc);
 			leh.handleEvent(e);
 		}
-		catch (JDOMException e){}		
+		catch (JDOMException e){logger.warn(e.getMessage());}		
 		
 	}
 }
