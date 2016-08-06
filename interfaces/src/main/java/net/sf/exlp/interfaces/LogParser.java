@@ -5,11 +5,10 @@ import java.util.Properties;
 
 public interface LogParser
 {
-	public void parseLine(String Line);
-	public void parseLine(String line,String dateiName);
-	public void parseItem(List<String> item);
-	public void addMetaInfo(Properties p);
-	public void close();
-	
-	public void debugStats();
+	void parseLine(String Line);
+	void parseLine(String line,String dateiName);
+	void parseItem(List<String> item);
+	void addMetaInfo(Properties p);
+	void close();
+	void debugStats();
 }

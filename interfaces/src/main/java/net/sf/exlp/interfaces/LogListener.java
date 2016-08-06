@@ -4,9 +4,9 @@ import java.util.Properties;
 
 public interface LogListener
 {
-	public void processSingle();
-	public void processSingle(String cmd); 
-	public void processMulti(String cmd);
-	public void addMetaInfo(Properties p);
-	public void close();
+	void processSingle();
+	void processSingle(String cmd); 
+	void processMulti(String cmd);
+	void addMetaInfo(Properties p);
+	void close();
 }

@@ -24,7 +24,8 @@ public class CdataXmlEscapeHandler implements CharacterEscapeHandler
         boolean cData = false;
         StringWriter buffer = new StringWriter();
         for (int i = start; i < limit; i++) {
-            switch (ch[i]) {
+            switch (ch[i])
+            {
                 case '&':
                     buffer.write("&amp;");
                     break;
@@ -42,7 +43,8 @@ public class CdataXmlEscapeHandler implements CharacterEscapeHandler
                     }
                     break;
                 default:
-                    if (isCDATA(ch[i])) {
+                    if (isCDATA(ch[i]))
+                    {
                         writeEntity(ch[i], buffer);
                         cData = true;
                     } else if (encoder.canEncode(ch[i])) {
@@ -52,9 +54,7 @@ public class CdataXmlEscapeHandler implements CharacterEscapeHandler
                     }
             }
         }
-        if (cData) {
-            out.write("<![CDATA[");
-        }
+        if (cData) {out.write("<![CDATA[");}
         out.write(buffer.toString());
         if (cData) {
             out.write("]]>");
@@ -67,7 +67,8 @@ public class CdataXmlEscapeHandler implements CharacterEscapeHandler
         out.write(';');
     }
  
-    private boolean isCDATA(char c) {
+    private boolean isCDATA(char c)
+    {
         boolean cDataCharacter = (c < '\u0020' && c != '\t' && c != '\r' && c != '\n');
         cDataCharacter |= (c >= '\uD800' && c < '\uE000');
         cDataCharacter |= (c == '\uFFFE' || c == '\uFFFF');

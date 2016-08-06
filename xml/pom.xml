@@ -66,6 +66,37 @@
 	</dependencies>
     
 	<build>
+		<pluginManagement>
+			<plugins>
+	      		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+	      		<plugin>
+	      			<groupId>org.eclipse.m2e</groupId>
+	      			<artifactId>lifecycle-mapping</artifactId>
+	      			<version>1.0.0</version>
+	      			<configuration>
+	      				<lifecycleMappingMetadata>
+	      					<pluginExecutions>
+	      						<pluginExecution>
+	      							<pluginExecutionFilter>
+	      								<groupId>org.jvnet.jaxb2.maven2</groupId>
+	                					<artifactId>maven-jaxb2-plugin</artifactId>
+	      								<versionRange>
+	      									[0.1.10,)
+	      								</versionRange>
+	      								<goals>
+	      									<goal>generate</goal>
+	      								</goals>
+	      							</pluginExecutionFilter>
+	      							<action>
+	      								<ignore />
+	      							</action>
+	      						</pluginExecution>
+	      					</pluginExecutions>
+	      				</lifecycleMappingMetadata>
+	      			</configuration>
+	      		</plugin>
+	      	</plugins>
+		</pluginManagement>
 		<plugins>
 		<!-- 
             <plugin>
@@ -118,38 +149,20 @@
 					<rulesUri>${maven.ignore}</rulesUri>
 		        </configuration>
 			</plugin>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-pmd-plugin</artifactId>
+		        <configuration>
+		        <excludes>
+		            <exclude>net/sf/exlp/xml/config/*.java</exclude>
+		            <exclude>net/sf/exlp/xml/identity/*.java</exclude>
+		            <exclude>net/sf/exlp/xml/io/*.java</exclude>
+		            <exclude>net/sf/exlp/xml/net/*.java</exclude>
+		            <exclude>net/sf/exlp/xml/ns/*.java</exclude>
+				</excludes>
+	        </configuration>
+	      </plugin>
         </plugins>
-        <pluginManagement>
-      	<plugins>
-      		<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-      		<plugin>
-      			<groupId>org.eclipse.m2e</groupId>
-      			<artifactId>lifecycle-mapping</artifactId>
-      			<version>1.0.0</version>
-      			<configuration>
-      				<lifecycleMappingMetadata>
-      					<pluginExecutions>
-      						<pluginExecution>
-      							<pluginExecutionFilter>
-      								<groupId>org.jvnet.jaxb2.maven2</groupId>
-                					<artifactId>maven-jaxb2-plugin</artifactId>
-      								<versionRange>
-      									[0.1.10,)
-      								</versionRange>
-      								<goals>
-      									<goal>generate</goal>
-      								</goals>
-      							</pluginExecutionFilter>
-      							<action>
-      								<ignore />
-      							</action>
-      						</pluginExecution>
-      					</pluginExecutions>
-      				</lifecycleMappingMetadata>
-      			</configuration>
-      		</plugin>
-      	</plugins>
-      </pluginManagement>
 	</build>
 	
 </project>

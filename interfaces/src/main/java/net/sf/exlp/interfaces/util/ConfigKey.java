@@ -2,32 +2,32 @@ package net.sf.exlp.interfaces.util;
 
 public interface ConfigKey
 {
-	public final static String dirTmp = "dir.tmp";
+	String dirTmp = "dir.tmp";
 	
-	public final static String netRestUrl  = "net.rest.url";
-	public final static String netRestUrlImport  = "net.rest.url.import";
-	public final static String netRestUrlExport  = "net.rest.url.export";
+	String netRestUrl  = "net.rest.url";
+	String netRestUrlImport  = "net.rest.url.import";
+	String netRestUrlExport  = "net.rest.url.export";
 	
-	public final static String netRestPort = "net.rest.port";
+	String netRestPort = "net.rest.port";
 	
-	public final static String netEjbHost = "net.ejb.host";
-	public final static String netEjbUser = "net.ejb.user";
-	public final static String netEjbPwd  = "net.ejb.pwd";
+	String netEjbHost = "net.ejb.host";
+	String netEjbUser = "net.ejb.user";
+	String netEjbPwd  = "net.ejb.pwd";
 	
-	public final static String netDbHost   = "net.db.host";
-	public final static String netDbPort   = "net.db.port";
-	public final static String netDbName   = "net.db.name";
-	public final static String netDbScheme = "net.db.scheme";
-	public final static String netDbUser   = "net.db.user";
-	public final static String netDbPwd    = "net.db.pwd";
+	String netDbHost   = "net.db.host";
+	String netDbPort   = "net.db.port";
+	String netDbName   = "net.db.name";
+	String netDbScheme = "net.db.scheme";
+	String netDbUser   = "net.db.user";
+	String netDbPwd    = "net.db.pwd";
 	
-	public final static String netImapHost = "net.imap.host";
-	public final static String netImapPort = "net.imap.port";
-	public final static String netImapUser = "net.imap.user";
-	public final static String netImapPwd  = "net.imap.pwd";
+	String netImapHost = "net.imap.host";
+	String netImapPort = "net.imap.port";
+	String netImapUser = "net.imap.user";
+	String netImapPwd  = "net.imap.pwd";
 	
-	public final static String netSmtpHost = "net.smtp.host";
-	public final static String netSmtpPort = "net.smtp.port";
-	public final static String netSmtpUser = "net.smtp.auth.user";
-	public final static String netSmtpPwd  = "net.smtp.auth.pwd";
+	String netSmtpHost = "net.smtp.host";
+	String netSmtpPort = "net.smtp.port";
+	String netSmtpUser = "net.smtp.auth.user";
+	String netSmtpPwd  = "net.smtp.auth.pwd";
 }
