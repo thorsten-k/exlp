@@ -10,6 +10,7 @@ public class Version
 	public static final String mvnSlf4jLog4j = "org.slf4j:slf4j-log4j12:";
 	public static final String mvnCommonsLang = "commons-lang:commons-lang:";
 	public static final String mvnCommonsCodec = "commons-codec:commons-codec:";
+	public static final String mvnCommonsJxPath = "commons-jxpath:commons-jxpath:";
 	public static final String mvnJdom = "org.jdom:jdom:";
 	public static final String mvnJoda = "joda-time:joda-time:";
 	public static final String mvnXerces = "xerces:xercesImpl:";
