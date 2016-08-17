@@ -82,7 +82,7 @@
 			        <version>2.2</version>
 				</plugin>
  				<plugin>
-			         <groupId>org.apache.maven.plugins</groupId>
+					<groupId>org.apache.maven.plugins</groupId>
 		        	<artifactId>maven-pmd-plugin</artifactId>
 		        	<version>3.6</version>
 		        	<configuration>
@@ -233,7 +233,7 @@
 					</plugin>
 				</plugins>
 			</build>
-   		</profile>
+		</profile>
 		<profile>
 			<id>only-eclipse</id>
 			<activation><property><name>m2e.version</name></property></activation>

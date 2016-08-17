@@ -130,8 +130,7 @@
 			            <exclude>net/sf/exlp/xml/ns/*.java</exclude>
 					</excludes>
 	        </configuration>
-	      </plugin>
-        </plugins>
+			</plugin>
+		</plugins>
 	</build>
-	
 </project>
