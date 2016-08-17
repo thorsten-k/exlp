@@ -8,6 +8,8 @@ public interface ConfigKey
 	String netRestUrlImport  = "net.rest.url.import";
 	String netRestUrlExport  = "net.rest.url.export";
 	
+	String netMqttUrl  = "net.mqtt.url";
+	
 	String netRestPort = "net.rest.port";
 	
 	String netEjbHost = "net.ejb.host";
