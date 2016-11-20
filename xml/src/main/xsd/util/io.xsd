@@ -27,6 +27,7 @@
             <xsd:attribute name="id" type="xsd:long"/>
             <xsd:attribute name="code" type="xsd:string"/>
             <xsd:attribute name="name" type="xsd:string"/>
+            <xsd:attribute name="symbol" type="xsd:string"/>
             <xsd:attribute name="mime" type="xsd:string"/>
             <xsd:attribute name="size" type="xsd:long"/>
             <xsd:attribute name="lastModifed" type="xsd:dateTime"/>

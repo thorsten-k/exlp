@@ -31,6 +31,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" /&gt;
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="symbol" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="mime" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="size" type="{http://www.w3.org/2001/XMLSchema}long" /&gt;
  *       &lt;attribute name="lastModifed" type="{http://www.w3.org/2001/XMLSchema}dateTime" /&gt;
@@ -65,6 +66,8 @@ public class File
     protected String code;
     @XmlAttribute(name = "name")
     protected String name;
+    @XmlAttribute(name = "symbol")
+    protected String symbol;
     @XmlAttribute(name = "mime")
     protected String mime;
     @XmlAttribute(name = "size")
@@ -252,6 +255,34 @@ public class File
 
     public boolean isSetName() {
         return (this.name!= null);
+    }
+
+    /**
+     * Gets the value of the symbol property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getSymbol() {
+        return symbol;
+    }
+
+    /**
+     * Sets the value of the symbol property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setSymbol(String value) {
+        this.symbol = value;
+    }
+
+    public boolean isSetSymbol() {
+        return (this.symbol!= null);
     }
 
     /**
