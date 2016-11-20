@@ -5,12 +5,11 @@ import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class JsonUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
-	private static ObjectMapper jom;
+	private static ObjectMapper jom = new ObjectMapper();;
 	
 	public static synchronized void info(Object json)
 	{
@@ -18,20 +17,15 @@ public class JsonUtil
 		{
 			logger.info(getCaller());
 			try {
-				System.out.println(getJom().writeValueAsString(json));
+				System.out.println(jom.writerWithDefaultPrettyPrinter().writeValueAsString(json));
 			}
 			catch (JsonProcessingException e) {logger.error(e.getMessage());}
 		}
 	}
 	
-	private static ObjectMapper getJom()
+	public static String toString(Object json) throws JsonProcessingException
 	{
-		if(jom==null)
-		{
-			jom = new ObjectMapper();
-			jom.enable(SerializationFeature.INDENT_OUTPUT);
-		}
-		return jom;
+		return jom.writeValueAsString(json);
 	}
 	
 	private static synchronized String getCaller()
