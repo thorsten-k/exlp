@@ -3,23 +3,30 @@
     xmlns:io="http://exlp.sf.net/io"
     xmlns:wiki="http://www.openfuxml.org/wiki"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-    <xsd:element name="dir">
-        <xsd:complexType>
-            <xsd:sequence>
-                <xsd:element ref="io:dir" maxOccurs="unbounded"/>
-               	<xsd:element ref="io:file" maxOccurs="unbounded"/>
-               	<xsd:element ref="io:policy" maxOccurs="unbounded"/>
-            </xsd:sequence>
-            <xsd:attribute name="id" type="xsd:long"/>
-            <xsd:attribute name="code" type="xsd:string"/>
-            <xsd:attribute name="name" type="xsd:string"/>
-            <xsd:attribute name="lastModifed" type="xsd:dateTime"/>
-            <xsd:attribute name="allowCreate" type="xsd:boolean"/>
-        </xsd:complexType>
-    </xsd:element>
-    <xsd:element name="file">
-        <xsd:complexType>
-        	<xsd:sequence>
+	<xsd:element name="dir">
+  		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="io:dir" maxOccurs="unbounded"/>
+				<xsd:element ref="io:file" maxOccurs="unbounded"/>
+				<xsd:element ref="io:policy" maxOccurs="unbounded"/>
+			</xsd:sequence>
+			<xsd:attribute name="id" type="xsd:long"/>
+			<xsd:attribute name="code" type="xsd:string"/>
+			<xsd:attribute name="name" type="xsd:string"/>
+			<xsd:attribute name="lastModifed" type="xsd:dateTime"/>
+			<xsd:attribute name="allowCreate" type="xsd:boolean"/>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="files">
+  		<xsd:complexType>
+			<xsd:sequence>
+				<xsd:element ref="io:file" maxOccurs="unbounded"/>
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+	<xsd:element name="file">
+		<xsd:complexType>
+			<xsd:sequence>
                	<xsd:element ref="io:policy" maxOccurs="unbounded"/>
                	<xsd:element ref="io:hash" maxOccurs="1"/>
         	    <xsd:element ref="io:data" maxOccurs="1"/>

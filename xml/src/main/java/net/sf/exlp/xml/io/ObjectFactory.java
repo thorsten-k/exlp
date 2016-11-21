@@ -77,4 +77,12 @@ public class ObjectFactory {
         return new Data();
     }
 
+    /**
+     * Create an instance of {@link Files }
+     * 
+     */
+    public Files createFiles() {
+        return new Files();
+    }
+
 }
