@@ -20,4 +20,11 @@ public class XmlFilesFactory
 		if(files!=null){xml.getFile().addAll(files);}
 		return xml;
 	}
+	
+	public static Files build(File file)
+	{
+		Files xml = build();
+		if(file!=null){xml.getFile().add(file);}
+		return xml;
+	}
 }
