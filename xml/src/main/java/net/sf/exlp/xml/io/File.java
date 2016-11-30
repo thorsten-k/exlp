@@ -32,6 +32,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="symbol" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="category" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="mime" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="size" type="{http://www.w3.org/2001/XMLSchema}long" /&gt;
  *       &lt;attribute name="lastModifed" type="{http://www.w3.org/2001/XMLSchema}dateTime" /&gt;
@@ -68,6 +69,8 @@ public class File
     protected String name;
     @XmlAttribute(name = "symbol")
     protected String symbol;
+    @XmlAttribute(name = "category")
+    protected String category;
     @XmlAttribute(name = "mime")
     protected String mime;
     @XmlAttribute(name = "size")
@@ -283,6 +286,34 @@ public class File
 
     public boolean isSetSymbol() {
         return (this.symbol!= null);
+    }
+
+    /**
+     * Gets the value of the category property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
+     * Sets the value of the category property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setCategory(String value) {
+        this.category = value;
+    }
+
+    public boolean isSetCategory() {
+        return (this.category!= null);
     }
 
     /**

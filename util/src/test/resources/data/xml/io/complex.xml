@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <io:dir xmlns:io="http://exlp.sf.net/io" id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true">
     <io:dir id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true">
-        <io:file id="1" code="code" name="test.txt" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
-        <io:file id="1" code="code" name="test.txt" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
+        <io:file id="1" code="code" name="test.txt" symbol="mySymbol" category="myCategory" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
+        <io:file id="1" code="code" name="test.txt" symbol="mySymbol" category="myCategory" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
         <io:policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
     </io:dir>
     <io:dir id="1" code="code" name="test.txt" lastModifed="2012-01-01T10:10:10" allowCreate="true">
-        <io:file id="1" code="code" name="test.txt" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
-        <io:file id="1" code="code" name="test.txt" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
+        <io:file id="1" code="code" name="test.txt" symbol="mySymbol" category="myCategory" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
+        <io:file id="1" code="code" name="test.txt" symbol="mySymbol" category="myCategory" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
         <io:policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
     </io:dir>
-    <io:file id="1" code="code" name="test.txt" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
-    <io:file id="1" code="code" name="test.txt" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
+    <io:file id="1" code="code" name="test.txt" symbol="mySymbol" category="myCategory" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
+    <io:file id="1" code="code" name="test.txt" symbol="mySymbol" category="myCategory" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10"/>
     <io:policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
 </io:dir>
