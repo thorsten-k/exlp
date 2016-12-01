@@ -1,9 +1,13 @@
 package net.sf.exlp.util.io;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class JsonUtil
@@ -16,9 +20,7 @@ public class JsonUtil
 		if(logger.isInfoEnabled())
 		{
 			logger.info(getCaller());
-			try {
-				System.out.println(jom.writerWithDefaultPrettyPrinter().writeValueAsString(json));
-			}
+			try {System.out.println(jom.writerWithDefaultPrettyPrinter().writeValueAsString(json));}
 			catch (JsonProcessingException e) {logger.error(e.getMessage());}
 		}
 	}
@@ -26,6 +28,17 @@ public class JsonUtil
 	public static String toString(Object json) throws JsonProcessingException
 	{
 		return jom.writeValueAsString(json);
+	}
+	
+	public static <T extends Object> T read(String s, Class<T> c) throws JsonParseException, JsonMappingException, IOException 
+	{
+
+//		try {
+			return jom.readValue(s, c);
+//		}
+//		catch (JsonParseException e) {throw new UProcessingException(e.getMessage());}
+//		catch (JsonMappingException e) {throw new JsonProcessingException(e.getMessage());}
+//		catch (IOException e) {throw new JsonProcessingException(e.getMessage());}
 	}
 	
 	private static synchronized String getCaller()
