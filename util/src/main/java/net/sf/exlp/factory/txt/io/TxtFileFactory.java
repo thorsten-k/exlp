@@ -2,15 +2,15 @@ package net.sf.exlp.factory.txt.io;
 
 import net.sf.exlp.xml.io.File;
 
-public class TxtFileTypeFactory
+public class TxtFileFactory
 {
-	public static void apply(File file)
+	public static void applyType(File file)
 	{
-		String type = build(file.getName());
+		String type = buildType(file.getName());
 		if(type!=null){file.setSymbol(type);}
 	}
 	
-	public static String build(String fileName)
+	public static String buildType(String fileName)
 	{
 		if(fileName.endsWith(".doc") || fileName.endsWith(".docx")){return "doc";}
 		else if(fileName.endsWith(".xls") || fileName.endsWith(".xlsx")){return "xls";}
