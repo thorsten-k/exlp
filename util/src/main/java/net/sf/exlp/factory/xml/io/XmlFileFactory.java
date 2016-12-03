@@ -31,6 +31,13 @@ public class XmlFileFactory
 		return xml;
 	}
 	
+	public static File build(byte[] bytes)
+	{
+		File xml = new File();
+		xml.setData(XmlDataFactory.build(bytes));
+		return xml;
+	}
+	
 	public static File build(ZipEntry zip)
 	{
 		File xml = new File();
