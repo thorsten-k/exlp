@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -13,28 +14,28 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JsonUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
-	private static ObjectMapper jom = new ObjectMapper();;
+	private static ObjectMapper jom() {return HelperDelegate.jom;}
 	
-	public static synchronized void info(Object json)
+	public static void info(Object json)
 	{
 		if(logger.isInfoEnabled())
 		{
 			logger.info(getCaller());
-			try {System.out.println(jom.writerWithDefaultPrettyPrinter().writeValueAsString(json));}
+			try {System.out.println(jom().writerWithDefaultPrettyPrinter().writeValueAsString(json));}
 			catch (JsonProcessingException e) {logger.error(e.getMessage());}
 		}
 	}
 	
 	public static String toString(Object json) throws JsonProcessingException
 	{
-		return jom.writeValueAsString(json);
+		return jom().writeValueAsString(json);
 	}
 	
 	public static <T extends Object> T read(String s, Class<T> c) throws JsonParseException, JsonMappingException, IOException 
 	{
 
 //		try {
-			return jom.readValue(s, c);
+			return jom().readValue(s, c);
 //		}
 //		catch (JsonParseException e) {throw new UProcessingException(e.getMessage());}
 //		catch (JsonMappingException e) {throw new JsonProcessingException(e.getMessage());}
@@ -59,5 +60,14 @@ public class JsonUtil
 		sb.append("-").append(ste.getLineNumber());
 		sb.append(" (").append(ste.getFileName()).append(")");
 		return sb.toString();
+	}
+	
+	private static class HelperDelegate
+	{ 
+        private static ObjectMapper jom = new ObjectMapper();
+        static
+        {
+        	jom.setSerializationInclusion(Include.NON_NULL);
+        }
 	}
 }
