@@ -17,6 +17,7 @@ public class TxtFileFactory
 		else if(fileName.endsWith(".pdf")){return "pdf";}
 		else if(fileName.endsWith(".csv")){return "csv";}
 		else if(fileName.endsWith(".xml")){return "xml";}
+		else if(fileName.endsWith(".jpeg") || fileName.endsWith(".jpg")){return "jpg";}
 		return null;
 	}
 }
