@@ -7,7 +7,9 @@ public interface ConfigKey
 	String netRestUrl  = "net.rest.url";
 	String netRestUrlImport  = "net.rest.url.import";
 	String netRestUrlExport  = "net.rest.url.export";
-	String netRestUrlJira  = "net.rest.url.jira";
+	String netRestJiraUrl  = "net.rest.jira.url";
+	String netRestJiraUser  = "net.rest.jira.user";
+	String netRestJiraPwd  = "net.rest.jira.pwd";
 	
 	String netMqttUrl	= "net.mqtt.url";
 	String netMqttTopic	= "net.mqtt.topic";
