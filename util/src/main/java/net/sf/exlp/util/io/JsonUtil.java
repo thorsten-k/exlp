@@ -16,6 +16,26 @@ public class JsonUtil
 	final static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
 	private static ObjectMapper jom() {return HelperDelegate.jom;}
 	
+	public static void trace(Object json)
+	{
+		if(logger.isTraceEnabled())
+		{
+			logger.trace(getCaller());
+			try {System.out.println(jom().writerWithDefaultPrettyPrinter().writeValueAsString(json));}
+			catch (JsonProcessingException e) {logger.error(e.getMessage());}
+		}
+	}
+	
+	public static void debug(Object json)
+	{
+		if(logger.isDebugEnabled())
+		{
+			logger.debug(getCaller());
+			try {System.out.println(jom().writerWithDefaultPrettyPrinter().writeValueAsString(json));}
+			catch (JsonProcessingException e) {logger.error(e.getMessage());}
+		}
+	}
+	
 	public static void info(Object json)
 	{
 		if(logger.isInfoEnabled())
@@ -25,6 +45,8 @@ public class JsonUtil
 			catch (JsonProcessingException e) {logger.error(e.getMessage());}
 		}
 	}
+	
+
 	
 	public static String toString(Object json) throws JsonProcessingException
 	{
