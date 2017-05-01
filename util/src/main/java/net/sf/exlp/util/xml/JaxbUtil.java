@@ -84,6 +84,10 @@ public class JaxbUtil
 
 		return result;
 	}
+	public static synchronized <T extends Object> T load(byte[] data, Class<T> c)
+	{
+		return loadJAXB(new ByteArrayInputStream(data),c);
+	}
 	@SuppressWarnings("unchecked")
 	public static synchronized <T extends Object> T loadJAXB(InputStream is, Class<T> c)
 	{
@@ -182,8 +186,22 @@ public class JaxbUtil
 		catch (IOException e) {logger.error("",e);}
 	}
 	
-	public static synchronized InputStream toInputStream(Object jaxb, boolean formatted){return toInputStream(jaxb, null, formatted);}
-	public static synchronized InputStream toInputStream(Object jaxb, DocType doctype, boolean formatted)
+	public static byte[] toBytes(Object jaxb)
+	{
+		byte[] data;
+		try
+		{
+			ByteArrayOutputStream os = new ByteArrayOutputStream();
+			output(os, jaxb, null, true);
+			data = os.toByteArray();
+			os.close();
+			return data;
+		}
+		catch (IOException e) {logger.error("",e);}
+		return null;
+	}
+	public static InputStream toInputStream(Object jaxb, boolean formatted){return toInputStream(jaxb, null, formatted);}
+	public static InputStream toInputStream(Object jaxb, DocType doctype, boolean formatted)
 	{
 		try
 		{
