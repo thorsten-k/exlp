@@ -32,5 +32,12 @@
 				<ignoreVersion>2.2.11.jbossorg-1</ignoreVersion>
 			</ignoreVersions>
 		</rule>
+		<rule groupId="org.slf4j" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion>1.8.0-alpha0</ignoreVersion>
+				<ignoreVersion>1.8.0-alpha1</ignoreVersion>
+				<ignoreVersion>1.8.0-alpha2</ignoreVersion>
+			</ignoreVersions>
+		</rule>
 	</rules>
 </ruleset>
