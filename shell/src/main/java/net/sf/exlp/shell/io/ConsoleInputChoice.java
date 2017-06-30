@@ -91,7 +91,7 @@ public class ConsoleInputChoice
 		String s = readLine(out);
 		int result=0;
 		try	{result = Integer.parseInt(s);}
-		catch (NumberFormatException nfe) {throw new IllegalArgumentException("Eingabe "+s+" unzul�ssig");}
+		catch (NumberFormatException nfe) {throw new IllegalArgumentException("Input '"+s+"' not allowed");}
 		return result;
 	}
 	
@@ -100,7 +100,7 @@ public class ConsoleInputChoice
 		String s = readLine(out);
 		double result=0;
 		try	{result = Double.parseDouble(s);}
-		catch (NumberFormatException nfe) {throw new IllegalArgumentException("Eingabe "+s+" unzul�ssig");}
+		catch (NumberFormatException nfe) {throw new IllegalArgumentException("Input '"+s+"' not allowed");}
 		return result;
 	}
 }
