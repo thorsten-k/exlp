@@ -21,10 +21,14 @@ public class StringUtil
 	
 	
 	public static String dash2Dot(String text){return text.replaceAll("/", ".");}
-	public static String dash2Camel(String text)
+	
+	public static String slash2Camel(String text) {return toCamel("/",text);}
+	public static String dash2Camel(String text) {return toCamel("-",text);}
+	
+	private static String toCamel(String symbol, String text)
 	{
-		StringBuffer sb = new StringBuffer();
-		for(String s : text.split("/"))
+		StringBuilder sb = new StringBuilder();
+		for(String s : text.split(symbol))
 		{
 			sb.append(s.substring(0,1).toUpperCase());
 			sb.append(s.substring(1,s.length()));
