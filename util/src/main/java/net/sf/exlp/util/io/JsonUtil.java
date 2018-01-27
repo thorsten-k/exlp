@@ -1,6 +1,7 @@
 package net.sf.exlp.util.io;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -53,11 +54,27 @@ public class JsonUtil
 		return jom().writeValueAsString(json);
 	}
 	
+	public static byte[] toBytes(Object json) throws JsonProcessingException
+	{
+		return jom().writeValueAsBytes(json);
+	}
+	
 	public static <T extends Object> T read(String s, Class<T> c) throws JsonParseException, JsonMappingException, IOException 
 	{
 
 //		try {
 			return jom().readValue(s, c);
+//		}
+//		catch (JsonParseException e) {throw new UProcessingException(e.getMessage());}
+//		catch (JsonMappingException e) {throw new JsonProcessingException(e.getMessage());}
+//		catch (IOException e) {throw new JsonProcessingException(e.getMessage());}
+	}
+	
+	public static <T extends Object> T read(Class<T> c, byte[] bytes) throws JsonParseException, JsonMappingException, IOException 
+	{
+//		try {
+			return jom().readValue(bytes, c);
+			
 //		}
 //		catch (JsonParseException e) {throw new UProcessingException(e.getMessage());}
 //		catch (JsonMappingException e) {throw new JsonProcessingException(e.getMessage());}
