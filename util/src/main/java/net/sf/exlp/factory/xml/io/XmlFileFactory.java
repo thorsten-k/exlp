@@ -29,6 +29,11 @@ public class XmlFileFactory
 		return file;
 	}
 	
+	public static File build()
+	{
+		return new File();
+	}
+	
 	public static File copy(java.io.File f) throws FileNotFoundException, IOException
 	{
 		return build(f.getName(),IOUtils.toByteArray(new FileInputStream(f)));
@@ -36,14 +41,14 @@ public class XmlFileFactory
 	
 	public static File build(String name)
 	{
-		File xml = new File();
+		File xml = build();
 		xml.setName(name);
 		return xml;
 	}
 	
 	public static File build(String name, byte[] bytes)
 	{
-		File xml = new File();
+		File xml = build();
 		xml.setName(name);
 		xml.setData(XmlDataFactory.build(bytes));
 		return xml;
@@ -51,14 +56,14 @@ public class XmlFileFactory
 	
 	public static File build(byte[] bytes)
 	{
-		File xml = new File();
+		File xml = build();
 		xml.setData(XmlDataFactory.build(bytes));
 		return xml;
 	}
 	
 	public static File build(ZipEntry zip)
 	{
-		File xml = new File();
+		File xml = build();
 		xml.setName(zip.getName());
 		return xml;
 	}
