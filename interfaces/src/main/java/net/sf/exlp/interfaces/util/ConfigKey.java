@@ -14,6 +14,7 @@ public interface ConfigKey
 	String netRestPort = "net.rest.port";
 	
 	String netEjbHost = "net.ejb.host";
+	String netEjbPort = "net.ejb.port";
 	String netEjbUser = "net.ejb.user";
 	String netEjbPwd  = "net.ejb.pwd";
 	
