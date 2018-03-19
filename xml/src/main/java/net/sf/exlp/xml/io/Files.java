@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
@@ -23,6 +24,8 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence&gt;
  *         &lt;element ref="{http://exlp.sf.net/io}file" maxOccurs="unbounded"/&gt;
  *       &lt;/sequence&gt;
+ *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="elements" type="{http://www.w3.org/2001/XMLSchema}int" /&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
  * &lt;/complexType&gt;
@@ -42,6 +45,10 @@ public class Files
     private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<File> file;
+    @XmlAttribute(name = "name")
+    protected String name;
+    @XmlAttribute(name = "elements")
+    protected Integer elements;
 
     /**
      * Gets the value of the file property.
@@ -78,6 +85,66 @@ public class Files
 
     public void unsetFile() {
         this.file = null;
+    }
+
+    /**
+     * Gets the value of the name property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the value of the name property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setName(String value) {
+        this.name = value;
+    }
+
+    public boolean isSetName() {
+        return (this.name!= null);
+    }
+
+    /**
+     * Gets the value of the elements property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link Integer }
+     *     
+     */
+    public int getElements() {
+        return elements;
+    }
+
+    /**
+     * Sets the value of the elements property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link Integer }
+     *     
+     */
+    public void setElements(int value) {
+        this.elements = value;
+    }
+
+    public boolean isSetElements() {
+        return (this.elements!= null);
+    }
+
+    public void unsetElements() {
+        this.elements = null;
     }
 
 }
