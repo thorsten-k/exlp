@@ -17,6 +17,7 @@ public class ShellCmdQuote
 		{
 			case Win32: sb.append("\"").append(cmd).append("\"");break;
 			case OsX:	sb.append("'").append(cmd).append("'");break;
+			case Linux:	sb.append("'").append(cmd).append("'");break;
 			default: OsArchitectureUtil.errorUnsupportedOS("quote ...");break;
 		}	
 		return sb.toString();
