@@ -1,16 +1,19 @@
 package net.sf.exlp.util.io;
 
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 public class JsonUtil
 {
@@ -46,9 +49,7 @@ public class JsonUtil
 			catch (JsonProcessingException e) {logger.error(e.getMessage());}
 		}
 	}
-	
 
-	
 	public static String toString(Object json) throws JsonProcessingException
 	{
 		return jom().writeValueAsString(json);
@@ -61,24 +62,18 @@ public class JsonUtil
 	
 	public static <T extends Object> T read(String s, Class<T> c) throws JsonParseException, JsonMappingException, IOException 
 	{
-
-//		try {
-			return jom().readValue(s, c);
-//		}
-//		catch (JsonParseException e) {throw new UProcessingException(e.getMessage());}
-//		catch (JsonMappingException e) {throw new JsonProcessingException(e.getMessage());}
-//		catch (IOException e) {throw new JsonProcessingException(e.getMessage());}
+		return jom().readValue(s, c);
 	}
 	
 	public static <T extends Object> T read(Class<T> c, byte[] bytes) throws JsonParseException, JsonMappingException, IOException 
 	{
-//		try {
-			return jom().readValue(bytes, c);
-			
-//		}
-//		catch (JsonParseException e) {throw new UProcessingException(e.getMessage());}
-//		catch (JsonMappingException e) {throw new JsonProcessingException(e.getMessage());}
-//		catch (IOException e) {throw new JsonProcessingException(e.getMessage());}
+		return jom().readValue(bytes, c);
+	}
+	
+	public static void write(Object json, File f) throws JsonGenerationException, JsonMappingException, IOException
+	{
+		ObjectWriter writer = jom().writer(new DefaultPrettyPrinter());
+		writer.writeValue(f, json);
 	}
 	
 	private static synchronized String getCaller()
