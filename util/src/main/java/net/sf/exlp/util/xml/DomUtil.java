@@ -19,6 +19,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.NamedNodeMap;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
 public class DomUtil
 {
@@ -39,7 +42,7 @@ public class DomUtil
 		catch (TransformerException e) {logger.error("",e);} 
 	}
 	
-	public static synchronized void debugDocument(Element element)
+	public static void debugDocument(Element element)
 	{
 		try
 		{
@@ -83,6 +86,51 @@ public class DomUtil
 		catch (TransformerException e) {e.printStackTrace();}
 		
 		return null;
-		
+	}
+	
+	public static void renameNamespaceRecursive(Node node, String namespace)
+	{
+        Document document = node.getOwnerDocument();
+        if (node.getNodeType() == Node.ELEMENT_NODE)
+        {
+            document.renameNode(node, namespace, node.getNodeName());
+        }
+        NodeList list = node.getChildNodes();
+        for (int i=0; i<list.getLength(); ++i)
+        {
+            renameNamespaceRecursive(list.item(i), namespace);
+        }
+    }
+	
+	public static Document cleanNameSpace(Document doc)
+	{
+
+	    NodeList list = doc.getChildNodes();
+	    for (int i = 0; i < list.getLength(); i++)
+	    {
+	        removeNamSpace(list.item(i), "");
+	    }
+
+	    return doc;
+	}
+	private static void removeNamSpace(Node node, String nameSpaceURI) {
+
+	    if (node.getNodeType() == Node.ELEMENT_NODE)
+	    {
+	        Document ownerDoc = node.getOwnerDocument();
+	        NamedNodeMap map = node.getAttributes();
+	        Node n;
+	        while (!(0==map.getLength()))
+	        {
+	            n = map.item(0);
+	            map.removeNamedItemNS(n.getNamespaceURI(), n.getLocalName());
+	        }
+	        ownerDoc.renameNode(node, nameSpaceURI, node.getLocalName());
+	    }
+	    NodeList list = node.getChildNodes();
+	    for (int i = 0; i < list.getLength(); i++)
+	    {
+	        removeNamSpace(list.item(i), nameSpaceURI);
+	    }
 	}
 }
