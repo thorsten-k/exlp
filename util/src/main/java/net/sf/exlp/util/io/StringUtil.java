@@ -35,4 +35,13 @@ public class StringUtil
 		}
 		return sb.toString();
 	}
+	
+	public static String insertAtNaturalPosition(String value, int oneBasedPosition, String insert)
+	{
+		StringBuffer sbCode = new StringBuffer();
+		sbCode.append(value.substring(0,oneBasedPosition-1));
+		sbCode.append(insert);
+		sbCode.append(value.substring(oneBasedPosition-1,value.length()));
+		return sbCode.toString();
+	}
 }
