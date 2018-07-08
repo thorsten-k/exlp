@@ -1,6 +1,7 @@
 package net.sf.exlp.util.io;
 
 import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 import org.apache.commons.codec.net.URLCodec;
 import org.slf4j.Logger;
@@ -85,6 +86,31 @@ public class ByteUtil
 			logger.warn("UNTESTED");
 			return ByteBuffer.wrap(bytes).getInt();
 		}
-		
+	}
+	
+	public static byte[] subArray1(byte[] b, int offset, int length)
+	{
+//		Arrays.copyOfRange(b, indexBegin, indexEnd);
+		return null;
+	}
+	
+	public static byte[] subArray(byte[] b, int offset, int length)
+    {
+        byte[] sub = new byte[length];
+        for(int i = offset; i < offset + length; i++)
+        {
+            sub[i-offset] = b[i];
+        }
+        return sub;
+    }
+	
+	 public static boolean bytesCompare(byte[] a, byte[] b)
+	 {
+		 if(a.length != b.length) {return false;}
+		 for(int i=0; i<a.length; i++)
+		 {
+	            if(a[i] != b[i]) {return false;}
+		 }
+		 return true;
 	}
 }

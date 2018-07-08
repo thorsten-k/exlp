@@ -351,7 +351,7 @@ public class JDomUtil
 	
 	public static Element correct(Element e, Namespace ns)
 	{
-		if(e.getNamespace().equals(ns.getURI())){e.setNamespace(ns);}
+		if(e.getNamespace().getURI().equals(ns.getURI())){e.setNamespace(ns);}
 		
 		for(Object o : e.getChildren())
 		{
