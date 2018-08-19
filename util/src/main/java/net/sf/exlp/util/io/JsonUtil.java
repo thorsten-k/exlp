@@ -52,7 +52,24 @@ public class JsonUtil
 
 	public static String toString(Object json) throws JsonProcessingException
 	{
-		return jom().writeValueAsString(json);
+		return toString(json, false);
+	}
+	
+	public static String toString(Object json, Boolean prettyPrint) throws JsonProcessingException
+	{
+		if (prettyPrint)
+		{
+			return jom().writerWithDefaultPrettyPrinter().writeValueAsString(json);
+		}
+		else
+		{
+			return jom().writeValueAsString(json);
+		}
+	}
+	
+	public static String toPrettyString(Object json) throws JsonProcessingException
+	{
+		return toString(json, true);
 	}
 	
 	public static byte[] toBytes(Object json) throws JsonProcessingException
