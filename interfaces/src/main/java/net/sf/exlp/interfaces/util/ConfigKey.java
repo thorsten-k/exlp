@@ -34,4 +34,5 @@ public interface ConfigKey
 	String netSmtpPort = "net.smtp.port";
 	String netSmtpUser = "net.smtp.auth.user";
 	String netSmtpPwd  = "net.smtp.auth.pwd";
+	String netSmtpHelo = "net.smtp.helo";
 }
