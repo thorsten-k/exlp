@@ -15,8 +15,7 @@ import org.apache.maven.plugins.annotations.Parameter;
 
 @Mojo(name="mvnVersionIgnore")
 public class ExlpIgnoreMavenVersionGoal extends AbstractMojo
-{    
-
+{
 	@Parameter
     private List<String> files;
     
@@ -44,6 +43,4 @@ public class ExlpIgnoreMavenVersionGoal extends AbstractMojo
     	catch (FileNotFoundException e) {throw new MojoExecutionException(e.getMessage());}
 
     }
-    
-    
 }
