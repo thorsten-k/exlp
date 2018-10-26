@@ -62,7 +62,7 @@ public class Spawn extends Thread
 		checkPreRequisites();
 		try
 		{	
-			logger.debug("Spawning command in workingd dir: "+workingDir.getAbsolutePath()+")");
+			logger.info("Spawning command in workingd dir: "+workingDir.getAbsolutePath()+")");
 			logger.trace("\t"+command);
 						
 			p = Runtime.getRuntime().exec(command, envParameter.get(), workingDir);
