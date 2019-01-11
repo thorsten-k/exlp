@@ -97,6 +97,11 @@ public class JsonUtil
 		writer.writeValue(f, json);
 	}
 	
+	public static <T extends Object> T read(Class<T> c, File f) throws JsonGenerationException, JsonMappingException, IOException
+	{
+		return jom().readValue(f, c);
+	}
+	
 	private static synchronized String getCaller()
 	{
 		int index;
