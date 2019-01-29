@@ -5,6 +5,7 @@ public interface ConfigKey
 	String dirTmp = "dir.tmp";
 	
 	String netRestUrl  = "net.rest.url";
+	String netRestUrlProduction = "net.rest.url.production";
 	String netRestUrlImport  = "net.rest.url.import";
 	String netRestUrlExport  = "net.rest.url.export";
 	
