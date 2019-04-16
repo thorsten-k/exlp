@@ -9,6 +9,10 @@ public interface ConfigKey
 	String netRestUrlImport  = "net.rest.url.import";
 	String netRestUrlExport  = "net.rest.url.export";
 	
+	String netRestImportUrl = "net.rest.import.url";
+	String netRestImportUser = "net.rest.import.user";
+	String netRestImportPassword = "net.rest.import.user";
+	
 	String netMqttUrl	= "net.mqtt.url";
 	String netMqttTopic	= "net.mqtt.topic";
 	
