@@ -46,6 +46,7 @@
     		<type>jar</type>
     		<scope>test</scope>
   		</dependency>
+
   		
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
@@ -62,7 +63,8 @@
             		<groupId>org.slf4j</groupId>
             	</exclusion>
 			</exclusions>
-		</dependency>   		
+		</dependency>
+
 	</dependencies>
     
 	<build>

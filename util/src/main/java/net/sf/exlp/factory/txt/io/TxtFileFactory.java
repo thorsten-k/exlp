@@ -10,7 +10,7 @@ public class TxtFileFactory
 		if(type!=null){file.setSymbol(type);}
 	}
 	
-	public static String buildType(String fileName)
+	private static String buildType(String fileName)
 	{
 		if(fileName.endsWith(".doc") || fileName.endsWith(".docx")){return "doc";}
 		else if(fileName.endsWith(".xls") || fileName.endsWith(".xlsx")){return "xls";}
