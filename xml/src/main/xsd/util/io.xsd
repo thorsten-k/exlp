@@ -12,6 +12,7 @@
 			</xsd:sequence>
 			<xsd:attribute name="id" type="xsd:long"/>
 			<xsd:attribute name="code" type="xsd:string"/>
+			<xsd:attribute name="classifier" type="xsd:string"/>
 			<xsd:attribute name="name" type="xsd:string"/>
 			<xsd:attribute name="lastModifed" type="xsd:dateTime"/>
 			<xsd:attribute name="allowCreate" type="xsd:boolean"/>

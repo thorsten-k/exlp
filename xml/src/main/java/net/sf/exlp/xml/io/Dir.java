@@ -30,6 +30,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
  *       &lt;/sequence&gt;
  *       &lt;attribute name="id" type="{http://www.w3.org/2001/XMLSchema}long" /&gt;
  *       &lt;attribute name="code" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
+ *       &lt;attribute name="classifier" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="name" type="{http://www.w3.org/2001/XMLSchema}string" /&gt;
  *       &lt;attribute name="lastModifed" type="{http://www.w3.org/2001/XMLSchema}dateTime" /&gt;
  *       &lt;attribute name="allowCreate" type="{http://www.w3.org/2001/XMLSchema}boolean" /&gt;
@@ -62,6 +63,8 @@ public class Dir
     protected Long id;
     @XmlAttribute(name = "code")
     protected String code;
+    @XmlAttribute(name = "classifier")
+    protected String classifier;
     @XmlAttribute(name = "name")
     protected String name;
     @XmlAttribute(name = "lastModifed")
@@ -239,6 +242,34 @@ public class Dir
 
     public boolean isSetCode() {
         return (this.code!= null);
+    }
+
+    /**
+     * Gets the value of the classifier property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getClassifier() {
+        return classifier;
+    }
+
+    /**
+     * Sets the value of the classifier property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setClassifier(String value) {
+        this.classifier = value;
+    }
+
+    public boolean isSetClassifier() {
+        return (this.classifier!= null);
     }
 
     /**

@@ -60,7 +60,7 @@ public class DirTreeScanner
 		return getDirTree(f,recursive);
 	}
 	
-	public Dir getDirTree(File f,boolean recursive)
+	public Dir getDirTree(File f, boolean recursive)
 	{
 		Dir dir = xfDir.build(f);
 		for(File subF : f.listFiles())
@@ -78,7 +78,7 @@ public class DirTreeScanner
 		return dir;
 	}
 	
-	public Dir getDirTree(File f,boolean recursive,FileFilter ff)
+	public Dir getDirTree(File f, boolean recursive, FileFilter ff)
 	{
 		Dir dir = xfDir.build(f);
 		for(File subF : f.listFiles(ff))
