@@ -44,16 +44,17 @@ public class JaxbUtil
 		if(JaxbUtil.nsPrefixMapper != null){logger.warn(NsPrefixMapperInterface.class.getSimpleName()+" already set.");}
 		JaxbUtil.nsPrefixMapper = nsPrefixMapper;
 	}
-	public static synchronized <T extends Object> T loadJAXB(ClassLoader classLoader, String xmlFile, Class<T> c) throws FileNotFoundException
+	
+	public static <T extends Object> T loadJAXB(ClassLoader classLoader, String xmlFile, Class<T> c) throws FileNotFoundException
 	{
 		MultiResourceLoader mrl = new MultiResourceLoader(classLoader);
 		return loadJAXB(mrl,xmlFile,c);
 	}
-	public static synchronized <T extends Object> T loadJAXB(File xmlFile, Class<T> c) throws FileNotFoundException
+	public static <T extends Object> T loadJAXB(File xmlFile, Class<T> c) throws FileNotFoundException
 	{
 		return loadJAXB(xmlFile.getAbsolutePath(),c);
 	}
-	public static synchronized <T extends Object> T loadJAXB(String xmlFile, Class<T> c) throws FileNotFoundException
+	public static <T extends Object> T loadJAXB(String xmlFile, Class<T> c) throws FileNotFoundException
 	{
 		MultiResourceLoader mrl = new MultiResourceLoader();
 		return loadJAXB(mrl,xmlFile,c);
@@ -102,7 +103,7 @@ public class JaxbUtil
 		return result;
 	}
 	
-	private static synchronized String getCaller()
+	private static String getCaller()
 	{
 		int index;
 		logger.trace("StackTraceSize"+Thread.currentThread().getStackTrace().length);
