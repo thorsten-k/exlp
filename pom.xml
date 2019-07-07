@@ -29,8 +29,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     	
     	<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
-    	<compiler-source.version>1.6</compiler-source.version>
-    	<compiler-target.version>1.6</compiler-target.version>
     	<maven.ignore>file://${basedir}/../maven/src/main/resources/exlp/maven/exlp-versions.xml</maven.ignore>
 	</properties>
 	
@@ -87,8 +85,8 @@
 				<inherited>true</inherited>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.7</source>
+					<target>1.7</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 				</configuration>
 			</plugin>
@@ -115,11 +113,11 @@
 		           		<goals><goal>enforce</goal></goals>
 			            <configuration>
 							<rules>
-				       			<bannedDependencies>
-				           			<excludes>
-				              			<exclude>commons-logging:commons-logging</exclude>
-				           			</excludes>
-				      			</bannedDependencies>
+			       			<bannedDependencies>
+			           			<excludes>
+			              			<exclude>commons-logging:commons-logging</exclude>
+			           			</excludes>
+			      			</bannedDependencies>
 				        	</rules>
 				    		<fail>true</fail>
 	            		</configuration>
