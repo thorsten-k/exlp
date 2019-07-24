@@ -11,6 +11,7 @@ import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
@@ -128,6 +129,7 @@ public class JsonUtil
         static
         {
         	jom.setSerializationInclusion(Include.NON_NULL);
+        	jom.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         }
 	}
 }
