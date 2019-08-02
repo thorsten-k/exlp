@@ -4,6 +4,7 @@ import java.io.File;
 
 import net.sf.exlp.util.io.RelativePathFactory.PathSeparator;
 
+import org.apache.commons.io.FilenameUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,8 +17,8 @@ public class ClassUtil
 		RelativePathFactory rpf = new RelativePathFactory(fBase,PathSeparator.CURRENT);
 		String sClass = rpf.relativate(fClass);
 		sClass = sClass.substring(0, sClass.indexOf(".java"));
+		sClass=FilenameUtils.separatorsToUnix(sClass);
 		sClass=sClass.replaceAll("/", ".");
-
 		Class<?> c = Class.forName(sClass);
 		return c;
     }
