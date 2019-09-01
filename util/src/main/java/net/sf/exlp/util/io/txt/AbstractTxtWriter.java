@@ -47,6 +47,8 @@ public abstract class AbstractTxtWriter
 		df = new DecimalFormat(s);
 	}
 	
+	public void add(String line){if(line!=null){txt.add(line+lineSeparator);}}
+	
 	public void debug()
 	{
 		logger.debug("Debugging TXT content");
