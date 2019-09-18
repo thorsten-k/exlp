@@ -1,5 +1,10 @@
 package net.sf.exlp.factory.xml.io;
 
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.commons.io.IOUtils;
+
 import net.sf.exlp.xml.io.Data;
 
 public class XmlDataFactory
@@ -8,6 +13,13 @@ public class XmlDataFactory
 	{
 		Data xml = new Data();
 		xml.setValue(bytes);
+		return xml;
+	}
+	
+	public static Data build(InputStream is) throws IOException
+	{
+		Data xml = new Data();
+		xml.setValue(IOUtils.toByteArray(is));
 		return xml;
 	}
 }
