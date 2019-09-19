@@ -14,6 +14,12 @@ public interface ConfigKey
 	String netRestImportUser = "net.rest.import.user";
 	String netRestImportPassword = "net.rest.import.user";
 	
+	String netRestUser = "net.rest.user";
+	String netRestProductionUrl = "net.rest.production.url";
+	String netRestProductionPassword = "net.rest.production.password";
+	String netRestLocalUrl = "net.rest.local.url";
+	String netRestLocalPassword = "net.rest.local.password";
+	
 	String netMqttUrl	= "net.mqtt.url";
 	String netMqttTopic	= "net.mqtt.topic";
 	
