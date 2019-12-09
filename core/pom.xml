@@ -72,7 +72,7 @@
    			<artifactId>httpclient</artifactId>
    			<type>jar</type>
    			<scope>provided</scope>
-   			<version>4.1.2</version>
+   			<version>4.3.6</version>
    			<exclusions>
         		<exclusion>
         			<artifactId>commons-logging</artifactId>
