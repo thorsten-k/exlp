@@ -16,7 +16,7 @@ public class Version
 	public static final String mvnXerces = "xerces:xercesImpl:";
 	public static final String mvnJaxbImpl = "com.sun.xml.bind:jaxb-impl:";
 	
-	public static final String jodaVersion = "2.9.9";
+	public static final String jodaVersion = "2.10.5";
 	public static final String commonsCodecVersion = "1.13";
 	public static final String commonsLangVersion = "2.6";
 	public static final String commonsJxPath = "1.3";
