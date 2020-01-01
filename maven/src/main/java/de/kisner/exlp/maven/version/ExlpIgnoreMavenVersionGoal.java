@@ -29,16 +29,17 @@ public class ExlpIgnoreMavenVersionGoal extends AbstractMojo
     	 
     	getLog().info("Generating maven-version-ignore with "+files.size()+" files to "+saveTo);
     	
-    	IgnoreMavenVersionFileMerger imvfm = new IgnoreMavenVersionFileMerger();
-		
+    	IgnoreMavenVersionFileMerger merger = new IgnoreMavenVersionFileMerger();
+    	merger.setLog(getLog());
+    	
     	try
     	{
     		for(String s : files)
         	{
-        		imvfm.add(s);
+        		merger.add(s);
         	}
     		File f = new File(saveTo);
-			imvfm.output(new FileOutputStream(f));
+			merger.output(new FileOutputStream(f));
 		}
     	catch (FileNotFoundException e) {throw new MojoExecutionException(e.getMessage());}
 

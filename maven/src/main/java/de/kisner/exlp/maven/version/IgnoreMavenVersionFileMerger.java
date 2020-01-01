@@ -5,7 +5,9 @@ import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.maven.plugin.logging.Log;
 import org.jdom2.Attribute;
+import org.jdom2.Comment;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.jdom2.Namespace;
@@ -19,7 +21,8 @@ import net.sf.exlp.util.xml.JDomUtil;
 public class IgnoreMavenVersionFileMerger
 {    
 	final static Logger logger = LoggerFactory.getLogger(IgnoreMavenVersionFileMerger.class);
-	
+	private Log log; public Log getLog() {return log;} public void setLog(Log log) {this.log = log;}
+
 	private MultiResourceLoader mrl;
 	private Namespace nsXsi;
 	private Namespace ns;
@@ -64,6 +67,8 @@ public class IgnoreMavenVersionFileMerger
 	
 		root.setNamespace(ns);
 		root.addNamespaceDeclaration(nsXsi);
+		root.addContent(new Comment("Do not modify this file, it is auto generated!"));
+		
 		root.addContent(rules);
 		
 		Attribute sl = new Attribute("schemaLocation", "http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0 http://mojo.codehaus.org/versions-maven-plugin/xsd/rule-2.0.0.xsd");
