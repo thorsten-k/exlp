@@ -67,18 +67,17 @@
    			<type>jar</type>
    			<scope>compile</scope>
    		</dependency>
-		<dependency>
+			<dependency>
    			<groupId>org.apache.httpcomponents</groupId>
    			<artifactId>httpclient</artifactId>
    			<type>jar</type>
    			<scope>provided</scope>
-   			<version>4.1.2</version>
    			<exclusions>
-        		<exclusion>
-        			<artifactId>commons-logging</artifactId>
-        			<groupId>commons-logging</groupId>
-        		</exclusion>
-        	</exclusions>
+	        		<exclusion>
+	        			<artifactId>commons-logging</artifactId>
+	        			<groupId>commons-logging</groupId>
+	        		</exclusion>
+	        	</exclusions>
    		</dependency>
 	</dependencies>
 	
