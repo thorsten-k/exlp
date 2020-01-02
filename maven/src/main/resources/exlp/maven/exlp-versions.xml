@@ -33,6 +33,19 @@
 				<ignoreVersion>2.6.0.redhat-00001</ignoreVersion>
 			</ignoreVersions>
 		</rule>
+		
+		<rule groupId="commons-httpclient" comparisonMethod="maven">
+			<ignoreVersions>
+			
+				<ignoreVersion>3.1-jbossorg-1</ignoreVersion>
+				<ignoreVersion>3.1-redhat-1</ignoreVersion>
+				<ignoreVersion>3.1-redhat-2</ignoreVersion>
+				<ignoreVersion>3.1-redhat-3</ignoreVersion>
+				<ignoreVersion>3.1.0.redhat-7</ignoreVersion>
+				<ignoreVersion>3.1.0.redhat-8</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+		
 		<rule groupId="commons-jxpath" comparisonMethod="maven">
 			<ignoreVersions>
 				<ignoreVersion>1.3-redhat-3</ignoreVersion>
@@ -75,6 +88,9 @@
 		</rule>
 		<rule groupId="org.codehaus.jackson" comparisonMethod="maven">
 			<ignoreVersions>
+				<ignoreVersion>1.9.13.jdk17-redhat-00001</ignoreVersion>
+				<ignoreVersion>1.9.13.redhat-2</ignoreVersion>
+				<ignoreVersion>1.9.13.redhat-3</ignoreVersion>
 				<ignoreVersion>1.9.13.redhat-4</ignoreVersion>
 				<ignoreVersion>1.9.13.redhat-00006</ignoreVersion>
 			</ignoreVersions>
@@ -95,6 +111,14 @@
 				<ignoreVersion>6.0.0.Alpha4</ignoreVersion>
 			</ignoreVersions>
 		</rule>
+		<rule groupId="org.hibernate.javax.persistence" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion>1.0.1.Final-redhat-1</ignoreVersion>
+				<ignoreVersion>1.0.1.Final-redhat-2</ignoreVersion>
+				<ignoreVersion>1.0.1.Final-redhat-3</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+		
 		<rule groupId="org.jboss.resteasy" comparisonMethod="maven">
 			<ignoreVersions>
 				<ignoreVersion>4.0.0.Beta1</ignoreVersion>
