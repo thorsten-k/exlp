@@ -27,7 +27,7 @@ public class LogListenerXml extends AbstractLogListener implements LogListener
 	BufferedReader myBufferedReader;
 	Document doc;
 	
-	public LogListenerXml(String fileName,LogParser lp)
+	public LogListenerXml(String fileName, LogParser lp)
 	{
 		super(lp);
 		File f = new File(fileName);

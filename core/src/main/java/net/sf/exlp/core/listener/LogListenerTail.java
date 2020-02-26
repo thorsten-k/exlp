@@ -20,8 +20,8 @@ public class LogListenerTail extends AbstractLogListener implements LogListener
 	
 	private RandomAccessFile raf;
 	
-	public LogListenerTail(String fileName,LogParser lp){this(new File(fileName),lp);}
-	public LogListenerTail(File f,LogParser lp)
+	public LogListenerTail(LogParser lp, String fileName){this(lp, new File(fileName));}
+	public LogListenerTail(LogParser lp, File f)
 	{
 		super(lp);
 		if(!f.exists())

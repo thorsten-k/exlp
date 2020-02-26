@@ -30,10 +30,10 @@ public class LogListenerFile extends AbstractLogListener implements LogListener
 	private String charSet;
 	private File f;
 	
-	public LogListenerFile(String fileName,LogParser lp){this(new File(fileName),null,lp);}
-	public LogListenerFile(String fileName,String charSet,LogParser lp){this(new File(fileName),charSet,lp);}
-	public LogListenerFile(File f,LogParser lp){this(f,null,lp);}
-	public LogListenerFile(File f,String charSet,LogParser lp)
+	public LogListenerFile(String fileName, LogParser lp){this(new File(fileName),null,lp);}
+	public LogListenerFile(String fileName, String charSet, LogParser lp){this(new File(fileName),charSet,lp);}
+	public LogListenerFile(File f, LogParser lp){this(f,null,lp);}
+	public LogListenerFile(File f, String charSet, LogParser lp)
 	{
 		super(lp);
 		this.charSet=charSet;
