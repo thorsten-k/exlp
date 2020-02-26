@@ -1,29 +1,41 @@
 package de.kisner.exlp.test.listener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.kisner.exlp.test.ExlpCoreBootstrap;
 import net.sf.exlp.core.handler.EhDebug;
 import net.sf.exlp.core.listener.LogListenerTail;
 import net.sf.exlp.core.parser.DummyParser;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogListener;
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.util.io.LoggerInit;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class CliListenerTail
 {
 	final static Logger logger = LoggerFactory.getLogger(CliListenerTail.class);
 	
+	private final LogEventHandler leh;
+	private final LogParser lp;
+	
+	public CliListenerTail()
+	{
+		leh = new EhDebug();
+		lp = new DummyParser(leh);
+	}
+	
+	public void jbossGc()
+	{
+		LogListener ll = new LogListenerTail(lp,"/Volumes/ramdisk/jboss/standalone/log/gc.log.0.current");
+		ll.processSingle();
+	}
+	
+	
 	public static void main(String args[])
 	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-		loggerInit.addAltPath("resources/config");
-		loggerInit.init();
+		ExlpCoreBootstrap.init();
 			
-		LogEventHandler leh = new EhDebug();
-		LogParser lp = new DummyParser(leh);
-		LogListener ll = new LogListenerTail(lp,"/tmp/exim.log");
-		ll.processSingle();
+		CliListenerTail cli = new CliListenerTail();
+		cli.jbossGc();
 	}
 }

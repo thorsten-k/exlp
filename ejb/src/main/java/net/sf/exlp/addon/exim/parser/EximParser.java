@@ -139,14 +139,13 @@ public class EximParser extends AbstractLogParser implements LogParser
 	private String getEximId(int start, Matcher m)
 	{
 		StringBuffer sb = new StringBuffer();
-			sb.append(m.group(start));
-			sb.append("-");
-			sb.append(m.group(start+1));
-			sb.append("-");
-			sb.append(m.group(start+2));
+		sb.append(m.group(start));
+		sb.append("-");
+		sb.append(m.group(start+1));
+		sb.append("-");
+		sb.append(m.group(start+2));
 		return sb.toString();
 	}
 	
-	@Override
-	public void debugMe(){super.debugMe(this.getClass().getSimpleName());}
+	@Override public void debugMe(){super.debugMe(this.getClass().getSimpleName());}
 }

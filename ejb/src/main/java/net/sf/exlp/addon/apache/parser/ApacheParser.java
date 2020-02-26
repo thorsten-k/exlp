@@ -92,7 +92,6 @@ public class ApacheParser extends AbstractLogParser implements LogParser
 			
 			ApacheEvent event = new ApacheEvent(apache,host);
 			leh.handleEvent(event);
-	//		logger.debug(m.group(0));
 		}
 		catch (ParseException e) {logger.error("",e);}
 		catch (NumberFormatException e) {logger.error("",e);}

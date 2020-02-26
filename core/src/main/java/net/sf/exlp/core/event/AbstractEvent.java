@@ -11,6 +11,7 @@ import java.util.Random;
 import net.sf.exlp.core.listener.AbstractLogListener;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.util.io.ObjectIO;
+import net.sf.exlp.util.io.StringUtil;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,11 +25,9 @@ public abstract class AbstractEvent implements LogEvent,Serializable
 	protected String fileName;
 	protected Date record;
 
-	transient protected Hashtable<String,String> propStr;
-	transient protected Hashtable<String,Integer> propInt;
+	transient protected Hashtable<String,String> pString;
+	transient protected Hashtable<String,Integer> pnteger;
 	transient protected Hashtable<String,Object> myFacades;
-	
-	transient private Random rnd;
 	
 	public AbstractEvent()
 	{
@@ -37,30 +36,29 @@ public abstract class AbstractEvent implements LogEvent,Serializable
 	
 	protected void initProps()
 	{
-		rnd = new Random();
 		record = new Date();
-		fileName = record.getTime()+"-"+rnd.nextInt(999999999);
-		propStr = new Hashtable<String,String>();
-		propInt = new Hashtable<String,Integer>();
-		propStr.put("Event",this.getClass().getSimpleName());
+//		fileName = record.getTime()+"-"+rnd.nextInt(999999999);
+		pString = new Hashtable<>();
+		pnteger = new Hashtable<>();
+		pString.put("Event",this.getClass().getSimpleName());
 	}
 	
 	public void debug()
 	{
 		StringBuffer sb = new StringBuffer();
-		for (String propName : propStr.keySet())
+		for (String key : pString.keySet())
 		{
-			sb.append("S:"+propName+"="+propStr.get(propName)+" ");
+			sb.append("S:"+key+"="+pString.get(key)+" ");
 		}
-		for (String propName : propInt.keySet())
+		for (String key : pnteger.keySet())
 		{
-			sb.append("I:"+propName+"="+propInt.get(propName)+" ");
+			sb.append("I:"+key+"="+pnteger.get(key)+" ");
 		}
 		
-		logger.debug("** D E B U G ******************************************");
-		logger.debug("** File\t"+fileName+"."+this.getClass().getSimpleName());
-		logger.debug("** Crte\t"+DateFormat.getDateTimeInstance(DateFormat.MEDIUM,DateFormat.MEDIUM).format(record));
-		if(sb.length()>0){logger.debug("** Props\t"+sb);}
+		logger.debug(StringUtil.stars());
+		if(fileName!=null) {logger.debug("File\t"+fileName+"."+this.getClass().getSimpleName());}
+		logger.debug("Record\t"+DateFormat.getDateTimeInstance(DateFormat.MEDIUM,DateFormat.MEDIUM).format(record));
+		if(sb.length()>0){logger.debug("Properties  "+sb);}
 	}
 	
 	public boolean save(File dir)

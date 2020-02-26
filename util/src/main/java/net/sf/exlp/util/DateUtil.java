@@ -161,11 +161,15 @@ public class DateUtil
 		return getDateFromInt(year, month, day, 0, 0, 0);
 	}
 	
-	public synchronized static Date getDateFromString(String year, String month, String day, String hour, String min, String sec)
+	public static Date getDateFromString(String year, String month, String day, String hour, String min, String sec)
 	{
-		return getDateFromInt(new Integer(year), new Integer(month), new Integer(day), new Integer(hour), new Integer(min), new Integer(sec));
+		return getDateFromString(year,month,day,hour,min,sec,0+"");
 	}
-	public synchronized static Date getDateFromInt(int year, int month, int day, int hour, int min, int sec)
+	public static Date getDateFromString(String year, String month, String day, String hour, String min, String sec, String ms)
+	{
+		return getDateFromInt(Integer.valueOf(year), Integer.valueOf(month), Integer.valueOf(day), Integer.valueOf(hour), Integer.valueOf(min), Integer.valueOf(sec), Integer.valueOf(ms));
+	}
+	public static Date getDateFromInt(int year, int month, int day, int hour, int min, int sec)
 	{
 		GregorianCalendar gc = new GregorianCalendar();
 			gc.set(GregorianCalendar.YEAR, year);
@@ -175,6 +179,18 @@ public class DateUtil
 			gc.set(GregorianCalendar.MINUTE, min);
 			gc.set(GregorianCalendar.SECOND, sec);
 			gc.set(GregorianCalendar.MILLISECOND, 0);
+		return getDateFromInt(year,month,day,hour,min,sec,0);
+	}
+	public static Date getDateFromInt(int year, int month, int day, int hour, int min, int sec, int ms)
+	{
+		GregorianCalendar gc = new GregorianCalendar();
+			gc.set(GregorianCalendar.YEAR, year);
+			gc.set(GregorianCalendar.MONTH, month-1);
+			gc.set(GregorianCalendar.DAY_OF_MONTH, day);
+			gc.set(GregorianCalendar.HOUR_OF_DAY, hour);
+			gc.set(GregorianCalendar.MINUTE, min);
+			gc.set(GregorianCalendar.SECOND, sec);
+			gc.set(GregorianCalendar.MILLISECOND, ms);
 		return gc.getTime();
 	}
 	

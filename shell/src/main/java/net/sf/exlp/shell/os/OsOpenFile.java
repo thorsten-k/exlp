@@ -1,6 +1,6 @@
 package net.sf.exlp.shell.os;
 
-import net.sf.exlp.interfaces.UnknownArchitectureException;
+import net.sf.exlp.exception.UnknownArchitectureException;
 import net.sf.exlp.shell.os.OsArchitectureUtil.OsArch;
 import net.sf.exlp.shell.spawn.Spawn;
 
