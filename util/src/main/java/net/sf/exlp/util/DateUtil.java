@@ -3,6 +3,9 @@ package net.sf.exlp.util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -255,5 +258,25 @@ public class DateUtil
 	{
 		DateTime dt = new DateTime(date);
 		return dt.withDayOfMonth(1).withTimeAtStartOfDay().plusMonths(1).toDate();
+	}
+	
+	public static Date toDate(LocalDate localDate)
+	{
+		return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	public static Date toDate(LocalDateTime localDateTime)
+	{
+		return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+	}
+	
+	public static LocalDate toLocalDate(Date date)
+	{
+		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+	}
+	
+	public static LocalDateTime toLocalDateTime(Date date)
+	{
+		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 }
