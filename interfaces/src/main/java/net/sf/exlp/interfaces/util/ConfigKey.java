@@ -20,6 +20,8 @@ public interface ConfigKey
 	String netRestLocalUrl = "net.rest.local.url";
 	String netRestLocalPassword = "net.rest.local.password";
 	
+	String netRestTestingUrl = "net.rest.testing.url";
+	
 	String netMqttUrl	= "net.mqtt.url";
 	String netMqttTopic	= "net.mqtt.topic";
 	
