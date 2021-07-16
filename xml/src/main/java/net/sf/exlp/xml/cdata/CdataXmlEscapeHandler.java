@@ -23,25 +23,14 @@ public class CdataXmlEscapeHandler implements CharacterEscapeHandler
         int limit = start + length;
         boolean cData = false;
         StringWriter buffer = new StringWriter();
-        for (int i = start; i < limit; i++) {
+        for (int i = start; i < limit; i++)
+        {
             switch (ch[i])
             {
-                case '&':
-                    buffer.write("&amp;");
-                    break;
-                case '<':
-                    buffer.write("&lt;");
-                    break;
-                case '>':
-                    buffer.write("&gt;");
-                    break;
-                case '\"':
-                    if (isAttVal) {
-                        buffer.write("&quot;");
-                    } else {
-                        buffer.write('\"');
-                    }
-                    break;
+                case '&': buffer.write("&amp;"); break;
+                case '<': buffer.write("&lt;"); break;
+                case '>': buffer.write("&gt;"); break;
+                case '\"': if (isAttVal) {buffer.write("&quot;");} else {buffer.write('\"');} break;
                 default:
                     if (isCDATA(ch[i]))
                     {

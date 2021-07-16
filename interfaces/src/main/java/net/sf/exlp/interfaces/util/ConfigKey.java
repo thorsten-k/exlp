@@ -16,9 +16,13 @@ public interface ConfigKey
 	
 	String netRestUser = "net.rest.user";
 	String netRestProductionUrl = "net.rest.production.url";
-	String netRestProductionPassword = "net.rest.production.password";
 	String netRestLocalUrl = "net.rest.local.url";
+
 	String netRestLocalPassword = "net.rest.local.password";
+	String netRestPasswordLocal = "net.rest.local.password";
+	
+	String netRestProductionPassword = "net.rest.production.password";
+	String netRestPasswordProduction = "net.rest.production.password";
 	
 	String netRestTestingUrl = "net.rest.testing.url";
 	
