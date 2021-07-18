@@ -6,17 +6,16 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 
-import net.sf.exlp.interfaces.LogParser;
-
-import org.apache.commons.lang.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.interfaces.LogParser;
 
 public class SpawnLineHandler extends Thread
 {
 	final static Logger logger = LoggerFactory.getLogger(SpawnLineHandler.class);
 	
-	private static String ls = SystemUtils.LINE_SEPARATOR;
+	private static String ls = System.lineSeparator();
 	private String prefix;
 	private BufferedReader brIn;
 	private Writer writer;

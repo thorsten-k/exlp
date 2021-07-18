@@ -4,7 +4,7 @@ import net.sf.exlp.exception.UnknownArchitectureException;
 import net.sf.exlp.shell.os.OsArchitectureUtil.OsArch;
 import net.sf.exlp.shell.spawn.Spawn;
 
-import org.apache.commons.lang.SystemUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

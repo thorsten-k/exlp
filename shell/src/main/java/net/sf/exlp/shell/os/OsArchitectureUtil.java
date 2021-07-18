@@ -1,12 +1,13 @@
 package net.sf.exlp.shell.os;
 
+import java.io.File;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import net.sf.exlp.exception.ExlpUnsupportedOsException;
 
-import org.apache.commons.lang.SystemUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -17,7 +18,7 @@ public class OsArchitectureUtil
 	final static Marker fatal = MarkerFactory.getMarker("FATAL");
 	final static Logger logger = LoggerFactory.getLogger(OsArchitectureUtil.class);
 	
-	private static String fs = SystemUtils.FILE_SEPARATOR;
+	private static String fs = File.separator;
 	
 	public enum OsArch {Win32, OsX, Linux, Iphone};
 	public static OsArch arch;
@@ -68,9 +69,9 @@ public class OsArchitectureUtil
 		sb.append(SystemUtils.getUserHome());
 		switch(arch)
 		{
-			case Win32: sb.append(SystemUtils.FILE_SEPARATOR+"Eigene Dateien");break;
-			case OsX:	sb.append(SystemUtils.FILE_SEPARATOR+"Documents");break;
-			case Linux: sb.append(SystemUtils.FILE_SEPARATOR+"Documents");break;
+			case Win32: sb.append(fs+"Eigene Dateien");break;
+			case OsX:	sb.append(fs+"Documents");break;
+			case Linux: sb.append(fs+"Documents");break;
 			default:	errorUnsupportedOS();break;
 		}	
 		return sb.toString();
@@ -84,14 +85,14 @@ public class OsArchitectureUtil
 		switch(arch)
 		{
 			case Win32: sb=new StringBuffer();
-						sb.append("C:"+SystemUtils.FILE_SEPARATOR+SystemUtils.FILE_SEPARATOR+appName);
+						sb.append("C:"+fs+fs+appName);
 //						sb.append(System.getenv("APPDATA"));
 //						sb.append(SystemUtils.FILE_SEPARATOR+appName);
 						break;
-			case OsX:	sb.append(SystemUtils.FILE_SEPARATOR+"Library");
+			case OsX:	sb.append(fs+"Library");
 //						sb.append(SystemUtils.FILE_SEPARATOR+"Application Support");
-						sb.append(SystemUtils.FILE_SEPARATOR+appName);break;
-			case Linux: sb.append(SystemUtils.FILE_SEPARATOR+"."+appName);break;
+						sb.append(fs+appName);break;
+			case Linux: sb.append(fs+"."+appName);break;
 			default:	errorUnsupportedOS();break;
 		}
 		return sb.toString();
@@ -117,8 +118,8 @@ public class OsArchitectureUtil
 		sb.append(System.getProperty("user.home"));
 		switch(arch)
 		{
-			case Win32: sb.append(SystemUtils.FILE_SEPARATOR+"Desktop");break;
-			case OsX:	sb.append(SystemUtils.FILE_SEPARATOR+"Desktop");break;
+			case Win32: sb.append(fs+"Desktop");break;
+			case OsX:	sb.append(fs+"Desktop");break;
 			default:	errorUnsupportedOS();break;
 		}	
 		return sb.toString();

@@ -46,17 +46,20 @@
     		<type>pom</type>
     		<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>log4j</groupId>
-			<artifactId>log4j</artifactId>
-			<scope>provided</scope>
-		</dependency>
+		
+		<!-- 
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>
 			<type>jar</type>
 			<scope>compile</scope>
 		</dependency>
+		 
+		<dependency>
+    		<groupId>org.apache.commons</groupId>
+    		<artifactId>commons-lang3</artifactId>
+		</dependency>
+		-->
 	  	<dependency>
 	 		<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
@@ -88,12 +91,13 @@
    			<type>jar</type>
    			<scope>compile</scope>
    		</dependency>
+   		
    		<dependency>
-   			<groupId>junit</groupId>
-   			<artifactId>junit</artifactId>
-   			<type>jar</type>
-   			<scope>test</scope>
-   		</dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+		</dependency>
+   		
+   		<!-- XML -->
    		<dependency>
    			<groupId>commons-jxpath</groupId>
    			<artifactId>commons-jxpath</artifactId>
@@ -112,16 +116,12 @@
    	   		<scope>provided</scope>
    	   	</dependency>
    	   	
-   	   	
-		<dependency>
-			<groupId>joda-time</groupId>
-			<artifactId>joda-time</artifactId>
-		</dependency>
-		
+		<!-- JSON -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-databind</artifactId>
 			<version>2.6.0</version>
+			<scope>provided</scope>
 		</dependency>
 		
 		<!-- Logging -->
@@ -130,12 +130,24 @@
 			<artifactId>slf4j-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	 	<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<scope>test</scope>
 		</dependency>
 		
+		<!-- Testing -->
+		<dependency>
+   			<groupId>junit</groupId>
+   			<artifactId>junit</artifactId>
+   			<type>jar</type>
+   			<scope>test</scope>
+   		</dependency>
 	</dependencies>
 	
 	<build>

@@ -4,9 +4,6 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
-
-
-import org.apache.commons.lang.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -17,7 +14,7 @@ public class OsTempDirFactory
 	final static Marker fatal = MarkerFactory.getMarker("FATAL");
 	final static Logger logger = LoggerFactory.getLogger(OsTempDirFactory.class);
 	
-	private static String fs = SystemUtils.FILE_SEPARATOR;
+	private static String fs = File.separator;
 	private static String tmpProperty = "java.io.tmpdir";
 	
 	private String appId;

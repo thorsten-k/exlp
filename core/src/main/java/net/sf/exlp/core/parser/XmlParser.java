@@ -2,16 +2,15 @@ package net.sf.exlp.core.parser;
 
 import java.util.List;
 
-import net.sf.exlp.core.event.JDomEvent;
-import net.sf.exlp.interfaces.LogEventHandler;
-import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.util.xml.JDomUtil;
-
-import org.apache.commons.lang.SystemUtils;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.core.event.JDomEvent;
+import net.sf.exlp.interfaces.LogEventHandler;
+import net.sf.exlp.interfaces.LogParser;
+import net.sf.exlp.util.xml.JDomUtil;
 
 public class XmlParser extends AbstractLogParser implements LogParser  
 {
@@ -29,7 +28,7 @@ public class XmlParser extends AbstractLogParser implements LogParser
 		StringBuffer sb = new StringBuffer();
 		for(String s : item)
 		{
-			sb.append(s+SystemUtils.LINE_SEPARATOR);
+			sb.append(s+System.lineSeparator());
 		}
 		Document doc = null;
 		try
