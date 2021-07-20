@@ -224,7 +224,7 @@ public class JaxbUtil
 		{
 			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
 			Marshaller m = context.createMarshaller();
-			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
+//			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
 			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
@@ -249,7 +249,7 @@ public class JaxbUtil
 		{
 			JAXBContext context = JAXBContext.newInstance(xml.getClass());
 			Marshaller m = context.createMarshaller(); 
-			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
+//			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
 			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
