@@ -35,8 +35,8 @@
 		<dependency>
    			<groupId>net.sf.exlp</groupId>
    			<artifactId>exlp-xml</artifactId>
+   			<scope>provided</scope>
    			<type>jar</type>
-   			<scope>compile</scope>
    		</dependency>
    		
 	   <dependency>
@@ -47,19 +47,6 @@
     		<scope>provided</scope>
 		</dependency>
 		
-		<!-- 
-		<dependency>
-			<groupId>commons-lang</groupId>
-			<artifactId>commons-lang</artifactId>
-			<type>jar</type>
-			<scope>compile</scope>
-		</dependency>
-		 
-		<dependency>
-    		<groupId>org.apache.commons</groupId>
-    		<artifactId>commons-lang3</artifactId>
-		</dependency>
-		-->
 	  	<dependency>
 	 		<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
