@@ -1,7 +1,6 @@
 package net.sf.exlp.util.io;
 
 import java.nio.ByteBuffer;
-import java.util.Arrays;
 
 import org.apache.commons.codec.net.URLCodec;
 import org.slf4j.Logger;
