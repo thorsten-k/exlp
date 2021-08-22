@@ -181,15 +181,16 @@ public class ObjectIO
 	    	fos.flush();
 	    	fos.close();
 	    }
-	    catch( IOException e ){e.printStackTrace();}
+	    catch( IOException e){e.printStackTrace();}
 	}
 	
-	public static boolean save(String filePath,Object o)
+	public static boolean save(String filePath, Object o) {return save(new File(filePath),o);}
+	public static boolean save(File f, Object o)
 	{
 		boolean success=false;
 		try
 		{
-			FileOutputStream fos = new FileOutputStream(filePath);
+			FileOutputStream fos = new FileOutputStream(f);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
 			oos.writeObject(o);
 			oos.close();
