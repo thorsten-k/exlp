@@ -1,6 +1,6 @@
 package net.sf.exlp.factory.txt;
 
-import org.apache.commons.lang.SystemUtils;
+import java.io.File;
 
 public class TxtFileNameFactory
 {
@@ -8,10 +8,10 @@ public class TxtFileNameFactory
 	{
 		String[] pack = packageName.split("\\.");
     	StringBuffer sb = new StringBuffer();
-    	sb.append(prefix).append(SystemUtils.FILE_SEPARATOR);
+    	sb.append(prefix).append(File.separator);
     	for(String s : pack)
     	{
-    		sb.append(s).append(SystemUtils.FILE_SEPARATOR);
+    		sb.append(s).append(File.separator);
     	}
     	return sb.substring(0,sb.length()-1);
 	}
@@ -20,10 +20,10 @@ public class TxtFileNameFactory
 	{
 		String[] pack = packageName.split("\\.");
     	StringBuffer sb = new StringBuffer();
-    	sb.append(prefix).append(SystemUtils.FILE_SEPARATOR);
+    	sb.append(prefix).append(File.separator);
     	for(String s : pack)
     	{
-    		sb.append(s).append(SystemUtils.FILE_SEPARATOR);
+    		sb.append(s).append(File.separator);
     	}
     	return sb.substring(0,sb.length()-1)+"."+fileSuffix;
 	}
