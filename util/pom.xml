@@ -38,15 +38,16 @@
    			<scope>provided</scope>
    			<type>jar</type>
    		</dependency>
-   		
-	   <dependency>
+   	
+		<!-- For JMS -->
+		<dependency>
     		<groupId>org.jboss.spec</groupId>
     		<artifactId>jboss-javaee-6.0</artifactId>
 			<version>1.0.0.Final</version>
     		<type>pom</type>
     		<scope>provided</scope>
 		</dependency>
-		
+			
 		<dependency>
    			<groupId>org.apache.commons</groupId>
    			<artifactId>commons-lang3</artifactId>
@@ -56,7 +57,7 @@
 	 		<groupId>commons-configuration</groupId>
 			<artifactId>commons-configuration</artifactId>
 			<type>jar</type>
-			<scope>compile</scope>
+			<scope>provided</scope>
 			<exclusions>
         		<exclusion>
         			<artifactId>commons-logging</artifactId>
