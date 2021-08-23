@@ -37,21 +37,25 @@
 			<version>3.4</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
+		
+<!-- 		<dependency>
    			<groupId>commons-lang</groupId>
    			<artifactId>commons-lang</artifactId>
    			<scope>compile</scope>
+		</dependency>
+ -->	
+ 		<dependency>
+			<groupId>net.sf.exlp</groupId>
+			<artifactId>exlp-util</artifactId>
+			<scope>compile</scope>
 		</dependency>
 		
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>net.sf.exlp</groupId>
-			<artifactId>exlp-util</artifactId>
-			<scope>compile</scope>
-		</dependency>
+
+		
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>

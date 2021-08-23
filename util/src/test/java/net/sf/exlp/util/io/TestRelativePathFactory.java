@@ -5,7 +5,7 @@ import java.io.File;
 import net.sf.exlp.test.AbstractExlpTst;
 import net.sf.exlp.test.ExlpTstBootstrap;
 
-import org.apache.commons.lang.SystemUtils;
+import org.apache.commons.lang3.SystemUtils;
 import org.junit.Assert;
 import org.junit.Test;
 import org.slf4j.Logger;

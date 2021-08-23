@@ -1,6 +1,6 @@
 package net.sf.exlp.util.io;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,7 +18,6 @@ public class StringUtil
 	{
 		return StringUtils.repeat("\t", number);
 	}
-	
 	
 	public static String dash2Dot(String text){return text.replaceAll("/", ".");}
 	
