@@ -3,33 +3,23 @@ package net.sf.exlp.interfaces.util;
 public interface ConfigKey
 {
 	String dirTmp = "dir.tmp";
-	
-	String netRestUrl  = "net.rest.url";
-	String netRestUrlLocal = "net.rest.url.local";
-	String netRestUrlProduction = "net.rest.url.production";
-	String netRestUrlImport  = "net.rest.url.import";
-	String netRestUrlExport  = "net.rest.url.export";
-	
-	String netRestImportUrl = "net.rest.import.url";
-	String netRestImportUser = "net.rest.import.user";
-	String netRestImportPassword = "net.rest.import.user";
-	
+		
 	String netRestUser = "net.rest.user";
-	String netRestProductionUrl = "net.rest.production.url";
-	String netRestLocalUrl = "net.rest.local.url";
-
-	String netRestLocalPassword = "net.rest.local.password";
+	String netRestUserImport = "net.rest.import.user";
+	
+	String netRestUrlLocal = "net.rest.local.url";
+	String netRestUrlTesting = "net.rest.testing.url";
+	String netRestUrlImport = "net.rest.import.url";
+	String netRestUrlExport  = "net.rest.export.url";
+	String netRestUrlProduction = "net.rest.production.url";
+	
 	String netRestPasswordLocal = "net.rest.local.password";
-	
-	String netRestProductionPassword = "net.rest.production.password";
+	String netRestPasswordTesting = "net.rest.testing.password";
+	String netRestPasswordImport = "net.rest.import.password";
 	String netRestPasswordProduction = "net.rest.production.password";
-	
-	String netRestTestingUrl = "net.rest.testing.url";
 	
 	String netMqttUrl	= "net.mqtt.url";
 	String netMqttTopic	= "net.mqtt.topic";
-	
-	String netRestPort = "net.rest.port";
 	
 	String netEjbHost = "net.ejb.host";
 	String netEjbPort = "net.ejb.port";
