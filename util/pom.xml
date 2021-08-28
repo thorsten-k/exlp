@@ -98,11 +98,19 @@
    			<type>jar</type>
    			<scope>compile</scope>
    		</dependency>
-   	    <dependency>
+   		
+   		<!-- JDOM -->
+		<!-- 2021-08-28 tk replaced jdom by jdom2    
+		<dependency>
    			<groupId>org.jdom</groupId>
    			<artifactId>jdom</artifactId>
    			<type>jar</type>
+		</dependency>  -->
+		<dependency>
+	      	<groupId>org.jdom</groupId>
+	      	<artifactId>jdom2</artifactId>
 		</dependency>
+		
 		<dependency>
    	   		<groupId>com.sun.xml.bind</groupId>
    	   		<artifactId>jaxb-impl</artifactId>

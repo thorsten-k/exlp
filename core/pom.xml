@@ -51,13 +51,17 @@
         		</exclusion>
         	</exclusions>
       	</dependency>
+      	
+      	<!--  
 		<dependency>
    			<groupId>org.jdom</groupId>
    			<artifactId>jdom</artifactId>
    			<type>jar</type>
    			<scope>compile</scope>
-   		</dependency>
-			<dependency>
+   		</dependency> -->
+   		
+   		
+		<dependency>
    			<groupId>org.apache.httpcomponents</groupId>
    			<artifactId>httpclient</artifactId>
    			<type>jar</type>
