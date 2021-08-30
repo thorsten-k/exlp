@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.SystemUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -70,7 +69,7 @@ public class MultiResourceLoader
 			searchPath = path;
 			String resourcePath;
 			if(path.length()==0){resourcePath=resourceName;}
-			else{resourcePath=path+SystemUtils.FILE_SEPARATOR+resourceName;}
+			else{resourcePath=path+File.separator+resourceName;}
 			for(LoadType lt : LoadType.values())
 			{
 				switch (lt)
@@ -109,7 +108,7 @@ public class MultiResourceLoader
 	private InputStream getResource(String resourceName)
 	{
 		InputStream is=null;
-		resourceName = resourceName.replace(SystemUtils.FILE_SEPARATOR, "/");
+		resourceName = resourceName.replace(File.separator, "/");
 		URL url = classLoader.getResource(resourceName);
 		String confInfo = "ClassLoader.getResourceAsStream("+resourceName+")";
 		if(url!=null)
