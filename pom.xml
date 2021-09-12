@@ -13,6 +13,7 @@
 	<modules>
 		<module>addon</module>
 		<module>bom</module>
+		<module>client</module>
 		<module>core</module>
 		<module>doc</module>
 		<module>ejb</module>
