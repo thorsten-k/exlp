@@ -51,6 +51,15 @@
         		</exclusion>
         	</exclusions>
       	</dependency>
+      	
+      	<!-- https://mvnrepository.com/artifact/org.zeromq/jeromq -->
+<dependency>
+    <groupId>org.zeromq</groupId>
+    <artifactId>jeromq</artifactId>
+    <version>0.5.2</version>
+</dependency>
+
+      	
    		
    		
 		<dependency>

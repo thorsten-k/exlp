@@ -12,10 +12,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -24,34 +22,54 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.apache.commons.io.IOUtils;
+import org.zeromq.SocketType;
+import org.zeromq.ZContext;
+import org.zeromq.ZMQ;
 
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 
 public class ExlpConfigPointerTray
 {
-    public static void main(String[] args) {
+	
+	
+    public static void main(String[] args) throws InterruptedException
+    {
         /* Use an appropriate Look and Feel */
-        try {
+        try
+        {
 //            UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
             UIManager.setLookAndFeel("javax.swing.plaf.metal.MetalLookAndFeel");
-        } catch (UnsupportedLookAndFeelException ex) {
-            ex.printStackTrace();
-        } catch (IllegalAccessException ex) {
-            ex.printStackTrace();
-        } catch (InstantiationException ex) {
-            ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            ex.printStackTrace();
         }
+        catch (UnsupportedLookAndFeelException e) {e.printStackTrace();}
+        catch (IllegalAccessException e) {e.printStackTrace();}
+        catch (InstantiationException e) {e.printStackTrace();}
+        catch (ClassNotFoundException e) {e.printStackTrace();}
+        
+        try (ZContext context = new ZContext())
+        {
+            ZMQ.Socket socket = context.createSocket(SocketType.REP);
+            socket.bind("tcp://*:5555");
+
+            while (!Thread.currentThread().isInterrupted()) {
+              byte[] reply = socket.recv(0);
+              System.out.println(
+                "Received " + ": [" + new String(reply, ZMQ.CHARSET) + "]"
+              );
+              String response = "world";
+              socket.send(response.getBytes(ZMQ.CHARSET), 0);
+              Thread.sleep(1000); //  Do some 'work'
+            }
+          }
+        
         /* Turn off metal's use of bold fonts */
         UIManager.put("swing.boldMetal", Boolean.FALSE);
         //Schedule a job for the event-dispatching thread:
         //adding TrayIcon.
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                try {
-					createAndShowGUI();
-				} catch (IOException e) {
+        SwingUtilities.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                try {createAndShowGUI();} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
@@ -184,7 +202,7 @@ public class ExlpConfigPointerTray
     protected static Image createImage(String path, String description) throws IOException
     {
     	MultiResourceLoader mrl = new MultiResourceLoader();
-    	InputStream is = mrl.searchIs("exlp/client/ccp/local.png");
+    	InputStream is = mrl.searchIs("exlp/client/gfx/ccp/local.png");
     	byte[] bytes = IOUtils.toByteArray(is);
         return (new ImageIcon(bytes, description)).getImage();
     }
