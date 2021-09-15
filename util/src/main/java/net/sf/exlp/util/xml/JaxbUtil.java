@@ -21,10 +21,6 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
-import net.sf.exlp.xml.cdata.CdataXmlEscapeHandler;
-import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
-
 import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
@@ -32,6 +28,9 @@ import org.jdom2.input.SAXBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
+
+import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
+import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 public class JaxbUtil
 {

@@ -1,5 +1,7 @@
 package de.kisner.exlp.ccp;
 
+import static spark.Spark.*;
+
 import java.awt.AWTException;
 import java.awt.CheckboxMenuItem;
 import java.awt.Image;
@@ -34,6 +36,11 @@ public class ExlpConfigPointerTray
 	
     public static void main(String[] args) throws InterruptedException
     {
+    	
+//         get("/hello", (req, res) -> "Hello World");
+        
+    	
+    	
         /* Use an appropriate Look and Feel */
         try
         {
@@ -69,10 +76,8 @@ public class ExlpConfigPointerTray
         {
             public void run()
             {
-                try {createAndShowGUI();} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
+                try {createAndShowGUI();}
+                catch (IOException e) {e.printStackTrace();}
             }
         });
     }
