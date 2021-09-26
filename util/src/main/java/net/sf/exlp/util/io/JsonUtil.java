@@ -55,6 +55,16 @@ public class JsonUtil
 		}
 	}
 
+	public static String toStringSilent(Object json)
+	{
+		try {
+			return toString(json, false);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return null;
+	}
 	public static String toString(Object json) throws JsonProcessingException
 	{
 		return toString(json, false);

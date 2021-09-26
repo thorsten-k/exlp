@@ -52,21 +52,7 @@ public class ExlpConfigPointerTray
         catch (InstantiationException e) {e.printStackTrace();}
         catch (ClassNotFoundException e) {e.printStackTrace();}
         
-        try (ZContext context = new ZContext())
-        {
-            ZMQ.Socket socket = context.createSocket(SocketType.REP);
-            socket.bind("tcp://*:5555");
 
-            while (!Thread.currentThread().isInterrupted()) {
-              byte[] reply = socket.recv(0);
-              System.out.println(
-                "Received " + ": [" + new String(reply, ZMQ.CHARSET) + "]"
-              );
-              String response = "world";
-              socket.send(response.getBytes(ZMQ.CHARSET), 0);
-              Thread.sleep(1000); //  Do some 'work'
-            }
-          }
         
         /* Turn off metal's use of bold fonts */
         UIManager.put("swing.boldMetal", Boolean.FALSE);
