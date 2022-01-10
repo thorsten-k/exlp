@@ -84,7 +84,7 @@ public class JaxbUtil
 
 		return result;
 	}
-	public static synchronized <T extends Object> T load(byte[] data, Class<T> c)
+	public static <T extends Object> T load(byte[] data, Class<T> c)
 	{
 		return loadJAXB(new ByteArrayInputStream(data),c);
 	}
@@ -232,11 +232,11 @@ public class JaxbUtil
 		catch (JAXBException e) {logger.error("",e);}
 	}
 	
-	@Deprecated public static void toOutputStream(Object xml, OutputStream os)
-	{
-		logger.warn("Deprecated. Use: output(os, xml, nsPrefixMapper)");
-		output(os, xml);
-	}
+//	@Deprecated private static void toOutputStream(Object xml, OutputStream os)
+//	{
+//		logger.warn("Deprecated. Use: output(os, xml, nsPrefixMapper)");
+//		output(os, xml);
+//	}
 	
 	@Deprecated public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper){output(w, xml, nsPrefixMapper,null,true);}
 	@Deprecated public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper, DocType doctype, boolean formatted){output(w, xml,null,true);}
@@ -325,5 +325,11 @@ public class JaxbUtil
 		catch (SAXException e) {logger.error("",e);}
 		catch (IOException e) {logger.error("",e);}
 		return doc;
+	}
+
+	public static <T extends Object> T copy(Object jaxb, Class<T> c)
+	{
+		byte[] data = JaxbUtil.toBytes(jaxb);
+		return loadJAXB(new ByteArrayInputStream(data),c);
 	}
 }
