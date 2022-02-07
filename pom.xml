@@ -4,7 +4,7 @@
 	
 	<groupId>net.sf.exlp</groupId>
 	<artifactId>exlp</artifactId>
-	<version>0.1.12</version>
+	<version>0.1.12-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>ExLP (Extensible Logfile Processor)</name>
 	<description>ExLP (Extensible Logfile Processor)</description>
@@ -49,8 +49,7 @@
 		<url>https://github.com/thorsten-k/exlp.git</url>
 		<connection>scm:git:ssh://git@github.com/thorsten-k/exlp.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/thorsten-k/exlp.git</developerConnection>
-	  <tag>exlp-0.1.12</tag>
-  </scm>
+	</scm>
 	
 	<developers>
 		<developer>
@@ -256,7 +255,7 @@
 			      								<versionRange>[0.1.10,)</versionRange>
 			      								<goals><goal>generate</goal></goals>
 			      							</pluginExecutionFilter>
-			      							<action><ignore /></action>
+			      							<action><ignore/></action>
 			      						</pluginExecution>
 			      						<pluginExecution>
 			      							<pluginExecutionFilter>
@@ -265,7 +264,7 @@
 			      								<versionRange>[3.3,)</versionRange>
 			      								<goals><goal>descriptor</goal></goals>
 			      							</pluginExecutionFilter>
-			      							<action><ignore /></action>
+			      							<action><ignore/></action>
 			      						</pluginExecution>
 			      						<pluginExecution>
 		                					<pluginExecutionFilter>
@@ -274,7 +273,7 @@
 		                  						<versionRange>[1.0.0,)</versionRange>
 		                  						<goals><goal>enforce</goal></goals>
 		                					</pluginExecutionFilter>
-		                					<action><ignore /></action>
+		                					<action><ignore/></action>
 		              					</pluginExecution>
 									</pluginExecutions>
 								</lifecycleMappingMetadata>
