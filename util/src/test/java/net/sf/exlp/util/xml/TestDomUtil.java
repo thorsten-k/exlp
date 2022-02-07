@@ -33,12 +33,12 @@ public class TestDomUtil extends AbstractExlpTst
         doc = builder.newDocument();
 
         Element element = doc.createElement("root");
-        element.setPrefix("exlp");
-       element.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:exlp", "http");
+//        element.setPrefix("exlp");
+        element.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:exlp", "http://exlp");
       
         
         Element child = doc.createElement("child");
-        child.setPrefix("exlp");
+//        child.setPrefix("exlp");
 //        child.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:exlp", "http");
         element.appendChild(child);
         
