@@ -48,7 +48,7 @@
 	<scm>
 		<url>https://github.com/thorsten-k/exlp.git</url>
 		<connection>scm:git:git://github.com/thorsten-k/exlp.git</connection>
-		<developerConnection>scm:git:git@github.com/thorsten-k/exlp.git</developerConnection>
+		<developerConnection>scm:git:ssh:git@github.com/thorsten-k/exlp.git</developerConnection>
 	</scm>
 	
 	<developers>
