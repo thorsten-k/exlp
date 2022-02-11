@@ -49,8 +49,8 @@
 		<url>https://github.com/thorsten-k/exlp.git</url>
 		<connection>scm:git:ssh://git@github.com/thorsten-k/exlp.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/thorsten-k/exlp.git</developerConnection>
-	  <tag>HEAD</tag>
-  </scm>
+		<tag>HEAD</tag>
+	</scm>
 	
 	<developers>
 		<developer>
@@ -231,8 +231,6 @@
 							</execution>
 						</executions>
 					</plugin>
-					
-				
 				</plugins>
 			</build>
 		</profile>
