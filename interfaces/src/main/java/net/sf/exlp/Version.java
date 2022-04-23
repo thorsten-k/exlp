@@ -26,6 +26,6 @@ public class Version
 	public static final String slf4jVersion = "1.7.36";
 	
 	public static final String jdomVersion = "2.0.2";
-	public static final String jdom2Version = "2.0.6";
+	public static final String jdom2Version = "2.0.6.1";
 	public static final String jaxbVersion = "2.2.2";
 }
