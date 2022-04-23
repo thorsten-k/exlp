@@ -23,7 +23,7 @@ public class Version
 	public static final String commonsJxPath = "1.3";
 	
 	public static final String log4jVersion = "1.2.17";
-	public static final String slf4jVersion = "1.7.30";
+	public static final String slf4jVersion = "1.7.36";
 	
 	public static final String jdomVersion = "2.0.2";
 	public static final String jdom2Version = "2.0.6";
