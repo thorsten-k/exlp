@@ -11,7 +11,7 @@
 	<url>https://github.com/thorsten-k/exlp</url>
 	
 	<modules>
-		<module>addon</module>
+<!--  		<module>addon</module>  -->
 		<module>bom</module>
 		<module>client</module>
 		<module>core</module>
