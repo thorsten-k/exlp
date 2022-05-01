@@ -75,12 +75,12 @@ public class ApacheParser extends AbstractLogParser implements LogParser
 		
 		try
 		{
-			int year = new Integer(m.group(4));
+			int year = Integer.valueOf(m.group(4));
 			int month = DateUtil.getMonth(m.group(3));
-			int day = new Integer(m.group(2));
-			int hour = new Integer(m.group(5));
-			int min = new Integer(m.group(6));
-			int sec = new Integer(m.group(7));
+			int day = Integer.valueOf(m.group(2));
+			int hour = Integer.valueOf(m.group(5));
+			int min = Integer.valueOf(m.group(6));
+			int sec = Integer.valueOf(m.group(7));
 						
 			ExlpApache apache = new ExlpApache();
 			apache.setSize(1);
@@ -100,6 +100,6 @@ public class ApacheParser extends AbstractLogParser implements LogParser
 	private int getSize(String s)
 	{
 		if(s.equals("-")){return 0;}
-		return new Integer(s);
+		return Integer.valueOf(s);
 	}
 }

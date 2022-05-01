@@ -1,6 +1,5 @@
 package net.sf.exlp.util.xml;
 
-import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -34,7 +33,7 @@ public class TestDomUtil extends AbstractExlpTst
 
         Element element = doc.createElement("root");
 //        element.setPrefix("exlp");
-        element.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:exlp", "http://exlp");
+//        element.setAttributeNS(XMLConstants.XMLNS_ATTRIBUTE_NS_URI, "xmlns:exlp", "http://exlp");
       
         
         Element child = doc.createElement("child");

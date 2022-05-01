@@ -43,7 +43,7 @@ public class LogListenerTail extends AbstractLogListener implements LogListener
 		long previousPointer=0;
 		try
 		{
-			raf.seek(new Long(position));
+			raf.seek(Long.valueOf(position));
 			while(true)
 			{
 				lp.parseLine(raf.readLine());

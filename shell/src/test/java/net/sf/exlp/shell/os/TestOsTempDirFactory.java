@@ -4,15 +4,14 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Random;
 
-import net.sf.exlp.shell.os.OsTempDirFactory;
-import net.sf.exlp.test.AbstractExlpShellTest;
-
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.test.AbstractExlpShellTest;
 
 public class TestOsTempDirFactory extends AbstractExlpShellTest
 {
