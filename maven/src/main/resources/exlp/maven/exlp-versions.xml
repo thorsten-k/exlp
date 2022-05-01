@@ -9,6 +9,12 @@
 				<ignoreVersion>2.0-gt2-pre1</ignoreVersion>
 			</ignoreVersions>
 		</rule>
+		<rule groupId="commons-codec" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion>1.15.0.redhat-00001</ignoreVersion>
+				
+			</ignoreVersions>
+		</rule>
 	    <rule groupId="commons-collections" comparisonMethod="maven">
 			<ignoreVersions>
 				<ignoreVersion>20040616</ignoreVersion>
@@ -21,11 +27,33 @@
 		<rule groupId="commons-configuration" comparisonMethod="maven">
 			<ignoreVersions>
 				<ignoreVersion>1.10.0.redhat-1</ignoreVersion>
+				<ignoreVersion>1.10.0.redhat-00002</ignoreVersion>
 			</ignoreVersions>
 		</rule>
 		<rule groupId="commons-io" comparisonMethod="maven">
 			<ignoreVersions>
 				<ignoreVersion>2.6.0.redhat-00001</ignoreVersion>
+				<ignoreVersion>2.11.0.redhat-00001</ignoreVersion>
+				
+			</ignoreVersions>
+		</rule>
+		<rule groupId="commons-validator" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion>1.7.0.redhat-00001</ignoreVersion>
+				
+			</ignoreVersions>
+		</rule>
+		<rule groupId="org.apache.commons" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion>3.12.0.redhat-00001</ignoreVersion>
+				
+			</ignoreVersions>
+		</rule>
+		<rule groupId="org.apache.httpcomponents" comparisonMethod="maven">
+			<ignoreVersions>
+				<ignoreVersion>4.5.13.redhat-00001</ignoreVersion>
+				<ignoreVersion>4.5.13.redhat-00002</ignoreVersion>
+				
 			</ignoreVersions>
 		</rule>
 		
@@ -138,6 +166,9 @@
 				<ignoreVersion>1.2.17.redhat-1</ignoreVersion>
 				<ignoreVersion>1.2.17.redhat-2</ignoreVersion>
 				<ignoreVersion>1.2.17.redhat-3</ignoreVersion>
+				<ignoreVersion>1.2.17.redhat-00007</ignoreVersion>
+				<ignoreVersion>1.2.17.redhat-00008</ignoreVersion>
+				
 			</ignoreVersions>
 		</rule>		
 		<rule groupId="org.slf4j" comparisonMethod="maven">

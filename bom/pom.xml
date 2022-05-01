@@ -73,7 +73,7 @@
 			<dependency>
 				<groupId>commons-codec</groupId>
 				<artifactId>commons-codec</artifactId>
-				<version>1.13</version> <!-- Version.java -->
+				<version>1.15</version> <!-- Version.java, Updated by tk from 1.13 on 2022-05-01-->
 			</dependency>
 			
 
