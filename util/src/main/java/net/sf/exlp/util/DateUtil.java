@@ -5,10 +5,14 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.YearMonth;
 import java.time.ZoneId;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.TimeZone;
 
 import javax.xml.datatype.DatatypeConfigurationException;
@@ -278,5 +282,22 @@ public class DateUtil
 	public static LocalDateTime toLocalDateTime(Date date)
 	{
 		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+	}
+	
+	public static List<YearMonth> toMonthCoverage(LocalDate ldStart, LocalDate ldEnd)
+	{
+		YearMonth ymStart = YearMonth.from(ldStart);
+		YearMonth ymEnd = YearMonth.from(ldEnd);
+		
+		List<YearMonth> list = new ArrayList<>();
+		
+		long months = ChronoUnit.MONTHS.between(ymStart,ymEnd)+1;
+		logger.info(ymStart +" "+ymEnd+" months:"+months);
+		for(int i=0;i<months;i++)
+		{
+			list.add(ymStart.plusMonths(i));
+		}
+		
+		return list;
 	}
 }
