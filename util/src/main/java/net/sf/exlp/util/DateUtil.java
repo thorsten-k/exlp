@@ -135,6 +135,17 @@ public class DateUtil
         }
         return xmlGc;
     }
+    public static XMLGregorianCalendar toXmlGc(LocalDate ld)
+    {
+    	XMLGregorianCalendar xmlGc = null;
+    	try {
+			xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(ld.toString());
+		} catch (DatatypeConfigurationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	return xmlGc;
+    }
 	
 	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d){return getXmlGc4D(d,false);}
 	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d, boolean withMilli)
