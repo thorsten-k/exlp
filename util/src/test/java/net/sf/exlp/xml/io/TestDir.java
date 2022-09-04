@@ -64,7 +64,7 @@ public class TestDir extends AbstractIoXmlTest
     	xml.setCode("code");
     	xml.setName("test.txt");
     	xml.setAllowCreate(true);
-    	xml.setLastModifed(DateUtil.getXmlGc4D(d));
+    	xml.setLastModifed(DateUtil.toXmlGc(d));
     	
     	if(withFiles){xml.getFile().addAll(TestXmlFile.createFiles());}
     	if(withDirs){xml.getDir().addAll(TestDir.createDirs(true,false));}

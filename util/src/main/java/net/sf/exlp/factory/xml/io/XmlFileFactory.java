@@ -25,7 +25,7 @@ public class XmlFileFactory
 		net.sf.exlp.xml.io.File file = new net.sf.exlp.xml.io.File();
 		if(q.isSetName()){file.setName(f.getName());}
 		if(q.isSetSize()){file.setSize(f.length());}
-		if(q.isSetLastModifed()){file.setLastModifed(DateUtil.getXmlGc4D(new Date(f.lastModified())));}
+		if(q.isSetLastModifed()){file.setLastModifed(DateUtil.toXmlGc(new Date(f.lastModified())));}
 		return file;
 	}
 	

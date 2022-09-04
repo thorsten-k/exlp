@@ -19,7 +19,7 @@ public class XmlDirFactory
 	{
 		Dir xml = new Dir();
 		if(q.isSetName()){xml.setName(f.getName());}
-		if(q.isSetLastModifed()){xml.setLastModifed(DateUtil.getXmlGc4D(new Date(f.lastModified())));}
+		if(q.isSetLastModifed()){xml.setLastModifed(DateUtil.toXmlGc(new Date(f.lastModified())));}
 		return xml;
 	}
 }

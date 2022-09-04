@@ -80,10 +80,11 @@
    			<scope>compile</scope>
    		</dependency>
    		
+   		 <!--2022-09-04 tk Removed
    		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
-		</dependency>
+		</dependency>  -->
    		
    		<!-- XML -->
    		<dependency>

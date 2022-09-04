@@ -52,7 +52,7 @@ public class TestXmlFile extends AbstractIoXmlTest
     	xml.setMime("myMime");
     	xml.setSymbol("mySymbol");
     	xml.setCategory("myCategory");
-    	xml.setLastModifed(DateUtil.getXmlGc4D(d));
+    	xml.setLastModifed(DateUtil.toXmlGc(d));
 
     	if(withChilds)
     	{

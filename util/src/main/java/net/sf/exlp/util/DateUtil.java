@@ -7,20 +7,18 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.TimeZone;
 
 import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 
-import org.joda.time.DateTime;
-import org.joda.time.MutableDateTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -118,39 +116,40 @@ public class DateUtil
 		return sb.toString();
 	}
 	
-	public static XMLGregorianCalendar toXmlGc(Date d) {return toXmlGc(d,DateUtil.ignoreTimeZone);}
-    public static XMLGregorianCalendar toXmlGc(Date d, boolean ignoreTimeZone)
+	public static XMLGregorianCalendar toXmlGc(Date d)
     {
-        XMLGregorianCalendar xmlGc=null;
-        try
-        {
-            GregorianCalendar gc = new DateTime(d).toGregorianCalendar();
-            if(ignoreTimeZone){gc.setTimeZone(TimeZone.getTimeZone("GMT"));}
-            xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gc);
-        }
-        catch (DatatypeConfigurationException e)
-        {
-            logger.warn(e.getMessage()+", but using fallback");
-            xmlGc = getXmlGc4D(d);
-        }
-        return xmlGc;
+		LocalDateTime ldt = DateUtil.toLocalDateTime(d);
+		ZonedDateTime zdt = ZonedDateTime.of(ldt,ZoneId.systemDefault());
+		return DateUtil.toXmlGc(zdt);
     }
     public static XMLGregorianCalendar toXmlGc(LocalDate ld)
     {
     	XMLGregorianCalendar xmlGc = null;
-    	try {
-			xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(ld.toString());
-		} catch (DatatypeConfigurationException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    	try{xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(ld.toString());}
+    	catch (DatatypeConfigurationException e) {e.printStackTrace();}
+    	return xmlGc;
+    }
+    public static XMLGregorianCalendar toXmlGc(LocalDateTime ldt)
+    {
+    	XMLGregorianCalendar xmlGc = null;
+    	try{xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(ldt.toString());}
+    	catch (DatatypeConfigurationException e) {e.printStackTrace();}
+    	return xmlGc;
+    }
+    public static XMLGregorianCalendar toXmlGc(ZonedDateTime zdt)
+    {
+    	XMLGregorianCalendar xmlGc = null;
+    	try
+    	{
+    		GregorianCalendar gregorianCalendar = GregorianCalendar.from(zdt); 
+    		xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(gregorianCalendar);
+    	}
+    	catch (DatatypeConfigurationException e) {e.printStackTrace();}
     	return xmlGc;
     }
 	
-	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d){return getXmlGc4D(d,false);}
-	public synchronized static XMLGregorianCalendar getXmlGc4D(Date d, boolean withMilli)
+	private synchronized static XMLGregorianCalendar getXmlGc4D1(Date d)
 	{
-		// http://stackoverflow.com/questions/835889/java-util-date-to-xmlgregoriancalendar
 		XMLGregorianCalendar xmlGC = null;
 		try
 		{
@@ -163,15 +162,9 @@ public class DateUtil
 			xmlGC.setHour(gc.get(GregorianCalendar.HOUR_OF_DAY));
 			xmlGC.setMinute(gc.get(GregorianCalendar.MINUTE));
 			xmlGC.setSecond(gc.get(GregorianCalendar.SECOND));
-			if(withMilli){xmlGC.setMillisecond(gc.get(GregorianCalendar.MILLISECOND));}
 		}
 		catch (DatatypeConfigurationException e) {logger.error("XML", e);}
 		return xmlGC;
-	}
-	
-	public synchronized static Date getDate4XmlGc(XMLGregorianCalendar xmlGC)
-	{
-		return xmlGC.toGregorianCalendar().getTime();
 	}
 	
 	public synchronized static Date getDateFromInt(int year, int month, int day)
@@ -212,7 +205,7 @@ public class DateUtil
 		return gc.getTime();
 	}
 	
-	public synchronized static int getQuarter(XMLGregorianCalendar xmlGC){return getQuarter(DateUtil.getDate4XmlGc(xmlGC));}
+	public synchronized static int getQuarter(XMLGregorianCalendar xmlGC){return getQuarter(DateUtil.toDate(xmlGC));}
 	public synchronized static int getQuarter(Date d)
 	{
 		GregorianCalendar gc = new GregorianCalendar();
@@ -255,34 +248,31 @@ public class DateUtil
 		gc.setTime(new Date());
 		return gc.get(GregorianCalendar.YEAR);
 	}
+
 	
-	public synchronized static Date withoutMillis(Date d)
-	{
-		MutableDateTime mdt = new MutableDateTime(d);
-		mdt.setMillisOfSecond(0);
-		return mdt.toDate();
-	}
-	
-	public static Date midnightBeginOfMonth(Date date)
-	{
-		DateTime dt = new DateTime(date);
-		return dt.withDayOfMonth(1).withTimeAtStartOfDay().toDate();
-	}
-	
-	public static Date midnightEndOfMonth(Date date)
-	{
-		DateTime dt = new DateTime(date);
-		return dt.withDayOfMonth(1).withTimeAtStartOfDay().plusMonths(1).toDate();
-	}
+//	public static Date midnightBeginOfMonth(Date date)
+//	{
+//		DateTime dt = new DateTime(date);
+//		return dt.withDayOfMonth(1).withTimeAtStartOfDay().toDate();
+//	}
+//	
+//	public static Date midnightEndOfMonth(Date date)
+//	{
+//		DateTime dt = new DateTime(date);
+//		return dt.withDayOfMonth(1).withTimeAtStartOfDay().plusMonths(1).toDate();
+//	}
 	
 	public static Date toDate(LocalDate localDate)
 	{
 		return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
 	}
-	
 	public static Date toDate(LocalDateTime localDateTime)
 	{
 		return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
+	}
+	public static Date toDate(XMLGregorianCalendar xmlGC)
+	{
+		return xmlGC.toGregorianCalendar().getTime();
 	}
 	
 	public static LocalDate toLocalDate(Date date)

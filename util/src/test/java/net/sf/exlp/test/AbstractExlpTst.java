@@ -57,7 +57,7 @@ public class AbstractExlpTst
 	protected static XMLGregorianCalendar getXmlDate()
 	{
 		Date d = DateUtil.getDateFromInt(2011, 11, 11, 11, 11, 11);
-		return DateUtil.getXmlGc4D(d);
+		return DateUtil.toXmlGc(d);
 	}
 	
 	protected void save(Object xml, File f)

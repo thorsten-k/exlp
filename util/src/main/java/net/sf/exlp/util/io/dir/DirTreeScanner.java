@@ -29,7 +29,7 @@ public class DirTreeScanner
 		
 		net.sf.exlp.xml.io.File qFile = new net.sf.exlp.xml.io.File();
 		qFile.setName("");
-		qFile.setLastModifed(DateUtil.getXmlGc4D(new Date()));
+		qFile.setLastModifed(DateUtil.toXmlGc(new Date()));
 
 		xfDir = new XmlDirFactory(qDir);
 		xfFile = new XmlFileFactory(qDir.getFile().get(0));
