@@ -270,6 +270,10 @@ public class DateUtil
 	{
 		return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
 	}
+	public static Date toDate(ZonedDateTime zdt)
+	{
+		return Date.from(zdt.toInstant());
+	}
 	public static Date toDate(XMLGregorianCalendar xmlGC)
 	{
 		return xmlGC.toGregorianCalendar().getTime();
