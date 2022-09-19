@@ -80,18 +80,6 @@ public class TestDateUtil extends AbstractExlpTst
 		logger.debug(xmlGcNow.toString());
 		logger.debug(nowBack.toString());
 	}
-	
-	public void testQuarter()
-	{
-		Date d = DateUtil.getDateFromInt(2000, 1, 1);
-		GregorianCalendar gc = new GregorianCalendar();
-		gc.setTime(d);
-		for(int i=1;i<=12;i++)
-		{
-			logger.debug(DateUtil.getQuarter(gc.getTime())+" "+gc.getTime());
-			gc.add(GregorianCalendar.MONTH, 1);
-		}
-	}
     
     public static void main(String[] args) throws ParserConfigurationException
 	{

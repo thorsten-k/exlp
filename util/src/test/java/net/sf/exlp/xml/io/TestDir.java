@@ -1,6 +1,7 @@
 package net.sf.exlp.xml.io;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -57,14 +58,12 @@ public class TestDir extends AbstractIoXmlTest
     
     public static Dir createDir(boolean withFiles,boolean withDirs)
     {
-    	Date d = DateUtil.getDateFromInt(2012, 1, 1,10,10,10);
-    	
     	Dir xml = new Dir();
     	xml.setId(1);
     	xml.setCode("code");
     	xml.setName("test.txt");
     	xml.setAllowCreate(true);
-    	xml.setLastModifed(DateUtil.toXmlGc(d));
+    	xml.setLastModifed(DateUtil.toXmlGc(LocalDateTime.of(2012,1,1,10,10,10)));
     	
     	if(withFiles){xml.getFile().addAll(TestXmlFile.createFiles());}
     	if(withDirs){xml.getDir().addAll(TestDir.createDirs(true,false));}

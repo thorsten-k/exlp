@@ -1,6 +1,7 @@
 package net.sf.exlp.xml.io;
 
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -42,7 +43,7 @@ public class TestXmlFile extends AbstractIoXmlTest
     
     public static File create(boolean withChilds)
     {
-    	Date d = DateUtil.getDateFromInt(2012, 1, 1,10,10,10);
+    	Date d = DateUtil.toDate(LocalDateTime.of(2012,1,1,10,10,10));
     	
     	File xml = new File();
     	xml.setId(1);

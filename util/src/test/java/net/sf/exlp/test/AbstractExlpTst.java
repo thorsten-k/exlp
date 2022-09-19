@@ -1,19 +1,19 @@
 package net.sf.exlp.test;
 
 import java.io.File;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.xml.datatype.XMLGregorianCalendar;
-
-import net.sf.exlp.util.DateUtil;
-import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.util.DateUtil;
+import net.sf.exlp.util.io.LoggerInit;
+import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 
 public class AbstractExlpTst
 {
@@ -56,8 +56,8 @@ public class AbstractExlpTst
 	
 	protected static XMLGregorianCalendar getXmlDate()
 	{
-		Date d = DateUtil.getDateFromInt(2011, 11, 11, 11, 11, 11);
-		return DateUtil.toXmlGc(d);
+		LocalDateTime ldt = LocalDateTime.of(2011,11,11,11,11,11);
+		return DateUtil.toXmlGc(ldt);
 	}
 	
 	protected void save(Object xml, File f)

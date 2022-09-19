@@ -1,6 +1,7 @@
 package net.sf.exlp.addon.apache.parser;
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -81,10 +82,11 @@ public class ApacheParser extends AbstractLogParser implements LogParser
 			int hour = Integer.valueOf(m.group(5));
 			int min = Integer.valueOf(m.group(6));
 			int sec = Integer.valueOf(m.group(7));
-						
+			LocalDateTime ldt = LocalDateTime.of(year,month,day,hour,min,sec);
+			
 			ExlpApache apache = new ExlpApache();
 			apache.setSize(1);
-			apache.setRecord(DateUtil.getDateFromInt(year,month,day,hour,min,sec));
+			apache.setRecord(DateUtil.toDate(ldt));
 			apache.setReq(m.group(9));
 			apache.setUrl(m.group(10));
 			apache.setCode(m.group(11));

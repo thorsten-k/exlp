@@ -1,8 +1,11 @@
 package net.sf.exlp.addon.exim.parser;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.addon.common.data.ejb.ExlpHost;
 import net.sf.exlp.core.parser.AbstractLogParser;
@@ -10,9 +13,6 @@ import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.interfaces.util.PatternLibrary;
 import net.sf.exlp.util.DateUtil;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class EximParser extends AbstractLogParser implements LogParser  
 {
@@ -73,11 +73,11 @@ public class EximParser extends AbstractLogParser implements LogParser
 			Matcher m=pattern.get(i).matcher(line);
 			if(m.matches())
 			{
-				Date record = DateUtil.getDateFromString(m.group(1), m.group(2), m.group(3), m.group(4), m.group(5), m.group(6));;
+				LocalDateTime record = DateUtil.ldtOf(m.group(1), m.group(2), m.group(3), m.group(4), m.group(5), m.group(6));;
 				ExlpHost host;
 				switch(i)
 				{
-					case 0: transmissionParser.setRecord(record);
+					case 0: transmissionParser.setRecord(DateUtil.toDate(record));
 							transmissionParser.setEximId(getEximId(7, m));
 							transmissionParser.parseLine(m.group(10));
 							break;
@@ -85,14 +85,14 @@ public class EximParser extends AbstractLogParser implements LogParser
 							host.setName(m.group(7));
 							host.setIp(m.group(8));
 							hostConnectionParser.setHost(host);
-							hostConnectionParser.setRecord(record);
+							hostConnectionParser.setRecord(DateUtil.toDate(record));
 							hostConnectionParser.parseLine(m.group(9));
 							break;
 					case 2:	host = new ExlpHost();
 							host.setDns(m.group(7));
 							host.setIp(m.group(8));
 							hostConnectionParser.setHost(host);
-							hostConnectionParser.setRecord(record);
+							hostConnectionParser.setRecord(DateUtil.toDate(record));
 							hostConnectionParser.parseLine(m.group(9));
 							break;
 					case 3:	host = new ExlpHost();
@@ -100,7 +100,7 @@ public class EximParser extends AbstractLogParser implements LogParser
 							host.setName(m.group(8));
 							host.setIp(m.group(9));
 							hostConnectionParser.setHost(host);
-							hostConnectionParser.setRecord(record);
+							hostConnectionParser.setRecord(DateUtil.toDate(record));
 							hostConnectionParser.parseLine(m.group(10));
 							break;
 					case 4:	host = new ExlpHost();
@@ -108,20 +108,20 @@ public class EximParser extends AbstractLogParser implements LogParser
 							host.setName(m.group(8));
 							host.setIp(m.group(9));
 							hostConnectionParser.setHost(host);
-							hostConnectionParser.setRecord(record);
+							hostConnectionParser.setRecord(DateUtil.toDate(record));
 							hostConnectionParser.parseLine(m.group(10));
 							break;
 					case 5:	host = new ExlpHost();
 							host.setName(m.group(7));
 							host.setIp(m.group(8));
 							hostConnectionParser.setHost(host);
-							hostConnectionParser.setRecord(record);
+							hostConnectionParser.setRecord(DateUtil.toDate(record));
 							hostConnectionParser.parseLine(m.group(9));
 							break;
 					case 6:	host = new ExlpHost();
 							host.setIp(m.group(7));
 							hostConnectionParser.setHost(host);
-							hostConnectionParser.setRecord(record);
+							hostConnectionParser.setRecord(DateUtil.toDate(record));
 							hostConnectionParser.parseLine(m.group(8));
 							break;
 					default: unknownHandling++;break;

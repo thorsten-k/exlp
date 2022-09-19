@@ -4,16 +4,17 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.RandomAccessFile;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
 import net.sf.exlp.interfaces.util.PatternLibrary;
 import net.sf.exlp.util.DateUtil;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class EximRafDateSeeker
 {
@@ -77,9 +78,9 @@ public class EximRafDateSeeker
 		Matcher m=p.matcher(raf.readLine());
 		if(m.matches())
 		{
-			Date lineTime = DateUtil.getDateFromString(m.group(1), m.group(2), m.group(3), m.group(4), m.group(5), m.group(6));
+			LocalDateTime lineTime = DateUtil.ldtOf(m.group(1), m.group(2), m.group(3), m.group(4), m.group(5), m.group(6));
 //			logger.debug(pos+" "+lineTime);
-			if(lineTime.before(lastEximDbRecord)){return true;}
+			if(DateUtil.toDate(lineTime).before(lastEximDbRecord)){return true;}
 		}
 		return false;
 	}
