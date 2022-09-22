@@ -103,6 +103,11 @@ public class DateUtil
 	
 	public static LocalDate toLocalDate(Date date)
 	{
+		if(date instanceof java.sql.Date)
+		{
+			java.sql.Date sql = (java.sql.Date)date;
+			return sql.toLocalDate();
+		}
 		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
 	}
 	public static LocalDate toLocalDate(XMLGregorianCalendar xmlGC)
