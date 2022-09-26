@@ -1,7 +1,5 @@
 package de.kisner.exlp.ccp;
 
-import static spark.Spark.*;
-
 import java.awt.AWTException;
 import java.awt.CheckboxMenuItem;
 import java.awt.Image;
@@ -24,19 +22,13 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import org.apache.commons.io.IOUtils;
-import org.zeromq.SocketType;
-import org.zeromq.ZContext;
-import org.zeromq.ZMQ;
 
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 
 public class ExlpConfigPointerTray
 {
-	
-	
     public static void main(String[] args) throws InterruptedException
-    {
-    	
+    {   	
 //         get("/hello", (req, res) -> "Hello World");
         
     	

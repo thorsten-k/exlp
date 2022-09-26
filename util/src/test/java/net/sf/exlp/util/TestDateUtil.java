@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.ParserConfigurationException;
@@ -41,8 +40,6 @@ public class TestDateUtil extends AbstractExlpTst
     	XMLGregorianCalendar x3 = DateUtil.toXmlGc(ZonedDateTime.now());
     	XMLGregorianCalendar x4 = DateUtil.toXmlGc(ZonedDateTime.of(LocalDateTime.now(),ZoneId.of("UTC")));
     	XMLGregorianCalendar x5 = DateUtil.toXmlGc(ZonedDateTime.of(LocalDateTime.now(),ZoneId.of("Etc/GMT")));
-    	
-    	
     	
     	logger.info("x0 d "+x0);
     	logger.info("x1 ld "+x1);
@@ -86,7 +83,7 @@ public class TestDateUtil extends AbstractExlpTst
 		ExlpTstBootstrap.init();
 		
 		TestDateUtil test = new TestDateUtil();
-////		test.xmlGc();
+		test.xmlGc();
 //		test.xmlGc1();
 
 	}
