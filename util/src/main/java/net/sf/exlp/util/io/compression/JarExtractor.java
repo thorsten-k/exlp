@@ -18,7 +18,7 @@ public class JarExtractor
 		
 	}
 	
-	public static synchronized void extract(String jarName, String from, String to)
+	public static void extract(String jarName, String from, String to)
 	{
 		try
 		{
@@ -32,6 +32,7 @@ public class JarExtractor
 			}
 			fos.close();
 			is.close();
+			jar.close();
 		}
 		catch (IOException e) {logger.error("",e);}
 	}

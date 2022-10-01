@@ -260,6 +260,7 @@ public class ObjectIO
 					bis.close();
 				}
 			}
+			zipFile.close();
 		}
 		catch (ZipException e) {e.printStackTrace();}
 		catch (IOException e) {e.printStackTrace();}	
