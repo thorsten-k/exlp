@@ -64,7 +64,8 @@
    			<artifactId>httpclient</artifactId>
    			<type>jar</type>
    			<scope>compile</scope>
-   			<version>4.1.2</version>
+   			
+   			<!-- <version>4.1.2</version> 2022-10-01 tk version removed -->
    			<exclusions>
         		<exclusion>
         			<artifactId>commons-logging</artifactId>

@@ -2,6 +2,8 @@ package net.sf.exlp.util.io;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -112,6 +114,11 @@ public class JsonUtil
 	{
 		return jom().readValue(f, c);
 	}
+	
+//	public static <T extends Object> List<T> readList(Class[]<T> c, File f) throws JsonGenerationException, JsonMappingException, IOException
+//	{
+//		return Arrays.asList(jom().readValue(f, MyClass[].class))
+//	}
 	
 	private static synchronized String getCaller()
 	{

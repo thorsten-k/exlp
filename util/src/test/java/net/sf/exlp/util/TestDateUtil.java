@@ -6,6 +6,8 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
+import javax.xml.datatype.DatatypeConfigurationException;
+import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.ParserConfigurationException;
 
@@ -21,7 +23,7 @@ public class TestDateUtil extends AbstractExlpTst
 	final static Logger logger = LoggerFactory.getLogger(TestDateUtil.class);
    
     @Test
-    public void xmlGc()
+    public void xmlGc() throws DatatypeConfigurationException
     {
     	Date d = new Date();
     	
@@ -30,6 +32,10 @@ public class TestDateUtil extends AbstractExlpTst
     	
     	logger.info("x1 to "+x1);
     	logger.info("x2 get "+x2);
+    	
+    	String s = "2022-08-05T20:00";
+    	XMLGregorianCalendar x3 = DatatypeFactory.newInstance().newXMLGregorianCalendar(s);
+    	logger.info("x3 get "+x3);
     }
     
     public void xmlGc1()
@@ -78,7 +84,7 @@ public class TestDateUtil extends AbstractExlpTst
 		logger.debug(nowBack.toString());
 	}
     
-    public static void main(String[] args) throws ParserConfigurationException
+    public static void main(String[] args) throws ParserConfigurationException, DatatypeConfigurationException
 	{
 		ExlpTstBootstrap.init();
 		

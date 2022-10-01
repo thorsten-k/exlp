@@ -6,6 +6,7 @@ import java.time.LocalDateTime;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Date;
@@ -68,7 +69,7 @@ public class DateUtil
     public static XMLGregorianCalendar toXmlGc(LocalDateTime ldt)
     {
     	XMLGregorianCalendar xmlGc = null;
-    	try{xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(ldt.toString());}
+    	try{xmlGc = DatatypeFactory.newInstance().newXMLGregorianCalendar(ldt.format(DateTimeFormatter.ISO_DATE_TIME) );}
     	catch (DatatypeConfigurationException e) {e.printStackTrace();}
     	return xmlGc;
     }

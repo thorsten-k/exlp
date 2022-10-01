@@ -1,25 +1,23 @@
 package de.kisner.exlp.test.listener;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import de.kisner.exlp.test.ExlpCoreBootstrap;
 import net.sf.exlp.core.handler.EhDebug;
 import net.sf.exlp.core.listener.LogListenerHttp;
 import net.sf.exlp.core.parser.DummyParser;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogListener;
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.util.io.LoggerInit;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-public class TstListenerHttp
+public class CliListenerHttp
 {
-	final static Logger logger = LoggerFactory.getLogger(TstListenerHttp.class);
+	final static Logger logger = LoggerFactory.getLogger(CliListenerHttp.class);
 	
 	public static void main(String args[])
 	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("src/main/resources/config");
-			loggerInit.init();
+		ExlpCoreBootstrap.init();
 			
 		LogEventHandler leh = new EhDebug();
 		LogParser lp = new DummyParser(leh);

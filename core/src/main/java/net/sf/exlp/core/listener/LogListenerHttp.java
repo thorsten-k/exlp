@@ -4,28 +4,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.exlp.interfaces.LogListener;
-import net.sf.exlp.interfaces.LogParser;
-
 import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
 import org.apache.http.client.ResponseHandler;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.interfaces.LogListener;
+import net.sf.exlp.interfaces.LogParser;
 
 public class LogListenerHttp extends AbstractLogListener implements LogListener
 {
 	final static Logger logger = LoggerFactory.getLogger(LogListenerHttp.class);
 
-	private HttpClient httpclient;
+	private CloseableHttpClient httpclient;
 	
 	public LogListenerHttp(LogParser lp)
 	{
 		super(lp);
-		httpclient = new DefaultHttpClient();
+		httpclient = HttpClientBuilder.create().build();
 	}
 	
 	@Override
@@ -72,6 +72,11 @@ public class LogListenerHttp extends AbstractLogListener implements LogListener
 	@Override
 	public void close()
 	{
-		httpclient.getConnectionManager().shutdown();    
+		try {
+			httpclient.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
