@@ -19,6 +19,8 @@ public class LoggerInit
 	
 	private static String fSep = System.getProperty("file.separator");
 	public static boolean log4jInited=false;
+	public static boolean debugSystemOut = false;
+	
 	private ArrayList<String> alErrors;
 	private ArrayList<String> altPaths;
 	private String l4jName;
@@ -93,16 +95,19 @@ public class LoggerInit
 		altPaths.add(path);
 	}
 	
-	public void urlLoad(ClassLoader cl,String l4jName)
+	public void urlLoad(ClassLoader cl, String l4jName)
 	{
 		URL url = ClassLoader.getSystemResource(l4jName);
 		if(url!=null)
 		{
 			DOMConfigurator.configure(url);
-			logger.info("log4j configured with SystemResource: "+url.getFile());
+			String msg = "log4j configured with SystemResource: "+url.getFile();
+			logger.info(msg);
+			if(debugSystemOut) {System.out.println(msg);}
 			log4jInited=true;
+			
 		}
-		else {alErrors.add("Not found ClassLoader.getSystemResource("+l4jName+")");}
+		else{alErrors.add("Not found ClassLoader.getSystemResource("+l4jName+")");}
 	}
 	
 	public void fileLoad(ClassLoader cl,String l4jName)
@@ -112,20 +117,24 @@ public class LoggerInit
 		if(f.exists())
 		{
 			DOMConfigurator.configure(f.getAbsolutePath());
-			logger.info("log4j configured with File: "+f.getAbsolutePath());
+			String msg = "l4j configured with File: "+f.getAbsolutePath();
+			logger.info(msg);
+			if(debugSystemOut) {System.out.println(msg);}
 			log4jInited=true;
 		}
 		else {alErrors.add("Not found f.getAbsolutePath("+l4jName+")");}
 	}
 	
-	private void resourceLoad(ClassLoader cl,String l4jName)
+	private void resourceLoad(ClassLoader c, String l4jName)
 	{
 		URL url = this.getClass().getClassLoader().getResource(l4jName);
 		String confInfo = "rsrc "+l4jName;
 		if(url!=null)
-		{	//Konfiguration fürs Package
+		{
 			DOMConfigurator.configure(url);
-			logger.debug("log4j configured with "+confInfo);
+			String msg = "log4j configured with "+confInfo;
+			logger.info(msg);
+			if(debugSystemOut) {System.out.println(msg);}
 			log4jInited=true;
 		}
 		else {alErrors.add("Not found "+confInfo);}

@@ -11,7 +11,6 @@
 	<url>https://github.com/thorsten-k/exlp</url>
 	
 	<modules>
-<!--  		<module>addon</module>  -->
 		<module>bom</module>
 		<module>client</module>
 		<module>core</module>
@@ -62,8 +61,43 @@
 	
 	<issueManagement>
 	</issueManagement>
+		
+	<repositories>
+		<repository>
+			<id>jboss.public</id>
+			<name>JBoss Repository</name>
+			<url>https://repository.jboss.org/nexus/content/groups/public-jboss</url>
+		</repository>
+		<repository>
+			<id>aht.3rd</id>
+			<name>AHT public</name>
+			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty</url>
+			<releases><enabled>true</enabled></releases>
+			<snapshots><enabled>false</enabled></snapshots>
+		</repository>
+	</repositories>
 	
-	<build>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>codehaus.org</id>
+			<name>CodeHaus Plugin Snapshots</name>
+			<url>http://snapshots.repository.codehaus.org</url>
+			<releases><enabled>false</enabled></releases>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
+		</snapshotRepository>
+		<repository>
+			<id>ossrh</id>
+			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+		</repository>
+	</distributionManagement>
+	
+		<build>
 		<pluginManagement>
 			<plugins>
                 <plugin>
@@ -106,10 +140,10 @@
 	         <plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<inherited>true</inherited>
-				<version>2.3.2</version>
+				<version>3.8.0</version> <!-- 2.3.2 -->
 				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
+					<source>8</source>
+					<target>8</target>
 					<encoding>UTF-8</encoding>
 				</configuration>
 			</plugin>
@@ -149,41 +183,6 @@
       		</plugin>
 		</plugins>
 	</build>
-		
-	<repositories>
-		<repository>
-			<id>jboss.public</id>
-			<name>JBoss Repository</name>
-			<url>https://repository.jboss.org/nexus/content/groups/public-jboss</url>
-		</repository>
-		<repository>
-			<id>aht.3rd</id>
-			<name>AHT public</name>
-			<url>https://www.aht-group.com/nexus/content/repositories/thirdparty</url>
-			<releases><enabled>true</enabled></releases>
-			<snapshots><enabled>false</enabled></snapshots>
-		</repository>
-	</repositories>
-	
-	<pluginRepositories>
-		<pluginRepository>
-			<id>codehaus.org</id>
-			<name>CodeHaus Plugin Snapshots</name>
-			<url>http://snapshots.repository.codehaus.org</url>
-			<releases><enabled>false</enabled></releases>
-		</pluginRepository>
-	</pluginRepositories>
-	
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
 	
 	<profiles>
     	<profile>

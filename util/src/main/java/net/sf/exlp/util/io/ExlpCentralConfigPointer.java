@@ -28,10 +28,20 @@ public class ExlpCentralConfigPointer
 		java.io.File fMvn = new java.io.File(fHome,".m2");
 		if(!fHome.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
 		if(!fMvn.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fMvn.getAbsolutePath());}
-		return getFile(fMvn, "exlp.xml", codeApp, codeConf);
+		return ExlpCentralConfigPointer.getFile(fMvn, "exlp.xml", codeApp, codeConf);
 	}
 	
-	public static java.io.File getFile(java.io.File fDir, String fileName, String codeApp, String codeConf) throws ExlpConfigurationException
+	public static java.io.File resolveJsonFile(String codeApp, String codeConf) throws ExlpConfigurationException
+	{
+		java.io.File fHome = new java.io.File(System.getProperty("user.home"));
+		java.io.File fMvn = new java.io.File(fHome,".m2");
+		if(!fHome.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
+		if(!fMvn.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fMvn.getAbsolutePath());}
+//		return ExlpCentralConfigPointer.getFile(fMvn, "exlp.xml", codeApp, codeConf);
+		throw new ExlpConfigurationException("Migration for native");
+	}
+	
+	private static java.io.File getFile(java.io.File fDir, String fileName, String codeApp, String codeConf) throws ExlpConfigurationException
 	{
 		Dir dir;
 		Dir dirApp;
@@ -46,7 +56,11 @@ public class ExlpCentralConfigPointer
 			throw new ExlpConfigurationException(errorMsg);
 		}
 		
-		try {dir = (Dir)JaxbUtil.loadJAXB(f.getAbsolutePath(), Dir.class);}
+		try
+		{
+			dir = JaxbUtil.loadJAXB(f.getAbsolutePath(), Dir.class);
+//			System.out.println(Dir.class.getSimpleName()+" with "+dir.getDir().size()+" elements");
+		}
 		catch (FileNotFoundException e) {throw new ExlpConfigurationException(e.getMessage());}
 		
 		try{dirApp = IoXpath.getDir(dir, codeApp);}
