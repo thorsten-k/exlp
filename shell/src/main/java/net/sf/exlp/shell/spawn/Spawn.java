@@ -23,7 +23,7 @@ public class Spawn extends Thread
 	private Process p;
 	private Writer writer;
 	private LogParser lp;
-	private File workingDir;
+	private File workingDir; public void setWorkingDir(File workingDir) {this.workingDir = workingDir;}
 	private OsEnvironmentParameter envParameter;
 	
 	private int exitValue;
@@ -128,6 +128,5 @@ public class Spawn extends Thread
 	public void setCharSet(String charSet) {this.charSet = charSet;}
 	public void setWriter(Writer writer) {this.writer = writer;}
 	public void setLp(LogParser lp) {this.lp = lp;}
-	public void setWorkingDir(File workingDir) {this.workingDir = workingDir;}
 	public void setEnvParameter(OsEnvironmentParameter envParameter) {this.envParameter = envParameter;}
 }

@@ -219,6 +219,8 @@
    				<artifactId>ant</artifactId>
    				<version>1.9.6</version>
    			</dependency>
+   			
+   			<!-- 2022-12-23 tk trying to remove -->
 			<dependency>
 				<groupId>joda-time</groupId>
 				<artifactId>joda-time</artifactId>
@@ -231,6 +233,20 @@
    				<artifactId>junit</artifactId>
    				<version>4.12</version>
    			</dependency>
+   			
+   			<!-- Jupiter itself will be updated later -->
+   			<dependency>
+		 		<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-api</artifactId>
+				<version>5.3.2</version>
+				<scope>test</scope>
+			</dependency>
+			<dependency>
+				<groupId>org.junit.jupiter</groupId>
+				<artifactId>junit-jupiter-engine</artifactId>
+				<version>5.3.2</version>
+				<scope>test</scope>
+			</dependency>
         </dependencies>
     </dependencyManagement>
     

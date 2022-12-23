@@ -33,7 +33,7 @@
 	</properties>
 	
 	<prerequisites>
-		<maven>3.1</maven>
+		<maven>3.2.5</maven>
 	</prerequisites>
 
 	<licenses>
@@ -97,7 +97,7 @@
 		</repository>
 	</distributionManagement>
 	
-		<build>
+	<build>
 		<pluginManagement>
 			<plugins>
                 <plugin>
@@ -140,7 +140,7 @@
 	         <plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<inherited>true</inherited>
-				<version>3.8.0</version> <!-- 2.3.2 -->
+				<version>3.8.0</version> <!-- Update from 2.3.2 -->
 				<configuration>
 					<source>8</source>
 					<target>8</target>
