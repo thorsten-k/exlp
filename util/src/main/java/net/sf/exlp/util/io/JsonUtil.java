@@ -19,7 +19,7 @@ import com.fasterxml.jackson.databind.ObjectWriter;
 public class JsonUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
-	private static ObjectMapper jom() {return HelperDelegate.jom;}
+	public static ObjectMapper jom() {return HelperDelegate.jom;}
 	
 	private static boolean logCaller = true;
 	
