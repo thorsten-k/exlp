@@ -92,7 +92,13 @@ public class JsonUtil
 		return jom().writeValueAsBytes(json);
 	}
 	
+	@Deprecated
 	public static <T extends Object> T read(String s, Class<T> c) throws JsonParseException, JsonMappingException, IOException 
+	{
+		return jom().readValue(s, c);
+	}
+	
+	public static <T extends Object> T read(Class<T> c, String s) throws JsonParseException, JsonMappingException, IOException 
 	{
 		return jom().readValue(s, c);
 	}
