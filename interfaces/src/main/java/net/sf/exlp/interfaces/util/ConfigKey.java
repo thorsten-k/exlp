@@ -7,6 +7,7 @@ public interface ConfigKey
 	String netRestUser = "net.rest.user";
 	String netRestUserImport = "net.rest.import.user";
 	
+	String netRestDelay = "net.rest.delay";
 	String netRestUrlLocal = "net.rest.local.url";
 	String netRestUrlTesting = "net.rest.testing.url";
 	String netRestUrlImport = "net.rest.import.url";
