@@ -52,7 +52,7 @@ public class TestJdomUtil extends AbstractExlpTst
 		Assert.assertTrue(jaxbTxt.startsWith("<?xml version"));
 		
 		Document doc = JDomUtil.load(resourceName);
-		JDomUtil.debug(doc);
+//		JDomUtil.debug(doc);
 	}
 	
 	public static void main(String[] args)

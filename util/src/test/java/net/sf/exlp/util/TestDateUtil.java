@@ -23,6 +23,11 @@ public class TestDateUtil extends AbstractExlpTst
 	final static Logger logger = LoggerFactory.getLogger(TestDateUtil.class);
    
     @Test
+    public void dummy() throws DatatypeConfigurationException
+    {
+    	
+    }
+    
     public void xmlGc() throws DatatypeConfigurationException
     {
     	Date d = new Date();
