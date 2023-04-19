@@ -4,7 +4,7 @@
 	
 	<groupId>net.sf.exlp</groupId>
 	<artifactId>exlp</artifactId>
-	<version>0.1.16-SNAPSHOT</version>
+	<version>0.1.16</version>
     <packaging>pom</packaging>
     <name>ExLP (Extensible Logfile Processor)</name>
 	<description>ExLP (Extensible Logfile Processor)</description>
@@ -48,7 +48,7 @@
 		<url>https://github.com/thorsten-k/exlp.git</url>
 		<connection>scm:git:ssh://git@github.com/thorsten-k/exlp.git</connection>
 		<developerConnection>scm:git:ssh://git@github.com/thorsten-k/exlp.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>exlp-0.1.16</tag>
 	</scm>
 	
 	<developers>
