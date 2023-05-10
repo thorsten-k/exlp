@@ -141,4 +141,10 @@ public class DateUtil
 		
 		return list;
 	}
+	
+	public static boolean notInPeriod(LocalDate start, LocalDate test, LocalDate end) {return !inPeriod(start,test,end);}
+	public static boolean inPeriod(LocalDate start, LocalDate test, LocalDate end)
+	{
+		return !test.isBefore(start) && !test.isAfter(end);
+	}
 }
