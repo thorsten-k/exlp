@@ -47,6 +47,7 @@ public class MultiResourceLoader
 		for(String s : path){paths.add(s);}
 	}
 	
+	public boolean notAvailable(String resourceName) {return !this.isAvailable(resourceName);}
 	public boolean isAvailable(String resourceName)
 	{
 		try
