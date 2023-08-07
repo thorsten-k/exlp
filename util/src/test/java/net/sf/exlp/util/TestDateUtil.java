@@ -1,8 +1,10 @@
 package net.sf.exlp.util;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -89,13 +91,22 @@ public class TestDateUtil extends AbstractExlpTst
 		logger.debug(nowBack.toString());
 	}
     
+    public void instant()
+    {
+    	Instant instant = Instant.now();
+    	LocalDateTime ldt = LocalDateTime.ofInstant(instant, ZoneOffset.UTC);
+    	
+    	logger.info(instant.toString());
+    	logger.info(ldt.toString());
+    }
+    
     public static void main(String[] args) throws ParserConfigurationException, DatatypeConfigurationException
 	{
 		ExlpTstBootstrap.init();
 		
 		TestDateUtil test = new TestDateUtil();
-		test.xmlGc();
+//		test.xmlGc();
 //		test.xmlGc1();
-
+		test.instant();
 	}
 }
