@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 
 import net.sf.exlp.exception.ExlpConfigurationException;
 import net.sf.exlp.test.AbstractExlpTst;
+import net.sf.exlp.test.ExlpTstBootstrap;
 
 import org.junit.Ignore;
 import org.junit.Test;
@@ -25,11 +26,9 @@ public class TestExlpCentralConfigPointer extends AbstractExlpTst
 	
 	public static void main(String[] args) throws ExlpConfigurationException
     {
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("src/test/resources/config");
-			loggerInit.init();		
+		ExlpTstBootstrap.init();
 			
-		File f = ExlpCentralConfigPointer.getFile("test");
-		logger.debug(f.getAbsolutePath());
+//		File f = ExlpCentralConfigPointer.getFile("test");
+//		logger.debug(f.getAbsolutePath());
     }
 }

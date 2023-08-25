@@ -1,4 +1,4 @@
-package net.sf.exlp.util.xml;
+package net.sf.exlp.util.xml.jk;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -13,25 +13,20 @@ import java.io.Writer;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
-import javax.xml.bind.JAXBContext;
-import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
-import javax.xml.bind.Unmarshaller;
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.xml.sax.SAXException;
 
+import jakarta.xml.bind.JAXBContext;
+import jakarta.xml.bind.JAXBException;
+import jakarta.xml.bind.Marshaller;
+import jakarta.xml.bind.Unmarshaller;
 import net.sf.exlp.interfaces.util.xml.JaxbInterface;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
-import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.exlp.util.xml.JDomUtil;
 import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 public class JaxbUtil implements JaxbInterface
@@ -110,6 +105,7 @@ public class JaxbUtil implements JaxbInterface
 			JAXBContext jc = JAXBContext.newInstance(c);
 			Unmarshaller u = jc.createUnmarshaller();
 			result = (T)u.unmarshal(is);
+			
 		}
 		catch (JAXBException e) {logger.error("",e);}
 		return result;
@@ -238,7 +234,11 @@ public class JaxbUtil implements JaxbInterface
 			Marshaller m = context.createMarshaller();
 //			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
-			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
+			
+			if(nsPrefixMapper!=null)
+			{
+				m.setProperty("org.glassfish.jaxb.namespacePrefixMapper",nsPrefixMapper);
+			}
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
 			m.marshal( jaxb, os);
 		}
@@ -313,32 +313,7 @@ public class JaxbUtil implements JaxbInterface
 		return s;
 	}
 	
-	public static synchronized org.w3c.dom.Document toW3CDocument(Object jaxb){return toW3CDocument(jaxb,null);}
-	public static synchronized org.w3c.dom.Document toW3CDocument(Object jaxb, Object nsPrefixMapper)
-	{
-		org.w3c.dom.Document doc = null;
-		try
-		{
-			ByteArrayOutputStream out = new ByteArrayOutputStream();
-			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
-			Marshaller m = context.createMarshaller(); 
-			if(nsPrefixMapper!=null)
-			{
-				m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);
-			}
-			m.marshal(jaxb, out);
-			
-			InputStream is = new ByteArrayInputStream(out.toByteArray());
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			DocumentBuilder builder = factory.newDocumentBuilder();
-			doc = builder.parse(is);
-		}
-		catch (JAXBException e) {logger.error("",e);}
-		catch (ParserConfigurationException e) {logger.error("",e);}
-		catch (SAXException e) {logger.error("",e);}
-		catch (IOException e) {logger.error("",e);}
-		return doc;
-	}
+	
 
 	public static <T extends Object> T copy(Object jaxb, Class<T> c)
 	{

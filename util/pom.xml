@@ -106,6 +106,14 @@
 	      	<artifactId>jdom2</artifactId>
 		</dependency>
 		
+		<!-- https://mvnrepository.com/artifact/jakarta.xml.bind/jakarta.xml.bind-api -->
+		<dependency>
+    		<groupId>jakarta.xml.bind</groupId>
+    		<artifactId>jakarta.xml.bind-api</artifactId>
+    		<version>4.0.0</version>
+    		<scope>provided</scope>
+		</dependency>
+
 		<dependency>
    	   		<groupId>com.sun.xml.bind</groupId>
    	   		<artifactId>jaxb-impl</artifactId>

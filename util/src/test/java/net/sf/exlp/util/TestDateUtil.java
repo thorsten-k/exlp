@@ -98,6 +98,18 @@ public class TestDateUtil extends AbstractExlpTst
     	
     	logger.info(instant.toString());
     	logger.info(ldt.toString());
+    	
+    	LocalDateTime ldtNow = LocalDateTime.now();
+    	String s = ldtNow.toString();
+    	logger.info("String: "+s);
+    	
+    	LocalDateTime ldt1 = LocalDateTime.parse("2023-08-07T15:24:18.366");
+    	LocalDateTime ldt2 = LocalDateTime.parse("2023-08-07T15:24:18.0");
+    	LocalDateTime ldt3 = LocalDateTime.parse("2023-08-07T15:24:18");
+    	
+    	logger.info(ldt1.toString());
+    	logger.info(ldt2.toString());
+    	logger.info(ldt3.toString());
     }
     
     public static void main(String[] args) throws ParserConfigurationException, DatatypeConfigurationException

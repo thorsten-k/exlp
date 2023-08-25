@@ -31,7 +31,7 @@
     	<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
-			<version>2.3.3</version>
+			<version>4.0.0</version>
 			<scope>provided</scope>
 		</dependency> 
     
@@ -40,7 +40,7 @@
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
     		<type>jar</type>
-    		<scope>test</scope>
+    		<scope>provided</scope>
 		</dependency>
 		<dependency>
   			<groupId>com.sun.xml.bind</groupId>
@@ -72,11 +72,51 @@
             	</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- JSON -->
+   	   	<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.15.2</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+		   <groupId>com.fasterxml.jackson.datatype</groupId>
+		   <artifactId>jackson-datatype-jsr310</artifactId>
+		   <version>2.15.2</version>
+		   <scope>provided</scope>
+		</dependency>
 
 	</dependencies>
     
 	<build>
 		<plugins>
+			<plugin>
+        		<groupId>org.apache.cxf</groupId>
+    			<artifactId>cxf-xjc-plugin</artifactId>
+    			<version>3.3.2</version>
+    			<executions>
+        			<execution>
+            			<id>xjc</id>
+            			<phase>generate-sources</phase>
+            			<goals><goal>xsdtojava</goal></goals>
+  	         			<configuration>
+							<sourceRoot>${basedir}/src/main/java</sourceRoot>
+                			<xsdOptions>
+                    			<xsdOption>
+									<extensionArgs>
+										<arg>-encoding</arg>
+    									<arg>UTF-8</arg>
+    									<arg>-no-header</arg>
+    								</extensionArgs>
+                        			<xsd>${basedir}/src/main/xsd/util/io.xsd</xsd>
+                        			<packagename>org.exlp.model.xml.io</packagename>
+                    			</xsdOption>
+                			</xsdOptions>
+            			</configuration>
+        			</execution>
+    			</executions>                    
+			</plugin>
 			<plugin>
 		        <groupId>org.codehaus.mojo</groupId>
 		        <artifactId>versions-maven-plugin</artifactId>
@@ -99,4 +139,125 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<profiles>
+		<profile>
+			<id>jakarta</id>
+			<build>
+				<plugins>
+					
+					<plugin>
+					    <artifactId>maven-resources-plugin</artifactId>
+					    <executions>
+					        <execution>
+					            <id>copy-resource-one</id>
+					            <phase>generate-sources</phase>
+					            <goals>
+					                <goal>copy-resources</goal>
+					            </goals>
+					            <configuration>
+					                <outputDirectory>${basedir}/src/main/java/net/sf/exlp/xml/jk</outputDirectory>
+					                <overwrite>true</overwrite>
+					                <resources>
+					                    <resource>
+					                        <directory>src/main/java/net/sf/exlp/xml</directory>
+					                        <includes>
+												<include>io/*</include>
+					                           
+					                        </includes>
+					                    </resource>
+					                    
+					                </resources>
+					            </configuration>
+					        </execution>
+					    </executions>
+					</plugin>
+					<plugin>
+						<groupId>com.google.code.maven-replacer-plugin</groupId>
+						<artifactId>replacer</artifactId>
+						<version>1.5.3</version>
+						<executions>
+							<execution>
+								<phase>process-sources</phase>
+								<goals><goal>replace</goal></goals> 
+							</execution>
+						</executions>
+						<configuration>
+							<includes>
+								<file>**/*</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/ObjectFactory.java</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/package-info.java</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/Dir.java</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/File.java</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/Acl.java</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/Data.java</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/Hash.java</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/Hash.java</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/Files.java</file>
+								<file>${basedir}/src/main/java/net/sf/exlp/xml/jk/io/Policy.java</file>
+							</includes>
+							
+							<replacements>
+								<replacement><token>package net.sf.exlp.xml.</token><value>package net.sf.exlp.xml.jk.</value></replacement>
+								<replacement><token>import javax.xml.bind.annotation.</token><value>import jakarta.xml.bind.annotation.</value></replacement>
+							</replacements>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>j2</id>
+			<build>
+				<plugins>
+					<plugin>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<executions>                                                                            
+							<execution>
+		            			<id>compile-jdk8</id>                                                           
+		            			<goals><goal>compile</goal></goals>
+					            <configuration>
+					                <source>8</source>                                                          
+					                <target>8</target>                                                          
+					                <fork>true</fork>                                                           
+					                <outputDirectory>${project.build.outputDirectory}_jdk8</outputDirectory>    
+					            </configuration>
+		        			</execution>
+		        			<execution>
+								<id>compile-jdk11</id>
+								<goals><goal>compile</goal></goals>
+					            <configuration>
+					                <source>8</source>
+					                <target>11</target>
+					                <fork>true</fork>
+					                <outputDirectory>${project.build.outputDirectory}_jdk11</outputDirectory>
+					            </configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+                		<groupId>org.apache.cxf</groupId>
+            			<artifactId>cxf-xjc-plugin</artifactId>
+            			<version>4.0.0</version>
+            			<executions>
+                			<execution>
+                    			<id>xjc</id>
+                    			<phase>generate-sources</phase>
+                    			<goals><goal>xsdtojava</goal></goals>
+          	         			<configuration>
+									<sourceRoot>${my.build.directory}/jaxb11</sourceRoot>
+                        			<xsdOptions>
+                            			<xsdOption>
+                                			<xsd>${basedir}/src/main/xsd/util/io.xsd</xsd>
+                                			<packagename>org.exlp.model.xml.io</packagename>
+                            			</xsdOption>
+                        			</xsdOptions>
+                    			</configuration>
+                			</execution>
+            			</executions>                    
+           			</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
 </project>

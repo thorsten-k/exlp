@@ -33,6 +33,18 @@ public class IoXpath
 		return list.get(0);
 	}
 	
+//	public static net.sf.exlp.xml.jk.io.Dir getDir(net.sf.exlp.xml.jk.io.Dir dir, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
+//	{
+//		List<net.sf.exlp.xml.jk.io.Dir> list = new ArrayList<>();
+//		for(net.sf.exlp.xml.jk.io.Dir d : dir.getDir())
+//		{
+//			if(d.getCode().equals(code)) {list.add(d);}
+//		}
+//		if(list.size()==0){throw new ExlpXpathNotFoundException("No "+Dir.class.getSimpleName()+" for code="+code);}
+//		else if(list.size()>1){throw new ExlpXpathNotUniqueException("Multiple "+Dir.class.getSimpleName()+"s for code="+code);}
+//		return list.get(0);
+//	}
+	
 	@SuppressWarnings("unchecked")
 	public static synchronized File getFile(Dir dir, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{
@@ -43,6 +55,16 @@ public class IoXpath
 		else if(list.size()>1){throw new ExlpXpathNotUniqueException("Multiple "+File.class.getSimpleName()+"s for code="+code);}
 		return list.get(0);
 	}
+//	@SuppressWarnings("unchecked")
+//	public static synchronized net.sf.exlp.xml.jk.io.File getFile(net.sf.exlp.xml.jk.io.Dir dir, String code) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
+//	{
+//		JXPathContext context = JXPathContext.newContext(dir);
+//		List<net.sf.exlp.xml.jk.io.File> list = (List<net.sf.exlp.xml.jk.io.File>)context.selectNodes("file[@code='"+code+"']");
+//		
+//		if(list.size()==0){throw new ExlpXpathNotFoundException("No "+File.class.getSimpleName()+" for code="+code);}
+//		else if(list.size()>1){throw new ExlpXpathNotUniqueException("Multiple "+File.class.getSimpleName()+"s for code="+code);}
+//		return list.get(0);
+//	}
 	
 	public static synchronized File getFileByName(Dir dir, String name) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
 	{

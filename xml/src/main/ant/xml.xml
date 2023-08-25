@@ -5,31 +5,34 @@
 	<property name="xjb.dir" location="${basedir}/src/main/ant" />
 	<property name="xsd.dir" location="${basedir}/src/main/xsd" />
 	
-	<property name="jaxb.version" value="2.2.11"/>
+	<property name="jx.jaxb.version" value="2.2.11"/>
 		
-	<property name="jaxb-xjc.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/jaxb-xjc/${jaxb.version}/jaxb-xjc-${jaxb.version}.jar"/>
-	<property name="jaxb-core.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/jaxb-core/${jaxb.version}/jaxb-core-${jaxb.version}.jar"/>
-	<property name="jaxb-runtime.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/jaxb-runtime/${jaxb.version}/jaxb-runtime-${jaxb.version}.jar"/>
-	<property name="codemodel.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/codemodel/${jaxb.version}/codemodel-${jaxb.version}.jar"/>
-	<property name="txw2.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/txw2/${jaxb.version}/txw2-${jaxb.version}.jar"/>
-	<property name="istack-tools.lib" value="${user.home}/.m2/repository/com/sun/istack/istack-commons-tools/2.21/istack-commons-tools-2.21.jar"/>
-	<property name="istack-runtime.lib" value="${user.home}/.m2/repository/com/sun/istack/istack-commons-runtime/2.21/istack-commons-runtime-2.21.jar"/>
-	<property name="xsom.lib" value="${user.home}/.m2/repository/com/sun/xsom/xsom/20140925/xsom-20140925.jar"/>
-	<property name="rngom.lib" value="${user.home}/.m2/repository/com/sun/xml/bind/external/rngom/${jaxb.version}/rngom-${jaxb.version}.jar"/>
-	<property name="relaxng.lib" value="${user.home}/.m2/repository/relaxngDatatype/relaxngDatatype/20020414/relaxngDatatype-20020414.jar"/>	
+	<property name="jx.jaxb-xjc.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/jaxb-xjc/${jx.jaxb.version}/jaxb-xjc-${jx.jaxb.version}.jar"/>
+	<property name="jx.jaxb-core.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/jaxb-core/${jx.jaxb.version}/jaxb-core-${jx.jaxb.version}.jar"/>
+	<property name="jx.jaxb-runtime.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/jaxb-runtime/${jx.jaxb.version}/jaxb-runtime-${jx.jaxb.version}.jar"/>
+	<property name="jx.codemodel.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/codemodel/${jx.jaxb.version}/codemodel-${jx.jaxb.version}.jar"/>
+	<property name="jx.txw2.lib" value="${user.home}/.m2/repository/org/glassfish/jaxb/txw2/${jx.jaxb.version}/txw2-${jx.jaxb.version}.jar"/>
+	<property name="jx.istack-tools.lib" value="${user.home}/.m2/repository/com/sun/istack/istack-commons-tools/2.21/istack-commons-tools-2.21.jar"/>
+	<property name="jx.istack-runtime.lib" value="${user.home}/.m2/repository/com/sun/istack/istack-commons-runtime/2.21/istack-commons-runtime-2.21.jar"/>
+	<property name="jx.xsom.lib" value="${user.home}/.m2/repository/com/sun/xsom/xsom/20140925/xsom-20140925.jar"/>
+	<property name="jx.rngom.lib" value="${user.home}/.m2/repository/com/sun/xml/bind/external/rngom/${jx.jaxb.version}/rngom-${jx.jaxb.version}.jar"/>
+	<property name="jx.relaxng.lib" value="${user.home}/.m2/repository/relaxngDatatype/relaxngDatatype/20020414/relaxngDatatype-20020414.jar"/>	
+	<property name="jx.jaxb-jakarta.lib" value="${user.home}/.m2/repository/jakarta/xml/bind/jakarta.xml.bind-api/2.3.2/jakarta.xml.bind-api-2.3.2.jar"/>
+	<property name="activation.lib" value="${user.home}/.m2/repository/javax/activation/activation/1.1.1/activation-1.1.1.jar"/>
 	
-	<target name="1 - JAXB Class generation" description="Compiles all JAXB classes">
+	<target name="1 - javax: JAXB Class generation" description="Compiles all JAXB classes">
 		<echo level="info">Using Maven-Repository: ${user.home}/.m2</echo>
-		<echo level="info">      jaxb-xjc.lib=${jaxb-xjc.lib}</echo>
-		<echo level="info">     jaxb-core.lib=${jaxb-core.lib}</echo>
-		<echo level="info">     jaxb-runtime.lib=${jaxb-runtime.lib}</echo>
-		<echo level="info">     codemodel.lib=${codemodel.lib}</echo>
-		<echo level="info">     txw2.lib=${txw2.lib}</echo>
-		<echo level="info">  istack-tools.lib=${istack-tools.lib}</echo>
-		<echo level="info">istack-runtime.lib=${istack-runtime.lib}</echo>
-		<echo level="info">          xsom.lib=${xsom.lib}</echo>
-		<echo level="info">         rngom.lib=${rngom.lib}</echo>
-		<echo level="info">       relaxng.lib=${relaxng.lib}</echo>
+		<echo level="info">        jaxb-xjc = ${jx.jaxb-xjc.lib}</echo>
+		<echo level="info">        jaxb-core = ${jx.jaxb-core.lib}</echo>
+		<echo level="info">     jaxb-runtime = ${jx.jaxb-runtime.lib}</echo>
+		<echo level="info">        codemodel = ${jx.codemodel.lib}</echo>
+		<echo level="info">             txw2 = ${jx.txw2.lib}</echo>
+		<echo level="info">     istack-tools = ${jx.istack-tools.lib}</echo>
+		<echo level="info">   istack-runtime = ${jx.istack-runtime.lib}</echo>
+		<echo level="info">             xsom = ${jx.xsom.lib}</echo>
+		<echo level="info">            rngom = ${jx.rngom.lib}</echo>
+		<echo level="info">          relaxng = ${jx.relaxng.lib}</echo>
+		<echo level="info">       jaxb-jakarta = ${jx.relaxng.lib}</echo>
 		<echo level="info">Creating JAXB</echo>
 		<echo level="info">basedir = ${basedir}</echo>
 		<echo level="info">src.dir = ${src.dir}</echo>
@@ -42,16 +45,19 @@
 	    	<arg value="-no-header"/>
 			<sysproperty key="user.language=" value="en"/>
 			<classpath>
-				<pathelement location="${jaxb-xjc.lib}"/>
-				<pathelement location="${jaxb-core.lib}"/>
-				<pathelement location="${jaxb-runtime.lib}"/>
-				<pathelement location="${codemodel.lib}"/>
-				<pathelement location="${txw2.lib}"/>
-				<pathelement location="${istack-tools.lib}"/>
-				<pathelement location="${istack-runtime.lib}"/>
-				<pathelement location="${xsom.lib}"/>
-				<pathelement location="${rngom.lib}"/>
-				<pathelement location="${relaxng.lib}"/>
+				<pathelement location="${jx.jaxb-xjc.lib}"/>
+				<pathelement location="${jx.jaxb-core.lib}"/>
+				<pathelement location="${jx.jaxb-runtime.lib}"/>
+				<pathelement location="${jx.codemodel.lib}"/>
+				<pathelement location="${jx.txw2.lib}"/>
+				<pathelement location="${jx.istack-tools.lib}"/>
+				<pathelement location="${jx.istack-runtime.lib}"/>
+				<pathelement location="${jx.xsom.lib}"/>
+				<pathelement location="${jx.rngom.lib}"/>
+				<pathelement location="${jx.relaxng.lib}"/>
+				
+				<pathelement location="${jx.jaxb-jakarta.lib}"/>
+				<pathelement location="${activation.lib}"/>
 			</classpath>
 		</java>
 	</target>	
