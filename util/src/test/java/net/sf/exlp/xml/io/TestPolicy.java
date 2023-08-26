@@ -32,7 +32,7 @@ public class TestPolicy extends AbstractIoXmlTest
     public static Policy create(boolean withChilds)
     {
     	Policy xml = new Policy();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setCode("myCode");
     	xml.setGroup("Administrators");
     	xml.setUser("Administrator");

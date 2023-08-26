@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.io.FileNotFoundException;
 import java.util.Date;
+import java.util.Objects;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -38,7 +39,7 @@ public class DirTreeScanner
 	public DirTreeScanner(Dir qDir)
 	{
 		xfDir = new XmlDirFactory(qDir);
-		if(qDir.isSetFile()){xfFile = new XmlFileFactory(qDir.getFile().get(0));}
+		if(Objects.nonNull(qDir.getFile())) {xfFile = new XmlFileFactory(qDir.getFile().get(0));}
 	}
 	
 	private void checkRoot(File f) throws FileNotFoundException

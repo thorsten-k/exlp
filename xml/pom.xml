@@ -107,7 +107,7 @@
 									<bindingFile>${basedir}/src/main/ant/cxf.xjb</bindingFile>
 									<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
                         			<xsd>${basedir}/src/main/xsd/util/io.xsd</xsd>
-                        			<packagename>org.exlp.model.xml.io</packagename>
+                        			<packagename>${exlp.jaxb.package.base}.io</packagename>
                     			</xsdOption>
                 			</xsdOptions>
             			</configuration>

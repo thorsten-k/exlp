@@ -58,7 +58,7 @@ public class TestDir extends AbstractIoXmlTest
     public static Dir createDir(boolean withFiles,boolean withDirs)
     {
     	Dir xml = new Dir();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setCode("code");
     	xml.setName("test.txt");
     	xml.setAllowCreate(true);

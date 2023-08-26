@@ -2,6 +2,7 @@ package net.sf.exlp.factory.xml.io;
 
 import java.io.File;
 import java.util.Date;
+import java.util.Objects;
 
 import net.sf.exlp.util.DateUtil;
 import net.sf.exlp.xml.io.Dir;
@@ -18,8 +19,8 @@ public class XmlDirFactory
 	public Dir build(File f)
 	{
 		Dir xml = new Dir();
-		if(q.isSetName()){xml.setName(f.getName());}
-		if(q.isSetLastModifed()){xml.setLastModifed(DateUtil.toXmlGc(new Date(f.lastModified())));}
+		if(Objects.nonNull(q.getName())) {xml.setName(f.getName());}
+		if(Objects.nonNull(q.getLastModifed())) {xml.setLastModifed(DateUtil.toXmlGc(new Date(f.lastModified())));}
 		return xml;
 	}
 }

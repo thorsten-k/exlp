@@ -46,10 +46,10 @@ public class TestXmlFile extends AbstractIoXmlTest
     	Date d = DateUtil.toDate(LocalDateTime.of(2012,1,1,10,10,10));
     	
     	File xml = new File();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setCode("code");
     	xml.setName("test.txt");
-    	xml.setSize(123);
+    	xml.setSize(123l);
     	xml.setMime("myMime");
     	xml.setSymbol("mySymbol");
     	xml.setCategory("myCategory");

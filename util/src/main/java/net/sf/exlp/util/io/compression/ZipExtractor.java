@@ -41,7 +41,7 @@ public class ZipExtractor
             File xmlFile = XmlFileFactory.build(entry.getName()); 
 
             byte[] bytes = IOUtils.toByteArray(zis);
-            xmlFile.setSize(bytes.length);
+            xmlFile.setSize(Integer.valueOf(bytes.length).longValue());
             if(withContent && bytes.length>0){xmlFile.setData(XmlDataFactory.build(bytes));}
             
             xmlDir.getFile().add(xmlFile);

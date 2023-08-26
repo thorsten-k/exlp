@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Date;
+import java.util.Objects;
 import java.util.zip.ZipEntry;
 
 import org.apache.commons.io.IOUtils;
@@ -22,11 +23,11 @@ public class XmlFileFactory
 	
 	public net.sf.exlp.xml.io.File build(java.io.File f)
 	{
-		net.sf.exlp.xml.io.File file = new net.sf.exlp.xml.io.File();
-		if(q.isSetName()){file.setName(f.getName());}
-		if(q.isSetSize()){file.setSize(f.length());}
-		if(q.isSetLastModifed()){file.setLastModifed(DateUtil.toXmlGc(new Date(f.lastModified())));}
-		return file;
+		net.sf.exlp.xml.io.File xml = new net.sf.exlp.xml.io.File();
+		if(Objects.nonNull(q.getName())) {xml.setName(f.getName());}
+		if(Objects.nonNull(q.getSize())) {xml.setSize(f.length());}
+		if(Objects.nonNull(q.getLastModifed())) {xml.setLastModifed(DateUtil.toXmlGc(new Date(f.lastModified())));}
+		return xml;
 	}
 	
 	public static File build()
