@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import net.sf.exlp.util.io.ExlpCentralConfigPointer;
-
 import org.apache.commons.configuration.CompositeConfiguration;
 import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
@@ -17,6 +15,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
+
+import net.sf.exlp.util.io.ExlpCentralConfigPointer;
 
 public class ConfigLoader
 {
@@ -36,9 +36,16 @@ public class ConfigLoader
 		alConfigNames = new ArrayList<String>();
 	}
 	
+	public static void add(File f)
+	{
+		ConfigLoader.add(f.getAbsolutePath());
+	}
+	
 	public synchronized static void add(String configName)
 	{
 		if(alConfigNames==null){alConfigNames = new ArrayList<String>();}
+		
+		logger.info("Using additional config in: "+configName);
 		alConfigNames.add(configName);
 	}
 	

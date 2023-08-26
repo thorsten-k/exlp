@@ -22,62 +22,46 @@ public class ExlpCentralConfigPointer
 	private JaxbInterface jaxb; public ExlpCentralConfigPointer jaxb(JaxbInterface jaxb) {this.jaxb=jaxb; return this;}
 	
 	public static <E extends Enum<E>> ExlpCentralConfigPointer instance(E appCode) {return new ExlpCentralConfigPointer(appCode.toString());}
+	public static ExlpCentralConfigPointer instance(String appCode) {return new ExlpCentralConfigPointer(appCode);}
 	private ExlpCentralConfigPointer(String appCode)
 	{
 		this.appCode = appCode;
 	}
 	
-	public java.io.File toPointerFile() throws ExlpConfigurationException
+	private java.io.File toPointerFile() throws ExlpConfigurationException
 	{
 		java.io.File fHome = new java.io.File(System.getProperty("user.home"));
 		java.io.File fMvn = new java.io.File(fHome,".m2");
 		java.io.File fXml = new java.io.File(fMvn,"exlp.xml");
-		java.io.File fJson = new java.io.File(fMvn,"exlp.json");
 		if(!fHome.exists()) {throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
 		if(!fMvn.exists()) {throw new ExlpConfigurationException("Directory does not exist: "+fMvn.getAbsolutePath());}
-		
-		if(fJson.exists()) {return fJson;}
-		else if(fXml.exists()) {return fXml;}
-		else {throw new ExlpConfigurationException("EXLP CCP does not exist in: "+fMvn.getAbsolutePath());}
+		return fXml;
 	}
 	
+	@Deprecated //Use ExlpCentralConfigPointer.instance(app).jaxb(JaxbUtil);
 	public static java.io.File getFile(String appCode, String codeConf) throws ExlpConfigurationException
 	{
 		ExlpCentralConfigPointer ccp = new ExlpCentralConfigPointer(appCode);
 		ccp.jaxb(JaxbUtil.instance());
 		return ccp.toFile(codeConf);
-//		java.io.File fHome = new java.io.File(System.getProperty("user.home"));
-//		java.io.File fMvn = new java.io.File(fHome,".m2");
-//		if(!fHome.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
-//		if(!fMvn.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fMvn.getAbsolutePath());}
-//		return ExlpCentralConfigPointer.getFile(fMvn, "exlp.xml", codeApp, codeConf);
 	}
-	
-//	private static java.io.File resolveJsonFile(String codeApp, String codeConf) throws ExlpConfigurationException
-//	{
-//		java.io.File fHome = new java.io.File(System.getProperty("user.home"));
-//		java.io.File fMvn = new java.io.File(fHome,".m2");
-//		if(!fHome.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
-//		if(!fMvn.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fMvn.getAbsolutePath());}
-//		return ExlpCentralConfigPointer.getFile(fMvn, "exlp.xml", codeApp, codeConf);
-//		throw new ExlpConfigurationException("Migration for native");
-//	}
 	
 	public java.io.File toFile(String confCode) throws ExlpConfigurationException
 	{
-		java.io.File fHome = new java.io.File(System.getProperty("user.home"));
-		java.io.File fMvn = new java.io.File(fHome,".m2");
-		if(!fHome.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
-		if(!fMvn.exists()){throw new ExlpConfigurationException("Directory does not exist: "+fMvn.getAbsolutePath());}
-		return this.getFile(fMvn, "exlp.xml", confCode);
+		return this.getFile(this.toPointerFile(),confCode);
 	}
 	
-	private java.io.File getFile(java.io.File fDir, String fileName, String codeConf) throws ExlpConfigurationException
+//	private java.io.File getFile(java.io.File fDir, String fileName, String codeConf) throws ExlpConfigurationException
+//	{		
+//		java.io.File f = new java.io.File(fDir,fileName);
+//		return getFile(f,codeConf);
+//	}
+	
+	private java.io.File getFile(java.io.File f, String codeConf) throws ExlpConfigurationException
 	{
 		Dir dir;
 		Dir dirApp;
 		
-		java.io.File f = new java.io.File(fDir,fileName);
 		if(!f.exists())
 		{
 			logger.warn("ExLP Central Config Pointer does not exist ... creating dummy");
@@ -95,7 +79,7 @@ public class ExlpCentralConfigPointer
 		}
 		catch (FileNotFoundException e) {throw new ExlpConfigurationException(e.getMessage());}
 		
-		try{dirApp = IoXpath.getDir(dir, appCode);}
+		try{dirApp = IoXpath.getDir(dir,appCode);}
 		catch (ExlpXpathNotFoundException e)
 		{
 			logger.warn("<dir> does not exist, creating dummy");
