@@ -1,6 +1,6 @@
 package net.sf.exlp.factory.txt.io;
 
-import net.sf.exlp.xml.io.File;
+import org.exlp.model.xml.io.File;
 
 public class TxtFileFactory
 {

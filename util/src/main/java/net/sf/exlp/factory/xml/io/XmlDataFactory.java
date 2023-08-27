@@ -4,8 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
-
-import net.sf.exlp.xml.io.Data;
+import org.exlp.model.xml.io.Data;
 
 public class XmlDataFactory
 {	

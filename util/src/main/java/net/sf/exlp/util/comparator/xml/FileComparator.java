@@ -2,8 +2,7 @@ package net.sf.exlp.util.comparator.xml;
 
 import java.util.Comparator;
 
-import net.sf.exlp.xml.io.File;
-
+import org.exlp.model.xml.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

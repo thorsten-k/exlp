@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import net.sf.exlp.test.ExlpTstBootstrap;
 import net.sf.exlp.util.xml.JaxbUtil;
 
+import org.exlp.model.xml.identity.User;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

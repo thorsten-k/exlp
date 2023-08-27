@@ -2,8 +2,8 @@ package net.sf.exlp.factory.xml.io;
 
 import java.util.List;
 
-import net.sf.exlp.xml.io.File;
-import net.sf.exlp.xml.io.Files;
+import org.exlp.model.xml.io.File;
+import org.exlp.model.xml.io.Files;
 
 public class XmlFilesFactory
 {

@@ -8,9 +8,9 @@ import java.util.Objects;
 import java.util.zip.ZipEntry;
 
 import org.apache.commons.io.IOUtils;
+import org.exlp.model.xml.io.File;
 
 import net.sf.exlp.util.DateUtil;
-import net.sf.exlp.xml.io.File;
 
 public class XmlFileFactory
 {
@@ -21,9 +21,9 @@ public class XmlFileFactory
 		this.q=q;
 	}
 	
-	public net.sf.exlp.xml.io.File build(java.io.File f)
+	public org.exlp.model.xml.io.File build(java.io.File f)
 	{
-		net.sf.exlp.xml.io.File xml = new net.sf.exlp.xml.io.File();
+		org.exlp.model.xml.io.File xml = new org.exlp.model.xml.io.File();
 		if(Objects.nonNull(q.getName())) {xml.setName(f.getName());}
 		if(Objects.nonNull(q.getSize())) {xml.setSize(f.length());}
 		if(Objects.nonNull(q.getLastModifed())) {xml.setLastModifed(DateUtil.toXmlGc(new Date(f.lastModified())));}

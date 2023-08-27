@@ -9,10 +9,10 @@ import java.util.zip.ZipInputStream;
 
 import net.sf.exlp.factory.xml.io.XmlDataFactory;
 import net.sf.exlp.factory.xml.io.XmlFileFactory;
-import net.sf.exlp.xml.io.Dir;
-import net.sf.exlp.xml.io.File;
 
 import org.apache.commons.io.IOUtils;
+import org.exlp.model.xml.io.Dir;
+import org.exlp.model.xml.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

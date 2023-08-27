@@ -1,6 +1,6 @@
 package net.sf.exlp.factory.xml.config;
 
-import net.sf.exlp.xml.config.Parameter;
+import org.exlp.model.xml.config.Parameter;
 
 public class XmlParameterFactory
 {

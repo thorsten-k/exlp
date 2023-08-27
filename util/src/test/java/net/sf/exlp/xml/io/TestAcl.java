@@ -2,6 +2,7 @@ package net.sf.exlp.xml.io;
 
 import java.io.FileNotFoundException;
 
+import org.exlp.model.xml.io.Acl;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

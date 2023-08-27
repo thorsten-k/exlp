@@ -1,7 +1,8 @@
 package net.sf.exlp.util.xml;
 
+import org.exlp.model.xml.io.Dir;
+
 import net.sf.exlp.test.ExlpTstBootstrap;
-import net.sf.exlp.xml.io.Dir;
 import net.sf.exlp.xml.io.TestDir;
 import net.sf.exlp.xml.ns.ExlpNsPrefixMapper;
 

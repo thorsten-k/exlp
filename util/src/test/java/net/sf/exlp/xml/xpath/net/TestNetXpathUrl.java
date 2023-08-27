@@ -7,10 +7,10 @@ import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.test.AbstractExlpTst;
 import net.sf.exlp.util.io.LoggerInit;
-import net.sf.exlp.xml.net.Url;
-import net.sf.exlp.xml.net.Urls;
 import net.sf.exlp.xml.xpath.NetXpath;
 
+import org.exlp.model.xml.net.Url;
+import org.exlp.model.xml.net.Urls;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

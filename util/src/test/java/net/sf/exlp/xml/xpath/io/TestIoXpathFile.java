@@ -3,10 +3,10 @@ package net.sf.exlp.xml.xpath.io;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.test.AbstractExlpTst;
-import net.sf.exlp.xml.io.Dir;
-import net.sf.exlp.xml.io.File;
 import net.sf.exlp.xml.xpath.IoXpath;
 
+import org.exlp.model.xml.io.Dir;
+import org.exlp.model.xml.io.File;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

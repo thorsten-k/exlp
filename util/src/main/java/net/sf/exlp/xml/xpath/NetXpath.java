@@ -4,10 +4,10 @@ import java.util.List;
 
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.xml.net.Url;
-import net.sf.exlp.xml.net.Urls;
 
 import org.apache.commons.jxpath.JXPathContext;
+import org.exlp.model.xml.net.Url;
+import org.exlp.model.xml.net.Urls;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

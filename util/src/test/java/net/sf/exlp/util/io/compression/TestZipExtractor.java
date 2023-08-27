@@ -5,8 +5,8 @@ import java.io.IOException;
 
 import net.sf.exlp.test.AbstractExlpTst;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.io.Dir;
 
+import org.exlp.model.xml.io.Dir;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

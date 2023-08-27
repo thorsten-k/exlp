@@ -6,13 +6,13 @@ import java.io.FileNotFoundException;
 import java.util.Date;
 import java.util.Objects;
 
+import org.exlp.model.xml.io.Dir;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.factory.xml.io.XmlDirFactory;
 import net.sf.exlp.factory.xml.io.XmlFileFactory;
 import net.sf.exlp.util.DateUtil;
-import net.sf.exlp.xml.io.Dir;
 
 public class DirTreeScanner
 {
@@ -28,7 +28,7 @@ public class DirTreeScanner
 		Dir qDir = new Dir();
 		qDir.setName("");
 		
-		net.sf.exlp.xml.io.File qFile = new net.sf.exlp.xml.io.File();
+		org.exlp.model.xml.io.File qFile = new org.exlp.model.xml.io.File();
 		qFile.setName("");
 		qFile.setLastModifed(DateUtil.toXmlGc(new Date()));
 

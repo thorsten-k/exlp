@@ -3,8 +3,8 @@ package net.sf.exlp.factory.txt;
 import java.util.ArrayList;
 import java.util.List;
 
-import net.sf.exlp.xml.config.Parameter;
-import net.sf.exlp.xml.config.Parameters;
+import org.exlp.model.xml.config.Parameter;
+import org.exlp.model.xml.config.Parameters;
 
 public class TxtConfigurationParamterFactory
 {

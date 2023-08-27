@@ -27,7 +27,7 @@
 		<my.build.directory>target</my.build.directory>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    	<exlp.jaxb.package.base>net.sf.exlp.xml</exlp.jaxb.package.base>
+    	<exlp.jaxb.package.base>org.exlp.model.xml</exlp.jaxb.package.base>
     	<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
     	<maven.ignore>file://${basedir}/../maven/src/main/resources/exlp/maven/exlp-versions.xml</maven.ignore>
 	</properties>

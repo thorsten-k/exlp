@@ -1,6 +1,6 @@
 package net.sf.exlp.factory.xml.io;
 
-import net.sf.exlp.xml.io.Hash;
+import org.exlp.model.xml.io.Hash;
 
 public class XmlHashFactory
 {

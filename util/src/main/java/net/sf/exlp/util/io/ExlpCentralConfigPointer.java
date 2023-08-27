@@ -2,6 +2,8 @@ package net.sf.exlp.util.io;
 
 import java.io.FileNotFoundException;
 
+import org.exlp.model.xml.io.Dir;
+import org.exlp.model.xml.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,8 +12,6 @@ import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.interfaces.util.xml.JaxbInterface;
 import net.sf.exlp.util.xml.JaxbUtil;
-import net.sf.exlp.xml.io.Dir;
-import net.sf.exlp.xml.io.File;
 import net.sf.exlp.xml.xpath.IoXpath;
 
 public class ExlpCentralConfigPointer
@@ -73,9 +73,9 @@ public class ExlpCentralConfigPointer
 		
 		try
 		{
-			logger.info("Loading "+f.getAbsolutePath()+" to "+Dir.class.getSimpleName());
+			logger.info("Using "+f.getAbsolutePath());
 			dir = jaxb.load(Dir.class,f.getAbsolutePath());
-			System.out.println(Dir.class.getSimpleName()+" with "+dir.getDir().size()+" elements");
+			logger.trace(Dir.class.getSimpleName()+" with "+dir.getDir().size()+" elements");
 		}
 		catch (FileNotFoundException e) {throw new ExlpConfigurationException(e.getMessage());}
 		

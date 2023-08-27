@@ -5,8 +5,8 @@ import java.io.FileNotFoundException;
 import net.sf.exlp.test.AbstractExlpTst;
 import net.sf.exlp.test.ExlpTstBootstrap;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
-import net.sf.exlp.xml.net.Database;
 
+import org.exlp.model.xml.net.Database;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.junit.Assert;

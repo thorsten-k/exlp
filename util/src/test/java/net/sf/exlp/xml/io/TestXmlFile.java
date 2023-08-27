@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.exlp.model.xml.io.File;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.slf4j.Logger;

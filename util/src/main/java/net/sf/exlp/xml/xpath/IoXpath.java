@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.jxpath.JXPathContext;
+import org.exlp.model.xml.io.Dir;
+import org.exlp.model.xml.io.File;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.xml.io.Dir;
-import net.sf.exlp.xml.io.File;
 
 public class IoXpath
 {
