@@ -6,25 +6,25 @@
     
     <jxb:bindings schemaLocation="../xsd/util/io.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.exlp.xml.io"/>
+            <jxb:package name="org.exlp.xml.io"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
     <jxb:bindings schemaLocation="../xsd/util/net.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.exlp.xml.net"/>
+            <jxb:package name="org.exlp.xml.net"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
 	<jxb:bindings schemaLocation="../xsd/util/identity.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.exlp.xml.identity"/>
+            <jxb:package name="org.exlp.xml.identity"/>
         </jxb:schemaBindings>
     </jxb:bindings>
     
 	<jxb:bindings schemaLocation="../xsd/util/config.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
-            <jxb:package name="net.sf.exlp.xml.config"/>
+            <jxb:package name="org.exlp.xml.config"/>
         </jxb:schemaBindings>
     </jxb:bindings>
    
