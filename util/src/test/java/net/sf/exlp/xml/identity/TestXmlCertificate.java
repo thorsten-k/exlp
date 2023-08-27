@@ -32,7 +32,7 @@ public class TestXmlCertificate extends AbstractIdentityXmlTest
     public static Certificate create(boolean withChilds)
     {
     	Certificate xml = new Certificate();
-    	xml.setId(123);
+    	xml.setId(123l);
     	xml.setSerial(1);
     	xml.setNotAfter(getXmlDate());
     	xml.setNotBefore(getXmlDate());

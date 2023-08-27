@@ -32,7 +32,7 @@ public class TestXmlDatabase extends AbstractNetXmlTest
     public static Database create()
     {
     	Database xml = new Database();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setDatabase("myDb");
     	xml.setPassword("myPwd");
     	xml.setSchema("mySchema");

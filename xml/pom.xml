@@ -92,29 +92,6 @@
 	<build>
 		<plugins>
 			<plugin>
-        		<groupId>org.apache.cxf</groupId>
-    			<artifactId>cxf-xjc-plugin</artifactId>
-    			<version>3.3.2</version>
-    			<executions>
-        			<execution> 
-            			<id>xjc</id>
-            			<phase>generate-sources</phase>
-            			<goals><goal>xsdtojava</goal></goals>
-  	         			<configuration>
-							<sourceRoot>${basedir}/src/main/java</sourceRoot>
-                			<xsdOptions>
-                    			<xsdOption>
-									<bindingFile>${basedir}/src/main/ant/cxf.xjb</bindingFile>
-									<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-                        			<xsd>${basedir}/src/main/xsd/util/io.xsd</xsd>
-                        			<packagename>${exlp.jaxb.package.base}.io</packagename>
-                    			</xsdOption>
-                			</xsdOptions>
-            			</configuration>
-        			</execution>
-    			</executions>                    
-			</plugin>
-			<plugin>
 		        <groupId>org.codehaus.mojo</groupId>
 		        <artifactId>versions-maven-plugin</artifactId>
 		        <configuration>
@@ -139,34 +116,9 @@
 	
 	<profiles>
 		<profile>
-			<id>jakarta</id>
+			<id>jaxb11</id>
 			<build>
 				<plugins>
-					<plugin>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<executions>                                                                            
-							<execution>
-		            			<id>compile-jdk8</id>                                                           
-		            			<goals><goal>compile</goal></goals>
-					            <configuration>
-					                <source>8</source>                                                          
-					                <target>8</target>                                                          
-					                <fork>true</fork>                                                           
-					                <outputDirectory>${project.build.outputDirectory}_jdk8</outputDirectory>    
-					            </configuration>
-		        			</execution>
-		        			<execution>
-								<id>compile-jdk11</id>
-								<goals><goal>compile</goal></goals>
-					            <configuration>
-					                <source>8</source>
-					                <target>11</target>
-					                <fork>true</fork>
-					                <outputDirectory>${project.build.outputDirectory}_jdk11</outputDirectory>
-					            </configuration>
-							</execution>
-						</executions>
-					</plugin>
 					<plugin>
                 		<groupId>org.apache.cxf</groupId>
             			<artifactId>cxf-xjc-plugin</artifactId>
@@ -177,7 +129,7 @@
                     			<phase>generate-sources</phase>
                     			<goals><goal>xsdtojava</goal></goals>
           	         			<configuration>
-									<sourceRoot>${my.build.directory}/jaxb11</sourceRoot>
+									<sourceRoot>${my.build.directory}/sources-11</sourceRoot>
                         			<xsdOptions>
                             			<xsdOption>
                                 			<xsd>${basedir}/src/main/xsd/util/io.xsd</xsd>
@@ -188,6 +140,79 @@
                 			</execution>
             			</executions>                    
            			</plugin>
+					<plugin>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<executions>                                                                            
+							<execution>
+		            			<id>compile-jdk8</id>                                                           
+		            			<goals><goal>compile</goal></goals>
+					            <configuration>
+					                <source>8</source>                                                          
+					                <target>8</target>                                                          
+					                <fork>true</fork>                                                           
+					                <outputDirectory>${my.build.directory}/classes-8</outputDirectory>    
+					            </configuration>
+		        			</execution>
+		        			<execution>
+								<id>compile-jdk11</id>
+								<goals><goal>compile</goal></goals>
+					            <configuration>
+					                <source>8</source>
+					                <target>11</target>
+					                <fork>true</fork>
+					                <outputDirectory>${my.build.directory}/classes-11</outputDirectory>
+					            </configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jaxb8</id>
+			<build>
+				<plugins>
+					<plugin>
+		        		<groupId>org.apache.cxf</groupId>
+		    			<artifactId>cxf-xjc-plugin</artifactId>
+		    			<version>3.3.2</version>
+		    			<executions>
+		        			<execution> 
+		            			<id>xjc</id>
+		            			<phase>generate-sources</phase>
+		            			<goals><goal>xsdtojava</goal></goals>
+		  	         			<configuration>
+									<sourceRoot>${basedir}/src/main/java</sourceRoot>
+		                			<xsdOptions>
+		                    			<xsdOption>
+											<bindingFile>${basedir}/src/main/ant/cxf.xjb</bindingFile>
+											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
+		                        			<xsd>${basedir}/src/main/xsd/util/io.xsd</xsd>
+		                        			<packagename>${exlp.jaxb.package.base}.io</packagename>
+		                    			</xsdOption>
+		                    			<xsdOption>
+											
+											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
+		                        			<xsd>${basedir}/src/main/xsd/util/net.xsd</xsd>
+		                        			<packagename>${exlp.jaxb.package.base}.net</packagename>
+		                    			</xsdOption>
+		                    			<xsdOption>
+											
+											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
+		                        			<xsd>${basedir}/src/main/xsd/util/identity.xsd</xsd>
+		                        			<packagename>${exlp.jaxb.package.base}.identity</packagename>
+		                    			</xsdOption>
+		                    			<xsdOption>
+											
+											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
+		                        			<xsd>${basedir}/src/main/xsd/util/config.xsd</xsd>
+		                        			<packagename>${exlp.jaxb.package.base}.config</packagename>
+		                    			</xsdOption>
+		                			</xsdOptions>
+		            			</configuration>
+		        			</execution>
+		    			</executions>                    
+					</plugin>
 				</plugins>
 			</build>
 		</profile>

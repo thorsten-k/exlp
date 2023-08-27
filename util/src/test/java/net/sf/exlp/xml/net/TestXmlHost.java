@@ -32,7 +32,7 @@ public class TestXmlHost extends AbstractNetXmlTest
     public static Host create()
     {
     	Host xml = new Host();
-    	xml.setId(1);
+    	xml.setId(1l);
     	xml.setName("my.name");
     	xml.setPort(1234);
     	return xml;
