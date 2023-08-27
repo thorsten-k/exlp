@@ -90,7 +90,28 @@
 	</dependencies>
     
 	<build>
+<!--		<sourceDirectory>${my.build.directory}/j11</sourceDirectory> -->
 		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+				<version>3.1.0</version>
+        		<executions>
+          			<execution>
+            			<id>copy-resources</id>
+            			<phase>generate-sources</phase>
+            			<goals><goal>copy-resources</goal></goals>
+            			<configuration>
+	              			<outputDirectory>${my.build.directory}/j11</outputDirectory>
+	              			<resources>          
+	                			<resource>
+	                  				<directory>${basedir}/src/main/java</directory>
+	                			</resource>
+	              			</resources>              
+	            		</configuration>            
+          			</execution>
+        		</executions>
+      		</plugin>
 			<plugin>
 		        <groupId>org.codehaus.mojo</groupId>
 		        <artifactId>versions-maven-plugin</artifactId>
@@ -116,59 +137,6 @@
 	
 	<profiles>
 		<profile>
-			<id>jaxb11</id>
-			<build>
-				<plugins>
-					<plugin>
-                		<groupId>org.apache.cxf</groupId>
-            			<artifactId>cxf-xjc-plugin</artifactId>
-            			<version>4.0.0</version>
-            			<executions>
-                			<execution>
-                    			<id>xjc</id>
-                    			<phase>generate-sources</phase>
-                    			<goals><goal>xsdtojava</goal></goals>
-          	         			<configuration>
-									<sourceRoot>${my.build.directory}/sources-11</sourceRoot>
-                        			<xsdOptions>
-                            			<xsdOption>
-                                			<xsd>${basedir}/src/main/xsd/util/io.xsd</xsd>
-                                			<packagename>org.exlp.model.xml.io</packagename>
-                            			</xsdOption>
-                        			</xsdOptions>
-                    			</configuration>
-                			</execution>
-            			</executions>                    
-           			</plugin>
-					<plugin>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<executions>                                                                            
-							<execution>
-		            			<id>compile-jdk8</id>                                                           
-		            			<goals><goal>compile</goal></goals>
-					            <configuration>
-					                <source>8</source>                                                          
-					                <target>8</target>                                                          
-					                <fork>true</fork>                                                           
-					                <outputDirectory>${my.build.directory}/classes-8</outputDirectory>    
-					            </configuration>
-		        			</execution>
-		        			<execution>
-								<id>compile-jdk11</id>
-								<goals><goal>compile</goal></goals>
-					            <configuration>
-					                <source>8</source>
-					                <target>11</target>
-					                <fork>true</fork>
-					                <outputDirectory>${my.build.directory}/classes-11</outputDirectory>
-					            </configuration>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
 			<id>jaxb8</id>
 			<build>
 				<plugins>
@@ -191,19 +159,19 @@
 		                        			<packagename>${exlp.jaxb.package.base}.io</packagename>
 		                    			</xsdOption>
 		                    			<xsdOption>
-											
+											<bindingFile>${basedir}/src/main/ant/cxf.xjb</bindingFile>
 											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
 		                        			<xsd>${basedir}/src/main/xsd/util/net.xsd</xsd>
 		                        			<packagename>${exlp.jaxb.package.base}.net</packagename>
 		                    			</xsdOption>
 		                    			<xsdOption>
-											
+											<bindingFile>${basedir}/src/main/ant/cxf.xjb</bindingFile>
 											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
 		                        			<xsd>${basedir}/src/main/xsd/util/identity.xsd</xsd>
 		                        			<packagename>${exlp.jaxb.package.base}.identity</packagename>
 		                    			</xsdOption>
 		                    			<xsdOption>
-											
+											<bindingFile>${basedir}/src/main/ant/cxf.xjb</bindingFile>
 											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
 		                        			<xsd>${basedir}/src/main/xsd/util/config.xsd</xsd>
 		                        			<packagename>${exlp.jaxb.package.base}.config</packagename>
@@ -213,6 +181,85 @@
 		        			</execution>
 		    			</executions>                    
 					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>jaxb11</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-resources-plugin</artifactId>
+						<version>3.1.0</version>
+		        		<executions>
+		          			<execution>
+		            			<id>copy-resources</id>
+		            			<phase>generate-sources</phase>
+		            			<goals><goal>copy-resources</goal></goals>
+		            			<configuration>
+			              			<outputDirectory>${my.build.directory}/j11</outputDirectory>
+			              			<resources>          
+			                			<resource>
+			                  				<directory>${basedir}/src/main/java</directory>
+			                  				<excludes>
+          										<exclude>net/sf/exlp/xml/io/**/*</exclude>
+          									</excludes>
+			                			</resource>
+			              			</resources>              
+			            		</configuration>            
+		          			</execution>
+		        		</executions>
+		      		</plugin>
+					<plugin>
+                		<groupId>org.apache.cxf</groupId>
+            			<artifactId>cxf-xjc-plugin</artifactId>
+            			<version>4.0.0</version>
+            			<executions>
+                			<execution>
+                    			<id>xjc</id>
+                    			<phase>generate-sources</phase>
+                    			<goals><goal>xsdtojava</goal></goals>
+          	         			<configuration>
+									<sourceRoot>${my.build.directory}/j11</sourceRoot>
+                        			<xsdOptions>
+                            			<xsdOption>
+                                			<xsd>${basedir}/src/main/xsd/util/io.xsd</xsd>
+                                			<packagename>${exlp.jaxb.package.base}.io</packagename>
+                            			</xsdOption>
+                        			</xsdOptions>
+                    			</configuration>
+                			</execution>
+            			</executions>                    
+           			</plugin>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+           				<artifactId>maven-compiler-plugin</artifactId>
+            			<version>3.8.1</version> 
+						<executions>                                                                            
+		        			<execution>
+								<id>compile-jdk11</id>
+								<goals><goal>compile</goal></goals>
+					            <configuration>
+					                <source>8</source>
+					                <target>11</target>
+					                <fork>true</fork>  
+					            </configuration>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+			            <groupId>org.apache.maven.plugins</groupId>
+			            <artifactId>maven-jar-plugin</artifactId>
+			            <version>3.2.2</version>
+			            <executions>
+			                <execution>
+			                    <id>package-jakarta</id>
+			                    <goals><goal>jar</goal></goals>
+			                    <configuration><classifier>jakarta</classifier></configuration>
+			                </execution>
+			            </executions>
+			        </plugin>
 				</plugins>
 			</build>
 		</profile>

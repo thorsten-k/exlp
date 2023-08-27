@@ -45,7 +45,7 @@ public class ConfigLoader
 	{
 		if(alConfigNames==null){alConfigNames = new ArrayList<String>();}
 		
-		logger.info("Using additional config in: "+configName);
+		logger.info("Adding config from "+configName);
 		alConfigNames.add(configName);
 	}
 	

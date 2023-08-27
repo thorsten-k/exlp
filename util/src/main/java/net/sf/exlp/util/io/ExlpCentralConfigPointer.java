@@ -82,7 +82,7 @@ public class ExlpCentralConfigPointer
 		try{dirApp = IoXpath.getDir(dir,appCode);}
 		catch (ExlpXpathNotFoundException e)
 		{
-			logger.warn("<dir> does not exist, creating dummy");
+			logger.warn("<dir> with "+appCode+" does not exist, creating dummy");
 			appendDir(f, dir, appCode, codeConf);
 			String errorMsg = "Dummy <dir> created. You have to edit the file ("+f.getAbsolutePath()+"), otherwise you will get a permanent error!";
 			logger.warn(errorMsg);
