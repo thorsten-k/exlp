@@ -3,7 +3,9 @@ package net.sf.exlp.util.config;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.configuration.CompositeConfiguration;
@@ -11,6 +13,11 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
+import org.apache.commons.configuration2.CombinedConfiguration;
+import org.apache.commons.configuration2.builder.FileBasedConfigurationBuilder;
+import org.apache.commons.configuration2.builder.fluent.Parameters;
+import org.apache.commons.configuration2.tree.NodeCombiner;
+import org.apache.commons.configuration2.tree.UnionCombiner;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
@@ -30,11 +37,56 @@ public class ConfigLoader
 	private static XMLConfiguration xmlSave;
 	private static ArrayList<String> alConfigNames;
 	
+	private final List<String> configurations;
 	
-	public synchronized static void clear()
+	public static ConfigLoader instance()
 	{
-		alConfigNames = new ArrayList<String>();
+		return new ConfigLoader();
 	}
+	private ConfigLoader()
+	{
+		configurations = new ArrayList<>();
+	}
+	
+	
+	public void add(Path path)
+	{
+		configurations.add(path.toFile().getAbsolutePath());
+	}
+	public void addS(String s)
+	{
+		configurations.add(s);
+	}
+	
+	public org.apache.commons.configuration2.Configuration combine()
+	{
+		NodeCombiner combiner = new UnionCombiner();
+		combiner.addListNode("table");  // mark table as list node
+		
+		Parameters params = new Parameters();
+		
+		CombinedConfiguration cc = new CombinedConfiguration(combiner);
+		
+		for(String configName : configurations)
+		{
+			if(getTyp(configName).equals(Typ.XML))
+			{
+				FileBasedConfigurationBuilder<org.apache.commons.configuration2.XMLConfiguration> builder1 =
+					    new FileBasedConfigurationBuilder<org.apache.commons.configuration2.XMLConfiguration>(org.apache.commons.configuration2.XMLConfiguration.class)
+					    .configure(params.xml().setFileName(configName));
+				try {
+					cc.addConfiguration(builder1.getConfiguration());
+				} catch (org.apache.commons.configuration2.ex.ConfigurationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		
+		return cc;
+	}
+	
 	
 	public static void add(File f)
 	{
