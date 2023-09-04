@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für anonymous complex type.
+ * <p>Java class for anonymous complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType&gt;
@@ -44,7 +44,7 @@ public class Host
     protected Integer port;
 
     /**
-     * Ruft den Wert der id-Eigenschaft ab.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
@@ -56,7 +56,7 @@ public class Host
     }
 
     /**
-     * Legt den Wert der id-Eigenschaft fest.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
@@ -68,7 +68,7 @@ public class Host
     }
 
     /**
-     * Ruft den Wert der name-Eigenschaft ab.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
@@ -80,7 +80,7 @@ public class Host
     }
 
     /**
-     * Legt den Wert der name-Eigenschaft fest.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
@@ -92,7 +92,7 @@ public class Host
     }
 
     /**
-     * Ruft den Wert der port-Eigenschaft ab.
+     * Gets the value of the port property.
      * 
      * @return
      *     possible object is
@@ -104,7 +104,7 @@ public class Host
     }
 
     /**
-     * Legt den Wert der port-Eigenschaft fest.
+     * Sets the value of the port property.
      * 
      * @param value
      *     allowed object is

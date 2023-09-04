@@ -15,9 +15,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java-Klasse für anonymous complex type.
+ * <p>Java class for anonymous complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType&gt;
@@ -161,7 +161,7 @@ public class Dir
     }
 
     /**
-     * Ruft den Wert der id-Eigenschaft ab.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
@@ -173,7 +173,7 @@ public class Dir
     }
 
     /**
-     * Legt den Wert der id-Eigenschaft fest.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
@@ -185,7 +185,7 @@ public class Dir
     }
 
     /**
-     * Ruft den Wert der code-Eigenschaft ab.
+     * Gets the value of the code property.
      * 
      * @return
      *     possible object is
@@ -197,7 +197,7 @@ public class Dir
     }
 
     /**
-     * Legt den Wert der code-Eigenschaft fest.
+     * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
@@ -209,7 +209,7 @@ public class Dir
     }
 
     /**
-     * Ruft den Wert der classifier-Eigenschaft ab.
+     * Gets the value of the classifier property.
      * 
      * @return
      *     possible object is
@@ -221,7 +221,7 @@ public class Dir
     }
 
     /**
-     * Legt den Wert der classifier-Eigenschaft fest.
+     * Sets the value of the classifier property.
      * 
      * @param value
      *     allowed object is
@@ -233,7 +233,7 @@ public class Dir
     }
 
     /**
-     * Ruft den Wert der name-Eigenschaft ab.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
@@ -245,7 +245,7 @@ public class Dir
     }
 
     /**
-     * Legt den Wert der name-Eigenschaft fest.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is
@@ -257,7 +257,7 @@ public class Dir
     }
 
     /**
-     * Ruft den Wert der lastModifed-Eigenschaft ab.
+     * Gets the value of the lastModifed property.
      * 
      * @return
      *     possible object is
@@ -269,7 +269,7 @@ public class Dir
     }
 
     /**
-     * Legt den Wert der lastModifed-Eigenschaft fest.
+     * Sets the value of the lastModifed property.
      * 
      * @param value
      *     allowed object is
@@ -281,7 +281,7 @@ public class Dir
     }
 
     /**
-     * Ruft den Wert der allowCreate-Eigenschaft ab.
+     * Gets the value of the allowCreate property.
      * 
      * @return
      *     possible object is
@@ -293,7 +293,7 @@ public class Dir
     }
 
     /**
-     * Legt den Wert der allowCreate-Eigenschaft fest.
+     * Sets the value of the allowCreate property.
      * 
      * @param value
      *     allowed object is

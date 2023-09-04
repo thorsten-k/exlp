@@ -13,9 +13,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für anonymous complex type.
+ * <p>Java class for anonymous complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType&gt;
@@ -92,7 +92,7 @@ public class Policy
     }
 
     /**
-     * Ruft den Wert der id-Eigenschaft ab.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
@@ -104,7 +104,7 @@ public class Policy
     }
 
     /**
-     * Legt den Wert der id-Eigenschaft fest.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
@@ -116,7 +116,7 @@ public class Policy
     }
 
     /**
-     * Ruft den Wert der code-Eigenschaft ab.
+     * Gets the value of the code property.
      * 
      * @return
      *     possible object is
@@ -128,7 +128,7 @@ public class Policy
     }
 
     /**
-     * Legt den Wert der code-Eigenschaft fest.
+     * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is
@@ -140,7 +140,7 @@ public class Policy
     }
 
     /**
-     * Ruft den Wert der user-Eigenschaft ab.
+     * Gets the value of the user property.
      * 
      * @return
      *     possible object is
@@ -152,7 +152,7 @@ public class Policy
     }
 
     /**
-     * Legt den Wert der user-Eigenschaft fest.
+     * Sets the value of the user property.
      * 
      * @param value
      *     allowed object is
@@ -164,7 +164,7 @@ public class Policy
     }
 
     /**
-     * Ruft den Wert der group-Eigenschaft ab.
+     * Gets the value of the group property.
      * 
      * @return
      *     possible object is
@@ -176,7 +176,7 @@ public class Policy
     }
 
     /**
-     * Legt den Wert der group-Eigenschaft fest.
+     * Sets the value of the group property.
      * 
      * @param value
      *     allowed object is
@@ -188,7 +188,7 @@ public class Policy
     }
 
     /**
-     * Ruft den Wert der description-Eigenschaft ab.
+     * Gets the value of the description property.
      * 
      * @return
      *     possible object is
@@ -200,7 +200,7 @@ public class Policy
     }
 
     /**
-     * Legt den Wert der description-Eigenschaft fest.
+     * Sets the value of the description property.
      * 
      * @param value
      *     allowed object is
@@ -212,7 +212,7 @@ public class Policy
     }
 
     /**
-     * Ruft den Wert der name-Eigenschaft ab.
+     * Gets the value of the name property.
      * 
      * @return
      *     possible object is
@@ -224,7 +224,7 @@ public class Policy
     }
 
     /**
-     * Legt den Wert der name-Eigenschaft fest.
+     * Sets the value of the name property.
      * 
      * @param value
      *     allowed object is

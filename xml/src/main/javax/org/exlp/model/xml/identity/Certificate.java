@@ -12,9 +12,9 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java-Klasse für anonymous complex type.
+ * <p>Java class for anonymous complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType&gt;
@@ -57,7 +57,7 @@ public class Certificate
     protected String email;
 
     /**
-     * Ruft den Wert der id-Eigenschaft ab.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
@@ -69,7 +69,7 @@ public class Certificate
     }
 
     /**
-     * Legt den Wert der id-Eigenschaft fest.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
@@ -81,7 +81,7 @@ public class Certificate
     }
 
     /**
-     * Ruft den Wert der serial-Eigenschaft ab.
+     * Gets the value of the serial property.
      * 
      * @return
      *     possible object is
@@ -93,7 +93,7 @@ public class Certificate
     }
 
     /**
-     * Legt den Wert der serial-Eigenschaft fest.
+     * Sets the value of the serial property.
      * 
      * @param value
      *     allowed object is
@@ -105,7 +105,7 @@ public class Certificate
     }
 
     /**
-     * Ruft den Wert der notAfter-Eigenschaft ab.
+     * Gets the value of the notAfter property.
      * 
      * @return
      *     possible object is
@@ -117,7 +117,7 @@ public class Certificate
     }
 
     /**
-     * Legt den Wert der notAfter-Eigenschaft fest.
+     * Sets the value of the notAfter property.
      * 
      * @param value
      *     allowed object is
@@ -129,7 +129,7 @@ public class Certificate
     }
 
     /**
-     * Ruft den Wert der notBefore-Eigenschaft ab.
+     * Gets the value of the notBefore property.
      * 
      * @return
      *     possible object is
@@ -141,7 +141,7 @@ public class Certificate
     }
 
     /**
-     * Legt den Wert der notBefore-Eigenschaft fest.
+     * Sets the value of the notBefore property.
      * 
      * @param value
      *     allowed object is
@@ -153,7 +153,7 @@ public class Certificate
     }
 
     /**
-     * Ruft den Wert der cn-Eigenschaft ab.
+     * Gets the value of the cn property.
      * 
      * @return
      *     possible object is
@@ -165,7 +165,7 @@ public class Certificate
     }
 
     /**
-     * Legt den Wert der cn-Eigenschaft fest.
+     * Sets the value of the cn property.
      * 
      * @param value
      *     allowed object is
@@ -177,7 +177,7 @@ public class Certificate
     }
 
     /**
-     * Ruft den Wert der email-Eigenschaft ab.
+     * Gets the value of the email property.
      * 
      * @return
      *     possible object is
@@ -189,7 +189,7 @@ public class Certificate
     }
 
     /**
-     * Legt den Wert der email-Eigenschaft fest.
+     * Sets the value of the email property.
      * 
      * @param value
      *     allowed object is

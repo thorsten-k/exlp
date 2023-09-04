@@ -11,9 +11,9 @@ import javax.xml.bind.annotation.XmlValue;
 
 
 /**
- * <p>Java-Klasse für anonymous complex type.
+ * <p>Java class for anonymous complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType&gt;
@@ -43,7 +43,7 @@ public class Url
     protected String code;
 
     /**
-     * Ruft den Wert der value-Eigenschaft ab.
+     * Gets the value of the value property.
      * 
      * @return
      *     possible object is
@@ -55,7 +55,7 @@ public class Url
     }
 
     /**
-     * Legt den Wert der value-Eigenschaft fest.
+     * Sets the value of the value property.
      * 
      * @param value
      *     allowed object is
@@ -67,7 +67,7 @@ public class Url
     }
 
     /**
-     * Ruft den Wert der code-Eigenschaft ab.
+     * Gets the value of the code property.
      * 
      * @return
      *     possible object is
@@ -79,7 +79,7 @@ public class Url
     }
 
     /**
-     * Legt den Wert der code-Eigenschaft fest.
+     * Sets the value of the code property.
      * 
      * @param value
      *     allowed object is

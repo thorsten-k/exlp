@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für anonymous complex type.
+ * <p>Java class for anonymous complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType&gt;
@@ -53,7 +53,7 @@ public class Acl
     protected Boolean io;
 
     /**
-     * Ruft den Wert der id-Eigenschaft ab.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
@@ -65,7 +65,7 @@ public class Acl
     }
 
     /**
-     * Legt den Wert der id-Eigenschaft fest.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
@@ -77,7 +77,7 @@ public class Acl
     }
 
     /**
-     * Ruft den Wert der description-Eigenschaft ab.
+     * Gets the value of the description property.
      * 
      * @return
      *     possible object is
@@ -89,7 +89,7 @@ public class Acl
     }
 
     /**
-     * Legt den Wert der description-Eigenschaft fest.
+     * Sets the value of the description property.
      * 
      * @param value
      *     allowed object is
@@ -101,7 +101,7 @@ public class Acl
     }
 
     /**
-     * Ruft den Wert der permission-Eigenschaft ab.
+     * Gets the value of the permission property.
      * 
      * @return
      *     possible object is
@@ -113,7 +113,7 @@ public class Acl
     }
 
     /**
-     * Legt den Wert der permission-Eigenschaft fest.
+     * Sets the value of the permission property.
      * 
      * @param value
      *     allowed object is
@@ -125,7 +125,7 @@ public class Acl
     }
 
     /**
-     * Ruft den Wert der oi-Eigenschaft ab.
+     * Gets the value of the oi property.
      * 
      * @return
      *     possible object is
@@ -137,7 +137,7 @@ public class Acl
     }
 
     /**
-     * Legt den Wert der oi-Eigenschaft fest.
+     * Sets the value of the oi property.
      * 
      * @param value
      *     allowed object is
@@ -149,7 +149,7 @@ public class Acl
     }
 
     /**
-     * Ruft den Wert der ci-Eigenschaft ab.
+     * Gets the value of the ci property.
      * 
      * @return
      *     possible object is
@@ -161,7 +161,7 @@ public class Acl
     }
 
     /**
-     * Legt den Wert der ci-Eigenschaft fest.
+     * Sets the value of the ci property.
      * 
      * @param value
      *     allowed object is
@@ -173,7 +173,7 @@ public class Acl
     }
 
     /**
-     * Ruft den Wert der io-Eigenschaft ab.
+     * Gets the value of the io property.
      * 
      * @return
      *     possible object is
@@ -185,7 +185,7 @@ public class Acl
     }
 
     /**
-     * Legt den Wert der io-Eigenschaft fest.
+     * Sets the value of the io property.
      * 
      * @param value
      *     allowed object is
