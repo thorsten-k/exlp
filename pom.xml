@@ -77,17 +77,6 @@
 		</repository>
 	</repositories>
 	
-	<pluginRepositories>
-		<!--
-		<pluginRepository>
-			<id>codehaus.org</id>
-			<name>CodeHaus Plugin Snapshots</name>
-			<url>http://snapshots.repository.codehaus.org</url>
-			<releases><enabled>false</enabled></releases>
-		</pluginRepository>
-		-->
-	</pluginRepositories>
-	
 	<distributionManagement>
 		<snapshotRepository>
 			<id>ossrh</id>
