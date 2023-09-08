@@ -10,9 +10,9 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für anonymous complex type.
+ * <p>Java class for anonymous complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType&gt;
@@ -56,7 +56,7 @@ public class User
     protected String info;
 
     /**
-     * Ruft den Wert der id-Eigenschaft ab.
+     * Gets the value of the id property.
      * 
      * @return
      *     possible object is
@@ -68,7 +68,7 @@ public class User
     }
 
     /**
-     * Legt den Wert der id-Eigenschaft fest.
+     * Sets the value of the id property.
      * 
      * @param value
      *     allowed object is
@@ -80,7 +80,7 @@ public class User
     }
 
     /**
-     * Ruft den Wert der firstName-Eigenschaft ab.
+     * Gets the value of the firstName property.
      * 
      * @return
      *     possible object is
@@ -92,7 +92,7 @@ public class User
     }
 
     /**
-     * Legt den Wert der firstName-Eigenschaft fest.
+     * Sets the value of the firstName property.
      * 
      * @param value
      *     allowed object is
@@ -104,7 +104,7 @@ public class User
     }
 
     /**
-     * Ruft den Wert der lastName-Eigenschaft ab.
+     * Gets the value of the lastName property.
      * 
      * @return
      *     possible object is
@@ -116,7 +116,7 @@ public class User
     }
 
     /**
-     * Legt den Wert der lastName-Eigenschaft fest.
+     * Sets the value of the lastName property.
      * 
      * @param value
      *     allowed object is
@@ -128,7 +128,7 @@ public class User
     }
 
     /**
-     * Ruft den Wert der account-Eigenschaft ab.
+     * Gets the value of the account property.
      * 
      * @return
      *     possible object is
@@ -140,7 +140,7 @@ public class User
     }
 
     /**
-     * Legt den Wert der account-Eigenschaft fest.
+     * Sets the value of the account property.
      * 
      * @param value
      *     allowed object is
@@ -152,7 +152,7 @@ public class User
     }
 
     /**
-     * Ruft den Wert der password-Eigenschaft ab.
+     * Gets the value of the password property.
      * 
      * @return
      *     possible object is
@@ -164,7 +164,7 @@ public class User
     }
 
     /**
-     * Legt den Wert der password-Eigenschaft fest.
+     * Sets the value of the password property.
      * 
      * @param value
      *     allowed object is
@@ -176,7 +176,7 @@ public class User
     }
 
     /**
-     * Ruft den Wert der email-Eigenschaft ab.
+     * Gets the value of the email property.
      * 
      * @return
      *     possible object is
@@ -188,7 +188,7 @@ public class User
     }
 
     /**
-     * Legt den Wert der email-Eigenschaft fest.
+     * Sets the value of the email property.
      * 
      * @param value
      *     allowed object is
@@ -200,7 +200,7 @@ public class User
     }
 
     /**
-     * Ruft den Wert der info-Eigenschaft ab.
+     * Gets the value of the info property.
      * 
      * @return
      *     possible object is
@@ -212,7 +212,7 @@ public class User
     }
 
     /**
-     * Legt den Wert der info-Eigenschaft fest.
+     * Sets the value of the info property.
      * 
      * @param value
      *     allowed object is
