@@ -116,6 +116,20 @@
 				<ignoreVersion>1.9.13.redhat-3</ignoreVersion>
 				<ignoreVersion>1.9.13.redhat-4</ignoreVersion>
 				<ignoreVersion>1.9.13.redhat-00006</ignoreVersion>
+				
+				<ignoreVersion>1.9.14.jdk17-redhat-00001</ignoreVersion>
+				
+				<ignoreVersion>2.15.2.redhat-00001</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+		<rule groupId="com.fasterxml.jackson.core" comparisonMethod="maven">
+			<ignoreVersions>				
+				<ignoreVersion>2.15.2.redhat-00001</ignoreVersion>
+			</ignoreVersions>
+		</rule>
+		<rule groupId="com.fasterxml.jackson.datatype" comparisonMethod="maven">
+			<ignoreVersions>				
+				<ignoreVersion>2.15.2.redhat-00001</ignoreVersion>
 			</ignoreVersions>
 		</rule>
 		<rule groupId="org.glassfish.jaxb" comparisonMethod="maven">
@@ -168,6 +182,7 @@
 				<ignoreVersion>1.2.17.redhat-3</ignoreVersion>
 				<ignoreVersion>1.2.17.redhat-00007</ignoreVersion>
 				<ignoreVersion>1.2.17.redhat-00008</ignoreVersion>
+				<ignoreVersion>1.2.17.norce</ignoreVersion>
 				
 			</ignoreVersions>
 		</rule>		
