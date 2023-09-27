@@ -273,6 +273,15 @@
 		                					</pluginExecutionFilter>
 		                					<action><ignore /></action>
 		              					</pluginExecution>
+		              					<pluginExecution>
+											<pluginExecutionFilter>
+												<groupId>org.apache.cxf</groupId>
+    											<artifactId>cxf-xjc-plugin</artifactId>
+												<versionRange>[3.3.2,)</versionRange>
+												<goals><goal>xsdtojava</goal></goals>
+											</pluginExecutionFilter>
+											<action><ignore></ignore></action>
+										</pluginExecution>
 									</pluginExecutions>
 								</lifecycleMappingMetadata>
 							</configuration>
