@@ -7,12 +7,13 @@
 			<ignoreVersions>
 				<ignoreVersion>20040117.000000</ignoreVersion>
 				<ignoreVersion>2.0-gt2-pre1</ignoreVersion>
+				<ignoreVersion>1.5.0.redhat-00001</ignoreVersion>
 			</ignoreVersions>
 		</rule>
 		<rule groupId="commons-codec" comparisonMethod="maven">
 			<ignoreVersions>
 				<ignoreVersion>1.15.0.redhat-00001</ignoreVersion>
-				
+				<ignoreVersion>1.16.0.redhat-00001</ignoreVersion>
 			</ignoreVersions>
 		</rule>
 	    <rule groupId="commons-collections" comparisonMethod="maven">
@@ -153,6 +154,8 @@
 				<ignoreVersion>1.0.1.Final-redhat-1</ignoreVersion>
 				<ignoreVersion>1.0.1.Final-redhat-2</ignoreVersion>
 				<ignoreVersion>1.0.1.Final-redhat-3</ignoreVersion>
+				
+				<ignoreVersion>1.0.2.Final-redhat-1</ignoreVersion>
 			</ignoreVersions>
 		</rule>
 		
