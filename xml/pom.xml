@@ -117,9 +117,7 @@
 	<profiles>
 		<profile>
 			<id>compile8</id>
-			<activation>
-				<jdk>1.8</jdk>
-		    </activation>
+			<activation><jdk>1.8</jdk> </activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -137,26 +135,7 @@
 		                    			<xsdOption>
 											<bindingFile>${basedir}/src/main/xsd/javax.xjb</bindingFile>
 											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/io.xsd</xsd>
-		                        			<packagename>${exlp.jaxb.package.base}.io</packagename>
-		                    			</xsdOption>
-		                    			<xsdOption>
-											<bindingFile>${basedir}/src/main/xsd/javax.xjb</bindingFile>
-											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/net.xsd</xsd>
-		                        			<packagename>${exlp.jaxb.package.base}.net</packagename>
-		                    			</xsdOption>
-		                    			<xsdOption>
-											<bindingFile>${basedir}/src/main/xsd/javax.xjb</bindingFile>
-											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/identity.xsd</xsd>
-		                        			<packagename>${exlp.jaxb.package.base}.identity</packagename>
-		                    			</xsdOption>
-		                    			<xsdOption>
-											<bindingFile>${basedir}/src/main/xsd/javax.xjb</bindingFile>
-											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/config.xsd</xsd>
-		                        			<packagename>${exlp.jaxb.package.base}.config</packagename>
+		                        			<xsd>${basedir}/src/main/xsd/exlp.xsd</xsd>
 		                    			</xsdOption>
 		                			</xsdOptions>
 		            			</configuration>
