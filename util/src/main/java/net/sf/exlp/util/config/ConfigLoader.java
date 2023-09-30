@@ -51,10 +51,12 @@ public class ConfigLoader
 	
 	public void add(Path path)
 	{
+		logger.info("Adding "+path.toString());
 		configurations.add(path.toFile().getAbsolutePath());
 	}
 	public void addS(String s)
 	{
+		logger.info("Adding "+s);
 		configurations.add(s);
 	}
 	
@@ -69,19 +71,29 @@ public class ConfigLoader
 		
 		for(String configName : configurations)
 		{
-			if(getTyp(configName).equals(Typ.XML))
+			try
 			{
-				FileBasedConfigurationBuilder<org.apache.commons.configuration2.XMLConfiguration> builder1 =
-					    new FileBasedConfigurationBuilder<org.apache.commons.configuration2.XMLConfiguration>(org.apache.commons.configuration2.XMLConfiguration.class)
-					    .configure(params.xml().setFileName(configName));
-				try {
+				Typ type = getTyp(configName);
+				if(type.equals(Typ.XML))
+				{
+					FileBasedConfigurationBuilder<org.apache.commons.configuration2.XMLConfiguration> builder1 =
+						    new FileBasedConfigurationBuilder<org.apache.commons.configuration2.XMLConfiguration>(org.apache.commons.configuration2.XMLConfiguration.class)
+						    	.configure(params.xml().setFileName(configName));
 					cc.addConfiguration(builder1.getConfiguration());
-				} catch (org.apache.commons.configuration2.ex.ConfigurationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				}
+				else if(type.equals(Typ.PROPERTIES))
+				{
+					FileBasedConfigurationBuilder<org.apache.commons.configuration2.FileBasedConfiguration> builder2 =
+						    new FileBasedConfigurationBuilder<org.apache.commons.configuration2.FileBasedConfiguration>(org.apache.commons.configuration2.PropertiesConfiguration.class)
+						    	.configure(params.properties().setFileName(configName));
+					cc.addConfiguration(builder2.getConfiguration());
+				}
+				else
+				{
+					logger.warn("NYI: "+type);
 				}
 			}
-			
+			catch (org.apache.commons.configuration2.ex.ConfigurationException e) {e.printStackTrace();}
 		}
 		
 		return cc;

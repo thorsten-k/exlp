@@ -1,6 +1,7 @@
 package net.sf.exlp.util.io;
 
 import java.io.FileNotFoundException;
+import java.util.Objects;
 
 import org.exlp.model.xml.io.Dir;
 import org.exlp.model.xml.io.File;
@@ -20,6 +21,7 @@ public class ExlpCentralConfigPointer
 	
 	private final String appCode;
 	private JaxbInterface jaxb; public ExlpCentralConfigPointer jaxb(JaxbInterface jaxb) {this.jaxb=jaxb; return this;}
+	private java.io.File fPointer;
 	
 	public static <E extends Enum<E>> ExlpCentralConfigPointer instance(E appCode) {return new ExlpCentralConfigPointer(appCode.toString());}
 	public static ExlpCentralConfigPointer instance(String appCode) {return new ExlpCentralConfigPointer(appCode);}
@@ -30,12 +32,17 @@ public class ExlpCentralConfigPointer
 	
 	private java.io.File toPointerFile() throws ExlpConfigurationException
 	{
-		java.io.File fHome = new java.io.File(System.getProperty("user.home"));
-		java.io.File fMvn = new java.io.File(fHome,".m2");
-		java.io.File fXml = new java.io.File(fMvn,"exlp.xml");
-		if(!fHome.exists()) {throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
-		if(!fMvn.exists()) {throw new ExlpConfigurationException("Directory does not exist: "+fMvn.getAbsolutePath());}
-		return fXml;
+		if(Objects.isNull(fPointer))
+		{
+			java.io.File fHome = new java.io.File(System.getProperty("user.home"));
+			java.io.File fMvn = new java.io.File(fHome,".m2");
+			fPointer = new java.io.File(fMvn,"exlp.xml");
+			if(!fHome.exists()) {throw new ExlpConfigurationException("Directory does not exist: "+fHome.getAbsolutePath());}
+			if(!fMvn.exists()) {throw new ExlpConfigurationException("Directory does not exist: "+fMvn.getAbsolutePath());}
+			logger.info("Instantiated with "+fPointer.getAbsolutePath());
+		}
+		
+		return fPointer;
 	}
 	
 	@Deprecated //Use ExlpCentralConfigPointer.instance(app).jaxb(JaxbUtil);
@@ -73,13 +80,12 @@ public class ExlpCentralConfigPointer
 		
 		try
 		{
-			logger.info("Using "+f.getAbsolutePath());
 			dir = jaxb.load(Dir.class,f.getAbsolutePath());
 			logger.trace(Dir.class.getSimpleName()+" with "+dir.getDir().size()+" elements");
 		}
 		catch (FileNotFoundException e) {throw new ExlpConfigurationException(e.getMessage());}
 		
-		try{dirApp = IoXpath.getDir(dir,appCode);}
+		try {dirApp = IoXpath.getDir(dir,appCode);}
 		catch (ExlpXpathNotFoundException e)
 		{
 			logger.warn("<dir> with "+appCode+" does not exist, creating dummy");
@@ -95,7 +101,7 @@ public class ExlpCentralConfigPointer
 			File fXml = IoXpath.getFile(dirApp, codeConf);
 			java.io.File fConf = new java.io.File(fXml.getName());
 			if(!fConf.exists()){throw new ExlpConfigurationException("File ("+fConf.getAbsolutePath()+") does not exist for app="+appCode+" code="+codeConf+" in : "+f.getAbsolutePath());}
-			logger.debug("Using config: "+fConf.getAbsolutePath());
+			logger.trace("Using config: "+fConf.getAbsolutePath());
 			return fConf;
 		}
 		catch (ExlpXpathNotFoundException e) {throw new ExlpConfigurationException(e.getMessage());}
