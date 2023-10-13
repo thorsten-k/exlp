@@ -68,7 +68,7 @@
 			<dependency>
 				<groupId>commons-io</groupId>
 				<artifactId>commons-io</artifactId>
-				<version>2.6</version> <!-- Updated from 2.4 on 2020-01-01 -->
+				<version>2.14.0</version> <!-- Updated from 2.6 on 2023-10-13 -->
 			</dependency>
 			<dependency><groupId>commons-dbutils</groupId><artifactId>commons-dbutils</artifactId><version>1.7</version></dependency>
 			<dependency>
