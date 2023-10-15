@@ -41,6 +41,7 @@
    			<groupId>commons-configuration</groupId>
    			<artifactId>commons-configuration</artifactId>
    			<type>jar</type>
+   			<scope>provided</scope>
    			<exclusions>
         		<exclusion>
         			<artifactId>commons-logging</artifactId>
