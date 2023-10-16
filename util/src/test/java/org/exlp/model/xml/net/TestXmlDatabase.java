@@ -3,7 +3,6 @@ package org.exlp.model.xml.net;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-import org.exlp.model.xml.net.Database;
 import org.exlp.test.ExlpBootstrap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

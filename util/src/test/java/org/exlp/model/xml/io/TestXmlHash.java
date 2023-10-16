@@ -2,7 +2,6 @@ package org.exlp.model.xml.io;
 
 import java.io.FileNotFoundException;
 
-import org.exlp.model.xml.io.Hash;
 import org.exlp.test.ExlpBootstrap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
