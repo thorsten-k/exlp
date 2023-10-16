@@ -2,12 +2,12 @@ package de.kisner.exlp.test;
 
 import java.io.File;
 
-import net.sf.exlp.util.io.LoggerInit;
-
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.util.io.LoggerInit;
 
 public class AbstractExlpMavenTest
 {
@@ -15,7 +15,7 @@ public class AbstractExlpMavenTest
 	
 	protected static File fTarget;
 	
-	@BeforeClass
+	@BeforeAll
 	public static void initFile()
 	{
 		if(!LoggerInit.isLog4jInited()){initLogger();}
@@ -26,7 +26,7 @@ public class AbstractExlpMavenTest
 	}
 	protected static void setfTarget(File fTarget) {AbstractExlpMavenTest.fTarget = fTarget;}
 	
-	@BeforeClass
+	@BeforeAll
     public static void initLogger()
 	{
 		if(!LoggerInit.isLog4jInited())
