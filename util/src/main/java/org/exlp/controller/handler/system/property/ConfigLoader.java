@@ -1,4 +1,4 @@
-package net.sf.exlp.util.config;
+package org.exlp.controller.handler.system.property;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Properties;
 
 import org.apache.commons.configuration.CompositeConfiguration;
@@ -44,26 +45,57 @@ public class ConfigLoader
 	}
 	
 	
-	public void add(Path path)
+	public ConfigLoader add(Path path)
 	{
-		logger.info("Adding "+path.toString());
-		configurations.add(path.toFile().getAbsolutePath());
+		if(Objects.isNull(path)) {logger.warn("Requested an additional config, but null provided");}
+		{
+			logger.info("Adding "+path.toString());
+			configurations.add(path.toFile().getAbsolutePath());
+		}
+		return this;
 	}
-	public void addS(String s)
+	public ConfigLoader add(String s)
 	{
 		logger.info("Adding "+s);
 		configurations.add(s);
+		return this;
 	}
 	
+	public org.exlp.interfaces.system.property.Configuration wrap()
+	{
+		try {return new ConfigWrapper(combine());}
+		catch (ConfigurationException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+	public Configuration combine() throws ConfigurationException
+	{
+		CompositeConfiguration c = new CompositeConfiguration();
+		c.setThrowExceptionOnMissing(true);
+		for(String configName : configurations)
+		{
+			switch(getTyp(configName))
+			{
+				case XML:	XMLConfiguration xCnf = new XMLConfiguration(configName);
+							if(xmlSave==null){xmlSave=xCnf;}
+							c.addConfiguration(xCnf);break;
+				case PROPERTIES:	PropertiesConfiguration pCnf = new PropertiesConfiguration(configName);
+									c.addConfiguration(pCnf);break;
+				default: logger.warn("Unknwon Resource: "+configName);break;
+			}
+		}
+		return c;
+	}
 
 	
-	
-	public static void add(File f)
+	public static void addFile(File f)
 	{
-		ConfigLoader.add(f.getAbsolutePath());
+		ConfigLoader.addString(f.getAbsolutePath());
 	}
 	
-	public synchronized static void add(String configName)
+	public static void addString(String configName)
 	{
 		if(alConfigNames==null){alConfigNames = new ArrayList<String>();}
 		
@@ -102,7 +134,7 @@ public class ConfigLoader
 	
 	public static Configuration load(String xmlFileName)
 	{
-		add(xmlFileName);
+		addString(xmlFileName);
 		return init();
 	}
 	
@@ -144,5 +176,17 @@ public class ConfigLoader
 		else if(configName.endsWith(".properties")){typ=Typ.PROPERTIES;}
 		else if(configName.endsWith(".txt")){typ=Typ.PROPERTIES;}
 		return typ;
+	}
+	
+	private class ConfigWrapper implements org.exlp.interfaces.system.property.Configuration
+	{
+		private org.apache.commons.configuration.Configuration config;
+		
+		public ConfigWrapper(org.apache.commons.configuration.Configuration config)
+		{
+			this.config=config;
+		}
+
+		@Override public String getString(String key) {return config.getString(key);}
 	}
 }

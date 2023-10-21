@@ -1,9 +1,9 @@
 package net.sf.exlp.test.io;
 
-import net.sf.exlp.util.config.ConfigLoader;
 import net.sf.exlp.util.io.LoggerInit;
 
 import org.apache.commons.configuration.Configuration;
+import org.exlp.controller.handler.system.property.ConfigLoader;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,7 +19,7 @@ public class TstConfigLoader
 			
 		logger.debug("Test");
 		
-		ConfigLoader.add("resources/config/exlp1.xml");
+		ConfigLoader.addString("resources/config/exlp1.xml");
 		Configuration config = ConfigLoader.init();
 		
 		int anzFiles = config.getStringArray("files/file").length;

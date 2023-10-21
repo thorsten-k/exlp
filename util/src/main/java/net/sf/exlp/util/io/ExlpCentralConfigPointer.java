@@ -1,6 +1,7 @@
 package net.sf.exlp.util.io;
 
 import java.io.FileNotFoundException;
+import java.nio.file.Path;
 import java.util.Objects;
 
 import org.exlp.model.xml.io.Dir;
@@ -53,6 +54,19 @@ public class ExlpCentralConfigPointer
 		return ccp.toFile(codeConf);
 	}
 	
+	public Path toPath(String confCode)
+	{
+		try
+		{
+			java.io.File file = this.toFile(confCode);
+			return file.toPath();
+		}
+		catch (ExlpConfigurationException e)
+		{
+			logger.error("Configuration '"+confCode+"' is not available");
+		}
+		return null;
+	}
 	public java.io.File toFile(String confCode) throws ExlpConfigurationException
 	{
 		return this.getFile(this.toPointerFile(),confCode);

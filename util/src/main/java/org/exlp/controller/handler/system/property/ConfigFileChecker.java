@@ -1,4 +1,4 @@
-package net.sf.exlp.util.config;
+package org.exlp.controller.handler.system.property;
 
 import java.io.File;
 
@@ -31,5 +31,4 @@ public class ConfigFileChecker
 		}
 		logger.info(id+": "+dirName);
 	}
-	
 }
