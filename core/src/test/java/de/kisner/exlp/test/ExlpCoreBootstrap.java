@@ -12,7 +12,7 @@ public class ExlpCoreBootstrap
 	public static void init()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
-		loggerInit.addAltPath("exlp/core/config");
+		loggerInit.path("exlp/core/config");
 		loggerInit.init();
 	}
 }

@@ -13,7 +13,7 @@ public class ApacheLog
 	public static void main (String[] args) throws Exception
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("resources/config");
+			loggerInit.path("resources/config");
 			loggerInit.init();
 		
 		LogEventHandler leh = new EhDebug();

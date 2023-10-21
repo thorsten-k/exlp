@@ -38,7 +38,7 @@ public class AbstractExlpTest
 		if(!LoggerInit.isLog4jInited())
 		{
 			LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-			loggerInit.addAltPath("exlp/test/config");
+			loggerInit.path("exlp/test/config");
 			loggerInit.init();
 		}
     }

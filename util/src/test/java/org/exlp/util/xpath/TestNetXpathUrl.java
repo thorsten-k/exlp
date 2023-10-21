@@ -105,7 +105,7 @@ public class TestNetXpathUrl extends AbstractExlpTest
 	public static void main(String[] args) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.addAltPath("src/test/resources/config");
+			loggerInit.path("src/test/resources/config");
 			loggerInit.init();	
 		
 		TestNetXpathUrl test = new TestNetXpathUrl();

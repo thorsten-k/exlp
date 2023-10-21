@@ -26,6 +26,7 @@ public class LoggerInit
 	private String l4jName;
 	private List<LoadType> activeLoadTypes;
 	
+	public static LoggerInit instance() {return new LoggerInit("log4j.xml");}
 	public LoggerInit(String l4jName)
 	{
 		this.l4jName=l4jName;
@@ -49,7 +50,7 @@ public class LoggerInit
 	public static void init(String l4jName, String altPath)
 	{
 		LoggerInit loggerInit = new LoggerInit(l4jName);
-		loggerInit.addAltPath(altPath);
+		loggerInit.path(altPath);
 		loggerInit.init();
 	}
 	
@@ -90,9 +91,10 @@ public class LoggerInit
 		if(!log4jInited){for(String s : alErrors){System.err.println(s);}}
 	}
 	
-	public void addAltPath(String path)
+	public LoggerInit path(String path)
 	{
 		altPaths.add(path);
+		return this;
 	}
 	
 	public void urlLoad(ClassLoader cl, String l4jName)

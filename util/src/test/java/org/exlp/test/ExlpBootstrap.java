@@ -14,7 +14,7 @@ public class ExlpBootstrap
 	public static void init()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
-		loggerInit.addAltPath("exlp/test/config");
+		loggerInit.path("exlp/test/config");
 		loggerInit.init();
 		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());
 	}

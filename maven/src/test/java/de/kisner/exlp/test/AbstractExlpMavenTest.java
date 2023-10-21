@@ -32,7 +32,7 @@ public class AbstractExlpMavenTest
 		if(!LoggerInit.isLog4jInited())
 		{
 			LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-			loggerInit.addAltPath("config.exlp-shell.test");
+			loggerInit.path("config.exlp-shell.test");
 			loggerInit.init();
 		}
     }

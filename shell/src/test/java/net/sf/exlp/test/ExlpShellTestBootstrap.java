@@ -12,7 +12,7 @@ public class ExlpShellTestBootstrap
 	public static void init()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
-			loggerInit.addAltPath("config.exlp-shell.test");
+			loggerInit.path("config.exlp-shell.test");
 			loggerInit.init();
 	}
 }

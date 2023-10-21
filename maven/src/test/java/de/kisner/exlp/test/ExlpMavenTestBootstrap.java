@@ -12,7 +12,7 @@ public class ExlpMavenTestBootstrap
 	public static void init()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");
-		loggerInit.addAltPath("exlp/maven/config.test");
+		loggerInit.path("exlp/maven/config.test");
 		loggerInit.init();
 	}
 }
