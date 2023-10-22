@@ -61,6 +61,7 @@ public class ConfigLoader
 		return this;
 	}
 	
+	public static org.exlp.interfaces.system.property.Configuration wrap(org.apache.commons.configuration.Configuration config) {return ConfigLoader.instance().new ConfigWrapper(config);}
 	public org.exlp.interfaces.system.property.Configuration wrap()
 	{
 		try {return new ConfigWrapper(combine());}
