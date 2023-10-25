@@ -64,6 +64,7 @@ public class ExlpCentralConfigPointer
 		catch (ExlpConfigurationException e)
 		{
 			logger.error("Configuration '"+confCode+"' is not available");
+			logger.info(e.getMessage());
 		}
 		return null;
 	}
@@ -78,7 +79,7 @@ public class ExlpCentralConfigPointer
 //		return getFile(f,codeConf);
 //	}
 	
-	private java.io.File getFile(java.io.File f, String codeConf) throws ExlpConfigurationException
+	private java.io.File getFile(java.io.File f, String configCode) throws ExlpConfigurationException
 	{
 		Dir dir;
 		Dir dirApp;
@@ -86,7 +87,7 @@ public class ExlpCentralConfigPointer
 		if(!f.exists())
 		{
 			logger.warn("ExLP Central Config Pointer does not exist ... creating dummy");
-			create(f, appCode, codeConf);
+			create(f, appCode, configCode);
 			String errorMsg = "ExLP Central Config Pointer created. You have to edit this file, otherwise you will get a permanent error!";
 			logger.warn(errorMsg);
 			throw new ExlpConfigurationException(errorMsg);
@@ -103,7 +104,7 @@ public class ExlpCentralConfigPointer
 		catch (ExlpXpathNotFoundException e)
 		{
 			logger.warn("<dir> with "+appCode+" does not exist, creating dummy");
-			appendDir(f, dir, appCode, codeConf);
+			appendDir(f, dir, appCode, configCode);
 			String errorMsg = "Dummy <dir> created. You have to edit the file ("+f.getAbsolutePath()+"), otherwise you will get a permanent error!";
 			logger.warn(errorMsg);
 			throw new ExlpConfigurationException(errorMsg);
@@ -112,9 +113,9 @@ public class ExlpCentralConfigPointer
 		
 		try
 		{
-			File fXml = IoXpath.getFile(dirApp, codeConf);
+			File fXml = IoXpath.getFile(dirApp, configCode);
 			java.io.File fConf = new java.io.File(fXml.getName());
-			if(!fConf.exists()){throw new ExlpConfigurationException("File ("+fConf.getAbsolutePath()+") does not exist for app="+appCode+" code="+codeConf+" in : "+f.getAbsolutePath());}
+			if(!fConf.exists()){throw new ExlpConfigurationException("File ("+fConf.getAbsolutePath()+") does not exist for app="+appCode+" code="+configCode+" in : "+f.getAbsolutePath());}
 			logger.trace("Using config: "+fConf.getAbsolutePath());
 			return fConf;
 		}

@@ -48,6 +48,7 @@ public class ConfigLoader
 	public ConfigLoader add(Path path)
 	{
 		if(Objects.isNull(path)) {logger.warn("Requested an additional config, but null provided");}
+		else
 		{
 			logger.info("Adding "+path.toString());
 			configurations.add(path.toFile().getAbsolutePath());

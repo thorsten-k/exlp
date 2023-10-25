@@ -15,6 +15,7 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.file.Path;
 import java.util.List;
 
 import javax.xml.bind.JAXBContext;
@@ -23,11 +24,6 @@ import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-
-import net.sf.exlp.util.io.StringBufferOutputStream;
-import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
-import net.sf.exlp.util.xml.exception.JDomUtilException;
-import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 import org.jdom2.DocType;
 import org.jdom2.Document;
@@ -41,6 +37,11 @@ import org.jdom2.output.XMLOutputter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
+
+import net.sf.exlp.util.io.StringBufferOutputStream;
+import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
+import net.sf.exlp.util.xml.exception.JDomUtilException;
+import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 public class JDomUtil
 {
@@ -66,14 +67,14 @@ public class JDomUtil
 		System.out.flush();
 	}
 	
-	public void write(Document doc, File f)
+	public void write(Document doc, Path path)
 	{
 		Format format = Format.getPrettyFormat();
         format.setOmitDeclaration(omitDeclaration);
         
 		try
 		{
-			OutputStream os = new FileOutputStream(f);
+			OutputStream os = new FileOutputStream(path.toFile());
 			outputStream(doc, os, format,encoding);
 			os.close();
 		}
