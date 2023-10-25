@@ -46,7 +46,43 @@ public class JDomUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(JDomUtil.class);
 	
-	public static synchronized Document txtToDoc(String txt) throws JDOMException
+	private String encoding;
+	private boolean omitDeclaration; public JDomUtil omitDeclaration(boolean value) {omitDeclaration=value; return this;}
+	
+	public static JDomUtil instance() {return new JDomUtil();}
+	private JDomUtil()
+	{
+		encoding = "UTF-8";
+		omitDeclaration = false;
+	}
+	
+	
+	
+	public void info(Document doc)
+	{
+		Format format = Format.getPrettyFormat();
+        format.setOmitDeclaration(omitDeclaration);
+		outputStream(doc, System.out,format);
+		System.out.flush();
+	}
+	
+	public void write(Document doc, File f)
+	{
+		Format format = Format.getPrettyFormat();
+        format.setOmitDeclaration(omitDeclaration);
+        
+		try
+		{
+			OutputStream os = new FileOutputStream(f);
+			outputStream(doc, os, format,encoding);
+			os.close();
+		}
+		catch (FileNotFoundException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
+	}
+	
+	
+	public static Document txtToDoc(String txt) throws JDOMException
 	{
 		Document doc=null;
 		try
