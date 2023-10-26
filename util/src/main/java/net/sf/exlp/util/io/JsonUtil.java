@@ -15,13 +15,41 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class JsonUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
 	public static ObjectMapper jom() {return HelperDelegate.jom;}
 	
+	private ObjectMapper jom;
+	
 	private static boolean logCaller = true;
+	
+	public static JsonUtil instance() {return new JsonUtil();}
+	private JsonUtil()
+	{
+		jom = new ObjectMapper();
+    	jom.setSerializationInclusion(Include.NON_NULL);
+    	jom.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+	}
+	
+	public String toFormattedString(Object json)
+	{
+		try
+		{
+			return jom.writerWithDefaultPrettyPrinter().writeValueAsString(json);
+		}
+		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
+	}
+	public String toCompactString(Object json)
+	{
+		try
+		{
+			return jom.writeValueAsString(json);
+		}
+		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
+	}
 	
 	public static void deactivateCaller() {logCaller=false;}
 	
