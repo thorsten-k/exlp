@@ -1,4 +1,4 @@
-package net.sf.exlp.shell.cmd;
+package org.exlp.cmd.file;
 
 import java.io.File;
 

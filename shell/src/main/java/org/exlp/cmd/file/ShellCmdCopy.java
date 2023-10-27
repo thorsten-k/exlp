@@ -1,4 +1,4 @@
-package net.sf.exlp.shell.cmd;
+package org.exlp.cmd.file;
 
 import net.sf.exlp.exception.ExlpUnsupportedOsException;
 import net.sf.exlp.shell.os.OsArchitectureUtil;
