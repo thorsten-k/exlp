@@ -1,4 +1,4 @@
-package org.exlp.util.jsf;
+package org.exlp.util;
 
 import javax.faces.component.UIOutput;
 import javax.faces.context.FacesContext;

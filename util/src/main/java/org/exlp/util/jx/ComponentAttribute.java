@@ -1,4 +1,4 @@
-package org.exlp.util.jsf.jx;
+package org.exlp.util.jx;
 
 import java.util.Map;
 import java.util.Objects;

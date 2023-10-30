@@ -47,41 +47,73 @@ public class JDomUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(JDomUtil.class);
 	
+	private XMLOutputter outputter;
+	
 	private String encoding;
-	private boolean omitDeclaration; public JDomUtil omitDeclaration(boolean value) {omitDeclaration=value; return this;}
+	private boolean omitDeclaration; public JDomUtil omitDeclaration(boolean value) {this.omitDeclaration=value; return this;}
+	private boolean omitEscape; public JDomUtil omitEscape(boolean value) {this.omitEscape=value; return this;}
+	public JDomUtil expand(boolean value) {outputter.getFormat().setExpandEmptyElements(value); return this;}
 	
 	public static JDomUtil instance() {return new JDomUtil();}
 	private JDomUtil()
 	{
 		encoding = "UTF-8";
 		omitDeclaration = false;
+		Format format = Format.getPrettyFormat();
+		
+		outputter = new XMLOutputter(format);
 	}
-	
-	
 	
 	public void info(Document doc)
 	{
-		Format format = Format.getPrettyFormat();
-        format.setOmitDeclaration(omitDeclaration);
-		outputStream(doc, System.out,format);
+		stream(doc, System.out);
 		System.out.flush();
 	}
 	
 	public void write(Document doc, Path path)
-	{
-		Format format = Format.getPrettyFormat();
-        format.setOmitDeclaration(omitDeclaration);
-        
+	{        
 		try
 		{
 			OutputStream os = new FileOutputStream(path.toFile());
-			outputStream(doc, os, format,encoding);
+			this.stream(doc, os);
 			os.close();
 		}
 		catch (FileNotFoundException e) {logger.error("",e);}
 		catch (IOException e) {logger.error("",e);}
 	}
 	
+	public void stream(Document doc, OutputStream os)
+	{
+		Format format = Format.getPrettyFormat();
+		format.setExpandEmptyElements(true);
+		format.setOmitDeclaration(omitDeclaration);
+		
+		outputter = new XMLOutputter(format);
+		
+		try
+		{
+			if(omitEscape)
+			{
+				StringWriter sw = new StringWriter();
+				outputter.output(doc,sw);
+				sw.close();
+				
+				String content = sw.toString();
+				content = content.replaceAll("&lt;","<");
+				
+				OutputStreamWriter osw = new OutputStreamWriter(os,encoding);
+				osw.write(content);
+				osw.close();
+			}
+			else
+			{
+				OutputStreamWriter osw = new OutputStreamWriter(os,encoding);
+				outputter.output(doc,osw);
+				osw.close();
+			}
+		} 
+		catch (IOException e){logger.error("",e);}
+	}
 	
 	public static Document txtToDoc(String txt) throws JDOMException
 	{
