@@ -28,7 +28,7 @@ public class ComponentAttribute
 		if(component.getAttributes().containsKey(attribute))
 		{
 			value = component.getAttributes().get(attribute);
-			logger.info("Value from "+component.getClass().getSimpleName()+"."+Map.class.getSimpleName()+": "+value);
+			logger.trace("Value from "+component.getClass().getSimpleName()+"."+Map.class.getSimpleName()+": "+value);
 		}
 		else
 		{
@@ -37,10 +37,10 @@ public class ComponentAttribute
 			{
 				value=ve.getValue(ctx.getELContext());
 			}
-			logger.info("Value from "+ValueExpression.class.getSimpleName()+": "+value);
+			logger.trace("Value from "+ValueExpression.class.getSimpleName()+": "+value);
 		}
 		if(Objects.isNull(value)) {value=defaultValue;}
-		logger.info("Value Final: "+value);
+		logger.trace("Value Final: "+value);
 		return value;
 	}
 }
