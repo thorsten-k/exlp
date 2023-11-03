@@ -82,33 +82,23 @@
 				<version>1.15</version> <!-- Version.java, Updated by tk from 1.13 on 2022-05-01-->
 			</dependency>
 			
-
-    		
     		<dependency>
    				<groupId>org.apache.httpcomponents</groupId>
    				<artifactId>httpclient</artifactId>
    				<version>4.5.10</version> <!-- Updated from 4.1.2 on 2020-01-01 -->
    			</dependency>
    			
-   			<!-- 
-			<dependency>
-				<groupId>commons-collections</groupId>
-				<artifactId>commons-collections</artifactId>
-				<version>3.2.2</version>
-    		</dependency>  -->
+   			<!-- Apache Commons -->
     		<dependency>
 				<groupId>org.apache.commons</groupId>
 				<artifactId>commons-collections4</artifactId>
 				<version>4.3</version>
     		</dependency>
-			
 			<dependency>
 				<groupId>commons-configuration</groupId>
 				<artifactId>commons-configuration</artifactId>
 				<version>1.10</version>
 			</dependency>
-			
-			
 			<dependency>
     			<groupId>commons-lang</groupId>
 				<artifactId>commons-lang</artifactId>
@@ -129,7 +119,6 @@
 				<artifactId>commons-cli</artifactId>
 				<version>1.5.0</version> <!-- Updated from 1.4 at 2022-04-24 by tk -->
 			</dependency>
-			
 			<dependency>
 		  		<groupId>commons-validator</groupId>
 		  		<artifactId>commons-validator</artifactId>
@@ -169,6 +158,13 @@
 				<groupId>com.sun.xml.bind</groupId>
 				<artifactId>jaxb-xjc</artifactId>
 				<version>2.2.2</version>
+			</dependency>
+			
+			<!-- JSON - Jackson-->
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.15.2</version>
 			</dependency>
 			
 			<dependency>
@@ -253,7 +249,7 @@
    				<groupId>junit</groupId>
    				<artifactId>junit</artifactId>
    				<version>4.12</version>
-   			</dependency>
+   			</dependency> 
    			
    			<!-- Jupiter itself will be updated later -->
    			<dependency>
