@@ -147,4 +147,9 @@ public class DateUtil
 	{
 		return !test.isBefore(start) && !test.isAfter(end);
 	}
+	
+	public static boolean inPeriod(LocalDate start, LocalDateTime test, LocalDate end)
+	{
+		return !test.isBefore(start.atStartOfDay()) && !test.isAfter(end.atStartOfDay().plusDays(1));
+	}
 }
