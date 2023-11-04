@@ -1,4 +1,4 @@
-package org.exlp.util;
+package org.exlp.util.io;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

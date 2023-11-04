@@ -1,6 +1,6 @@
 package org.exlp.util.jx;
 
-import java.util.Map;
+import java.io.Serializable;
 import java.util.Objects;
 
 import javax.el.ValueExpression;
@@ -14,33 +14,38 @@ public class ComponentAttribute
 {
 	final static Logger logger = LoggerFactory.getLogger(ComponentAttribute.class);
 	
-	public static <E extends Enum<E>> String toString(FacesContext ctx, UIComponent component, E attribute)
+	private static boolean debugOnInfo = false;
+	public static void debugOnInfo(boolean value) {ComponentAttribute.debugOnInfo=value;}
+	
+	public static String toString(FacesContext ctx, UIComponent component, Serializable key) {return ComponentAttribute.toString(ctx,component,key,null);}
+	public static String toString(FacesContext ctx, UIComponent component, Serializable key, String fallback) {return ComponentAttribute.toObject(ctx,component,key,fallback);}
+
+	
+	@SuppressWarnings("unchecked")
+	public static <T extends Object> T toObject(FacesContext ctx, UIComponent component, Serializable key, T fallback)
 	{
-		Object o = ComponentAttribute.toObject(ctx, component, attribute);
-		if(Objects.isNull(o)) {return null;}
-		else {return o.toString();}
+		Object o = ComponentAttribute.fromValueExpression(ctx, component, key);
+		if(Objects.isNull(o)) {return fallback;}
+		else
+		{
+//			if(!o.getClass().equals(c)) {throw new RuntimeException("The Object "+o.getClass().getSimpleName()+" is not a class of" +c.getClass().getSimpleName());}
+			return (T)o;
+		}
 	}
 	
-	private static <E extends Enum<E>> Object toObject(FacesContext ctx, UIComponent component, E attribute) {return ComponentAttribute.toObject(ctx, component, attribute.toString(), null);}
-	private static Object toObject(FacesContext ctx, UIComponent component, String attribute, Object defaultValue)
+	private static Object fromValueExpression(FacesContext ctx, UIComponent component, Serializable key)
 	{
-		Object value = null;
-		if(component.getAttributes().containsKey(attribute))
+		ValueExpression ve = component.getValueExpression(key.toString());
+		if(Objects.nonNull(ve))
 		{
-			value = component.getAttributes().get(attribute);
-			logger.trace("Value from "+component.getClass().getSimpleName()+"."+Map.class.getSimpleName()+": "+value);
+			Object value=ve.getValue(ctx.getELContext());
+			if(debugOnInfo) {logger.info("Value from "+ValueExpression.class.getSimpleName()+": "+value);}
+			return value;
 		}
 		else
 		{
-			ValueExpression ve = component.getValueExpression(attribute);
-			if(Objects.nonNull(ve))
-			{
-				value=ve.getValue(ctx.getELContext());
-			}
-			logger.trace("Value from "+ValueExpression.class.getSimpleName()+": "+value);
+			if(debugOnInfo) {logger.info("No VE for key, you should use getter/setter");}
+			return null;
 		}
-		if(Objects.isNull(value)) {value=defaultValue;}
-		logger.trace("Value Final: "+value);
-		return value;
 	}
 }
