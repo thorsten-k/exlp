@@ -50,6 +50,8 @@ public class JsonUtil
 		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
 	}
 	
+	
+	
 	public static void deactivateCaller() {logCaller=false;}
 	
 	public static void trace(Object json)
