@@ -38,15 +38,27 @@
    			<scope>provided</scope>
    			<type>jar</type>
    		</dependency>
+   		
+   		<!-- Java EE -->
+   		<dependency>
+		    <groupId>javax.el</groupId>
+		    <artifactId>javax.el-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.jms</groupId>
+		    <artifactId>javax.jms-api</artifactId>
+		    <scope>provided</scope>
+		</dependency>
    	
-		<!-- For JMS -->
+		<!-- For JMS 
 		<dependency>
     		<groupId>org.jboss.spec</groupId>
     		<artifactId>jboss-javaee-6.0</artifactId>
 			<version>1.0.0.Final</version>
     		<type>pom</type>
     		<scope>provided</scope>
-		</dependency>
+		</dependency> -->
 			
 		<dependency>
    			<groupId>org.apache.commons</groupId>
