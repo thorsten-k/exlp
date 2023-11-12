@@ -19,6 +19,6 @@ public class JsfUtil
 		js.getAttributes().put("name", name);
 		
 		context.getViewRoot().addComponentResource(context, js, "head");
-		logger.info("Added " +name +" to head.");
+		logger.debug("Added " +name +" to head.");
 	}
 }
