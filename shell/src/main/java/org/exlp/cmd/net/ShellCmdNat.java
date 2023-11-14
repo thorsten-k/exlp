@@ -67,7 +67,7 @@ public class ShellCmdNat
 		
 		switch(architecture)
 		{
-			case Win32: sb.append("netsh interface show all"); break;
+			case Win32: sb.append("netsh interface portproxy show all"); break;
 //			case OsX:	sb.append("ping -c "+anzahl+" "+host);break;
 //			case Linux:	sb.append("ping -c "+anzahl+" "+host);break;
 			default:	OsArchitectureUtil.errorUnsupportedOS("NAT");break;
