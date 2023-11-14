@@ -60,4 +60,19 @@ public class ShellCmdNat
 		
 		return sb.toString();
 	}
+	
+	public String show() throws ExlpUnsupportedOsException
+	{
+		StringBuilder sb = new StringBuilder();
+		
+		switch(architecture)
+		{
+			case Win32: sb.append("netsh interface show all"); break;
+//			case OsX:	sb.append("ping -c "+anzahl+" "+host);break;
+//			case Linux:	sb.append("ping -c "+anzahl+" "+host);break;
+			default:	OsArchitectureUtil.errorUnsupportedOS("NAT");break;
+		}
+		
+		return sb.toString();
+	}
 }
