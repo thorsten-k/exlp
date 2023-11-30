@@ -31,16 +31,19 @@ public class JsonUtil
 		jom = new ObjectMapper();
     	jom.setSerializationInclusion(Include.NON_NULL);
     	jom.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+
 	}
 	
 	public String toFormattedString(Object json)
 	{
 		try
 		{
-			return jom.writerWithDefaultPrettyPrinter().writeValueAsString(json);
+			String s = jom.writerWithDefaultPrettyPrinter().writeValueAsString(json);
+			return s.replace("\r\n","\n");
 		}
 		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
 	}
+	
 	public String toCompactString(Object json)
 	{
 		try
@@ -49,8 +52,6 @@ public class JsonUtil
 		}
 		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
 	}
-	
-	
 	
 	public static void deactivateCaller() {logCaller=false;}
 	
