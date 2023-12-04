@@ -37,7 +37,7 @@ public class TestExlpCentralConfigPointer extends AbstractExlpTest
     
 	public void jaxb() throws FileNotFoundException
 	{
-		Dir dir = JaxbUtil.loadJAXB("/here/your/exlp.xml", Dir.class);
+		Dir dir = JaxbUtil.loadJAXB("/your/home/.m2/exlp.xml", Dir.class);
 		JaxbUtil.info(dir);
 	}
 	
@@ -46,6 +46,7 @@ public class TestExlpCentralConfigPointer extends AbstractExlpTest
 		ExlpBootstrap.init();
 		
 		TestExlpCentralConfigPointer cli = new TestExlpCentralConfigPointer();
-		cli.testFile();
+//		cli.testFile();
+		cli.jaxb();
     }
 }
