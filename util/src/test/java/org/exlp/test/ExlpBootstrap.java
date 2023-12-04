@@ -11,6 +11,8 @@ public class ExlpBootstrap
 {
 	final static Logger logger = LoggerFactory.getLogger(ExlpBootstrap.class);
 	
+	public enum System{exlp}
+	
 	public static void init()
 	{
 		LoggerInit loggerInit = new LoggerInit("log4j.xml");

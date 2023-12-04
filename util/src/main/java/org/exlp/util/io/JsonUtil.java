@@ -20,8 +20,10 @@ public class JsonUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(JsonUtil.class);
 	public static ObjectMapper jom() {return HelperDelegate.jom;}
-	
+
 	private ObjectMapper jom;
+
+	private boolean transformCrNl2Nl; public JsonUtil transformCrNl2Nl(boolean value) {transformCrNl2Nl = value; return this;}
 	
 	private static boolean logCaller = true;
 	
@@ -32,6 +34,9 @@ public class JsonUtil
     	jom.setSerializationInclusion(Include.NON_NULL);
     	jom.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
 
+    	// This handling is required when JsonUtil is used together with JdomUtil to prevent
+    	// Carriage Return Hex Code &#xd; in the output
+    	transformCrNl2Nl = true;
 	}
 	
 	public String toFormattedString(Object json)
@@ -39,7 +44,8 @@ public class JsonUtil
 		try
 		{
 			String s = jom.writerWithDefaultPrettyPrinter().writeValueAsString(json);
-			return s.replace("\r\n","\n");
+			if(transformCrNl2Nl) {return s.replace("\r\n","\n");}
+			else {return s;}
 		}
 		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
 	}
@@ -48,7 +54,9 @@ public class JsonUtil
 	{
 		try
 		{
-			return jom.writeValueAsString(json);
+			String s = jom.writeValueAsString(json);
+			if(transformCrNl2Nl) {return s.replace("\r\n","\n");}
+			else {return s;}
 		}
 		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
 	}
