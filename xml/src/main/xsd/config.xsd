@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://exlp.sf.net/config"
-    xmlns:config="http://exlp.sf.net/config"
-    xmlns:wiki="http://www.openfuxml.org/wiki"
+<xsd:schema targetNamespace="http://exlp.org/config"
+    xmlns:config="http://exlp.org/config"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <xsd:element name="parameters">
         <xsd:complexType>
