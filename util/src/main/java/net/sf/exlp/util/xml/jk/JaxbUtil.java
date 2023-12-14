@@ -13,6 +13,7 @@ import java.io.Writer;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+import org.exlp.interfaces.io.NsPrefixMapperInterface;
 import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
@@ -27,7 +28,6 @@ import jakarta.xml.bind.Unmarshaller;
 import net.sf.exlp.interfaces.util.xml.JaxbInterface;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.JDomUtil;
-import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 public class JaxbUtil implements JaxbInterface
 {

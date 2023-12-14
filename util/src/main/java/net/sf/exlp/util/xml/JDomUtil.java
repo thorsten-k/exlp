@@ -25,6 +25,7 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import org.exlp.interfaces.io.NsPrefixMapperInterface;
 import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.Element;
@@ -41,7 +42,6 @@ import org.xml.sax.SAXException;
 import net.sf.exlp.util.io.StringBufferOutputStream;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.exception.JDomUtilException;
-import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 public class JDomUtil
 {
