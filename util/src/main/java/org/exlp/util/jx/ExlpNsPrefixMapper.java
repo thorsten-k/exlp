@@ -1,6 +1,10 @@
-package net.sf.exlp.xml.ns;
+package org.exlp.util.jx;
+
+
 
 import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
+
+import net.sf.exlp.xml.ns.NsPrefixMapperInterface;
 
 public class ExlpNsPrefixMapper extends NamespacePrefixMapper implements NsPrefixMapperInterface
 {
