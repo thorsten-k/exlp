@@ -53,7 +53,8 @@
     		<artifactId>jaxb-xjc</artifactId>
     		<type>jar</type>
     		<scope>test</scope>
-  		</dependency> 
+  		</dependency>
+
 
   		<!--
 		<dependency>
@@ -118,7 +119,7 @@
 	
 	<profiles>
 		<profile>
-			<id>compile8</id>
+			<id>javax</id>
 			<activation><jdk>1.8</jdk> </activation>
 			<build>
 				<plugins>
@@ -189,7 +190,6 @@
           	         			<configuration>
 									<sourceRoot>${basedir}/src/main/jakarta</sourceRoot>
                         			<xsdOptions>
-									<!--
                             			<xsdOption>
 											
 											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
@@ -214,18 +214,11 @@
 		                        			<xsd>${basedir}/src/main/xsd/config.xsd</xsd>
 		                        			<packagename>${exlp.jaxb.package.base}.config</packagename>
 		                    			</xsdOption>
-		                    		-->
-		                    			<xsdOption>
-											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/test.xsd</xsd>
-		                        			<packagename>org.jeesl</packagename>
-		                    			</xsdOption>
                         			</xsdOptions>
                     			</configuration>
                 			</execution>
             			</executions>                    
            			</plugin>
-           			<!--
 					<plugin>
 				        <groupId>org.codehaus.mojo</groupId>
 				        <artifactId>build-helper-maven-plugin</artifactId>
@@ -255,7 +248,6 @@
 			                </execution>
 			            </executions>
 			        </plugin>
-			        -->
 				</plugins>
 			</build>
 		</profile>
