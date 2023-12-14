@@ -229,9 +229,7 @@
 				            <phase>generate-sources</phase>
 				            <goals><goal>add-source</goal></goals>
 				            <configuration>
-				              <sources>
-				                <source>${basedir}/src/main/jakarta</source>
-				              </sources>
+				              <sources><source>${basedir}/src/main/jakarta</source></sources>
 				            </configuration>
 				          </execution>
 				        </executions>
