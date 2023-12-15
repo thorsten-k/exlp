@@ -1,6 +1,7 @@
 
 package org.exlp.model.xml.config;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -34,8 +35,11 @@ import jakarta.xml.bind.annotation.XmlType;
     "parameter"
 })
 @XmlRootElement(name = "parameters")
-public class Parameters {
+public class Parameters
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<Parameter> parameter;
 

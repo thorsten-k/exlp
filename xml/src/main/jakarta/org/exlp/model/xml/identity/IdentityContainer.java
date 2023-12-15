@@ -1,6 +1,7 @@
 
 package org.exlp.model.xml.identity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -36,8 +37,11 @@ import jakarta.xml.bind.annotation.XmlType;
     "certificate"
 })
 @XmlRootElement(name = "identityContainer")
-public class IdentityContainer {
+public class IdentityContainer
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<User> user;
     @XmlElement(required = true)

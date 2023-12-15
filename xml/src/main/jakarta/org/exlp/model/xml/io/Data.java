@@ -1,6 +1,7 @@
 
 package org.exlp.model.xml.io;
 
+import java.io.Serializable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -32,8 +33,11 @@ import jakarta.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "value"
 })
 @XmlRootElement(name = "data")
-public class Data {
+public class Data
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlValue
     @XmlJavaTypeAdapter(HexBinaryAdapter.class)
     @XmlSchemaType(name = "hexBinary")

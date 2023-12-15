@@ -1,6 +1,7 @@
 
 package org.exlp.model.xml.net;
 
+import java.io.Serializable;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
 import jakarta.xml.bind.annotation.XmlAttribute;
@@ -30,8 +31,11 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 @XmlRootElement(name = "host")
-public class Host {
+public class Host
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "name")

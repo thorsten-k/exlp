@@ -1,6 +1,7 @@
 
 package org.exlp.model.xml.identity;
 
+import java.io.Serializable;
 import javax.xml.datatype.XMLGregorianCalendar;
 import jakarta.xml.bind.annotation.XmlAccessType;
 import jakarta.xml.bind.annotation.XmlAccessorType;
@@ -35,8 +36,11 @@ import jakarta.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "")
 @XmlRootElement(name = "certificate")
-public class Certificate {
+public class Certificate
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlAttribute(name = "id")
     protected Long id;
     @XmlAttribute(name = "serial")

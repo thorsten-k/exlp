@@ -1,6 +1,7 @@
 
 package org.exlp.model.xml.net;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -34,8 +35,11 @@ import jakarta.xml.bind.annotation.XmlType;
     "url"
 })
 @XmlRootElement(name = "urls")
-public class Urls {
+public class Urls
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<Url> url;
 

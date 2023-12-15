@@ -1,6 +1,7 @@
 
 package org.exlp.model.xml.io;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -41,8 +42,11 @@ import jakarta.xml.bind.annotation.XmlType;
     "acl"
 })
 @XmlRootElement(name = "policy")
-public class Policy {
+public class Policy
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<Acl> acl;
     @XmlAttribute(name = "id")

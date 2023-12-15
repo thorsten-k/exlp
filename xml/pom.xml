@@ -197,28 +197,9 @@
 									<sourceRoot>${basedir}/src/main/jakarta</sourceRoot>
                         			<xsdOptions>
                             			<xsdOption>
-											
+											<bindingFile>${basedir}/src/main/xsd/jakarta.xjb</bindingFile>
 											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/io.xsd</xsd>
-		                        			<packagename>${exlp.jaxb.package.base}.io</packagename>
-		                    			</xsdOption>
-		                    			<xsdOption>
-											
-											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/net.xsd</xsd>
-		                        			<packagename>${exlp.jaxb.package.base}.net</packagename>
-		                    			</xsdOption>
-		                    			<xsdOption>
-											
-											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/identity.xsd</xsd>
-		                        			<packagename>${exlp.jaxb.package.base}.identity</packagename>
-		                    			</xsdOption>
-		                    			<xsdOption>
-											
-											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/config.xsd</xsd>
-		                        			<packagename>${exlp.jaxb.package.base}.config</packagename>
+		                        			<xsd>${basedir}/src/main/xsd/exlp.xsd</xsd>
 		                    			</xsdOption>
                         			</xsdOptions>
                     			</configuration>

@@ -1,6 +1,7 @@
 
 package org.exlp.model.xml.io;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import jakarta.xml.bind.annotation.XmlAccessType;
@@ -37,8 +38,11 @@ import jakarta.xml.bind.annotation.XmlType;
     "file"
 })
 @XmlRootElement(name = "files")
-public class Files {
+public class Files
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<File> file;
     @XmlAttribute(name = "name")

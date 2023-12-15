@@ -1,6 +1,7 @@
 
 package org.exlp.model.xml.io;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.datatype.XMLGregorianCalendar;
@@ -49,8 +50,11 @@ import jakarta.xml.bind.annotation.XmlType;
     "data"
 })
 @XmlRootElement(name = "file")
-public class File {
+public class File
+    implements Serializable
+{
 
+    private final static long serialVersionUID = 1L;
     @XmlElement(required = true)
     protected List<Policy> policy;
     @XmlElement(required = true)
