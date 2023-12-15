@@ -36,6 +36,7 @@
    			<groupId>net.sf.exlp</groupId>
    			<artifactId>exlp-xml</artifactId>
    			<scope>provided</scope>
+   			<classifier>javax</classifier>
    			<type>jar</type>
    		</dependency>
    		
