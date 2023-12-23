@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsd:schema targetNamespace="http://exlp.sf.net/xsd"
-    xmlns="http://exlp.sf.net/xsd"
-    xmlns:io="http://exlp.sf.net/io"
-    xmlns:net="http://exlp.sf.net/io"
+<xsd:schema targetNamespace="http://exlp.org"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
     xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
-    xmlns:xjc="http://java.sun.com/xml/ns/jaxb/xjc" jaxb:extensionBindingPrefixes="xjc"
     jaxb:version="2.0">
-    <xsd:import namespace="http://exlp.sf.net/io" schemaLocation="io.xsd"/>
-    <xsd:import namespace="http://exlp.sf.net/net" schemaLocation="net.xsd"/>
-    <xsd:import namespace="http://exlp.sf.net/identity" schemaLocation="identity.xsd"/>
-    <xsd:import namespace="http://exlp.sf.net/config" schemaLocation="config.xsd"/>
-    <xsd:annotation>
-        <xsd:appinfo>
-            <jaxb:globalBindings generateIsSetMethod="true">
-                <xjc:serializable uid="1"/>
-            </jaxb:globalBindings>
-        </xsd:appinfo>
-    </xsd:annotation>
+    
+    <xsd:import namespace="http://exlp.sf.net/xsd"		schemaLocation="exlp/exlp.xsd"/>
+    <xsd:import namespace="http://exlp.sf.net/io"		schemaLocation="exlp/io.xsd"/>
+    <xsd:import namespace="http://exlp.sf.net/net"		schemaLocation="net.xsd"/>
+    <xsd:import namespace="http://exlp.sf.net/identity"	schemaLocation="identity.xsd"/>
+    <xsd:import namespace="http://exlp.org/config"		schemaLocation="exlp/config.xsd"/>
+       
 </xsd:schema>

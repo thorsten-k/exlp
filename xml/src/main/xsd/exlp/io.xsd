@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema targetNamespace="http://exlp.sf.net/io"
     xmlns:io="http://exlp.sf.net/io"
-    xmlns:wiki="http://www.openfuxml.org/wiki"
     xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:element name="dir">
   		<xsd:complexType>
