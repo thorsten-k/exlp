@@ -30,7 +30,7 @@
             <jxb:package name="org.exlp.model.xml.io"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-    <jxb:bindings schemaLocation="net.xsd" node="/xsd:schema">
+    <jxb:bindings schemaLocation="exlp/net.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.exlp.model.xml.net"/>
         </jxb:schemaBindings>
