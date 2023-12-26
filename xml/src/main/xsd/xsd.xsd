@@ -7,7 +7,7 @@
     <xsd:import namespace="http://exlp.sf.net/xsd"		schemaLocation="exlp/exlp.xsd"/>
     <xsd:import namespace="http://exlp.sf.net/io"		schemaLocation="exlp/io.xsd"/>
     <xsd:import namespace="http://exlp.sf.net/net"		schemaLocation="net.xsd"/>
-    <xsd:import namespace="http://exlp.sf.net/identity"	schemaLocation="identity.xsd"/>
+    <xsd:import namespace="http://exlp.sf.net/identity"	schemaLocation="exlp/identity.xsd"/>
     <xsd:import namespace="http://exlp.org/config"		schemaLocation="exlp/config.xsd"/>
        
 </xsd:schema>
