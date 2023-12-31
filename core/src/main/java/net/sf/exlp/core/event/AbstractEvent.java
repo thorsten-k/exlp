@@ -7,13 +7,13 @@ import java.util.Date;
 import java.util.Hashtable;
 import java.util.Map;
 
+import org.exlp.util.io.StringUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.core.listener.AbstractLogListener;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.util.io.ObjectIO;
-import net.sf.exlp.util.io.StringUtil;
 
 public abstract class AbstractEvent implements LogEvent,Serializable
 {

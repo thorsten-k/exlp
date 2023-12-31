@@ -8,8 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import net.sf.exlp.util.io.StringUtil;
-
 public class TestStringUtil extends AbstractExlpTest
 {
 	final static Logger logger = LoggerFactory.getLogger(TestStringUtil.class);

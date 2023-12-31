@@ -27,4 +27,11 @@ public class TxtFileNameFactory
     	}
     	return sb.substring(0,sb.length()-1)+"."+fileSuffix;
 	}
+	
+	public static String toSuffix(String fileName)
+	{
+		int index = fileName.lastIndexOf(".");
+		if(index<1) {return "";}
+		else return fileName.substring(index+1,fileName.length());
+	}
 }
