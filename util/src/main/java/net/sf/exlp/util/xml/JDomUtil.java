@@ -69,6 +69,11 @@ public class JDomUtil
 		stream(doc, System.out);
 		System.out.flush();
 	}
+	public void info(Element doc)
+	{
+		stream(doc, System.out);
+		System.out.flush();
+	}
 	
 	public void write(Document doc, Path path)
 	{        
@@ -110,6 +115,67 @@ public class JDomUtil
 				OutputStreamWriter osw = new OutputStreamWriter(os,encoding);
 				outputter.output(doc,osw);
 				osw.close();
+			}
+		} 
+		catch (IOException e){logger.error("",e);}
+	}
+	
+	public void stream(Element element, OutputStream os)
+	{
+		Format format = Format.getPrettyFormat();
+		format.setExpandEmptyElements(true);
+		format.setOmitDeclaration(omitDeclaration);
+		
+		outputter = new XMLOutputter(format);
+		
+		try
+		{
+			if(omitEscape)
+			{
+				StringWriter sw = new StringWriter();
+				outputter.output(element,sw);
+				sw.close();
+				
+				String content = sw.toString();
+				content = content.replaceAll("&lt;","<");
+				
+				OutputStreamWriter osw = new OutputStreamWriter(os,encoding);
+				osw.write(content);
+				osw.close();
+			}
+			else
+			{
+				OutputStreamWriter osw = new OutputStreamWriter(os,encoding);
+				outputter.output(element,osw);
+				osw.close();
+			}
+		} 
+		catch (IOException e){logger.error("",e);}
+	}
+	
+	public void stream(List<Element> elements, StringWriter sw)
+	{
+		Format format = Format.getPrettyFormat();
+		format.setExpandEmptyElements(true);
+		format.setOmitDeclaration(omitDeclaration);
+		
+		outputter = new XMLOutputter(format);
+		
+		try
+		{
+			if(omitEscape)
+			{
+				StringWriter swTmp = new StringWriter();
+				outputter.output(elements,swTmp);
+				sw.close();
+				
+				String content = sw.toString();
+				content = content.replaceAll("&lt;","<");
+				sw.write(content);
+			}
+			else
+			{
+				outputter.output(elements,sw);
 			}
 		} 
 		catch (IOException e){logger.error("",e);}
