@@ -11,7 +11,6 @@ import org.exlp.test.AbstractExlpTest;
 import org.exlp.test.ExlpBootstrap;
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.output.LineSeparator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
