@@ -26,6 +26,8 @@ public class MultiResourceLoader
 
 	private ClassLoader classLoader;
 	
+	public static MultiResourceLoader instance() {return new MultiResourceLoader();}
+	
 	public MultiResourceLoader(ClassLoader classLoader)
 	{
 		debugInfo = false;
