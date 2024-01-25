@@ -184,7 +184,7 @@ public class ExlpConfigPointerTray
     //Obtain the image URL
     protected static Image createImage(String path, String description) throws IOException
     {
-    	MultiResourceLoader mrl = new MultiResourceLoader();
+    	MultiResourceLoader mrl = MultiResourceLoader.instance();
     	InputStream is = mrl.searchIs("exlp/client/gfx/ccp/local.png");
     	byte[] bytes = IOUtils.toByteArray(is);
         return (new ImageIcon(bytes, description)).getImage();

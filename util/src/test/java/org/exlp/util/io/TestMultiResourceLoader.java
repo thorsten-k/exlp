@@ -14,13 +14,13 @@ public class TestMultiResourceLoader extends AbstractExlpTest
     
 	public static void main(String[] args) throws FileNotFoundException
 	{
-		MultiResourceLoader mrl1 = new MultiResourceLoader();
+		MultiResourceLoader mrl1 = MultiResourceLoader.instance();
 		mrl1.addPath("dir1","dir2","dir3");
 		mrl1.addPath("exlp-util.test");
 		mrl1.searchIs("log4j.xml");
 		System.out.println(mrl1.getSearchPath());
 		
-		MultiResourceLoader mrl3 = new MultiResourceLoader();
+		MultiResourceLoader mrl3 = MultiResourceLoader.instance();
 		mrl3.addPath("dir1","dir2","dir3");
 		mrl3.addPath("exlp-util.test");
 		System.out.println(mrl3.getLocation("log4j.xml"));

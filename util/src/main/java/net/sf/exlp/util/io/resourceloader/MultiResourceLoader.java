@@ -27,8 +27,9 @@ public class MultiResourceLoader
 	private ClassLoader classLoader;
 	
 	public static MultiResourceLoader instance() {return new MultiResourceLoader();}
+	public static MultiResourceLoader instance(ClassLoader classLoader) {return new MultiResourceLoader(classLoader);}
 	
-	public MultiResourceLoader(ClassLoader classLoader)
+	private MultiResourceLoader(ClassLoader classLoader)
 	{
 		debugInfo = false;
 		debugError = true;
@@ -36,7 +37,7 @@ public class MultiResourceLoader
 		this.classLoader = classLoader;
 	}
 	
-	public MultiResourceLoader()
+	private MultiResourceLoader()
 	{
 		debugInfo = false;
 		debugError = true;

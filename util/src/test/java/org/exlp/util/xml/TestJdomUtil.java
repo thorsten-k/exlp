@@ -34,7 +34,7 @@ public class TestJdomUtil extends AbstractExlpTest
 		
 		
 		
-		mrl = new MultiResourceLoader();
+		mrl = MultiResourceLoader.instance();
 	}
 	
 	@Test

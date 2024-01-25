@@ -28,7 +28,7 @@ public class ZipperStream
 	{
 		resultOs = new ByteArrayOutputStream();
 		zipOs = new ZipOutputStream(resultOs);
-		mrl = new MultiResourceLoader();
+		mrl = MultiResourceLoader.instance();
 	}
 	
 	public void add(String name, byte[] data)

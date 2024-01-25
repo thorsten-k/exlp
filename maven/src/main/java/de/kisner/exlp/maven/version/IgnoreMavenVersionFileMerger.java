@@ -33,7 +33,7 @@ public class IgnoreMavenVersionFileMerger
 		ns = Namespace.getNamespace("http://mojo.codehaus.org/versions-maven-plugin/rule/2.0.0");
 		nsXsi = Namespace.getNamespace("xsi","http://www.w3.org/2001/XMLSchema-instance");
 		
-		mrl = new MultiResourceLoader();
+		mrl = MultiResourceLoader.instance();
 
 		
 		rules = new Element("rules");

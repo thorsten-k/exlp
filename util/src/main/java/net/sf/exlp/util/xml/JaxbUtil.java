@@ -59,7 +59,7 @@ public class JaxbUtil implements JaxbInterface
 	
 	public static <T extends Object> T loadJAXB(ClassLoader classLoader, String xmlFile, Class<T> c) throws FileNotFoundException
 	{
-		MultiResourceLoader mrl = new MultiResourceLoader(classLoader);
+		MultiResourceLoader mrl = MultiResourceLoader.instance(classLoader);
 		return loadJAXB(mrl,xmlFile,c);
 	}
 	public static <T extends Object> T loadJAXB(File xmlFile, Class<T> c) throws FileNotFoundException
@@ -68,7 +68,7 @@ public class JaxbUtil implements JaxbInterface
 	}
 	public static <T extends Object> T loadJAXB(String xmlFile, Class<T> c) throws FileNotFoundException
 	{
-		MultiResourceLoader mrl = new MultiResourceLoader();
+		MultiResourceLoader mrl = MultiResourceLoader.instance();
 		return loadJAXB(mrl,xmlFile,c);
 	}
 	

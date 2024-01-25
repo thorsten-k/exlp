@@ -422,7 +422,7 @@ public class JDomUtil
 	{
 		try
 		{
-			MultiResourceLoader mrl = new MultiResourceLoader();
+			MultiResourceLoader mrl = MultiResourceLoader.instance();
 			InputStream is = mrl.searchIs(resourceName);
 			return load(is,encoding);
 		}

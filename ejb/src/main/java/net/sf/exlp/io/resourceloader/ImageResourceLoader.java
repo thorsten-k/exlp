@@ -23,7 +23,7 @@ public class ImageResourceLoader
 	
 	public synchronized Image search(ClassLoader cl, String resourceName, Display display) throws FileNotFoundException
 	{
-		MultiResourceLoader mrl = new MultiResourceLoader();
+		MultiResourceLoader mrl = MultiResourceLoader.instance();
 		InputStream is = mrl.searchIs(resourceName);
 		Image img = new Image(display, is);
 		return img;
