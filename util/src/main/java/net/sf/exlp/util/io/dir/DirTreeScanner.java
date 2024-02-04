@@ -7,12 +7,12 @@ import java.util.Date;
 import java.util.Objects;
 
 import org.exlp.model.xml.io.Dir;
+import org.exlp.util.system.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.factory.xml.io.XmlDirFactory;
 import net.sf.exlp.factory.xml.io.XmlFileFactory;
-import net.sf.exlp.util.DateUtil;
 
 public class DirTreeScanner
 {

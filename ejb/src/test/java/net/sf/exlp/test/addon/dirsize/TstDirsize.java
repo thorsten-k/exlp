@@ -7,8 +7,8 @@ import net.sf.exlp.addon.common.data.facade.ExlpFacadeFactory;
 import net.sf.exlp.addon.dirsize.data.ejb.ExlpDirectory;
 import net.sf.exlp.addon.dirsize.data.ejb.ExlpDirectorySize;
 import net.sf.exlp.addon.dirsize.data.facade.exlp.ExlpDirsizeFacade;
-import net.sf.exlp.util.io.LoggerInit;
 
+import org.exlp.util.io.log.LoggerInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

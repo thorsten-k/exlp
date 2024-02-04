@@ -12,8 +12,8 @@ import net.sf.exlp.core.parser.AbstractLogParser;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.interfaces.util.PatternLibrary;
-import net.sf.exlp.util.DateUtil;
 
+import org.exlp.util.system.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -3,11 +3,11 @@ package net.sf.exlp.test.net.jms;
 import javax.jms.MessageListener;
 import javax.naming.InitialContext;
 
-import net.sf.exlp.util.io.LoggerInit;
 import net.sf.exlp.util.net.ejb.ExlpContextFactory;
 import net.sf.exlp.util.net.jms.listener.TextMessageRespondDebugListener;
 import net.sf.exlp.util.net.jms.ptp.PtpConsumer;
 
+import org.exlp.util.io.log.LoggerInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

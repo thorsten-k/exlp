@@ -6,8 +6,8 @@ import net.sf.exlp.core.parser.DummyParser;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogListener;
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.util.io.LoggerInit;
 
+import org.exlp.util.io.log.LoggerInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

@@ -1,4 +1,4 @@
-package net.sf.exlp.util.comparator.xml;
+package org.exlp.util.comparator.xml;
 
 import java.util.Comparator;
 

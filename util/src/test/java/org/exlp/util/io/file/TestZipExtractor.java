@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import org.exlp.model.xml.io.Dir;
 import org.exlp.test.AbstractExlpTest;
+import org.exlp.util.jx.JaxbUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,7 +13,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.util.io.compression.ZipExtractor;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestZipExtractor extends AbstractExlpTest
 {

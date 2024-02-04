@@ -1,4 +1,4 @@
-package net.sf.exlp.util.io;
+package org.exlp.util.io.config;
 
 import java.io.FileNotFoundException;
 import java.nio.file.Path;
@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import org.exlp.model.xml.io.Dir;
 import org.exlp.model.xml.io.File;
+import org.exlp.util.jx.JaxbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,7 +14,6 @@ import net.sf.exlp.exception.ExlpConfigurationException;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
 import net.sf.exlp.interfaces.util.xml.JaxbInterface;
-import net.sf.exlp.util.xml.JaxbUtil;
 import net.sf.exlp.xml.xpath.IoXpath;
 
 public class ExlpCentralConfigPointer

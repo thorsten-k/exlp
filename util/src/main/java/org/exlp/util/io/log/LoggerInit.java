@@ -1,4 +1,4 @@
-package net.sf.exlp.util.io;
+package org.exlp.util.io.log;
 
 import java.io.File;
 import java.net.URL;

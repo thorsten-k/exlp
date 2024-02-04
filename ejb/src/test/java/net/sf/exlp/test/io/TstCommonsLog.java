@@ -1,7 +1,6 @@
 package net.sf.exlp.test.io;
 
-import net.sf.exlp.util.io.LoggerInit;
-
+import org.exlp.util.io.log.LoggerInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

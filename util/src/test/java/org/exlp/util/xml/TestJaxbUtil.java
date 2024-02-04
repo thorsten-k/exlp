@@ -4,8 +4,7 @@ import org.exlp.model.xml.io.Dir;
 import org.exlp.model.xml.io.TestDir;
 import org.exlp.test.ExlpBootstrap;
 import org.exlp.util.jx.ExlpNsPrefixMapper;
-
-import net.sf.exlp.util.xml.JaxbUtil;
+import org.exlp.util.jx.JaxbUtil;
 
 public class TestJaxbUtil
 {

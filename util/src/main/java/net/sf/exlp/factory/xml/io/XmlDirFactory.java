@@ -5,8 +5,7 @@ import java.util.Date;
 import java.util.Objects;
 
 import org.exlp.model.xml.io.Dir;
-
-import net.sf.exlp.util.DateUtil;
+import org.exlp.util.system.DateUtil;
 
 public class XmlDirFactory
 {

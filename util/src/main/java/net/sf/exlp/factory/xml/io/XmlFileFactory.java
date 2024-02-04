@@ -9,8 +9,7 @@ import java.util.zip.ZipEntry;
 
 import org.apache.commons.io.IOUtils;
 import org.exlp.model.xml.io.File;
-
-import net.sf.exlp.util.DateUtil;
+import org.exlp.util.system.DateUtil;
 
 public class XmlFileFactory
 {

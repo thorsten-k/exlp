@@ -15,12 +15,11 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.exlp.test.AbstractExlpTest;
 import org.exlp.test.ExlpBootstrap;
+import org.exlp.util.system.DateUtil;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Assertions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.util.DateUtil;
 
 public class TestDateUtil extends AbstractExlpTest
 {

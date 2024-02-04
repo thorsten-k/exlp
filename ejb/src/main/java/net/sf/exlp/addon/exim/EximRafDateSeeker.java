@@ -9,12 +9,12 @@ import java.util.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.exlp.util.system.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.addon.exim.data.facade.exlp.ExlpEximFacade;
 import net.sf.exlp.interfaces.util.PatternLibrary;
-import net.sf.exlp.util.DateUtil;
 
 public class EximRafDateSeeker
 {

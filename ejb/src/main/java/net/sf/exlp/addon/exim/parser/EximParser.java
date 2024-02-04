@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.exlp.util.system.DateUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,7 +13,6 @@ import net.sf.exlp.core.parser.AbstractLogParser;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogParser;
 import net.sf.exlp.interfaces.util.PatternLibrary;
-import net.sf.exlp.util.DateUtil;
 
 public class EximParser extends AbstractLogParser implements LogParser  
 {

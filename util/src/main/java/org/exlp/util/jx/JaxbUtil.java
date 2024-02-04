@@ -1,4 +1,4 @@
-package net.sf.exlp.util.xml;
+package org.exlp.util.jx;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,6 +22,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.exlp.interfaces.io.NsPrefixMapperInterface;
+import org.exlp.util.jx.JaxbUtil;
 import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
@@ -32,7 +33,7 @@ import org.xml.sax.SAXException;
 
 import net.sf.exlp.interfaces.util.xml.JaxbInterface;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
-import net.sf.exlp.util.xml.JaxbUtil;
+import net.sf.exlp.util.xml.JDomUtil;
 
 public class JaxbUtil implements JaxbInterface
 {

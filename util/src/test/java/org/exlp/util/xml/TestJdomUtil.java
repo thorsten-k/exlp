@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import org.exlp.model.xml.net.Database;
 import org.exlp.test.AbstractExlpTest;
 import org.exlp.test.ExlpBootstrap;
+import org.exlp.util.jx.JaxbUtil;
 import org.jdom2.Document;
 import org.jdom2.Element;
 import org.junit.jupiter.api.Assertions;
@@ -15,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.JDomUtil;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestJdomUtil extends AbstractExlpTest
 {

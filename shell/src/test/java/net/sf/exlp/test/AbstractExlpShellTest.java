@@ -2,12 +2,11 @@ package net.sf.exlp.test;
 
 import java.io.File;
 
+import org.exlp.util.io.log.LoggerInit;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.util.io.LoggerInit;
 
 public class AbstractExlpShellTest
 {

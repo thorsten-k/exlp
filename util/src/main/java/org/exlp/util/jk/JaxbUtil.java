@@ -1,4 +1,4 @@
-package net.sf.exlp.util.xml.jk;
+package org.exlp.util.jk;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

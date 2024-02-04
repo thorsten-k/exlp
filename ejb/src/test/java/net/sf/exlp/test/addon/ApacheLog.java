@@ -1,12 +1,13 @@
 package net.sf.exlp.test.addon;
 
+import org.exlp.util.io.log.LoggerInit;
+
 import net.sf.exlp.addon.apache.parser.ApacheParser;
 import net.sf.exlp.core.handler.EhDebug;
 import net.sf.exlp.core.listener.LogListenerFile;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.interfaces.LogListener;
 import net.sf.exlp.interfaces.LogParser;
-import net.sf.exlp.util.io.LoggerInit;
 
 public class ApacheLog
 {	

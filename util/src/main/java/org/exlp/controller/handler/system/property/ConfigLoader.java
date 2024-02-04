@@ -14,12 +14,11 @@ import org.apache.commons.configuration.Configuration;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.XMLConfiguration;
+import org.exlp.util.io.config.ExlpCentralConfigPointer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.Marker;
 import org.slf4j.MarkerFactory;
-
-import net.sf.exlp.util.io.ExlpCentralConfigPointer;
 
 public class ConfigLoader
 {

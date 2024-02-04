@@ -1,9 +1,8 @@
 package net.sf.exlp.test.io;
 
-import net.sf.exlp.util.io.LoggerInit;
-
 import org.apache.commons.configuration.Configuration;
 import org.exlp.controller.handler.system.property.ConfigLoader;
+import org.exlp.util.io.log.LoggerInit;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

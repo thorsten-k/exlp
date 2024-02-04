@@ -7,14 +7,14 @@ import org.exlp.controller.handler.system.property.ConfigLoader;
 import org.exlp.model.xml.io.Dir;
 import org.exlp.test.AbstractExlpTest;
 import org.exlp.test.ExlpBootstrap;
+import org.exlp.util.io.config.ExlpCentralConfigPointer;
+import org.exlp.util.jx.JaxbUtil;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.exception.ExlpConfigurationException;
-import net.sf.exlp.util.io.ExlpCentralConfigPointer;
-import net.sf.exlp.util.xml.JaxbUtil;
 
 public class TestExlpCentralConfigPointer extends AbstractExlpTest
 {
