@@ -34,5 +34,5 @@ public class JsonDirectory implements Serializable
 	@JsonProperty("files")
 	private List<JsonFile> files;
 	public List<JsonFile> getFiles() {return files;}
-	public void setgetFilesProperties(List<JsonFile> files) {this.files = files;}
+	public void setFiles(List<JsonFile> files) {this.files = files;}
 }
