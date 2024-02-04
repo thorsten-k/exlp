@@ -31,6 +31,11 @@ public class JsonDirectory implements Serializable
 	public String getName() {return name;}
 	public void setName(String name) {this.name = name;}
 	
+	@JsonProperty("directories")
+	private List<JsonDirectory> directories;
+	public List<JsonDirectory> getDirectories() {return directories;}
+	public void setDirectories(List<JsonDirectory> directories) {this.directories = directories;}
+
 	@JsonProperty("files")
 	private List<JsonFile> files;
 	public List<JsonFile> getFiles() {return files;}
