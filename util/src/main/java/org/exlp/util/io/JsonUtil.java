@@ -95,12 +95,8 @@ public class JsonUtil
 
 	public static String toStringSilent(Object json)
 	{
-		try {
-			return toString(json, false);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		try {return toString(json, false);}
+		catch (JsonProcessingException e) {e.printStackTrace();}
 		return null;
 	}
 	public static String toString(Object json) throws JsonProcessingException
@@ -130,11 +126,6 @@ public class JsonUtil
 		return jom().writeValueAsBytes(json);
 	}
 	
-//	@Deprecated
-//	private static <T extends Object> T read(String s, Class<T> c) throws JsonParseException, JsonMappingException, IOException 
-//	{
-//		return jom().readValue(s, c);
-//	}
 	
 	public static <T extends Object> T read(Class<T> c, String s) throws JsonParseException, JsonMappingException, IOException 
 	{
@@ -157,10 +148,6 @@ public class JsonUtil
 		return jom().readValue(f, c);
 	}
 	
-//	public static <T extends Object> List<T> readList(Class[]<T> c, File f) throws JsonGenerationException, JsonMappingException, IOException
-//	{
-//		return Arrays.asList(jom().readValue(f, MyClass[].class))
-//	}
 	
 	private static synchronized String getCaller()
 	{

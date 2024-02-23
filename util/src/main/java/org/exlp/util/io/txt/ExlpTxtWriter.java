@@ -1,4 +1,4 @@
-package net.sf.exlp.util.io.txt;
+package org.exlp.util.io.txt;
 
 import java.util.List;
 
