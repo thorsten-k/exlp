@@ -7,7 +7,7 @@ import net.sf.exlp.core.handler.EhList;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.interfaces.LogEventHandler;
 import net.sf.exlp.test.AbstractExlpShellTest;
-import net.sf.exlp.test.ExlpShellTestBootstrap;
+import net.sf.exlp.test.ExlpShellBootstrap;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,7 +18,7 @@ public class TestIcmpPing extends AbstractExlpShellTest
    
 	public static void main(String[] args)
 	{
-		ExlpShellTestBootstrap.init();
+		ExlpShellBootstrap.init();
 		
 		List<LogEvent> list = new ArrayList<LogEvent>();
 		LogEventHandler leh = new EhList(list);

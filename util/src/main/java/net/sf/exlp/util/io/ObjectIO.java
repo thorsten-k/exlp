@@ -381,17 +381,5 @@ public class ObjectIO
 		dir.delete();
 	}
 	
-	public static void main(String args[])
-	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");
-			loggerInit.path("resources/config");
-			loggerInit.init();
 	
-		String s1 = "Hallo";
-		String s2 = "Hallo";
-		
-		logger.debug(printByteStream(hash(s1),true));
-		logger.debug(printByteStream(hash(s2),true));
-
-	}
 }

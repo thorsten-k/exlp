@@ -2,7 +2,7 @@ package net.sf.exlp.test;
 
 import java.io.File;
 
-import org.exlp.util.io.log.LoggerInit;
+import org.exlp.controller.handler.io.log.LoggerBootstrap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -17,7 +17,7 @@ public class AbstractExlpShellTest
 	@BeforeAll
 	public static void initFile()
 	{
-		if(!LoggerInit.isLog4jInited()){initLogger();}
+		if(!LoggerBootstrap.isLog4jInited()){initLogger();}
 		String dirTarget = System.getProperty("targetDir");
 		if(dirTarget==null){dirTarget="target";}
 		setfTarget(new File(dirTarget));
@@ -28,11 +28,9 @@ public class AbstractExlpShellTest
 	@BeforeAll
     public static void initLogger()
 	{
-		if(!LoggerInit.isLog4jInited())
+		if(!LoggerBootstrap.isLog4jInited())
 		{
-			LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-			loggerInit.path("config.exlp-shell.test");
-			loggerInit.init();
+			LoggerBootstrap.instance("shell.log4j2.xml").path("exlp/system/io/log").init();
 		}
     }
 	

@@ -52,12 +52,11 @@
         	</exclusions>
       	</dependency>
       	
-      	<!-- https://mvnrepository.com/artifact/org.zeromq/jeromq -->
-<dependency>
-    <groupId>org.zeromq</groupId>
-    <artifactId>jeromq</artifactId>
-    <version>0.5.2</version>
-</dependency>
+		<dependency>
+			<groupId>org.zeromq</groupId>
+			<artifactId>jeromq</artifactId>
+			<version>0.5.2</version>
+		</dependency>
 
       	<dependency>
     <groupId>com.sparkjava</groupId>
@@ -81,31 +80,9 @@
    		
 		<!-- Logging -->
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-api</artifactId>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-   			<groupId>log4j</groupId>
-   			<artifactId>log4j</artifactId>
-   			<scope>provided</scope>
-   		</dependency>
 	</dependencies>
-	
-	<build>
-		<plugins>
-			<plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>versions-maven-plugin</artifactId>
-		        <configuration>
-					<rulesUri>${maven.ignore}</rulesUri>
-		        </configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

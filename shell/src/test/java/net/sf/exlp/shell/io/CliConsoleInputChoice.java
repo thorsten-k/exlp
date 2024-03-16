@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.test.AbstractExlpShellTest;
-import net.sf.exlp.test.ExlpShellTestBootstrap;
+import net.sf.exlp.test.ExlpShellBootstrap;
 
 public class CliConsoleInputChoice extends AbstractExlpShellTest
 {
@@ -41,7 +41,7 @@ public class CliConsoleInputChoice extends AbstractExlpShellTest
 	
 	public static void main(String[] args)
 	{
-		ExlpShellTestBootstrap.init();
+		ExlpShellBootstrap.init();
 		
 		CliConsoleInputChoice cli = new CliConsoleInputChoice();
 //		cli.testEnum();

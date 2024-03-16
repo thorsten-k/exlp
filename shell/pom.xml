@@ -51,41 +51,22 @@
 			<artifactId>slf4j-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<scope>test</scope>
-		</dependency>
 		
-		<!-- Test 
-		<dependency>
-   			<groupId>junit</groupId>
-   			<artifactId>junit</artifactId>
-   			<type>jar</type>
-   			<scope>test</scope>
-   		</dependency> -->
+		<!-- Test -->
    		<dependency>
 	 		<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-api</artifactId>
 			<scope>test</scope>
 		</dependency>
-   		
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-slf4j-impl</artifactId>
+			<scope>test</scope>
+		</dependency>
    		<dependency>
 			<groupId>net.sf.exlp</groupId>
 			<artifactId>exlp-util</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
-	<build>
-		<plugins>
-			<plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>versions-maven-plugin</artifactId>
-		        <configuration>
-					<rulesUri>${maven.ignore}</rulesUri>
-		        </configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

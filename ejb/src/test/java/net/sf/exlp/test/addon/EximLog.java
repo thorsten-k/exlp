@@ -1,6 +1,6 @@
 package net.sf.exlp.test.addon;
 
-import org.exlp.util.io.log.LoggerInit;
+import org.exlp.test.ExlpEjbBootstrap;
 
 import net.sf.exlp.addon.exim.parser.EximParser;
 import net.sf.exlp.core.handler.EhDebug;
@@ -13,9 +13,7 @@ public class EximLog
 {	
 	public static void main (String[] args) throws Exception
 	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.path("resources/config");
-			loggerInit.init();
+		ExlpEjbBootstrap.init();
 		
 		LogEventHandler leh = new EhDebug();
 		LogParser lp = new EximParser(leh);

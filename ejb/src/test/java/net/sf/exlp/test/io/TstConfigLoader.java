@@ -2,7 +2,7 @@ package net.sf.exlp.test.io;
 
 import org.apache.commons.configuration.Configuration;
 import org.exlp.controller.handler.system.property.ConfigLoader;
-import org.exlp.util.io.log.LoggerInit;
+import org.exlp.test.ExlpEjbBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -12,9 +12,7 @@ public class TstConfigLoader
 	
 	public static void main(String args[])
 	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.path("resources/config");
-			loggerInit.init();
+		ExlpEjbBootstrap.init();
 			
 		logger.debug("Test");
 		

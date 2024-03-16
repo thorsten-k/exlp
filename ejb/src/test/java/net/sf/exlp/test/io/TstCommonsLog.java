@@ -1,6 +1,6 @@
 package net.sf.exlp.test.io;
 
-import org.exlp.util.io.log.LoggerInit;
+import org.exlp.test.ExlpEjbBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -20,9 +20,7 @@ public class TstCommonsLog
 	
 	public static void main(String args[])
 	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.path("resources/config");
-			loggerInit.init();
+		ExlpEjbBootstrap.init();
 		
 		TstCommonsLog test = new TstCommonsLog();
 		test.test();

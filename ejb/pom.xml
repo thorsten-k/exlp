@@ -87,11 +87,7 @@
    			<type>jar</type>
    			<scope>compile</scope>
    		</dependency>
-   		<dependency>
-   			<groupId>log4j</groupId>
-   			<artifactId>log4j</artifactId>
-   			<scope>compile</scope>
-   		</dependency>
+   		
    		<dependency>
    			<groupId>org.apache.httpcomponents</groupId>
    			<artifactId>httpclient</artifactId>
@@ -140,16 +136,4 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
-	<build>
-		<plugins>
-			<plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>versions-maven-plugin</artifactId>
-		        <configuration>
-					<rulesUri>${maven.ignore}</rulesUri>
-		        </configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
