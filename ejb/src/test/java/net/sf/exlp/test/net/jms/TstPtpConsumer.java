@@ -3,13 +3,13 @@ package net.sf.exlp.test.net.jms;
 import javax.jms.MessageListener;
 import javax.naming.InitialContext;
 
+import org.exlp.test.ExlpEjbBootstrap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.exlp.util.net.ejb.ExlpContextFactory;
 import net.sf.exlp.util.net.jms.listener.TextMessageRespondDebugListener;
 import net.sf.exlp.util.net.jms.ptp.PtpConsumer;
-
-import org.exlp.util.io.log.LoggerInit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class TstPtpConsumer
 {
@@ -32,9 +32,7 @@ public class TstPtpConsumer
 	
 	public static void main (String[] args) throws Exception
 	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.path("resources/config");
-			loggerInit.init();
+		ExlpEjbBootstrap.init();
 		
 		logger.debug("Starting main.");	
 			

@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 
 import javax.xml.datatype.XMLGregorianCalendar;
 
+import org.exlp.controller.handler.io.log.LoggerBootstrap;
 import org.exlp.util.io.log.LoggerInit;
 import org.exlp.util.jx.ExlpNsPrefixMapper;
 import org.exlp.util.jx.JaxbUtil;
@@ -36,9 +37,7 @@ public class AbstractExlpTest
 	{
 		if(!LoggerInit.isLog4jInited())
 		{
-			LoggerInit loggerInit = new LoggerInit("log4junit.xml");	
-			loggerInit.path("exlp/test/config");
-			loggerInit.init();
+			LoggerBootstrap.instance("unit.util.log4j2.xml").path("exlp/system/io/log").init();
 		}
     }
 	

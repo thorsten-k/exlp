@@ -2,13 +2,13 @@ package net.sf.exlp.test.addon.dirsize;
 
 import java.util.List;
 
+import org.exlp.test.ExlpEjbBootstrap;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import net.sf.exlp.addon.common.data.facade.ExlpFacadeFactory;
 import net.sf.exlp.addon.dirsize.data.ejb.ExlpDirectory;
 import net.sf.exlp.addon.dirsize.data.facade.exlp.ExlpDirsizeFacade;
-
-import org.exlp.util.io.log.LoggerInit;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class TstDirectory
 {
@@ -37,9 +37,7 @@ public class TstDirectory
 	
 	public static void main (String[] args) throws Exception
 	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.path("resources/config");
-			loggerInit.init();
+		ExlpEjbBootstrap.init();
 		
 		TstDirectory test = new TstDirectory();
 		test.list();

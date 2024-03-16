@@ -6,6 +6,7 @@ import java.util.List;
 import org.exlp.model.xml.net.Url;
 import org.exlp.model.xml.net.Urls;
 import org.exlp.test.AbstractExlpTest;
+import org.exlp.test.ExlpBootstrap;
 import org.exlp.util.io.log.LoggerInit;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
@@ -104,9 +105,7 @@ public class TestNetXpathUrl extends AbstractExlpTest
     
 	public static void main(String[] args) throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.path("src/test/resources/config");
-			loggerInit.init();	
+		ExlpBootstrap.init();
 		
 		TestNetXpathUrl test = new TestNetXpathUrl();
 		TestNetXpathUrl.initUrls();

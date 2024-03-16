@@ -3,11 +3,11 @@ package net.sf.exlp.test.pattern;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import net.sf.exlp.interfaces.util.PatternLibrary;
-
-import org.exlp.util.io.log.LoggerInit;
+import org.exlp.test.ExlpEjbBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.interfaces.util.PatternLibrary;
 
 public class TstEximPattern
 {
@@ -15,9 +15,7 @@ public class TstEximPattern
 	
 	public static void main(String args[])
 	{
-		LoggerInit loggerInit = new LoggerInit("log4j.xml");	
-			loggerInit.path("resources/config");
-			loggerInit.init();
+		ExlpEjbBootstrap.init();
 			
 //		String hBracket = EximParser.hBracket;
 //		String iBracket = EximParser.iBracket;
