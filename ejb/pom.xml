@@ -87,11 +87,7 @@
    			<type>jar</type>
    			<scope>compile</scope>
    		</dependency>
-   		<dependency>
-   			<groupId>log4j</groupId>
-   			<artifactId>log4j</artifactId>
-   			<scope>compile</scope>
-   		</dependency>
+   		
    		<dependency>
    			<groupId>org.apache.httpcomponents</groupId>
    			<artifactId>httpclient</artifactId>
