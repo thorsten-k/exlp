@@ -6,7 +6,8 @@
 	<artifactId>exlp</artifactId>
 	<version>0.1.18-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>ExLP (Extensible Logfile Processor)</name>
+
+	<name>ExLP (Extensible Logfile Processor)</name>
 	<description>ExLP (Extensible Logfile Processor)</description>
 	<url>https://github.com/thorsten-k/exlp</url>
 	
@@ -29,7 +30,6 @@
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     	<exlp.jaxb.package.base>org.exlp.model.xml</exlp.jaxb.package.base>
     	<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
-    	<maven.ignore>file://${basedir}/../maven/src/main/resources/exlp/maven/exlp-versions.xml</maven.ignore>
 	</properties>
 	
 	<prerequisites>
@@ -112,10 +112,18 @@
 						<autoReleaseAfterClose>true</autoReleaseAfterClose>
 					</configuration>
 				</plugin>
-      			<plugin>
-			        <groupId>org.codehaus.mojo</groupId>
-			        <artifactId>versions-maven-plugin</artifactId>
-			        <version>2.2</version>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>versions-maven-plugin</artifactId>
+					<version>2.16.1</version>
+					<configuration><rulesUri>classpath:///jeesl/io/maven/ignore.xml</rulesUri></configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.jeesl.bom</groupId>
+							<artifactId>jeesl-ignore</artifactId>
+							<version>0.3.2-SNAPSHOT</version>
+						</dependency>
+					</dependencies>
 				</plugin>
  				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>

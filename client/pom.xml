@@ -52,12 +52,11 @@
         	</exclusions>
       	</dependency>
       	
-      	<!-- https://mvnrepository.com/artifact/org.zeromq/jeromq -->
-<dependency>
-    <groupId>org.zeromq</groupId>
-    <artifactId>jeromq</artifactId>
-    <version>0.5.2</version>
-</dependency>
+		<dependency>
+			<groupId>org.zeromq</groupId>
+			<artifactId>jeromq</artifactId>
+			<version>0.5.2</version>
+		</dependency>
 
       	<dependency>
     <groupId>com.sparkjava</groupId>
@@ -86,16 +85,4 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
-	<build>
-		<plugins>
-			<plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>versions-maven-plugin</artifactId>
-		        <configuration>
-					<rulesUri>${maven.ignore}</rulesUri>
-		        </configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

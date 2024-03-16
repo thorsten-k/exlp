@@ -136,16 +136,4 @@
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>
-	
-	<build>
-		<plugins>
-			<plugin>
-		        <groupId>org.codehaus.mojo</groupId>
-		        <artifactId>versions-maven-plugin</artifactId>
-		        <configuration>
-					<rulesUri>${maven.ignore}</rulesUri>
-		        </configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>

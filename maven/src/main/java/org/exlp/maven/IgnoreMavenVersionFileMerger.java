@@ -1,4 +1,4 @@
-package de.kisner.exlp.maven.version;
+package org.exlp.maven;
 
 import java.io.FileNotFoundException;
 import java.io.OutputStream;
