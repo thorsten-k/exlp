@@ -51,6 +51,7 @@
 			<version>0.6.2</version>
 		</dependency>
 		
+		<!-- Java EE -->
 		<dependency>
 			<groupId>javax.jms</groupId>
 		    <artifactId>javax.jms-api</artifactId>
@@ -61,6 +62,19 @@
 		    <artifactId>javax.ejb-api</artifactId>
 		    <scope>provided</scope>
 		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<!--
+		<dependency>
+   			<groupId>org.hibernate</groupId>
+   			<artifactId>hibernate-core</artifactId>
+   			<version>4.2.0.Final</version>
+   			<type>jar</type>
+   			<scope>compile</scope>
+   		</dependency> -->
 			
 		<!--
 		<dependency>
@@ -88,6 +102,7 @@
    			<scope>compile</scope>
    		</dependency>
    		
+   		<!-- Commons Utils -->
    		<dependency>
    			<groupId>org.apache.httpcomponents</groupId>
    			<artifactId>httpclient</artifactId>
@@ -120,14 +135,6 @@
    			<type>jar</type>
    			<scope>compile</scope>
    		</dependency>
-   		<dependency>
-   			<groupId>org.hibernate</groupId>
-   			<artifactId>hibernate-core</artifactId>
-   			<version>4.2.0.Final</version>
-   			<type>jar</type>
-   			<scope>compile</scope>
-   		</dependency>
-   		
    		
    		<!-- Logging -->
 		<dependency>

@@ -10,10 +10,10 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import net.sf.exlp.addon.common.data.exception.ExlpIntegrityException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import net.sf.exlp.addon.common.data.exception.ExlpIntegrityException;
 
 @PersistenceContext(name="exlpEM", unitName="exlp")
 public abstract class AbstractExlpFacadeBean
@@ -49,11 +49,7 @@ public abstract class AbstractExlpFacadeBean
 		}
 		catch(javax.persistence.PersistenceException e)
 		{
-			if(e.getCause() instanceof org.hibernate.exception.ConstraintViolationException)
-			{
-				throw new ExlpIntegrityException("Delete Referential Integrity check failed for "+o.getClass().getSimpleName()+". Object may be used somewhere else.");
-			}
-			throw(e);
+			throw new ExlpIntegrityException("Delete Referential Integrity check failed for "+o.getClass().getSimpleName()+". Object may be used somewhere else.");
 		}
 	}
 	
