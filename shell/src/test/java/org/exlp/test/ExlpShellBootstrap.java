@@ -1,4 +1,4 @@
-package net.sf.exlp.test;
+package org.exlp.test;
 
 import org.exlp.controller.handler.io.log.LoggerBootstrap;
 import org.slf4j.Logger;

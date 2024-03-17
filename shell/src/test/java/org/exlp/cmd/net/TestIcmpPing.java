@@ -1,4 +1,4 @@
-package net.sf.exlp.shell.spawn.ping;
+package org.exlp.cmd.net;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,9 +6,10 @@ import java.util.List;
 import net.sf.exlp.core.handler.EhList;
 import net.sf.exlp.interfaces.LogEvent;
 import net.sf.exlp.interfaces.LogEventHandler;
-import net.sf.exlp.test.AbstractExlpShellTest;
-import net.sf.exlp.test.ExlpShellBootstrap;
+import net.sf.exlp.shell.spawn.ping.IcmpPing;
 
+import org.exlp.test.AbstractExlpShellTest;
+import org.exlp.test.ExlpShellBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

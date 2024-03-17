@@ -5,11 +5,10 @@ import java.util.Hashtable;
 import java.util.List;
 import java.util.Map;
 
+import org.exlp.test.AbstractExlpShellTest;
+import org.exlp.test.ExlpShellBootstrap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.test.AbstractExlpShellTest;
-import net.sf.exlp.test.ExlpShellBootstrap;
 
 public class CliConsoleInputChoice extends AbstractExlpShellTest
 {

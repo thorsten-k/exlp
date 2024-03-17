@@ -1,4 +1,4 @@
-package net.sf.exlp.test;
+package org.exlp.test;
 
 import java.io.File;
 

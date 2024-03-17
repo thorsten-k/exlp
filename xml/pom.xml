@@ -54,12 +54,6 @@
     		<type>jar</type>
     		<scope>provided</scope>
     	</dependency>
-    	<dependency>
- 			<groupId>com.sun.xml.bind</groupId>
-    		<artifactId>jaxb-xjc</artifactId>
-    		<type>jar</type>
-    		<scope>test</scope>
-  		</dependency>
 		
 		<!-- JSON -->
 		<dependency>
