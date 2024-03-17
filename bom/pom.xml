@@ -52,12 +52,12 @@
    				<artifactId>exlp-interfaces</artifactId>
    				<version>${project.version}</version>
 			</dependency>
-<!--		<dependency>
+			<dependency>
    				<groupId>net.sf.exlp</groupId>
    				<artifactId>exlp-xml</artifactId>
    				<version>${project.version}</version>
 			</dependency>
--->			<dependency>
+			<dependency>
    				<groupId>net.sf.exlp</groupId>
    				<artifactId>exlp-xml</artifactId>
    				<classifier>javax</classifier>

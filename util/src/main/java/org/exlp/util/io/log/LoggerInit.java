@@ -27,7 +27,8 @@ public class LoggerInit
 	private List<LoadType> activeLoadTypes;
 	
 	public static LoggerInit instance() {return new LoggerInit("log4j.xml");}
-	public LoggerInit(String l4jName)
+	public static LoggerInit instance(String l4jName) {return new LoggerInit(l4jName);}
+	private LoggerInit(String l4jName)
 	{
 		this.l4jName=l4jName;
 		log4jInited = false;
