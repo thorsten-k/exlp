@@ -102,7 +102,7 @@
 			<dependency>
 				<groupId>commons-codec</groupId>
 				<artifactId>commons-codec</artifactId>
-				<version>1.15</version> <!-- Version.java, Updated by tk from 1.13 on 2022-05-01-->
+				<version>1.16.1</version> <!-- ExlpVersions.java: Updated by tk from 1.15 on 2024-03-17-->
 			</dependency>
 			
     		<dependency>

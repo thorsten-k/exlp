@@ -1,6 +1,6 @@
-package net.sf.exlp;
+package org.exlp;
 
-public class Version
+public class ExlpVersions
 {
 	public static final String mvnExlpXml = "net.sf.exlp:exlp-xml:";
 	public static final String mvnExlpUtil = "net.sf.exlp:exlp-util:";
@@ -17,7 +17,7 @@ public class Version
 	public static final String mvnJaxbImpl = "com.sun.xml.bind:jaxb-impl:";
 	
 	public static final String jodaVersion = "2.10.5";
-	public static final String commonsCodecVersion = "1.15";
+	public static final String commonsCodecVersion = "1.16.1";
 	public static final String commonsLangVersion = "2.6";
 	public static final String commonsLang3Version = "2.6";
 	public static final String commonsJxPath = "1.3";
