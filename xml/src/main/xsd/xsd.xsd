@@ -9,5 +9,7 @@
     <xsd:import namespace="http://exlp.sf.net/net"		schemaLocation="exlp/net.xsd"/>
     <xsd:import namespace="http://exlp.sf.net/identity"	schemaLocation="exlp/identity.xsd"/>
     <xsd:import namespace="http://exlp.org/config"		schemaLocation="exlp/config.xsd"/>
+    
+    <xsd:import namespace="http://schemas.microsoft.com/powershell/2004/04"	schemaLocation="exlp/tool/inventory.xsd"/>
        
 </xsd:schema>

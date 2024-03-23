@@ -35,4 +35,10 @@
             <jxb:package name="org.exlp.model.xml.net"/>
         </jxb:schemaBindings>
     </jxb:bindings>
+    
+    <jxb:bindings schemaLocation="exlp/tool/inventory.xsd" node="/xsd:schema">
+        <jxb:schemaBindings>
+            <jxb:package name="org.exlp.model.xml.tool.inventory"/>
+        </jxb:schemaBindings>
+    </jxb:bindings>
 </jxb:bindings>

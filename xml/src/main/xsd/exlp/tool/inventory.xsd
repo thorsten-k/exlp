@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema targetNamespace="http://schemas.microsoft.com/powershell/2004/04"
+    xmlns:ps="http://schemas.microsoft.com/powershell/2004/04"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <xsd:element name="Objs">
+        <xsd:complexType>
+            <xsd:sequence>
+               	<xsd:element ref="ps:Obj" maxOccurs="unbounded"/>
+            </xsd:sequence>
+            <xsd:attribute name="Version" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Obj">
+        <xsd:complexType>
+            <xsd:sequence>
+            	<xsd:element ref="ps:MS" maxOccurs="1"/>
+            </xsd:sequence>
+            <xsd:attribute name="RefId" type="xsd:int"/>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="MS">
+        <xsd:complexType>
+            <xsd:sequence>
+            	<xsd:element ref="ps:S" maxOccurs="unbounded"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="S">
+        <xsd:complexType>
+        	<xsd:simpleContent>
+                <xsd:extension base="xsd:string">
+                	 <xsd:attribute name="N" type="xsd:string"/>
+                </xsd:extension>
+            </xsd:simpleContent>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
