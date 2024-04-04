@@ -113,14 +113,13 @@
 		</dependency>  -->
    		
    		<!-- Java EE -->
-   		<dependency>
+		<dependency>
 			<groupId>javax.faces</groupId>
-			<artifactId>jsf-api</artifactId>
-			<version>2.1</version>
+			<artifactId>javax.faces-api</artifactId>
+			<version>2.3</version>
 			<scope>provided</scope>
 		</dependency>
 
-   		
    		<!-- JSF 
 		<dependency>
 		    <groupId>com.sun.faces</groupId>
