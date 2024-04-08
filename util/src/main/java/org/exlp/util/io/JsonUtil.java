@@ -2,6 +2,7 @@ package org.exlp.util.io;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Path;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,6 +60,19 @@ public class JsonUtil
 			else {return s;}
 		}
 		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
+	}
+	
+	public void write(Object json, Path p)
+	{
+		try
+		{
+			ObjectWriter writer = jom().writer(new DefaultPrettyPrinter());
+			writer.writeValue(p.toFile(), json);
+		}
+		catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	public static void deactivateCaller() {logCaller=false;}
