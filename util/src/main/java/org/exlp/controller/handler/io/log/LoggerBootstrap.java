@@ -1,6 +1,5 @@
 package org.exlp.controller.handler.io.log;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Properties;
@@ -40,9 +39,9 @@ public class LoggerBootstrap
 		for(String path : paths)
 		{
 			sb.setLength(0);
-			sb.append(path+File.separatorChar+log4j2Name);
+			sb.append(path+"/"+log4j2Name);
 			
-//			System.out.println("MRL "+MultiResourceLoader.instance().isAvailable(sb.toString()));
+//			System.out.println("MRL "+MultiResourceLoader.instance().isAvailable(sb.toString())+" "+sb.toString());
 			
 			Configurator.initialize(null, sb.toString());
 //			logger.info("Activated with "+sb.toString());

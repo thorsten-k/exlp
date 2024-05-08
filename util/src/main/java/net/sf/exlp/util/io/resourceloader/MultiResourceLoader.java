@@ -74,14 +74,15 @@ public class MultiResourceLoader
 			String resourcePath;
 			if(path.length()==0){resourcePath=resourceName;}
 			else{resourcePath=path+File.separator+resourceName;}
+			
 			for(LoadType lt : LoadType.values())
 			{
 				switch (lt)
 				{
-					case FILE: 		is=getFileIs(resourcePath);break;
-					case RESOURCE:	is=getResource(resourcePath);break;
+					case FILE: 		is = getFileIs(resourcePath); break;
+					case RESOURCE:	is = getResource(resourcePath); break;
 				}
-				if(is!=null){break;}
+				if(is!=null) {break;}
 			}
 			if(is!=null){break;}
 		}
