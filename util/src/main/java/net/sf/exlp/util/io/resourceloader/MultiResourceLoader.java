@@ -22,7 +22,7 @@ public class MultiResourceLoader
 	
 	public boolean debugInfo,debugError;
 	
-	private List<String> paths;
+	private final List<String> paths;
 
 	private ClassLoader classLoader;
 	
@@ -45,9 +45,10 @@ public class MultiResourceLoader
 		classLoader = this.getClass().getClassLoader();
 	}
 	
+	public void clearPath() {paths.clear();}
 	public void addPath(String... path)
 	{
-		for(String s : path){paths.add(s);}
+		for(String s : path) {paths.add(s);}
 	}
 	
 	public boolean notAvailable(String resourceName) {return !this.isAvailable(resourceName);}
@@ -72,8 +73,10 @@ public class MultiResourceLoader
 		{
 			searchPath = path;
 			String resourcePath;
-			if(path.length()==0){resourcePath=resourceName;}
-			else{resourcePath=path+File.separator+resourceName;}
+			if(path.length()==0) {resourcePath=resourceName;}
+			else {resourcePath=path+File.separator+resourceName;}
+			
+			if(debugInfo){logger.info("Searching "+resourcePath);}
 			
 			for(LoadType lt : LoadType.values())
 			{
@@ -84,10 +87,10 @@ public class MultiResourceLoader
 				}
 				if(is!=null) {break;}
 			}
-			if(is!=null){break;}
+			if(is!=null) {break;}
 		}
 		
-		if(debugInfo){for(String s : alLoadDebug){logger.debug(s);}}
+		if(debugInfo){for(String s : alLoadDebug) {logger.debug(s);}}
 		if(is==null)
 		{
 			boolean altPaths = (paths.size()>0 && paths.get(0).length()>0);
@@ -103,7 +106,7 @@ public class MultiResourceLoader
 			
 			StringBuffer sbError = new StringBuffer();
 			sbError.append("Missing File: ").append(resourceName);
-			if(altPaths){sbError.append("in paths: "+sb);}
+			if(altPaths){sbError.append(" in paths: "+String.join(", ",paths));}
 			
 			throw new FileNotFoundException(sbError.toString());
 		}
