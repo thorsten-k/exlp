@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class JsonUtil
 {
@@ -34,6 +35,7 @@ public class JsonUtil
 		jom = new ObjectMapper();
     	jom.setSerializationInclusion(Include.NON_NULL);
     	jom.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+//    	jom.findAndRegisterModules();
 
     	// This handling is required when JsonUtil is used together with JdomUtil to prevent
     	// Carriage Return Hex Code &#xd; in the output
@@ -69,10 +71,7 @@ public class JsonUtil
 			ObjectWriter writer = jom().writer(new DefaultPrettyPrinter());
 			writer.writeValue(p.toFile(), json);
 		}
-		catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		catch (IOException e) {e.printStackTrace();}
 	}
 	
 	public static void deactivateCaller() {logCaller=false;}
@@ -190,6 +189,8 @@ public class JsonUtil
         {
         	jom.setSerializationInclusion(Include.NON_NULL);
         	jom.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+//        	jom.findAndRegisterModules();
+//        	jom.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         }
 	}
 }
