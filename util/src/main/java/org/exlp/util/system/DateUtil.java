@@ -1,6 +1,7 @@
 package org.exlp.util.system;
 
 import java.text.ParseException;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.YearMonth;
@@ -118,6 +119,11 @@ public class DateUtil
 	
 	public static LocalDateTime toLocalDateTime(Date date)
 	{
+		if(date instanceof java.sql.Date)
+		{
+			java.sql.Date sql = (java.sql.Date)date;
+			return Instant.ofEpochMilli(sql.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
+		}
 		return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 	}
 	public static LocalDateTime toLocalDateTime(XMLGregorianCalendar xmlGC)
