@@ -64,6 +64,19 @@ public class JsonUtil
 		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
 	}
 	
+	public byte[] toByte(Object json)
+	{
+		try
+		{
+			return jom.writeValueAsBytes(json);
+		}
+		catch (JsonProcessingException e)
+		{
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 	public void write(Object json, Path p)
 	{
 		try
