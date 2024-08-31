@@ -10,27 +10,27 @@
 		<jxb:serializable uid="1" />
 	</jxb:globalBindings>
   
-	<jxb:bindings schemaLocation="exlp.xsd" node="/xsd:schema">
+	<jxb:bindings schemaLocation="exlp/exlp.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.exlp.model.xml.exlp"/>
         </jxb:schemaBindings>
     </jxb:bindings>
- 	<jxb:bindings schemaLocation="io.xsd" node="/xsd:schema">
+ 	<jxb:bindings schemaLocation="exlp/io.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.exlp.model.xml.io"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-    <jxb:bindings schemaLocation="config.xsd" node="/xsd:schema">
+    <jxb:bindings schemaLocation="exlp/config.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.exlp.model.xml.config"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-	<jxb:bindings schemaLocation="identity.xsd" node="/xsd:schema">
+	<jxb:bindings schemaLocation="exlp/identity.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.exlp.model.xml.identity"/>
         </jxb:schemaBindings>
     </jxb:bindings>
-    <jxb:bindings schemaLocation="net.xsd" node="/xsd:schema">
+    <jxb:bindings schemaLocation="exlp/net.xsd" node="/xsd:schema">
         <jxb:schemaBindings>
             <jxb:package name="org.exlp.model.xml.net"/>
         </jxb:schemaBindings>
