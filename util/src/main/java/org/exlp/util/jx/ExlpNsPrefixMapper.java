@@ -1,12 +1,9 @@
 package org.exlp.util.jx;
 
-
-
 import org.exlp.interfaces.io.NsPrefixMapperInterface;
 
-import com.sun.xml.bind.marshaller.NamespacePrefixMapper;
-
-public class ExlpNsPrefixMapper extends NamespacePrefixMapper implements NsPrefixMapperInterface
+public class ExlpNsPrefixMapper //extends NamespacePrefixMapper
+								implements NsPrefixMapperInterface
 {
     public String getPreferredPrefix(String namespaceUri, String suggestion, boolean requirePrefix)
     {

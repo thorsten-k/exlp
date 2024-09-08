@@ -21,6 +21,7 @@
 		<module>maven</module>
 		<module>shell</module>
 		<module>util</module>
+		<module>test</module>
 		<module>xml</module>
 	</modules>
 	

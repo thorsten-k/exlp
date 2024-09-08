@@ -32,28 +32,22 @@
    			<type>jar</type>
    			<scope>compile</scope>
    		</dependency>
-    
-    	<!-- Required for Java 11 -->
-    	<dependency>
+
+    	<dependency>	<!-- JAXB EE10 -->
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
 			<version>4.0.0</version>
 			<scope>provided</scope>
 		</dependency> 
     
-    	<!-- JAXB: All 3 Deprecated -->
-      	<dependency>
+    	
+      	<dependency>	<!-- JAXB: EE8 -->
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
     		<type>jar</type>
+    		<version>2.3.1</version>
     		<scope>provided</scope>
 		</dependency>
-		<dependency>
-  			<groupId>com.sun.xml.bind</groupId>
-    		<artifactId>jaxb-impl</artifactId>
-    		<type>jar</type>
-    		<scope>provided</scope>
-    	</dependency>
 		
 		<!-- JSON -->
 		<dependency>

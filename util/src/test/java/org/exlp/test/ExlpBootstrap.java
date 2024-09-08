@@ -10,11 +10,11 @@ public class ExlpBootstrap
 {
 	final static Logger logger = LoggerFactory.getLogger(ExlpBootstrap.class);
 	
-	public enum System{exlp}
+	public enum System {exlp}
 	
 	public static void init()
 	{
-		LoggerBootstrap.instance("cli.util.log4j2.xml").path("exlp/system/io/log").init();
-		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());
+		LoggerBootstrap.instance().path("exlp/system/io/log").init();
+//		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());
 	}
 }
