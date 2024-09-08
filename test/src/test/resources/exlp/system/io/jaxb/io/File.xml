@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<file xmlns="http://exlp.sf.net/io" id="1" code="code" name="test.txt" symbol="mySymbol" category="myCategory" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10.000+01:00">
+    <policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
+    <policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
+    <hash>myValue</hash>
+    <data>01032B</data>
+</file>

@@ -32,6 +32,12 @@
    			<type>jar</type>
    			<scope>compile</scope>
    		</dependency>
+   		<dependency>
+   			<groupId>net.sf.exlp</groupId>
+   			<artifactId>exlp-util</artifactId>
+   			<scope>provided</scope>
+   			<type>jar</type>
+   		</dependency>
 		<dependency>
    			<groupId>net.sf.exlp</groupId>
    			<artifactId>exlp-xml</artifactId>
@@ -40,7 +46,19 @@
    			<type>jar</type>
    		</dependency>
    		
+		<dependency>
+   			<groupId>commons-io</groupId>
+   			<artifactId>commons-io</artifactId>
+   			<type>jar</type>
+   			<scope>compile</scope>
+   		</dependency>
    		
+		<dependency>
+			<groupId>org.glassfish.jaxb</groupId>
+			<artifactId>jaxb-runtime</artifactId>
+			<version>2.3.9</version>
+			<scope>compile</scope>
+		</dependency>
 		
 		<!-- Logging -->
 		<dependency>

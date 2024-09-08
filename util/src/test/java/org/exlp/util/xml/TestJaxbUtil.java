@@ -1,7 +1,6 @@
 package org.exlp.util.xml;
 
 import org.exlp.model.xml.io.Dir;
-import org.exlp.model.xml.io.TestDir;
 import org.exlp.test.ExlpBootstrap;
 import org.exlp.util.jx.ExlpNsPrefixMapper;
 import org.exlp.util.jx.JaxbUtil;
@@ -10,7 +9,7 @@ public class TestJaxbUtil
 {
 	public void debug()
 	{
-		Dir xml = TestDir.createDir(true, true);
+		Dir xml = new Dir();
 		
 		JaxbUtil.debug(xml);
 		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<io:file xmlns:io="http://exlp.sf.net/io" id="1" code="code" name="test.txt" symbol="mySymbol" category="myCategory" mime="myMime" size="123" lastModifed="2012-01-01T10:10:10.000+01:00">
-    <io:policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
-    <io:policy id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName"/>
-    <io:hash>myValue</io:hash>
-    <io:data>01032B</io:data>
-</io:file>

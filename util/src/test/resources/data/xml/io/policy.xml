@@ -1,5 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<io:policy xmlns:io="http://exlp.sf.net/io" id="1" code="myCode" user="Administrator" group="Administrators" description="myDescription" name="myName">
-    <io:acl id="1" description="myDescription" permission="r" oi="true" ci="true" io="true"/>
-    <io:acl id="1" description="myDescription" permission="r" oi="true" ci="true" io="true"/>
-</io:policy>

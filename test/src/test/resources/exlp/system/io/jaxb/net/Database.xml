@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<database xmlns="http://exlp.sf.net/net" id="1" user="myUser" password="myPwd" database="myDb" schema="mySchema" type="myType"/>
