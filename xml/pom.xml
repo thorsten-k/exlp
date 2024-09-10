@@ -39,8 +39,6 @@
 			<version>4.0.0</version>
 			<scope>provided</scope>
 		</dependency> 
-    
-    	
       	<dependency>	<!-- JAXB: EE8 -->
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>

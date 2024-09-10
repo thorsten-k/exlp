@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.util.Objects;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
@@ -239,7 +240,11 @@ public class JaxbUtil implements JaxbInterface
 			Marshaller m = context.createMarshaller();
 //			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
-			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
+			if(Objects.nonNull(nsPrefixMapper))
+			{
+				m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);
+//				m.setProperty("org.glassfish.jaxb.namespacePrefixMapper",nsPrefixMapper);
+			}
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
 			m.marshal( jaxb, os);
 		}
