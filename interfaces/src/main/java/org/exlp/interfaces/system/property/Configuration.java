@@ -7,4 +7,6 @@ public interface Configuration
 	
 	int getInt(String key);
 	int getInt(String key, int fallback);
+	
+	Boolean getBoolean(String key);
 }
