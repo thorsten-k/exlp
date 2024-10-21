@@ -12,4 +12,12 @@ public class JsonFileFactory
 		json.setName(name);
 		return json;
 	}
+	
+	public static JsonFile build(java.io.File f)
+	{
+		JsonFile json = JsonFileFactory.build();
+		json.setName(f.getName());
+		
+		return json;
+	}
 }
