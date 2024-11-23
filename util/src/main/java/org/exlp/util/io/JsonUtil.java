@@ -16,7 +16,6 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
-import com.fasterxml.jackson.databind.SerializationFeature;
 
 public class JsonUtil
 {
@@ -173,7 +172,11 @@ public class JsonUtil
 	{
 		return jom().readValue(f, c);
 	}
-	
+	public static <T> T[] readArray(Class<T[]> c, File f) throws IOException
+	{
+	    return jom().readValue(f, c);
+	}
+
 	
 	private static synchronized String getCaller()
 	{
