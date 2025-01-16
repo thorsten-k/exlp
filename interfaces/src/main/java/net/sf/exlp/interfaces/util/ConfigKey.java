@@ -2,6 +2,8 @@ package net.sf.exlp.interfaces.util;
 
 public interface ConfigKey
 {
+	public enum ConnnectionType {local,production,tunnel,testing}
+	
 	String dirTmp = "dir.tmp";
 		
 	String netRestUser = "net.rest.user";
