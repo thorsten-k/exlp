@@ -82,12 +82,14 @@
         		</exclusion>
         	</exclusions>
    		</dependency>
+   		
+   		<!-- 2025-02-10 tk: Removed
    		<dependency>
    			<groupId>org.jdom</groupId>
    			<artifactId>jdom</artifactId>
    			<type>jar</type>
    			<scope>compile</scope>
-   		</dependency>
+   		</dependency> -->
    		
    		<!-- Commons Utils -->
    		<dependency>
