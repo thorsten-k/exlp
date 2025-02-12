@@ -1,9 +1,8 @@
 package org.exlp.controller.handler.web.rest;
 
+import org.exlp.interfaces.system.property.ConfigKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import net.sf.exlp.interfaces.util.ConfigKey;
 
 public class DelayedUrlConfig
 {

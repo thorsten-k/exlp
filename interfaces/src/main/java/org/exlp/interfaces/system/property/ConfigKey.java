@@ -1,4 +1,4 @@
-package net.sf.exlp.interfaces.util;
+package org.exlp.interfaces.system.property;
 
 public interface ConfigKey
 {
