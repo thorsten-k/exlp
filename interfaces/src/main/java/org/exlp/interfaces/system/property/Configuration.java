@@ -9,4 +9,5 @@ public interface Configuration
 	int getInt(String key, int fallback);
 	
 	Boolean getBoolean(String key);
+	Boolean getBoolean(String key, Boolean fallback);
 }
