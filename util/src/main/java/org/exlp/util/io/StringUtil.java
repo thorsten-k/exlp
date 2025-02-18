@@ -18,10 +18,19 @@ public class StringUtil
 {
 	final static Logger logger = LoggerFactory.getLogger(StringUtil.class);
 	
-	public static String stars(){return stars(80);}
-	public static String stars(int number)
+	private final static int sizeOfStars = 80;
+	
+	public static String stars()
     {
-		return StringUtils.repeat("*", number);
+		return StringUtils.repeat("*", sizeOfStars);
+    }
+	public static String stars(String label)
+    {
+		StringBuilder sb = new StringBuilder();
+		sb.append(StringUtils.repeat("*", 5));
+		sb.append(" ").append(label).append(" ");
+		sb.append(StringUtils.repeat("*", sizeOfStars-5-2-label.length()));
+		return sb.toString();
     }
 	
 	public static String tab(int number)
