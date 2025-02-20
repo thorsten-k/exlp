@@ -26,6 +26,7 @@
 	</dependencyManagement>
 	
 	<dependencies>
+		<!-- EXLP -->
 		<dependency>
    			<groupId>net.sf.exlp</groupId>
    			<artifactId>exlp-interfaces</artifactId>
@@ -46,6 +47,7 @@
    			<type>jar</type>
    		</dependency>
    		
+   		<!-- Apache Commons -->
 		<dependency>
    			<groupId>commons-io</groupId>
    			<artifactId>commons-io</artifactId>
@@ -53,12 +55,14 @@
    			<scope>compile</scope>
    		</dependency>
    		
+   		<!--
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
 			<version>2.3.9</version>
 			<scope>compile</scope>
 		</dependency>
+		-->
 		
 		<!-- Logging -->
 		<dependency>

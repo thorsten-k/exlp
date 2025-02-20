@@ -33,13 +33,16 @@
    			<scope>compile</scope>
    		</dependency>
 
-    	<dependency>	<!-- JAXB EE10 -->
+		<!-- Jakarta EE -->
+    	<dependency>
 			<groupId>jakarta.xml.bind</groupId>
 			<artifactId>jakarta.xml.bind-api</artifactId>
 			<version>4.0.0</version>
 			<scope>provided</scope>
-		</dependency> 
-      	<dependency>	<!-- JAXB: EE8 -->
+		</dependency>
+		
+		<!-- Java EE -->
+      	<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
     		<type>jar</type>
