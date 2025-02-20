@@ -59,14 +59,6 @@ public class AbstractXmlTest<T extends Object>
 		JaxbUtil.info(xml);
     	JaxbUtil.save(xmlFile,xml,true);
 	}
-	
-//    @Test
-//    public void xml() throws FileNotFoundException
-//    {
-//    	T actual = build(true);
-//    	T expected = JaxbUtil.loadJAXB(xmlFile.getAbsolutePath(), cJaxb);
-//    	Assert.assertEquals("Actual XML differes from expected XML",JaxbUtil.toString(expected),JaxbUtil.toString(actual));
-//    }
     
     //TODO declare as abstract
     protected T build(boolean withChilds){return null;}
