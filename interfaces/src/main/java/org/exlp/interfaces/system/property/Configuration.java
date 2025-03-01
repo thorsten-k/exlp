@@ -2,6 +2,8 @@ package org.exlp.interfaces.system.property;
 
 public interface Configuration
 {
+	boolean containsKey(String key);
+	
 	String getString(String key);
 	String getString(String key, String fallback);
 	
