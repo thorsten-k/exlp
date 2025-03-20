@@ -16,6 +16,7 @@ import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
 public class JsonUtil
 {
@@ -34,6 +35,7 @@ public class JsonUtil
 		jom = new ObjectMapper();
     	jom.setSerializationInclusion(Include.NON_NULL);
     	jom.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+    	
 //    	jom.findAndRegisterModules();
 
     	// This handling is required when JsonUtil is used together with JdomUtil to prevent
@@ -205,6 +207,7 @@ public class JsonUtil
         {
         	jom.setSerializationInclusion(Include.NON_NULL);
         	jom.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+        	jom.registerModule(new JavaTimeModule());
 //        	jom.findAndRegisterModules();
 //        	jom.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
         }
