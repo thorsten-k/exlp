@@ -21,6 +21,12 @@ public class ExlpContextFactory
 		int port=config.getInt("net/jboss/@port");
 		return getJbossContext(host+":"+port);
 	}
+	public static InitialContext getJbossContext(org.exlp.interfaces.system.property.Configuration config) throws NamingException
+	{
+		String host=config.getString("net/jboss/@host");
+		int port=config.getInt("net/jboss/@port");
+		return getJbossContext(host+":"+port);
+	}
 	
 	public static InitialContext getJbossContext(String jndiHost) throws NamingException
 	{
