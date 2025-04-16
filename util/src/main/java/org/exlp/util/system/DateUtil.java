@@ -4,12 +4,14 @@ import java.text.ParseException;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -117,6 +119,18 @@ public class DateUtil
 		return xmlGC.toGregorianCalendar().toZonedDateTime().toLocalDate();
 	}
 	
+	public static LocalTime toLocalTime(Date date)
+	{
+		Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        return LocalTime.of(
+            cal.get(Calendar.HOUR_OF_DAY),
+            cal.get(Calendar.MINUTE),
+            cal.get(Calendar.SECOND),
+            cal.get(Calendar.MILLISECOND) * 1_000_000  // Millis zu Nanos
+        );
+	}
+	
 	public static LocalDateTime toLocalDateTime(Date date)
 	{
 		if(date instanceof java.sql.Date)
@@ -150,6 +164,11 @@ public class DateUtil
 	
 	public static boolean notInPeriod(LocalDate start, LocalDate test, LocalDate end) {return !inPeriod(start,test,end);}
 	public static boolean inPeriod(LocalDate start, LocalDate test, LocalDate end)
+	{
+		return !test.isBefore(start) && !test.isAfter(end);
+	}
+	
+	public static boolean inPeriod(LocalTime start, LocalTime test, LocalTime end)
 	{
 		return !test.isBefore(start) && !test.isAfter(end);
 	}
