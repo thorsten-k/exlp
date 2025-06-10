@@ -2,7 +2,7 @@ package org.exlp.interfaces.system.property;
 
 public interface ConfigKey
 {
-	public enum ConnnectionType {local,production,tunnel,testing}
+	public enum ConnnectionType {local,production,tunnel,testing,home}
 	
 	String dirTmp = "dir.tmp";
 		
