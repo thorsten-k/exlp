@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonParseException;
+import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -41,6 +42,12 @@ public class JsonUtil
     	// This handling is required when JsonUtil is used together with JdomUtil to prevent
     	// Carriage Return Hex Code &#xd; in the output
     	transformCrNl2Nl = true;
+	}
+	
+	public JsonUtil allowSingleQoutes()
+	{
+		jom.configure(JsonParser.Feature.ALLOW_SINGLE_QUOTES, true);
+		return this;
 	}
 	
 	public String toFormattedString(Object json)
@@ -153,10 +160,13 @@ public class JsonUtil
 		return jom().writeValueAsBytes(json);
 	}
 	
-	
 	public static <T extends Object> T read(Class<T> c, String s) throws JsonParseException, JsonMappingException, IOException 
 	{
 		return jom().readValue(s, c);
+	}
+	public <T> T[] readArray(Class<T[]> c, String s) throws IOException
+	{
+	    return jom.readValue(s, c);
 	}
 	
 	public static <T extends Object> T read(Class<T> c, byte[] bytes) throws JsonParseException, JsonMappingException, IOException 
