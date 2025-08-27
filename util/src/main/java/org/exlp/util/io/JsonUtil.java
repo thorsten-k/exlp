@@ -94,6 +94,10 @@ public class JsonUtil
 		}
 		catch (IOException e) {e.printStackTrace();}
 	}
+	public <T extends Object> T read(Class<T> c, Path p) throws IOException
+	{
+		return jom.readValue(p.toFile(), c);
+	}
 	
 	public static void deactivateCaller() {logCaller=false;}
 	
