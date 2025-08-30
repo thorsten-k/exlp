@@ -3,6 +3,7 @@ package org.exlp.util.io;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,6 +51,7 @@ public class JsonUtil
 		return this;
 	}
 	
+	
 	public String toFormattedString(Object json)
 	{
 		try
@@ -60,7 +62,6 @@ public class JsonUtil
 		}
 		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
 	}
-	
 	public String toCompactString(Object json)
 	{
 		try
@@ -71,7 +72,6 @@ public class JsonUtil
 		}
 		catch (JsonProcessingException e) {e.printStackTrace(); return e.getLocalizedMessage();}
 	}
-	
 	public byte[] toByte(Object json)
 	{
 		try
@@ -98,6 +98,7 @@ public class JsonUtil
 	{
 		return jom.readValue(p.toFile(), c);
 	}
+	
 	
 	public static void deactivateCaller() {logCaller=false;}
 	
@@ -184,6 +185,7 @@ public class JsonUtil
 		writer.writeValue(f, json);
 	}
 	
+	
 	public static <T extends Object> T read(Class<T> c, File f) throws JsonGenerationException, JsonMappingException, IOException
 	{
 		return jom().readValue(f, c);
@@ -191,6 +193,10 @@ public class JsonUtil
 	public static <T> T[] readArray(Class<T[]> c, File f) throws IOException
 	{
 	    return jom().readValue(f, c);
+	}
+	public List<String> readToStrings(String json) throws JsonMappingException, JsonProcessingException
+	{
+		return jom.readValue(json, jom.getTypeFactory().constructCollectionType(List.class, String.class));
 	}
 
 	
