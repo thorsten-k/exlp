@@ -1,6 +1,8 @@
 package org.exlp.util.jx;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javax.el.ValueExpression;
@@ -19,7 +21,8 @@ public class ComponentAttribute
 	
 	public static String toString(FacesContext ctx, UIComponent component, Serializable key) {return ComponentAttribute.toString(ctx,component,key,null);}
 	public static String toString(FacesContext ctx, UIComponent component, Serializable key, String fallback) {return ComponentAttribute.toObject(ctx,component,key,fallback);}
-
+	
+	
 	
 	@SuppressWarnings("unchecked")
 	public static <T extends Object> T toObject(FacesContext ctx, UIComponent component, Serializable key, T fallback)
@@ -31,6 +34,28 @@ public class ComponentAttribute
 //			if(!o.getClass().equals(c)) {throw new RuntimeException("The Object "+o.getClass().getSimpleName()+" is not a class of" +c.getClass().getSimpleName());}
 			return (T)o;
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static <T extends Object> List<T> toObjects(FacesContext ctx, UIComponent component, Serializable key)
+	{
+		List<T> values = new ArrayList<>();
+		
+		Object o = ComponentAttribute.fromValueExpression(ctx, component, key);
+		if(Objects.nonNull(o))
+		{
+			logger.info("Object "+o.getClass().getName());
+			List<Object> objects = (List<Object>)o;
+			logger.info("Objects "+o.getClass().getName());
+			for(Object i : objects)
+			{
+				values.add((T)i);
+			}
+			
+//			if(!o.getClass().equals(c)) {throw new RuntimeException("The Object "+o.getClass().getSimpleName()+" is not a class of" +c.getClass().getSimpleName());}
+		}
+		logger.info("Values "+values.getClass().getName()+" "+values.size());
+		return values;
 	}
 	
 	private static Object fromValueExpression(FacesContext ctx, UIComponent component, Serializable key)

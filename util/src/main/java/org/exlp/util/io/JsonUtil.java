@@ -37,6 +37,7 @@ public class JsonUtil
 		jom = new ObjectMapper();
     	jom.setSerializationInclusion(Include.NON_NULL);
     	jom.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+    	jom.registerModule(new JavaTimeModule());
     	
 //    	jom.findAndRegisterModules();
 
@@ -94,11 +95,6 @@ public class JsonUtil
 		}
 		catch (IOException e) {e.printStackTrace();}
 	}
-	public <T extends Object> T read(Class<T> c, Path p) throws IOException
-	{
-		return jom.readValue(p.toFile(), c);
-	}
-	
 	
 	public static void deactivateCaller() {logCaller=false;}
 	
@@ -174,6 +170,14 @@ public class JsonUtil
 	    return jom.readValue(s, c);
 	}
 	
+	public <T extends Object> T read(Class<T> c, Path p) throws IOException
+	{
+		return jom.readValue(p.toFile(), c);
+	}
+	public <T> T[] readArray(Class<T[]> c, Path p) throws IOException
+	{
+	    return jom.readValue(p.toFile(), c);
+	}
 	public static <T extends Object> T read(Class<T> c, byte[] bytes) throws JsonParseException, JsonMappingException, IOException 
 	{
 		return jom().readValue(bytes, c);
