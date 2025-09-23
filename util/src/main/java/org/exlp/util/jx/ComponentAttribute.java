@@ -23,7 +23,6 @@ public class ComponentAttribute
 	public static String toString(FacesContext ctx, UIComponent component, Serializable key, String fallback) {return ComponentAttribute.toObject(ctx,component,key,fallback);}
 	
 	
-	
 	@SuppressWarnings("unchecked")
 	public static <T extends Object> T toObject(FacesContext ctx, UIComponent component, Serializable key, T fallback)
 	{
@@ -44,9 +43,9 @@ public class ComponentAttribute
 		Object o = ComponentAttribute.fromValueExpression(ctx, component, key);
 		if(Objects.nonNull(o))
 		{
-			logger.info("Object "+o.getClass().getName());
+			logger.trace("Object "+o.getClass().getName());
 			List<Object> objects = (List<Object>)o;
-			logger.info("Objects "+o.getClass().getName());
+			logger.trace("Objects "+o.getClass().getName());
 			for(Object i : objects)
 			{
 				values.add((T)i);
@@ -54,7 +53,7 @@ public class ComponentAttribute
 			
 //			if(!o.getClass().equals(c)) {throw new RuntimeException("The Object "+o.getClass().getSimpleName()+" is not a class of" +c.getClass().getSimpleName());}
 		}
-		logger.info("Values "+values.getClass().getName()+" "+values.size());
+		logger.trace("Values "+values.getClass().getName()+" "+values.size());
 		return values;
 	}
 	
