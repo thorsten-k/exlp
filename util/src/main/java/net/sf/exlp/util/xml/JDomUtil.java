@@ -64,11 +64,7 @@ public class JDomUtil
 		outputter = new XMLOutputter(format);
 	}
 	
-	public void info(Document doc)
-	{
-		stream(doc, System.out);
-		System.out.flush();
-	}
+	public void info(Document doc) {this.stream(doc, System.out);}
 	public void info(Element doc)
 	{
 		stream(doc, System.out);
@@ -108,16 +104,16 @@ public class JDomUtil
 				
 				OutputStreamWriter osw = new OutputStreamWriter(os,encoding);
 				osw.write(content);
-				osw.close();
+				osw.flush();
 			}
 			else
 			{
 				OutputStreamWriter osw = new OutputStreamWriter(os,encoding);
 				outputter.output(doc,osw);
-				osw.close();
+				osw.flush();
 			}
 		} 
-		catch (IOException e){logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
 	}
 	
 	public void stream(Element element, OutputStream os)

@@ -10,6 +10,15 @@ public class JsUtil
 	private static final String magicStart = "@@----";
 	private static final String magicEnd = "----@@";
 	
+	public static String magicField(boolean withMagic, String text)
+	{
+		if(!withMagic) {return text;}
+		StringBuilder sb = new StringBuilder();
+		sb.append(magicStart);
+		sb.append(text);
+		sb.append(magicEnd);
+		return sb.toString();
+	}
 	public static String magicField(String text)
 	{
 		StringBuilder sb = new StringBuilder();
