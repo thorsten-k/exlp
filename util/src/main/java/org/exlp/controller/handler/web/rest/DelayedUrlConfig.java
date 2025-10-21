@@ -1,43 +1,13 @@
 package org.exlp.controller.handler.web.rest;
 
-import org.exlp.interfaces.system.property.ConfigKey;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DelayedUrlConfig
 {
 	final static Logger logger = LoggerFactory.getLogger(DelayedUrlConfig.class);
-	
-	public static String getUrl(org.apache.commons.configuration.Configuration config, String key, boolean delay)
-	{
-		if(delay) {return DelayedUrlConfig.resolve(config,key);}
-		else {return DelayedUrlConfig.getUrlNoDelay(config,key);}
-	}
-	
-	public static String getUrlNoDelay(org.apache.commons.configuration.Configuration config, String key)
-	{
-		String url = config.getString(key);
 		
-		StringBuffer sb = new StringBuffer();
-		sb.append("REST connection to ");
-		sb.append(url);
-		sb.append(" (").append(key).append(")");
-		logger.info(sb.toString());
-		return url;
-	}
-	public static String getUrlNoDelay(org.exlp.interfaces.system.property.Configuration config, String key)
-	{
-		String url = config.getString(key);
-		
-		StringBuffer sb = new StringBuffer();
-		sb.append("REST connection to ");
-		sb.append(url);
-		sb.append(" (").append(key).append(")");
-		logger.info(sb.toString());
-		return url;
-	}
-	
-	public static String resolve(org.apache.commons.configuration.Configuration config) {return resolve(config,ConfigKey.netRestUrlLocal);}
+	@Deprecated
 	public static String resolve(org.apache.commons.configuration.Configuration config, String key)
 	{
 		String url = config.getString(key);
