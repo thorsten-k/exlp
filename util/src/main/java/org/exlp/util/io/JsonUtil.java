@@ -203,7 +203,6 @@ public class JsonUtil
 		return jom.readValue(json, jom.getTypeFactory().constructCollectionType(List.class, String.class));
 	}
 
-	
 	private static synchronized String getCaller()
 	{
 		int index;
