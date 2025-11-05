@@ -59,9 +59,9 @@ public class JsonUtil
 			ObjectMapper mapper = new ObjectMapper();
 			Object obj = mapper.readValue(json, Object.class);
 			
-			 ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
-			 String pretty = writer.writeValueAsString(obj);
-			 return pretty;
+			ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
+			String pretty = writer.writeValueAsString(obj);
+			return pretty;
 		}
 		catch (JsonProcessingException e)
 		{
