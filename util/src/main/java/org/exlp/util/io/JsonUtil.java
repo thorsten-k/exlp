@@ -52,7 +52,24 @@ public class JsonUtil
 		return this;
 	}
 	
-	
+	public String stringToPrettyString(String json)
+	{
+		try
+		{
+			ObjectMapper mapper = new ObjectMapper();
+			Object obj = mapper.readValue(json, Object.class);
+			
+			 ObjectWriter writer = mapper.writerWithDefaultPrettyPrinter();
+			 String pretty = writer.writeValueAsString(obj);
+			 return pretty;
+		}
+		catch (JsonProcessingException e)
+		{
+			logger.error(e.getMessage());
+			throw new RuntimeException(e.getMessage());
+		}
+	       
+	}
 	public String toFormattedString(Object json)
 	{
 		try
