@@ -135,9 +135,10 @@ public class JsonUtil
 		}
 	}
 	
-	public static void info(Object json)
+	public static void info(Object json) {JsonUtil.info(true,json);}
+	public static void info(boolean output, Object json)
 	{
-		if(logger.isInfoEnabled())
+		if(output && logger.isInfoEnabled())
 		{
 			if(logCaller) {logger.info(getCaller());}
 			try {System.out.println(jom().writerWithDefaultPrettyPrinter().writeValueAsString(json));}
