@@ -8,6 +8,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -92,4 +97,13 @@ public class StringUtil
 		return null;
 	}
 
+	public static List<String> findDuplicates(List<String> list)
+	{
+        Set<String> seen = new HashSet<>();
+        return list.stream()
+                .filter(s -> !seen.add(s))
+                .collect(Collectors.toCollection(LinkedHashSet::new))
+                .stream()
+                .collect(Collectors.toList());
+    }
 }
