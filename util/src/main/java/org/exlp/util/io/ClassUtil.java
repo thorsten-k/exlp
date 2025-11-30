@@ -1,7 +1,8 @@
-package net.sf.exlp.util.io;
+package org.exlp.util.io;
 
 import java.io.File;
 
+import net.sf.exlp.util.io.RelativePathFactory;
 import net.sf.exlp.util.io.RelativePathFactory.PathSeparator;
 
 import org.apache.commons.io.FilenameUtils;
