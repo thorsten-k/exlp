@@ -188,6 +188,7 @@ public class JsonUtil
 	    return jom.readValue(s, c);
 	}
 	
+	//Read
 	public <T extends Object> T read(Class<T> c, Path p) throws IOException
 	{
 		return jom.readValue(p.toFile(), c);
@@ -196,11 +197,21 @@ public class JsonUtil
 	{
 	    return jom.readValue(p.toFile(), c);
 	}
+	
+	// Clone
+	public <T extends Object> T clone(Class<T> c, Object json) throws JsonProcessingException
+	{
+		String tmp = jom.writeValueAsString(json);
+		return jom.readValue(tmp, c);
+	}
+	
+	// Read static 
 	public static <T extends Object> T read(Class<T> c, byte[] bytes) throws JsonParseException, JsonMappingException, IOException 
 	{
 		return jom().readValue(bytes, c);
 	}
 	
+	// Write static
 	public static void write(Object json, File f) throws JsonGenerationException, JsonMappingException, IOException
 	{
 		ObjectWriter writer = jom().writer(new DefaultPrettyPrinter());
@@ -220,6 +231,8 @@ public class JsonUtil
 	{
 		return jom.readValue(json, jom.getTypeFactory().constructCollectionType(List.class, String.class));
 	}
+	
+	
 
 	private static synchronized String getCaller()
 	{
