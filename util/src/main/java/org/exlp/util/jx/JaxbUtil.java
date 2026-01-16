@@ -154,7 +154,7 @@ public class JaxbUtil implements JaxbInterface
 			output(System.out, jaxb, null,true);
 		}
 	}
-	public static synchronized void info(Object jaxb){info(jaxb,true);}
+	public static synchronized void info(Object jaxb) {info(jaxb,true);}
 	public static synchronized void info(Object jaxb, boolean formatted)
 	{
 		if(logger.isInfoEnabled())
