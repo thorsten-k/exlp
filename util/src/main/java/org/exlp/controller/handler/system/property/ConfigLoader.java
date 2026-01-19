@@ -189,12 +189,15 @@ public class ConfigLoader
 		}
 
 		@Override public boolean containsKey(String key) {return config.containsKey(key);}
+		@Override public void setProperty(String key, Object value) {config.setProperty(key, value);}
+		
 		@Override public String getString(String key) {return config.getString(key);}
 		@Override public String getString(String key, String fallback) {return config.getString(key,fallback);}
 		@Override public Integer getInteger(String key) {return config.getInt(key);}
 		@Override public Integer getInteger(String key, Integer fallback) {return config.getInt(key,fallback);}
 		@Override public int getInt(String key) {return config.getInt(key);}
 		@Override public int getInt(String key, int fallback) {return config.getInt(key,fallback);}
+		@Override public long getLong(String key) {return config.getLong(key);}
 		@Override public Boolean getBoolean(String key) {return config.getBoolean(key);}
 		@Override public Boolean getBoolean(String key, Boolean fallback) {return config.getBoolean(key,fallback);}
 	}
