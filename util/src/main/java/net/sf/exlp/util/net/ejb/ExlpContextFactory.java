@@ -7,7 +7,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.naming.directory.InitialDirContext;
 
-import org.apache.commons.configuration.Configuration;
+import org.exlp.interfaces.system.property.Configuration;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,12 +16,6 @@ public class ExlpContextFactory
 	final static Logger logger = LoggerFactory.getLogger(ExlpContextFactory.class);
 	
 	public static InitialContext getJbossContext(Configuration config) throws NamingException
-	{
-		String host=config.getString("net/jboss/@host");
-		int port=config.getInt("net/jboss/@port");
-		return getJbossContext(host+":"+port);
-	}
-	public static InitialContext getJbossContext(org.exlp.interfaces.system.property.Configuration config) throws NamingException
 	{
 		String host=config.getString("net/jboss/@host");
 		int port=config.getInt("net/jboss/@port");
