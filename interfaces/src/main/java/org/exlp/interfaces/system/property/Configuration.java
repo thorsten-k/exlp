@@ -18,4 +18,7 @@ public interface Configuration
 	
 	Boolean getBoolean(String key);
 	Boolean getBoolean(String key, Boolean fallback);
+	
+	Double getDouble(String key);
+	Double getDouble(String key, Double fallback);
 }

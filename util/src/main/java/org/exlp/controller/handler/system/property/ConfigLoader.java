@@ -200,5 +200,9 @@ public class ConfigLoader
 		@Override public long getLong(String key) {return config.getLong(key);}
 		@Override public Boolean getBoolean(String key) {return config.getBoolean(key);}
 		@Override public Boolean getBoolean(String key, Boolean fallback) {return config.getBoolean(key,fallback);}
+		
+		
+		@Override public Double getDouble(String key) {return config.getDouble(key);}
+		@Override public Double getDouble(String key, Double fallback) {return config.getDouble(key,fallback);}
 	}
 }
