@@ -62,13 +62,13 @@ public class ComponentAttribute
 		ValueExpression ve = component.getValueExpression(key.toString());
 		if(Objects.nonNull(ve))
 		{
-			Object value=ve.getValue(ctx.getELContext());
-			if(debugOnInfo) {logger.info("Value from "+ValueExpression.class.getSimpleName()+": "+value);}
+			Object value = ve.getValue(ctx.getELContext());
+			if(debugOnInfo) {logger.info("Value from {} for key {} is: {}",ValueExpression.class.getSimpleName(),key,value);}
 			return value;
 		}
 		else
 		{
-			if(debugOnInfo) {logger.info("No VE for key, you should use getter/setter");}
+			if(debugOnInfo) {logger.info("No VE for key={}, you should use getter/setter",key);}
 			return null;
 		}
 	}
