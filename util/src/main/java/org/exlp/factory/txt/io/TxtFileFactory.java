@@ -27,4 +27,12 @@ public class TxtFileFactory
 		if(index<1) {return "";}
 		else return fileName.substring(index+1,fileName.length());
 	}
+	
+	public static String csv(Class<?> c)
+	{
+		StringBuilder sb = new StringBuilder();
+		sb.append(c.getSimpleName());
+		sb.append(".csv");
+		return sb.toString();
+	}
 }
