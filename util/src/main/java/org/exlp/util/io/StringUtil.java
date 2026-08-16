@@ -37,6 +37,16 @@ public class StringUtil
 		sb.append(StringUtils.repeat("*", sizeOfStars-5-2-label.length()));
 		return sb.toString();
     }
+	public static String stars(int current, int total)
+    {
+		String sCurrent = Integer.valueOf(current).toString();
+		String sTotal = Integer.valueOf(total).toString();
+		StringBuilder sb = new StringBuilder();
+		sb.append(StringUtils.repeat("*", 5));
+		sb.append(" ").append(sCurrent).append("/").append(sTotal).append(" ");
+		sb.append(StringUtils.repeat("*", sizeOfStars-5-2-1-sCurrent.length()-sTotal.length()));
+		return sb.toString();
+    }
 	
 	public static String tab(int number)
 	{
