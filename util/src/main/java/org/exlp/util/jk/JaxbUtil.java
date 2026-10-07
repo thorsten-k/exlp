@@ -10,12 +10,10 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
-import java.nio.file.Path;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.exlp.interfaces.io.NsPrefixMapperInterface;
-import org.exlp.interfaces.util.JaxbInterface;
 import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
@@ -27,6 +25,7 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
+import net.sf.exlp.interfaces.util.xml.JaxbInterface;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.JDomUtil;
 
@@ -109,7 +108,7 @@ public class JaxbUtil implements JaxbInterface
 			result = (T)u.unmarshal(is);
 			
 		}
-		catch (JAXBException e) {logger.error("Got the following exception in loadJAXB(is,c)",e);}
+		catch (JAXBException e) {logger.error("",e);}
 		return result;
 	}
 	
@@ -138,7 +137,7 @@ public class JaxbUtil implements JaxbInterface
 		if(logger.isTraceEnabled())
 		{
 			logger.trace(getCaller());
-			JaxbUtil.instance().output(System.out, jaxb,true);
+			output(System.out, jaxb, null,true);
 		}
 	}
 	
@@ -147,7 +146,7 @@ public class JaxbUtil implements JaxbInterface
 		if(logger.isDebugEnabled())
 		{
 			logger.debug(getCaller());
-			JaxbUtil.instance().output(System.out, jaxb,true);
+			output(System.out, jaxb, null,true);
 		}
 	}
 	public static synchronized void info(Object jaxb){info(jaxb,true);}
@@ -156,16 +155,16 @@ public class JaxbUtil implements JaxbInterface
 		if(logger.isInfoEnabled())
 		{
 			logger.info(getCaller());
-			JaxbUtil.instance().output(System.out, jaxb,formatted);
+			output(System.out, jaxb, null,formatted);
 		}
 	}
 	
-	public static synchronized void warn(Object o)
+	public static synchronized void warn(Object jaxb)
 	{
 		if(logger.isWarnEnabled())
 		{
 			logger.warn(getCaller());
-			JaxbUtil.instance().output(System.out,o,true);
+			output(System.out, jaxb , null,true);
 		}
 	}
 	
@@ -174,15 +173,12 @@ public class JaxbUtil implements JaxbInterface
 		if(logger.isErrorEnabled())
 		{
 			logger.error(getCaller());
-			JaxbUtil.instance().output(System.out, jaxb,true);
+			output(System.out, jaxb, null,true);
 		}
 	}
 	
-	@Override public void save(Path p, Object jaxb, boolean formatted)
-	{
-		JaxbUtil.save(p.toFile(), jaxb, formatted);
-	}
-	public static void save(File f, Object jaxb, boolean formatted)
+	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f,jaxb,null,formatted);}
+	public static synchronized void save(File f, Object jaxb, DocType doctype, boolean formatted)
 	{
 		OutputStream os=null;
 		try
@@ -193,7 +189,7 @@ public class JaxbUtil implements JaxbInterface
 			}
 			else {os = new FileOutputStream(f);}
 			
-			JaxbUtil.instance().output(os, jaxb, formatted);
+			output(os, jaxb, doctype, formatted);
 			os.close();
 		}
 		catch (FileNotFoundException e) {logger.error("",e);}
@@ -206,7 +202,7 @@ public class JaxbUtil implements JaxbInterface
 		try
 		{
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			JaxbUtil.instance().output(os,jaxb,true);
+			output(os, jaxb, null, true);
 			data = os.toByteArray();
 			os.close();
 			return data;
@@ -214,13 +210,13 @@ public class JaxbUtil implements JaxbInterface
 		catch (IOException e) {logger.error("",e);}
 		return null;
 	}
-	
-	public static InputStream toInputStream(Object jaxb, boolean formatted)
+	public static InputStream toInputStream(Object jaxb, boolean formatted){return toInputStream(jaxb, null, formatted);}
+	public static InputStream toInputStream(Object jaxb, DocType doctype, boolean formatted)
 	{
 		try
 		{
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			JaxbUtil.instance().output(os, jaxb, formatted);
+			output(os, jaxb, doctype, formatted);
 			InputStream is = new ByteArrayInputStream(os.toByteArray());
 			os.close();
 			return is;
@@ -229,8 +225,9 @@ public class JaxbUtil implements JaxbInterface
 		return null;
 	}
 	
-	public static void output(OutputStream os, Object jaxb){JaxbUtil.instance().output(os,jaxb,true);}
-	private void output(OutputStream os, Object jaxb, boolean formatted)
+	public static synchronized void output(OutputStream os, Object jaxb){output(os, jaxb,null, true);}
+	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted){output(os, jaxb,null, formatted);}
+	public static synchronized void output(OutputStream os, Object jaxb, DocType doctype, boolean formatted)
 	{
 		try
 		{
@@ -243,6 +240,7 @@ public class JaxbUtil implements JaxbInterface
 			{
 				m.setProperty("org.glassfish.jaxb.namespacePrefixMapper",nsPrefixMapper);
 			}
+			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
 			m.marshal( jaxb, os);
 		}
 		catch (JAXBException e) {logger.error("",e);}
@@ -254,8 +252,24 @@ public class JaxbUtil implements JaxbInterface
 //		output(os, xml);
 //	}
 	
-//	@Deprecated private static synchronized void output(Writer w, Object xml, Object nsPrefixMapper){output(w, xml, nsPrefixMapper,null,true);}
-//	@Deprecated private static synchronized void output(Writer w, Object xml, Object nsPrefixMapper, DocType doctype, boolean formatted){output(w, xml,null,true);}
+	@Deprecated public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper){output(w, xml, nsPrefixMapper,null,true);}
+	@Deprecated public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper, DocType doctype, boolean formatted){output(w, xml,null,true);}
+	
+	public static synchronized void output(Writer w, Object xml){output(w, xml,null,true);}
+	public static synchronized void output(Writer w, Object xml, DocType doctype, boolean formatted)
+	{
+		try
+		{
+			JAXBContext context = JAXBContext.newInstance(xml.getClass());
+			Marshaller m = context.createMarshaller(); 
+//			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
+			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
+			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
+			m.marshal(xml, w);
+		}
+		catch (JAXBException e) {logger.error("",e);}
+	}
 	
 	public static synchronized Document toDocument(Object jaxb){return toDocument(jaxb,null);}
 	public static synchronized Document toDocument(Object jaxb, Object nsPrefixMapper)
@@ -284,8 +298,8 @@ public class JaxbUtil implements JaxbInterface
 	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper){return toString(xml,nsPrefixMapper,true);}
 	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper, boolean printPreamble){return toString(xml,true);}
 	
-	public static synchronized String toString(Object xml) {return toString(xml,true);}
-	private static synchronized String toString(Object xml, boolean printPreamble)
+	public static synchronized String toString(Object xml){return toString(xml,true);}
+	public static synchronized String toString(Object xml, boolean printPreamble)
 	{
 		Writer sw = new StringWriter();
 		JaxbUtil.output(sw, xml);
@@ -298,19 +312,6 @@ public class JaxbUtil implements JaxbInterface
 		}
 		
 		return s;
-	}
-	private static void output(Writer w, Object xml)
-	{
-		try
-		{
-			JAXBContext context = JAXBContext.newInstance(xml.getClass());
-			Marshaller m = context.createMarshaller(); 
-//			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
-			m.marshal(xml, w);
-		}
-		catch (JAXBException e) {logger.error("",e);}
 	}
 	
 	
