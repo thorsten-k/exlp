@@ -191,11 +191,11 @@
 	            			<phase>generate-sources</phase>
 	            			<goals><goal>xsdtojava</goal></goals>
 	  	        			<configuration>
-										<sourceRoot>${basedir}/src/main/javax</sourceRoot>
+								<sourceRoot>${basedir}/src/main/javax</sourceRoot>
 	                			<xsdOptions>
 	                    			<xsdOption>
-											<bindingFile>${basedir}/src/main/xsd/javax.xjb</bindingFile>
-											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
+										<bindingFile>${basedir}/src/main/xsd/javax.xjb</bindingFile>
+										<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
 	                        			<xsd>${basedir}/src/main/xsd/xsd.xsd</xsd>
 	                    			</xsdOption>
 	                			</xsdOptions>
@@ -220,13 +220,13 @@
                     			<phase>generate-sources</phase>
                     			<goals><goal>xsdtojava</goal></goals>
           	        			<configuration>
-										<sourceRoot>${basedir}/src/main/jakarta</sourceRoot>
+									<sourceRoot>${basedir}/src/main/jakarta</sourceRoot>
                         			<xsdOptions>
                             			<xsdOption>
 											<bindingFile>${basedir}/src/main/xsd/jakarta.xjb</bindingFile>
 											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-	                        			<xsd>${basedir}/src/main/xsd/xsd.xsd</xsd>
-	                    			</xsdOption>
+	                        				<xsd>${basedir}/src/main/xsd/xsd.xsd</xsd>
+	                    				</xsdOption>
                         			</xsdOptions>
                     			</configuration>
                 			</execution>
