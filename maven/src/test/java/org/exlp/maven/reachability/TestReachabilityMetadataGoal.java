@@ -36,7 +36,7 @@ public class TestReachabilityMetadataGoal extends AbstractReachabilityTest
 		goal.setArtifactId("exlp-maven");
 		goal.setClasspathElements(moduleClasspath());
 		goal.setOutputDirectory(testClasses);
-		goal.setAnnotations(Arrays.asList(annotation(XmlAccessorType.class)));
+		goal.setAnnotations(annotationTypes(XmlAccessorType.class));
 	}
 
 	@Test
@@ -76,10 +76,10 @@ public class TestReachabilityMetadataGoal extends AbstractReachabilityTest
 	@Test
 	public void failsWithoutAnnotationType()
 	{
-		goal.setAnnotations(Arrays.asList(new AnnotationRegistration()));
+		goal.setAnnotations(Arrays.asList(""));
 
 		MojoExecutionException e = assertThrows(MojoExecutionException.class, () -> goal.execute());
-		assertTrue(e.getMessage().contains("type"));
+		assertTrue(e.getMessage().contains("annotation type"));
 	}
 
 	@Test

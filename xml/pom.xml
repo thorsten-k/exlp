@@ -81,15 +81,9 @@
 				</executions>
 				<configuration>
 					<annotations>
-						<annotation>
-							<type>javax.xml.bind.annotation.XmlAccessorType</type>
-						</annotation>
-						<annotation>
-							<type>jakarta.xml.bind.annotation.XmlAccessorType</type>
-						</annotation>
-						<annotation>
-							<type>com.fasterxml.jackson.annotation.JsonRootName</type>
-						</annotation>
+						<annotation>javax.xml.bind.annotation.XmlAccessorType</annotation>
+						<annotation>jakarta.xml.bind.annotation.XmlAccessorType</annotation>
+						<annotation>com.fasterxml.jackson.annotation.JsonRootName</annotation>
 					</annotations>
 				</configuration>
 			</plugin>

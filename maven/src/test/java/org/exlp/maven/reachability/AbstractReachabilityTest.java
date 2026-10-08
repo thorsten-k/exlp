@@ -44,25 +44,12 @@ public abstract class AbstractReachabilityTest
 		return classpath;
 	}
 
-	protected AnnotationRegistration annotation(Class<?> type)
+	/** Fully qualified names of the annotation types, as they are configured in the plugin. */
+	protected List<String> annotationTypes(Class<?>... types)
 	{
-		return annotation(type.getName(), true, true, true, true);
-	}
-
-	protected AnnotationRegistration annotation(Class<?> type, boolean registerClass, boolean constructors, boolean fields, boolean methods)
-	{
-		return annotation(type.getName(), registerClass, constructors, fields, methods);
-	}
-
-	protected AnnotationRegistration annotation(String type, boolean registerClass, boolean constructors, boolean fields, boolean methods)
-	{
-		AnnotationRegistration annotation = new AnnotationRegistration();
-		annotation.setType(type);
-		annotation.setRegisterClass(registerClass);
-		annotation.setRegisterConstructors(constructors);
-		annotation.setRegisterFields(fields);
-		annotation.setRegisterMethods(methods);
-		return annotation;
+		List<String> names = new ArrayList<String>();
+		for(Class<?> type : types) {names.add(type.getName());}
+		return names;
 	}
 
 	protected Set<String> types(ReachabilityMetadata metadata)

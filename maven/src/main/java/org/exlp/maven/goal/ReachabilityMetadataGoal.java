@@ -8,7 +8,6 @@ import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugins.annotations.Mojo;
 import org.apache.maven.plugins.annotations.Parameter;
 import org.apache.maven.plugins.annotations.ResolutionScope;
-import org.exlp.maven.reachability.AnnotationRegistration;
 import org.exlp.maven.reachability.ReachabilityMetadata;
 import org.exlp.maven.reachability.ReachabilityMetadataGenerator;
 import org.exlp.maven.reachability.ReachabilityMetadataWriter;
@@ -24,7 +23,7 @@ public class ReachabilityMetadataGoal extends AbstractMojo
 	@Parameter(defaultValue="${project.artifactId}", readonly=true, required=true) private String artifactId;
 	@Parameter(defaultValue="${project.build.outputDirectory}", readonly=true, required=true) private File outputDirectory;
 	@Parameter(defaultValue="${project.compileClasspathElements}", readonly=true, required=true) private List<String> classpathElements;
-	@Parameter private List<AnnotationRegistration> annotations;
+	@Parameter private List<String> annotations;
 
 	public void execute() throws MojoExecutionException
 	{
@@ -52,11 +51,11 @@ public class ReachabilityMetadataGoal extends AbstractMojo
 		{
 			throw new MojoExecutionException("Configuration error: no annotation type is configured (parameter 'annotations')");
 		}
-		for(AnnotationRegistration annotation : annotations)
+		for(String annotation : annotations)
 		{
-			if(annotation.getType()==null || annotation.getType().trim().isEmpty())
+			if(annotation==null || annotation.trim().isEmpty())
 			{
-				throw new MojoExecutionException("Configuration error: an annotation configuration has no 'type'");
+				throw new MojoExecutionException("Configuration error: an annotation type is missing (parameter 'annotations')");
 			}
 		}
 		if(outputDirectory==null)
@@ -81,5 +80,5 @@ public class ReachabilityMetadataGoal extends AbstractMojo
 	public void setArtifactId(String artifactId) {this.artifactId = artifactId;}
 	public void setOutputDirectory(File outputDirectory) {this.outputDirectory = outputDirectory;}
 	public void setClasspathElements(List<String> classpathElements) {this.classpathElements = classpathElements;}
-	public void setAnnotations(List<AnnotationRegistration> annotations) {this.annotations = annotations;}
+	public void setAnnotations(List<String> annotations) {this.annotations = annotations;}
 }

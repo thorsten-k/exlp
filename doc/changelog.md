@@ -1,5 +1,15 @@
 # Change Log
 
+## 2026-10-08 – FR-001: one configuration form for the annotation types
+
+- What: Reduced the configuration to a list of annotation types; a selected class registers all
+  declared constructors, fields, and methods.
+- Result: The criteria AC-FR-001-04 and AC-FR-001-06 are merged; the following criteria are
+  renumbered.
+- Evidence: 22 tests pass; `mvn -o -pl xml process-classes` selects 25 classes of the module.
+- Files: maven/src, xml/pom.xml, README.md,
+  doc/requirements/functional/FR-001-reachability-metadata.md, doc/changelog.md.
+
 ## 2026-10-08 – XML: reachability metadata in the build
 
 - What: Decoupled the Maven plugin from the layered modules and bound the goal in `xml`.

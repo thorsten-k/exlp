@@ -46,7 +46,7 @@ public class TestReachabilityMetadataGenerator extends AbstractReachabilityTest
 	@Test
 	public void selectsClassesWithConfiguredAnnotation() throws Exception
 	{
-		ReachabilityMetadata metadata = generate(annotation(XmlAccessorType.class));
+		ReachabilityMetadata metadata = generate(XmlAccessorType.class);
 		Set<String> types = types(metadata);
 
 		assertTrue(types.contains(AnnotatedClass.class.getName()));
@@ -61,39 +61,15 @@ public class TestReachabilityMetadataGenerator extends AbstractReachabilityTest
 	public void excludesClassesOutsideProductionDirectory() throws Exception
 	{
 		File other = new File(testClasses.getParentFile(), "classes");
-		ReachabilityMetadata metadata = generator.generate(moduleClasspath(), other, Arrays.asList(annotation(XmlAccessorType.class)));
+		ReachabilityMetadata metadata = generator.generate(moduleClasspath(), other, annotationTypes(XmlAccessorType.class));
 
 		assertTrue(types(metadata).isEmpty());
 	}
 
 	@Test
-	public void appliesRegistrationElementsOfAnnotation() throws Exception
+	public void registersAllDeclaredMembersOfSelectedClasses() throws Exception
 	{
-		ReachabilityMetadata metadata = generate(annotation(XmlAccessorType.class, false, false, true, false));
-		ReflectionRegistration registration = registration(metadata, AnnotatedClass.class.getName());
-
-		assertNotNull(registration);
-		assertFalse(registration.isAllDeclaredConstructors());
-		assertTrue(registration.isAllDeclaredFields());
-		assertFalse(registration.isAllDeclaredMethods());
-	}
-
-	@Test
-	public void registersClassWithoutMembers() throws Exception
-	{
-		ReachabilityMetadata metadata = generate(annotation(XmlAccessorType.class, true, false, false, false));
-		ReflectionRegistration registration = registration(metadata, AnnotatedClass.class.getName());
-
-		assertNotNull(registration);
-		assertFalse(registration.isAllDeclaredConstructors());
-		assertFalse(registration.isAllDeclaredFields());
-		assertFalse(registration.isAllDeclaredMethods());
-	}
-
-	@Test
-	public void registersAllSelectedMembersIncludingNonPublic() throws Exception
-	{
-		ReachabilityMetadata metadata = generate(annotation(XmlAccessorType.class));
+		ReachabilityMetadata metadata = generate(XmlAccessorType.class);
 		ReflectionRegistration registration = registration(metadata, NonPublicMembers.class.getName());
 
 		assertNotNull(registration);
@@ -105,9 +81,7 @@ public class TestReachabilityMetadataGenerator extends AbstractReachabilityTest
 	@Test
 	public void combinesRegistrationsOfMultipleAnnotations() throws Exception
 	{
-		ReachabilityMetadata metadata = generate(
-				annotation(XmlAccessorType.class, false, true, false, false),
-				annotation(XmlTransient.class, false, false, true, false));
+		ReachabilityMetadata metadata = generate(XmlAccessorType.class, XmlTransient.class);
 
 		int entries = 0;
 		for(ReflectionRegistration registration : metadata.getReflection())
@@ -119,15 +93,13 @@ public class TestReachabilityMetadataGenerator extends AbstractReachabilityTest
 		ReflectionRegistration registration = registration(metadata, DoublyAnnotated.class.getName());
 		assertTrue(registration.isAllDeclaredConstructors());
 		assertTrue(registration.isAllDeclaredFields());
-		assertFalse(registration.isAllDeclaredMethods());
+		assertTrue(registration.isAllDeclaredMethods());
 	}
 
 	@Test
 	public void appliesInheritedAnnotationSemantics() throws Exception
 	{
-		ReachabilityMetadata metadata = generate(
-				annotation(XmlAccessorType.class),
-				annotation(XmlTransient.class));
+		ReachabilityMetadata metadata = generate(XmlAccessorType.class, XmlTransient.class);
 		Set<String> types = types(metadata);
 
 		assertTrue(types.contains(InheritedSubclass.class.getName()));
@@ -139,7 +111,7 @@ public class TestReachabilityMetadataGenerator extends AbstractReachabilityTest
 	@Test
 	public void generatesReflectionRegistrationsOnly() throws Exception
 	{
-		ReachabilityMetadata metadata = generate(annotation(XmlAccessorType.class));
+		ReachabilityMetadata metadata = generate(XmlAccessorType.class);
 		JsonNode root = MAPPER.readTree(MAPPER.writeValueAsString(metadata));
 
 		assertEquals(1, root.size());
@@ -156,7 +128,7 @@ public class TestReachabilityMetadataGenerator extends AbstractReachabilityTest
 	@Test
 	public void producesEmptyMetadataWithoutMatches() throws Exception
 	{
-		ReachabilityMetadata metadata = generate(annotation(XmlRegistry.class));
+		ReachabilityMetadata metadata = generate(XmlRegistry.class);
 
 		assertTrue(metadata.getReflection().isEmpty());
 
@@ -165,8 +137,8 @@ public class TestReachabilityMetadataGenerator extends AbstractReachabilityTest
 		assertEquals(0, root.get("reflection").size());
 	}
 
-	private ReachabilityMetadata generate(AnnotationRegistration... annotations) throws Exception
+	private ReachabilityMetadata generate(Class<?>... annotationTypes) throws Exception
 	{
-		return generator.generate(moduleClasspath(), testClasses, Arrays.asList(annotations));
+		return generator.generate(moduleClasspath(), testClasses, annotationTypes(annotationTypes));
 	}
 }

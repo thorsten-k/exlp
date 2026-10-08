@@ -57,9 +57,9 @@ phase:
 mvn net.sf.exlp:exlp-maven:0.1.18-SNAPSHOT:reachabilityMetadata
 ```
 
-The configuration selects the annotation types; per annotation, `registerClass`,
-`registerConstructors`, `registerFields`, and `registerMethods` select the registration elements
-(each defaults to `true`):
+The configuration lists the annotation types by their fully qualified names; every production class
+of the module that bears one of them is registered with all its declared constructors, fields, and
+methods:
 
 ```xml
 <plugin>
@@ -75,19 +75,14 @@ The configuration selects the annotation types; per annotation, `registerClass`,
     </executions>
     <configuration>
         <annotations>
-            <annotation>
-                <type>com.example.Entity</type>
-                <registerConstructors>false</registerConstructors>
-                <registerFields>true</registerFields>
-            </annotation>
+            <annotation>com.example.Entity</annotation>
         </annotations>
     </configuration>
 </plugin>
 ```
 
-The annotation types come from the application or its dependencies and are named by their fully
-qualified names; the goal resolves the compile dependencies of the module for that. The scanned
-artifact therefore does not depend on EXLP.
+The annotation types come from the application or its dependencies; the goal resolves the compile
+dependencies of the module for that. The scanned artifact therefore does not depend on EXLP.
 
 The goal writes the metadata to `META-INF/native-image/<groupId>/<artifactId>/reachability-metadata.json`
 in the build output directory of the current module; the packaging places it in the artifact.

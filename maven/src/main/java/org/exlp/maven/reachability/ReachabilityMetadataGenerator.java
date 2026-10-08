@@ -2,8 +2,6 @@ package org.exlp.maven.reachability;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -13,13 +11,13 @@ import io.github.classgraph.ClassInfo;
 import io.github.classgraph.ScanResult;
 
 /**
- * Scans the production classes of the current module and combines the configured annotations per class.
- * The annotation types are resolved from the classpath of the module, so annotations of dependencies are
- * supported as well.
+ * Scans the production classes of the current module and registers every class that bears one of the
+ * configured annotation types. The annotation types are resolved from the classpath of the module, so
+ * annotations of dependencies are supported as well.
  */
 public class ReachabilityMetadataGenerator
 {
-	public ReachabilityMetadata generate(List<String> classpathElements, File productionDirectory, List<AnnotationRegistration> annotations) throws IOException
+	public ReachabilityMetadata generate(List<String> classpathElements, File productionDirectory, List<String> annotationTypes) throws IOException
 	{
 		File production = productionDirectory.getCanonicalFile();
 		Map<String,ReflectionRegistration> registrations = new TreeMap<String,ReflectionRegistration>();
@@ -33,32 +31,21 @@ public class ReachabilityMetadataGenerator
 			for(ClassInfo classInfo : scanResult.getAllClasses())
 			{
 				if(!isProductionClass(classInfo, production)) {continue;}
+				if(!isSelected(classInfo, annotationTypes)) {continue;}
 
-				for(AnnotationRegistration annotation : annotations)
-				{
-					if(classInfo.getAnnotationInfo(annotation.getType())==null) {continue;}
-
-					ReflectionRegistration registration = registrations.get(classInfo.getName());
-					if(registration==null)
-					{
-						registration = new ReflectionRegistration(classInfo.getName());
-						registrations.put(classInfo.getName(), registration);
-					}
-					registration.apply(annotation);
-				}
+				registrations.put(classInfo.getName(), new ReflectionRegistration(classInfo.getName()));
 			}
 		}
-		return new ReachabilityMetadata(selected(registrations.values()));
+		return new ReachabilityMetadata(registrations.values());
 	}
 
-	private List<ReflectionRegistration> selected(Collection<ReflectionRegistration> registrations)
+	private boolean isSelected(ClassInfo classInfo, List<String> annotationTypes)
 	{
-		List<ReflectionRegistration> result = new ArrayList<ReflectionRegistration>();
-		for(ReflectionRegistration registration : registrations)
+		for(String annotationType : annotationTypes)
 		{
-			if(registration.isRegistered()) {result.add(registration);}
+			if(classInfo.getAnnotationInfo(annotationType)!=null) {return true;}
 		}
-		return result;
+		return false;
 	}
 
 	private boolean isProductionClass(ClassInfo classInfo, File production) throws IOException
