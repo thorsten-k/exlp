@@ -12,12 +12,12 @@ affects:
 ## Context
 
 FR-001 (`## Requirement`) requires the Maven plugin to generate Native Image reachability metadata
-from annotated production classes. It leaves the scanner for that task open in `## Assumptions`
-(item 1), where ClassGraph (`io.github.classgraph`) is named as a candidate whose use requires an
-accepted architecture decision. This decision answers which library performs the class scan.
+from annotated production classes; FR-001 (`## Scope`) excludes agent-based runtime tracing. Two
+technical choices behind that requirement remain with this decision: the library that performs the
+class scan, and the Native Image version that accepts the generated metadata (AC-FR-001-02).
 
 The repository is a Java 8, multi-module Maven project with an existing `maven` module. Class
-selection is build-time work; FR-001 (`## Scope`) excludes agent-based runtime tracing.
+selection is build-time work, and the generated metadata is accepted by one Native Image version.
 
 ## Decision
 
@@ -26,6 +26,7 @@ Maven plugin.
 
 - Bound version: `io.github.classgraph:classgraph:4.8.197`; the artifact carries class-file
   version 52 and therefore runs on the project's Java 8 platform.
+- Bound Native Image version: `GraalVM Native Image 25`.
 - Version updates keep the library compatible with the project's Java 8 platform.
 - ClassGraph is a build-time dependency of the Maven plugin, not of the artifact being scanned.
 - ClassGraph is a single self-contained artifact that requires no further dependencies.
@@ -39,6 +40,9 @@ Maven plugin.
 - Keep the scanner out of the artifact whose reachability metadata is generated.
 - Releases up to 4.8.181 carry class-file version 51 and do not run on the project's Java 8
   platform.
+- The acceptance check of FR-001 (AC-FR-001-02) requires one fixed Native Image version; a pinned
+  version is maintained by a constraint or a decision (`doc/requirements/architecture.md`,
+  `## Authoritative Locations`).
 
 ## Alternatives
 
@@ -55,7 +59,7 @@ class-hierarchy scanning itself.
 ## Impact
 
 - FR-001 covers the class selection, the registrations, and the metadata format; this decision adds
-  the library and its bound version.
+  the library, its bound version, and the bound Native Image version.
 - `bom/pom.xml` manages the version; `maven/pom.xml` declares the dependency.
 - The tests of the Maven plugin cover the use of the library; FR-001 maintains the evidence
   (`## Evidence`).
@@ -67,7 +71,7 @@ class-hierarchy scanning itself.
 - How the goal obtains the classpath of the current module is an implementation detail of the
   `maven` module.
 - The consuming build selects the Maven lifecycle phase for the goal binding (FR-001,
-  `## Assumptions`, item 2).
+  `## Scope`).
 
 ## Evidence
 

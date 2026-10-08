@@ -2,7 +2,7 @@
 id: FR-001
 title: Generate annotation-based Native Image reachability metadata
 type: functional
-status: proposed
+status: approved
 priority: must
 depends_on: []
 related: []
@@ -15,24 +15,24 @@ related: []
 The Maven plugin generates reachability metadata for annotated production classes in the current
 module's artifact (AC-FR-001-01).
 
-- The generated file is accepted by GraalVM Native Image 25 (AC-FR-001-02).
+- The generated file is accepted by the Native Image version bound in ADR-0001 (AC-FR-001-02).
 - The plugin selects production classes through annotation types configured in the Maven plugin (AC-FR-001-03).
 - For each annotation type, configuration selects which of the class, constructors, fields, and
   methods are registered (AC-FR-001-04).
 - When a class matches multiple configured annotations, their registrations are combined in one
   entry for that class (AC-FR-001-05).
-- A selected member category covers every declared member of that kind, including non-public
-  members (AC-FR-001-06).
-- Annotation inheritance follows Java `@Inherited` semantics; annotations do not propagate from
-  interfaces to implementing classes (AC-FR-001-07).
+- Every declared member of a selected member kind is registered, including non-public members
+  (AC-FR-001-06).
+- Annotation inheritance follows Java `@Inherited` semantics (AC-FR-001-07).
+- A configured annotation on an interface does not select the implementing class (AC-FR-001-07).
 - The generated file contains Reflection registrations only (AC-FR-001-08).
 - The plugin goal supports explicit invocation and optional binding to a Maven lifecycle phase (AC-FR-001-09).
 - The generated file is packaged at
   `META-INF/native-image/<groupId>/<artifactId>/reachability-metadata.json` (AC-FR-001-10).
 - Successful generation replaces existing metadata at the output path (AC-FR-001-11).
 - No matching production class produces a valid metadata file with no Reflection registrations (AC-FR-001-12).
-- Invalid configuration or scan/generation errors fail the goal with a diagnostic; partial metadata is
-  not packaged (AC-FR-001-13).
+- Invalid configuration or scan/generation errors fail the goal with a diagnostic (AC-FR-001-13).
+- A failed run does not package partial metadata (AC-FR-001-13).
 
 ## Rationale
 
@@ -44,6 +44,7 @@ information must accompany the artifact.
 In scope:
 
 - Reflection metadata derived from configured annotation types on the current module's production classes.
+- Generation of the metadata into the build output directory of the current module.
 - Packaging the generated metadata with the current module's artifact.
 
 Out of scope:
@@ -51,12 +52,8 @@ Out of scope:
 - Runtime-agent trace collection.
 - Metadata categories other than Reflection.
 - Classes available only in dependencies or test output.
-
-## Assumptions
-
-1. ClassGraph (`io.github.classgraph`) is a candidate scanner; its use requires an accepted architecture decision.
-2. The consuming Maven build selects the lifecycle phase for an optional binding.
-3. Generated output is written under the build output directory; source files are not modified.
+- Selection of the lifecycle phase for the binding.
+- Modification of source files.
 
 ## Open Questions
 
@@ -82,7 +79,7 @@ Then:
 
 - The generated artifact contains reachability metadata for the selected classes.
 
-### AC-FR-001-02: Support GraalVM Native Image 25
+### AC-FR-001-02: Acceptance by GraalVM Native Image
 
 Given:
 
@@ -90,7 +87,7 @@ Given:
 
 When:
 
-- GraalVM Native Image 25 consumes the artifact.
+- GraalVM Native Image in the version bound in ADR-0001 consumes the artifact.
 
 Then:
 
@@ -151,7 +148,7 @@ When:
 
 Then:
 
-- The metadata registers every declared member of each selected kind.
+- The metadata registers every declared member of each selected member kind.
 
 ### AC-FR-001-07: Apply Java annotation inheritance semantics
 
@@ -197,7 +194,7 @@ When:
 
 Then:
 
-- Both runs produce equivalent metadata.
+- Both runs produce metadata with identical registrations.
 
 ### AC-FR-001-10: Package metadata at the artifact path
 
@@ -269,14 +266,17 @@ None.
 
 ### Tests
 
-- This requirement – open: GraalVM Native Image 25 accepts the generated metadata (AC-FR-001-02)
+- This requirement – open: the Native Image version bound in ADR-0001 accepts the generated metadata (AC-FR-001-02)
 - This requirement – open: configured annotations select the intended classes (AC-FR-001-03)
 - This requirement – open: configured registration elements appear in the output (AC-FR-001-04)
+- This requirement – open: every declared member of a selected member kind is registered (AC-FR-001-06)
 - This requirement – open: annotation inheritance cases produce the specified classes (AC-FR-001-07)
+- This requirement – open: the generated file contains Reflection registrations only (AC-FR-001-08)
 - This requirement – open: dependency and test-only classes are excluded (AC-FR-001-01)
 - This requirement – open: no-match execution produces valid empty metadata (AC-FR-001-12)
 - This requirement – open: invalid configuration and scan errors fail the goal (AC-FR-001-13)
-- This requirement – open: explicit and lifecycle-bound runs produce equivalent metadata (AC-FR-001-09)
+- This requirement – open: both invocation modes produce metadata with identical registrations (AC-FR-001-09)
+- This requirement – open: a prior file at the output path is replaced on successful generation (AC-FR-001-11)
 
 ### Documentation
 

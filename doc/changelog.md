@@ -1,5 +1,14 @@
 # Change Log
 
+## 2026-10-08 – FR-001: review, correction, approval
+
+- What: Reviewed FR-001, applied the instructed corrections, and set it to approved.
+- Result: Review "Approval not recommended" (2 findings, 8 notes); acceptance: all findings
+  addressed; corrections in FR-001 and in ADR-0001.
+- Evidence: Five patterns without a match; line width and target values reached.
+- Files: doc/requirements/functional/FR-001-reachability-metadata.md, doc/status.md,
+  doc/decisions/ADR-0001-scan-module-classes-with-classgraph.md, doc/changelog.md.
+
 ## 2026-10-08 – ADR-0001: review, correction, acceptance
 
 - What: Reviewed ADR-0001, corrected it on instruction, and set it to accepted.
