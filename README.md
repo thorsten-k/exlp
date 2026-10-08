@@ -70,4 +70,4 @@ mvn -pl core test          # run the tests of a single module
 - Requirements Rules: `doc/requirements/requirements.md`.
 - Index File of requirements and architecture decisions including status: `doc/status.md`.
 - Change Log (chronicle): `doc/changelog.md`.
-- Architecture File: `doc/architecture.md`; Decision Repository: `doc/decisions/`.
+- Architecture File: `doc/requirements/architecture.md`; Decision Repository: `doc/decisions/`.
