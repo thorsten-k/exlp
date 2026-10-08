@@ -77,13 +77,12 @@ class-hierarchy scanning itself.
 
 ### Implementation
 
-- `bom/pom.xml` – open: the version of ClassGraph is managed for the Maven plugin (AC-FR-001-01)
-- `maven/pom.xml` – open: ClassGraph is declared as a build-time dependency of the plugin
-  (AC-FR-001-01)
+- `bom/pom.xml` – the version of ClassGraph is managed for the Maven plugin (AC-FR-001-01)
+- `maven/pom.xml` – ClassGraph is declared as a build-time dependency of the plugin (AC-FR-001-01)
 
 ### Tests
 
-- `mvn -pl maven test` – open: the plugin scans the current module with ClassGraph and writes the
-  metadata (AC-FR-001-10)
-- `mvn -pl maven test` – open: the scanning behavior and the registrations match FR-001
-  (AC-FR-001-04)
+- `mvn -pl maven org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test` – the plugin scans the
+  current module with ClassGraph and writes the metadata (AC-FR-001-10)
+- `mvn -pl maven org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test` – the scanning behavior
+  and the registrations match FR-001 (AC-FR-001-04)

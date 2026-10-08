@@ -1,5 +1,14 @@
 # Change Log
 
+## 2026-10-08 – FR-001: implementation of the metadata goal
+
+- What: Implemented FR-001 and ADR-0001; tests use a dependency's annotations.
+- Result: The goal resolves the module classpath, scans, and packages the metadata.
+- Evidence: 21 tests pass; both invocation modes produce identical registrations; the file
+  validates against the metadata schema 1.2.0; tests need Surefire 3.
+- Files: bom/pom.xml, maven/pom.xml, maven/src/main/java/org/exlp/maven/, README.md,
+  doc/requirements/architecture.md, doc/status.md, doc/changelog.md.
+
 ## 2026-10-08 – FR-001: review, correction, approval
 
 - What: Reviewed FR-001, applied the instructed corrections, and set it to approved.

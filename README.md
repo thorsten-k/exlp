@@ -14,7 +14,7 @@ EXLP is an established, historically grown multi-module Maven project (`net.sf.e
 - `xml` – XML/JSON helpers (CDATA, models)
 - `shell` – shell, OS, and command wrappers as well as process spawning
 - `ejb` – EJB integration (facades) for the add-ons
-- `maven` – Maven plugin (goal `mvnVersionIgnore` and a test goal)
+- `maven` – Maven plugin (goals `mvnVersionIgnore`, `reachabilityMetadata`, and a test goal)
 - `test` – test-support classes
 - `client` – desktop client (config-pointer tray)
 - `addon` – optional extensions (standalone module, not part of the root aggregator)
@@ -46,6 +46,51 @@ _To be defined._ Details are kept in the **Decision Repository** (`doc/decisions
 ## Planned Milestones
 
 _To be defined._
+
+## Reachability Metadata
+
+The Maven plugin generates Native Image reachability metadata from annotated production classes
+(goal `reachabilityMetadata`). The goal runs on explicit invocation or bound to a Maven lifecycle
+phase:
+
+```bash
+mvn net.sf.exlp:exlp-maven:0.1.18-SNAPSHOT:reachabilityMetadata
+```
+
+The configuration selects the annotation types; per annotation, `registerClass`,
+`registerConstructors`, `registerFields`, and `registerMethods` select the registration elements
+(each defaults to `true`):
+
+```xml
+<plugin>
+    <groupId>net.sf.exlp</groupId>
+    <artifactId>exlp-maven</artifactId>
+    <version>0.1.18-SNAPSHOT</version>
+    <executions>
+        <execution>
+            <id>reachability-metadata</id>
+            <phase>process-classes</phase>
+            <goals><goal>reachabilityMetadata</goal></goals>
+        </execution>
+    </executions>
+    <configuration>
+        <annotations>
+            <annotation>
+                <type>com.example.Entity</type>
+                <registerConstructors>false</registerConstructors>
+                <registerFields>true</registerFields>
+            </annotation>
+        </annotations>
+    </configuration>
+</plugin>
+```
+
+The annotation types come from the application or its dependencies and are named by their fully
+qualified names; the goal resolves the compile dependencies of the module for that. The scanned
+artifact therefore does not depend on EXLP.
+
+The goal writes the metadata to `META-INF/native-image/<groupId>/<artifactId>/reachability-metadata.json`
+in the build output directory of the current module; the packaging places it in the artifact.
 
 ## Build and Start
 

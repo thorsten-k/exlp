@@ -28,7 +28,7 @@ support), and `addon` (optional extensions) build on the same modules.
 | `shell` | Operating system: shell, OS, and command wrappers, process spawning |
 | `ejb` | Integration: EJB facade beans for the add-ons |
 | `client` | Standalone run: config-pointer tray and connections |
-| `maven` | Build tooling: Maven plugin (goal `mvnVersionIgnore`) |
+| `maven` | Build tooling: Maven plugin (goals `mvnVersionIgnore` and `reachabilityMetadata`) |
 | `test` | Test support: base classes for XML tests |
 | `addon` | Optional extensions (standalone module, not part of the root aggregator) |
 | `doc` | Documentation |

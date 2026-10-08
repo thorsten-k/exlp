@@ -219,6 +219,13 @@
 				<version>2.18.2</version>
 			</dependency>
 			
+			<!-- Build tooling: class scanning for reachability metadata (ADR-0001) -->
+			<dependency>
+				<groupId>io.github.classgraph</groupId>
+				<artifactId>classgraph</artifactId>
+				<version>4.8.197</version>
+			</dependency>
+			
 			<!-- JAXB -->
 			<dependency>
 			    <groupId>org.glassfish.jaxb</groupId>

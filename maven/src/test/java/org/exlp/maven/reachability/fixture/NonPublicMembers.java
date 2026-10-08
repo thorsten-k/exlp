@@ -1,0 +1,16 @@
+package org.exlp.maven.reachability.fixture;
+
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+
+@XmlAccessorType(XmlAccessType.FIELD)
+public class NonPublicMembers
+{
+	private int declaredField;
+
+	private NonPublicMembers() {}
+
+	private void declaredMethod() {}
+
+	public void publicMethod() {}
+}

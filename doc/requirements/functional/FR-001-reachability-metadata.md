@@ -2,7 +2,7 @@
 id: FR-001
 title: Generate annotation-based Native Image reachability metadata
 type: functional
-status: approved
+status: implemented
 priority: must
 depends_on: []
 related: []
@@ -261,23 +261,56 @@ None.
 
 ### Implementation
 
-- This requirement – open: registrations are combined into one entry per class (AC-FR-001-05)
-- This requirement – open: generated metadata is packaged at the required path (AC-FR-001-10)
+- `maven/src/main/java/org/exlp/maven/goal/ReachabilityMetadataGoal.java` – the goal scans the
+  module and writes the metadata (AC-FR-001-01)
+- `maven/src/main/java/org/exlp/maven/reachability/ReachabilityMetadataGenerator.java` – the
+  registrations are combined into one entry per class (AC-FR-001-05)
+- `maven/src/main/java/org/exlp/maven/reachability/ReachabilityMetadataWriter.java` – the metadata
+  is written to the required path (AC-FR-001-10)
 
 ### Tests
 
-- This requirement – open: the Native Image version bound in ADR-0001 accepts the generated metadata (AC-FR-001-02)
-- This requirement – open: configured annotations select the intended classes (AC-FR-001-03)
-- This requirement – open: configured registration elements appear in the output (AC-FR-001-04)
-- This requirement – open: every declared member of a selected member kind is registered (AC-FR-001-06)
-- This requirement – open: annotation inheritance cases produce the specified classes (AC-FR-001-07)
-- This requirement – open: the generated file contains Reflection registrations only (AC-FR-001-08)
-- This requirement – open: dependency and test-only classes are excluded (AC-FR-001-01)
-- This requirement – open: no-match execution produces valid empty metadata (AC-FR-001-12)
-- This requirement – open: invalid configuration and scan errors fail the goal (AC-FR-001-13)
-- This requirement – open: both invocation modes produce metadata with identical registrations (AC-FR-001-09)
-- This requirement – open: a prior file at the output path is replaced on successful generation (AC-FR-001-11)
+- `TestReachabilityMetadataGenerator.selectsClassesWithConfiguredAnnotation` – configured
+  annotations select the intended classes (AC-FR-001-03)
+- `TestReachabilityMetadataGenerator.appliesRegistrationElementsOfAnnotation` – configured
+  registration elements appear in the output (AC-FR-001-04)
+- `TestReachabilityMetadataGenerator.registersAllSelectedMembersIncludingNonPublic` – every
+  declared member of a selected member kind is registered (AC-FR-001-06)
+- `TestReachabilityMetadataGenerator.appliesInheritedAnnotationSemantics` – annotation inheritance
+  cases produce the specified classes (AC-FR-001-07)
+- `TestReachabilityMetadataGenerator.generatesReflectionRegistrationsOnly` – the generated file
+  contains Reflection registrations only (AC-FR-001-08)
+- `TestReachabilityMetadataGenerator.excludesClassesOutsideProductionDirectory` – classes outside
+  the production output directory are excluded (AC-FR-001-01)
+- `TestReachabilityMetadataGenerator.producesEmptyMetadataWithoutMatches` – no-match execution
+  produces valid empty metadata (AC-FR-001-12)
+- `TestReachabilityMetadataGoal.failsWithoutConfiguredAnnotations` – invalid configuration fails
+  the goal with a diagnostic (AC-FR-001-13)
+- `TestReachabilityMetadataGoal.writesMetadataAtArtifactPath` – the goal writes the metadata into
+  the module output directory (AC-FR-001-10)
+- `TestReachabilityMetadataGoal.producesIdenticalRegistrationsOnEachRun` – repeated runs produce
+  identical registrations (AC-FR-001-09)
+- `TestReachabilityMetadataWriter.replacesPriorMetadata` – a prior file at the output path is
+  replaced on successful generation (AC-FR-001-11)
+- `mvn -pl maven org.apache.maven.plugins:maven-surefire-plugin:3.2.5:test` – 21 tests pass
+  (AC-FR-001-03)
+- `mvn package` – a lifecycle-bound run in a sample module packs the metadata file into the JAR
+  (AC-FR-001-10)
+- `mvn package` – a lifecycle-bound run in a sample module excludes a test-only annotated class
+  (AC-FR-001-01)
+- `mvn package` – a lifecycle-bound run in a sample module inherits an annotation of a dependency
+  (AC-FR-001-07)
+- `mvn net.sf.exlp:exlp-maven:0.1.18-SNAPSHOT:reachabilityMetadata` – an explicit run in a sample
+  module produces the same registrations as the lifecycle-bound run (AC-FR-001-09)
+- `mvn net.sf.exlp:exlp-maven:0.1.18-SNAPSHOT:reachabilityMetadata` – a run without a matching
+  class produces a valid file with an empty Reflection array (AC-FR-001-12)
+- `mvn net.sf.exlp:exlp-maven:0.1.18-SNAPSHOT:reachabilityMetadata` – a run without configured
+  annotations fails the goal with a diagnostic and leaves no metadata (AC-FR-001-13)
+- `reachability-metadata-schema-v1.2.0.json` – the generated file validates against the schema
+  (AC-FR-001-02)
+- This requirement – open: GraalVM Native Image 25 consumes the packaged metadata without a
+  format error (AC-FR-001-02)
 
 ### Documentation
 
-- This requirement – open: plugin configuration and packaged metadata location are documented (AC-FR-001-10)
+- `README.md` – plugin configuration and the packaged metadata location are documented (AC-FR-001-10)
