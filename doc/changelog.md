@@ -1,5 +1,33 @@
 # Change Log
 
+## 2026-10-08 – XML: javax and jakarta each with their own output directory
+
+- What: `javax` and `jakarta` compile into `target/classes-javax` and `target/classes-jakarta`; the goal
+  of FR-001 runs once per variant and writes the metadata into that variant's directory; the copy step is
+  gone. The goal takes its output directory from the configuration, and a run scans the compile classpath
+  plus that directory.
+- Result: Neither variant uses the module output directory, and no copy step exists (ADR-0002).
+- Evidence: 23 tests pass; `mvn -pl xml -DskipTests -Djava.awt.headless=true clean install` `[SUCCESS]`;
+  each variant directory holds 40 classes and its own metadata, both jars carry the file.
+- Files: xml/pom.xml, maven/src/main/java/org/exlp/maven/goal/ReachabilityMetadataGoal.java,
+  maven/src/main/java/org/exlp/maven/reachability/ReachabilityMetadataGenerator.java,
+  maven/src/test/java/org/exlp/maven/reachability/TestReachabilityMetadataGenerator.java, README.md,
+  doc/requirements/functional/FR-001-reachability-metadata.md,
+  doc/decisions/ADR-0002-package-javax-jakarta-variants.md, doc/changelog.md.
+
+## 2026-10-08 – XML: both JAXB variants from one build, published as classifier artifacts
+
+- What: Rebuilt `xml` with POM packaging; two compile executions and two jar executions produce the
+  `javax` and the `jakarta` artifact in one Maven run; the profiles no longer select a variant, and the
+  profile `autojavax` is gone.
+- Result: `mvn clean install` publishes `exlp-xml-<version>.pom` together with `-javax.jar` and
+  `-jakarta.jar`, and no artifact without a classifier (ADR-0002).
+- Evidence: `mvn -pl xml -DskipTests -Djava.awt.headless=true clean install` `[SUCCESS]`; the two jars
+  carry class-file versions 52 and 55, the matching annotation packages, and the reachability metadata;
+  a consumer with either classifier compiles and runs.
+- Files: xml/pom.xml, README.md, doc/decisions/ADR-0002-package-javax-jakarta-variants.md,
+  doc/status.md, doc/changelog.md.
+
 ## 2026-10-08 – FR-001: one configuration form for the annotation types
 
 - What: Reduced the configuration to a list of annotation types; a selected class registers all

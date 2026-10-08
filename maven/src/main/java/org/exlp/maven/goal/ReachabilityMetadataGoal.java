@@ -21,7 +21,9 @@ public class ReachabilityMetadataGoal extends AbstractMojo
 
 	@Parameter(defaultValue="${project.groupId}", readonly=true, required=true) private String groupId;
 	@Parameter(defaultValue="${project.artifactId}", readonly=true, required=true) private String artifactId;
-	@Parameter(defaultValue="${project.build.outputDirectory}", readonly=true, required=true) private File outputDirectory;
+	/** Directory that holds the production classes of the run and receives the metadata; a module with
+	 *  several output directories configures one value per execution. */
+	@Parameter(defaultValue="${project.build.outputDirectory}", required=true) private File outputDirectory;
 	@Parameter(defaultValue="${project.compileClasspathElements}", readonly=true, required=true) private List<String> classpathElements;
 	@Parameter private List<String> annotations;
 

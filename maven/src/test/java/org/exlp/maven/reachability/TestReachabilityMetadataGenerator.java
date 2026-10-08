@@ -6,7 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -64,6 +66,27 @@ public class TestReachabilityMetadataGenerator extends AbstractReachabilityTest
 		ReachabilityMetadata metadata = generator.generate(moduleClasspath(), other, annotationTypes(XmlAccessorType.class));
 
 		assertTrue(types(metadata).isEmpty());
+	}
+
+	@Test
+	public void scansProductionDirectoryOutsideConfiguredClasspath() throws Exception
+	{
+		List<String> classpath = classpathWithoutProductionDirectory();
+		assertEquals(1, classpath.size());
+
+		ReachabilityMetadata metadata = generator.generate(classpath, testClasses, annotationTypes(XmlAccessorType.class));
+
+		assertTrue(types(metadata).contains(AnnotatedClass.class.getName()));
+	}
+
+	private List<String> classpathWithoutProductionDirectory() throws Exception
+	{
+		List<String> classpath = new ArrayList<String>();
+		for(String element : moduleClasspath())
+		{
+			if(!new File(element).getCanonicalFile().equals(testClasses.getCanonicalFile())) {classpath.add(element);}
+		}
+		return classpath;
 	}
 
 	@Test

@@ -47,4 +47,5 @@ the title, and the status; for a requirement, additionally the priority.
 | ID | Title | Status | Affects |
 |---|---|---|---|
 | [ADR-0001](decisions/ADR-0001-scan-module-classes-with-classgraph.md) | Scan module classes with ClassGraph | accepted | FR-001 |
+| [ADR-0002](decisions/ADR-0002-package-javax-jakarta-variants.md) | Build and publish the JAXB variants as classifier artifacts | accepted | FR-001 |
 

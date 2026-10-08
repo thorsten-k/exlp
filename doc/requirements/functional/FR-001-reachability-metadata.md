@@ -15,6 +15,8 @@ related: []
 The Maven plugin generates reachability metadata for annotated production classes in the current
 module's artifact (AC-FR-001-01).
 
+- The goal writes the metadata into the output directory configured for the goal run; the default is the
+  build output directory of the current module (AC-FR-001-09).
 - The generated file is accepted by the Native Image version bound in ADR-0001 (AC-FR-001-02).
 - The plugin selects production classes through annotation types configured in the Maven plugin (AC-FR-001-03).
 - Every selected class is registered with all its declared constructors, fields, and methods (AC-FR-001-04).
@@ -40,7 +42,8 @@ information must accompany the artifact.
 In scope:
 
 - Reflection metadata derived from configured annotation types on the current module's production classes.
-- Generation of the metadata into the build output directory of the current module.
+- Generation of the metadata into the output directory configured for the goal run (default: the build
+  output directory of the current module).
 - Packaging the generated metadata with the current module's artifact.
 
 Out of scope:
@@ -183,14 +186,17 @@ Then:
 
 Given:
 
-- The plugin goal completes successfully and the module artifact is packaged.
+- The plugin goal completes successfully with an output directory configured, and the module artifact is
+  packaged.
 
 When:
 
-- The artifact contents are inspected.
+- The output directory and the artifact contents are inspected.
 
 Then:
 
+- The goal wrote `META-INF/native-image/<groupId>/<artifactId>/reachability-metadata.json` into the
+  configured output directory.
 - The artifact contains `META-INF/native-image/<groupId>/<artifactId>/reachability-metadata.json`.
 
 ### AC-FR-001-10: Replace prior metadata on successful generation
@@ -269,8 +275,10 @@ None.
   produces valid empty metadata (AC-FR-001-11)
 - `TestReachabilityMetadataGoal.failsWithoutConfiguredAnnotations` – invalid configuration fails
   the goal with a diagnostic (AC-FR-001-12)
-- `TestReachabilityMetadataGoal.writesMetadataAtArtifactPath` – the goal writes the metadata into
-  the module output directory (AC-FR-001-09)
+- `TestReachabilityMetadataGoal.writesMetadataAtArtifactPath` – the goal writes the metadata into the
+  configured output directory (AC-FR-001-09)
+- `TestReachabilityMetadataGenerator.scansProductionDirectoryOutsideConfiguredClasspath` – the
+  production directory is scanned although the configured classpath does not contain it (AC-FR-001-01)
 - `TestReachabilityMetadataGoal.producesIdenticalRegistrationsOnEachRun` – repeated runs produce
   identical registrations (AC-FR-001-08)
 - `TestReachabilityMetadataWriter.replacesPriorMetadata` – a prior file at the output path is

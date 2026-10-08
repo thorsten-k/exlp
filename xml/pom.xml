@@ -10,11 +10,17 @@
 	</parent>
 	
     <artifactId>exlp-xml</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <name>ExLP - XML</name>
-    
+
+	<properties>
+		<!-- Each JAXB variant compiles and packages in its own output directory; neither is privileged -->
+		<xml.classes.javax>${project.build.directory}/classes-javax</xml.classes.javax>
+		<xml.classes.jakarta>${project.build.directory}/classes-jakarta</xml.classes.jakarta>
+	</properties>
+
 	<dependencyManagement>
-		<dependencies>      	         
+		<dependencies>       	         
 			<dependency>
 				<groupId>net.sf.exlp</groupId>
 				<artifactId>exlp-bom</artifactId>
@@ -42,7 +48,7 @@
 		</dependency>
 		
 		<!-- Java EE -->
-      	<dependency>
+       	<dependency>
 			<groupId>javax.xml.bind</groupId>
 			<artifactId>jaxb-api</artifactId>
     		<type>jar</type>
@@ -67,16 +73,58 @@
     
 	<build>
 		<plugins>
-			<!-- Reachability metadata for the JAXB and JSON models (FR-001) -->
+			<!-- One compilation per JAXB variant; the module publishes no main artifact -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<!-- 3.8.0 (inherited from the parent) reports compileSourceRoots/outputDirectory as read-only -->
+				<version>3.13.0</version>
+				<executions>
+					<execution>
+						<id>compile-javax</id>
+						<phase>compile</phase>
+						<goals><goal>compile</goal></goals>
+						<configuration>
+							<release>8</release>
+							<outputDirectory>${xml.classes.javax}</outputDirectory>
+							<compileSourceRoots>
+								<compileSourceRoot>${project.basedir}/src/main/java</compileSourceRoot>
+								<compileSourceRoot>${project.basedir}/src/main/javax</compileSourceRoot>
+							</compileSourceRoots>
+						</configuration>
+					</execution>
+					<execution>
+						<id>compile-jakarta</id>
+						<phase>compile</phase>
+						<goals><goal>compile</goal></goals>
+						<configuration>
+							<release>11</release>
+							<outputDirectory>${xml.classes.jakarta}</outputDirectory>
+							<compileSourceRoots>
+								<compileSourceRoot>${project.basedir}/src/main/java</compileSourceRoot>
+								<compileSourceRoot>${project.basedir}/src/main/jakarta</compileSourceRoot>
+							</compileSourceRoots>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- Reachability metadata for the JAXB and JSON models (FR-001), one run per variant -->
 			<plugin>
 				<groupId>net.sf.exlp</groupId>
 				<artifactId>exlp-maven</artifactId>
 				<version>${project.version}</version>
 				<executions>
 					<execution>
-						<id>reachability-metadata</id>
+						<id>reachability-metadata-javax</id>
 						<phase>process-classes</phase>
 						<goals><goal>reachabilityMetadata</goal></goals>
+						<configuration><outputDirectory>${xml.classes.javax}</outputDirectory></configuration>
+					</execution>
+					<execution>
+						<id>reachability-metadata-jakarta</id>
+						<phase>process-classes</phase>
+						<goals><goal>reachabilityMetadata</goal></goals>
+						<configuration><outputDirectory>${xml.classes.jakarta}</outputDirectory></configuration>
 					</execution>
 				</executions>
 				<configuration>
@@ -86,6 +134,31 @@
 						<annotation>com.fasterxml.jackson.annotation.JsonRootName</annotation>
 					</annotations>
 				</configuration>
+			</plugin>
+			<!-- The classifier jars are the artifacts of the module -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>jar-javax</id>
+						<phase>package</phase>
+						<goals><goal>jar</goal></goals>
+						<configuration>
+							<classifier>javax</classifier>
+							<classesDirectory>${xml.classes.javax}</classesDirectory>
+						</configuration>
+					</execution>
+					<execution>
+						<id>jar-jakarta</id>
+						<phase>package</phase>
+						<goals><goal>jar</goal></goals>
+						<configuration>
+							<classifier>jakarta</classifier>
+							<classesDirectory>${xml.classes.jakarta}</classesDirectory>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 		        <groupId>org.apache.maven.plugins</groupId>
@@ -105,70 +178,36 @@
 	
 	<profiles>
 		<profile>
-			<id>autojavax</id>
-			<activation><jdk>1.8</jdk> </activation>
-			<build>
-				<plugins>
-					<plugin>
-				        <groupId>org.codehaus.mojo</groupId>
-				        <artifactId>build-helper-maven-plugin</artifactId>
-				        <version>3.2.0</version>
-				        <executions>
-							<execution>
-								<id>add-source</id>
-								<phase>generate-sources</phase>
-								<goals><goal>add-source</goal></goals>
-								<configuration><sources><source>${basedir}/src/main/javax</source></sources></configuration>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-			            <groupId>org.apache.maven.plugins</groupId>
-			            <artifactId>maven-jar-plugin</artifactId>
-			            <version>3.2.2</version>
-			            <executions>
-			                <execution>
-			                    <id>package-javax</id>
-			                    <goals><goal>jar</goal></goals>
-			                    <configuration><classifier>javax</classifier></configuration>
-			                </execution>
-			            </executions>
-				      </plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
 			<id>javax</id>
 			<build>
 				<plugins>
 					<plugin>
-		        		<groupId>org.apache.cxf</groupId>
-		    			<artifactId>cxf-xjc-plugin</artifactId>
-		    			<version>3.3.2</version>
-		    			<executions>
-		        			<execution> 
-		            			<id>xjc</id>
-		            			<phase>generate-sources</phase>
-		            			<goals><goal>xsdtojava</goal></goals>
-		  	         			<configuration>
-									<sourceRoot>${basedir}/src/main/javax</sourceRoot>
-		                			<xsdOptions>
-		                    			<xsdOption>
+	        		<groupId>org.apache.cxf</groupId>
+	    			<artifactId>cxf-xjc-plugin</artifactId>
+	    			<version>3.3.2</version>
+	    			<executions>
+	        			<execution> 
+	            			<id>xjc</id>
+	            			<phase>generate-sources</phase>
+	            			<goals><goal>xsdtojava</goal></goals>
+	  	        			<configuration>
+										<sourceRoot>${basedir}/src/main/javax</sourceRoot>
+	                			<xsdOptions>
+	                    			<xsdOption>
 											<bindingFile>${basedir}/src/main/xsd/javax.xjb</bindingFile>
 											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/xsd.xsd</xsd>
-		                    			</xsdOption>
-		                			</xsdOptions>
-		            			</configuration>
-		        			</execution>
-		    			</executions>                    
+	                        			<xsd>${basedir}/src/main/xsd/xsd.xsd</xsd>
+	                    			</xsdOption>
+	                			</xsdOptions>
+	            			</configuration>
+	        			</execution>
+	    			</executions>                    
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
 		<profile>
 			<id>jakarta</id>
-			<activation><jdk>11</jdk></activation>
 			<build>
 				<plugins>
 					<plugin>
@@ -180,46 +219,19 @@
                     			<id>xjc</id>
                     			<phase>generate-sources</phase>
                     			<goals><goal>xsdtojava</goal></goals>
-          	         			<configuration>
-									<sourceRoot>${basedir}/src/main/jakarta</sourceRoot>
+          	        			<configuration>
+										<sourceRoot>${basedir}/src/main/jakarta</sourceRoot>
                         			<xsdOptions>
                             			<xsdOption>
 											<bindingFile>${basedir}/src/main/xsd/jakarta.xjb</bindingFile>
 											<extensionArgs><arg>-encoding</arg><arg>UTF-8</arg><arg>-no-header</arg></extensionArgs>
-		                        			<xsd>${basedir}/src/main/xsd/xsd.xsd</xsd>
-		                    			</xsdOption>
+	                        			<xsd>${basedir}/src/main/xsd/xsd.xsd</xsd>
+	                    			</xsdOption>
                         			</xsdOptions>
                     			</configuration>
                 			</execution>
             			</executions>                    
            			</plugin>
-					<plugin>
-				        <groupId>org.codehaus.mojo</groupId>
-				        <artifactId>build-helper-maven-plugin</artifactId>
-				        <version>3.2.0</version>
-				        <executions>
-				          <execution>
-				            <id>add-source</id>
-				            <phase>generate-sources</phase>
-				            <goals><goal>add-source</goal></goals>
-				            <configuration>
-				              <sources><source>${basedir}/src/main/jakarta</source></sources>
-				            </configuration>
-				          </execution>
-				        </executions>
-				      </plugin>
-				      <plugin>
-			            <groupId>org.apache.maven.plugins</groupId>
-			            <artifactId>maven-jar-plugin</artifactId>
-			            <version>3.2.2</version>
-			            <executions>
-			                <execution>
-			                    <id>package-jakarta</id>
-			                    <goals><goal>jar</goal></goals>
-			                    <configuration><classifier>jakarta</classifier></configuration>
-			                </execution>
-			            </executions>
-			        </plugin>
 				</plugins>
 			</build>
 		</profile>

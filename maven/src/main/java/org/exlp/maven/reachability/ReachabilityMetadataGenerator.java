@@ -2,6 +2,7 @@ package org.exlp.maven.reachability;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -25,7 +26,7 @@ public class ReachabilityMetadataGenerator
 		try (ScanResult scanResult = new ClassGraph()
 				.enableClassInfo()
 				.enableAnnotationInfo()
-				.overrideClasspath(classpathElements)
+				.overrideClasspath(scanClasspath(classpathElements, production))
 				.scan())
 		{
 			for(ClassInfo classInfo : scanResult.getAllClasses())
@@ -37,6 +38,21 @@ public class ReachabilityMetadataGenerator
 			}
 		}
 		return new ReachabilityMetadata(registrations.values());
+	}
+
+	/**
+	 * Classpath elements plus the production directory: a module with several output directories compiles
+	 * into a directory that its compile classpath does not contain.
+	 */
+	private List<String> scanClasspath(List<String> classpathElements, File production) throws IOException
+	{
+		List<String> scanClasspath = new ArrayList<String>(classpathElements);
+		for(String element : classpathElements)
+		{
+			if(new File(element).getCanonicalFile().equals(production)) {return scanClasspath;}
+		}
+		scanClasspath.add(production.getPath());
+		return scanClasspath;
 	}
 
 	private boolean isSelected(ClassInfo classInfo, List<String> annotationTypes)

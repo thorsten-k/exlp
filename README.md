@@ -30,7 +30,7 @@ EXLP is an established, historically grown multi-module Maven project (`net.sf.e
 
 ## Technical Assumptions
 
-- **Platform:** Java 8 (compiler `source`/`target` `8`).
+- **Platform:** Java 8 for the `javax` artifact and for the modules of the layered chain; the `xml` module builds with JDK 11 or newer and produces the `jakarta` artifact for Java 11 (ADR-0002, `doc/decisions/`).
 - **Build:** Maven multi-module build; artifacts are published under the group `net.sf.exlp`.
 - **Libraries:** SLF4J with Log4j2 (logging), JUnit 4 (testing), JAXB and JDOM (XML), Jackson (JSON), Apache Commons (CLI, IO, Configuration).
 - **License:** GNU General Public License v3 (GPL-3.0).
@@ -85,21 +85,50 @@ The annotation types come from the application or its dependencies; the goal res
 dependencies of the module for that. The scanned artifact therefore does not depend on EXLP.
 
 The goal writes the metadata to `META-INF/native-image/<groupId>/<artifactId>/reachability-metadata.json`
-in the build output directory of the current module; the packaging places it in the artifact.
+in the output directory configured for the run (default: the build output directory of the current
+module); the packaging places it in the artifact.
 
 ### Binding in the EXLP modules
 
-The `xml` module binds the goal at `process-classes`, so `mvn clean install` writes the metadata into
-the build output directory of the module and the packaging places it in the artifact. The plugin
-depends on no module of the layered chain, which the binding requires.
+The `xml` module binds the goal twice at `process-classes`, once per variant output directory (ADR-0002),
+so `mvn clean install` writes the metadata into each variant directory and the packaging places it in the
+matching classifier artifact. The plugin depends on no module of the layered chain, which the binding
+requires.
+
+## JAXB Variants
+
+The `xml` module compiles both JAXB variants from the same XSD in one Maven run and publishes exactly two
+artifacts: `net.sf.exlp:exlp-xml:<version>:javax` and `net.sf.exlp:exlp-xml:<version>:jakarta`. There is
+no artifact without a classifier, so a consumer names the classifier that fits its platform (ADR-0002).
+
+```xml
+<dependency>
+    <groupId>net.sf.exlp</groupId>
+    <artifactId>exlp-xml</artifactId>
+    <version>0.1.18-SNAPSHOT</version>
+    <classifier>javax</classifier>
+</dependency>
+```
+
+The generated sources are versioned; the profiles regenerate them from `xml/src/main/xsd/`:
+
+```bash
+mvn -pl xml -Pjavax generate-sources      # regenerate the javax sources
+mvn -pl xml -Pjakarta generate-sources    # regenerate the jakarta sources
+```
 
 ## Build and Start
 
-Prerequisites: JDK 8 or newer and Maven 3.
+Prerequisites: JDK 11 or newer and Maven 3. The `xml` module compiles the `javax` variant with
+`--release 8` and the `jakarta` variant with `--release 11` in one run.
 
 ```bash
-mvn clean install          # build all modules and run the tests
-mvn -pl core test          # run the tests of a single module
+mvn clean install
+mvn -pl core test
+```
+
+```bash
+mvn -Pram -DskipTests -Djava.awt.headless=true clean install    # the full build as used locally
 ```
 
 ## Development Principles
