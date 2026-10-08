@@ -4,16 +4,15 @@ import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.util.Objects;
 
+import org.exlp.interfaces.util.JaxbInterface;
 import org.exlp.model.xml.io.Dir;
 import org.exlp.model.xml.io.File;
-import org.exlp.util.jx.JaxbUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.exception.ExlpConfigurationException;
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.interfaces.util.xml.JaxbInterface;
 import net.sf.exlp.xml.xpath.IoXpath;
 
 public class ExlpCentralConfigPointer
@@ -44,14 +43,6 @@ public class ExlpCentralConfigPointer
 		}
 		
 		return fPointer;
-	}
-	
-	@Deprecated //Use ExlpCentralConfigPointer.instance(app).jaxb(JaxbUtil);
-	public static java.io.File getFile(String appCode, String codeConf) throws ExlpConfigurationException
-	{
-		ExlpCentralConfigPointer ccp = new ExlpCentralConfigPointer(appCode);
-		ccp.jaxb(JaxbUtil.instance());
-		return ccp.toFile(codeConf);
 	}
 	
 	public Path toPath(String confCode)
@@ -123,13 +114,13 @@ public class ExlpCentralConfigPointer
 		catch (ExlpXpathNotUniqueException e) {throw new ExlpConfigurationException(e.getMessage());}
 	}
 	
-	private static void create(java.io.File f, String codeApp, String codeConf)
+	private void create(java.io.File f, String codeApp, String codeConf)
 	{		
 		Dir dir = new Dir();
 		appendDir(f, dir, codeApp, codeConf);
 	}
 	
-	private static void appendDir(java.io.File f, Dir dir, String codeApp, String codeConf)
+	private void appendDir(java.io.File f, Dir dir, String codeApp, String codeConf)
 	{
 		File fApp = new File();
 		fApp.setCode(codeConf);
@@ -142,6 +133,6 @@ public class ExlpCentralConfigPointer
 		
 		dir.getDir().add(dApp);
 		
-		JaxbUtil.save(f, dir, true);
+		jaxb.save(f.toPath(), dir);
 	}
 }

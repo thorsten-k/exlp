@@ -10,10 +10,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.file.Path;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
 import org.exlp.interfaces.io.NsPrefixMapperInterface;
+import org.exlp.interfaces.util.JaxbInterface;
 import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
@@ -25,7 +27,6 @@ import jakarta.xml.bind.JAXBContext;
 import jakarta.xml.bind.JAXBException;
 import jakarta.xml.bind.Marshaller;
 import jakarta.xml.bind.Unmarshaller;
-import net.sf.exlp.interfaces.util.xml.JaxbInterface;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.JDomUtil;
 
@@ -177,8 +178,11 @@ public class JaxbUtil implements JaxbInterface
 		}
 	}
 	
-	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f,jaxb,null,formatted);}
-	public static synchronized void save(File f, Object jaxb, DocType doctype, boolean formatted)
+	@Override public void save(Path p, Object jaxb)
+	{
+		JaxbUtil.save(p.toFile(), jaxb, true);
+	}
+	public static synchronized void save(File f, Object jaxb, boolean formatted)
 	{
 		OutputStream os=null;
 		try
@@ -189,7 +193,7 @@ public class JaxbUtil implements JaxbInterface
 			}
 			else {os = new FileOutputStream(f);}
 			
-			output(os, jaxb, doctype, formatted);
+			output(os, jaxb, formatted);
 			os.close();
 		}
 		catch (FileNotFoundException e) {logger.error("",e);}
@@ -210,13 +214,12 @@ public class JaxbUtil implements JaxbInterface
 		catch (IOException e) {logger.error("",e);}
 		return null;
 	}
-	public static InputStream toInputStream(Object jaxb, boolean formatted){return toInputStream(jaxb, null, formatted);}
-	public static InputStream toInputStream(Object jaxb, DocType doctype, boolean formatted)
+	public static InputStream toInputStream(Object jaxb, boolean formatted)
 	{
 		try
 		{
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			output(os, jaxb, doctype, formatted);
+			output(os, jaxb, formatted);
 			InputStream is = new ByteArrayInputStream(os.toByteArray());
 			os.close();
 			return is;
@@ -294,9 +297,6 @@ public class JaxbUtil implements JaxbInterface
 		catch (IOException e) {logger.error("",e);}
 		return doc;
 	}
-	
-	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper){return toString(xml,nsPrefixMapper,true);}
-	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper, boolean printPreamble){return toString(xml,true);}
 	
 	public static synchronized String toString(Object xml){return toString(xml,true);}
 	public static synchronized String toString(Object xml, boolean printPreamble)

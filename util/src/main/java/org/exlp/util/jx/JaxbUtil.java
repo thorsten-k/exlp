@@ -10,6 +10,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.StringWriter;
 import java.io.Writer;
+import java.nio.file.Path;
 import java.util.Objects;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
@@ -23,6 +24,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 import org.exlp.interfaces.io.NsPrefixMapperInterface;
+import org.exlp.interfaces.util.JaxbInterface;
 import org.exlp.util.jx.JaxbUtil;
 import org.jdom2.DocType;
 import org.jdom2.Document;
@@ -32,7 +34,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
-import net.sf.exlp.interfaces.util.xml.JaxbInterface;
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
 import net.sf.exlp.util.xml.JDomUtil;
 
@@ -182,8 +183,11 @@ public class JaxbUtil implements JaxbInterface
 		}
 	}
 	
-	public static synchronized void save(File f, Object jaxb, boolean formatted){save(f,jaxb,null,formatted);}
-	public static synchronized void save(File f, Object jaxb, DocType doctype, boolean formatted)
+	@Override public void save(Path p, Object jaxb)
+	{
+		JaxbUtil.save(p.toFile(), jaxb, true);
+	}
+	public static synchronized void save(File f, Object jaxb, boolean formatted)
 	{
 		OutputStream os=null;
 		try
@@ -194,7 +198,7 @@ public class JaxbUtil implements JaxbInterface
 			}
 			else {os = new FileOutputStream(f);}
 			
-			output(os, jaxb, doctype, formatted);
+			output(os, jaxb, formatted);
 			os.close();
 		}
 		catch (FileNotFoundException e) {logger.error("",e);}
@@ -215,13 +219,12 @@ public class JaxbUtil implements JaxbInterface
 		catch (IOException e) {logger.error("",e);}
 		return null;
 	}
-	public static InputStream toInputStream(Object jaxb, boolean formatted){return toInputStream(jaxb, null, formatted);}
-	public static InputStream toInputStream(Object jaxb, DocType doctype, boolean formatted)
+	public static InputStream toInputStream(Object jaxb, boolean formatted)
 	{
 		try
 		{
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			output(os, jaxb, doctype, formatted);
+			output(os, jaxb, formatted);
 			InputStream is = new ByteArrayInputStream(os.toByteArray());
 			os.close();
 			return is;
@@ -251,26 +254,16 @@ public class JaxbUtil implements JaxbInterface
 		catch (JAXBException e) {logger.error("",e);}
 	}
 	
-//	@Deprecated private static void toOutputStream(Object xml, OutputStream os)
-//	{
-//		logger.warn("Deprecated. Use: output(os, xml, nsPrefixMapper)");
-//		output(os, xml);
-//	}
 	
-	@Deprecated public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper){output(w, xml, nsPrefixMapper,null,true);}
-	@Deprecated public static synchronized void output(Writer w, Object xml, Object nsPrefixMapper, DocType doctype, boolean formatted){output(w, xml,null,true);}
-	
-	public static synchronized void output(Writer w, Object xml){output(w, xml,null,true);}
-	public static synchronized void output(Writer w, Object xml, DocType doctype, boolean formatted)
+	public static synchronized void output(Writer w, Object xml)
 	{
 		try
 		{
 			JAXBContext context = JAXBContext.newInstance(xml.getClass());
 			Marshaller m = context.createMarshaller(); 
 //			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
-			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
-			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
-			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+			if(nsPrefixMapper!=null) {m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
 			m.marshal(xml, w);
 		}
 		catch (JAXBException e) {logger.error("",e);}
@@ -299,9 +292,6 @@ public class JaxbUtil implements JaxbInterface
 		catch (IOException e) {logger.error("",e);}
 		return doc;
 	}
-	
-	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper){return toString(xml,nsPrefixMapper,true);}
-	@Deprecated public static synchronized String toString(Object xml, NsPrefixMapperInterface nsPrefixMapper, boolean printPreamble){return toString(xml,true);}
 	
 	public static synchronized String toString(Object xml){return toString(xml,true);}
 	public static synchronized String toString(Object xml, boolean printPreamble)
