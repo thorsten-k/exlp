@@ -13,8 +13,9 @@ direction:
 `interfaces` → `xml` → `util` → `core` → `shell` → `ejb`
 
 Each layer accesses only the layers to its left. The version management and the auxiliary modules form no layer:
-`bom` only manages dependency versions, while `client` (standalone run), `maven` (build tooling), `test` (test
-support), and `addon` (optional extensions) build on the same modules.
+`bom` only manages dependency versions, while `client` (standalone run), `test` (test support), and `addon`
+(optional extensions) build on the same modules. `maven` (build tooling) is consumed as a plugin and depends on no
+module of the chain, so every module can bind its goals.
 
 ## Modules
 

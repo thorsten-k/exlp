@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 
 import de.kisner.exlp.test.AbstractExlpMavenTest;
 import de.kisner.exlp.test.ExlpMavenTestBootstrap;
-import net.sf.exlp.exception.ExlpConfigurationException;
 
 public class TestVersionFileMerger extends AbstractExlpMavenTest
 {
@@ -18,7 +17,7 @@ public class TestVersionFileMerger extends AbstractExlpMavenTest
 	
 	
 	@Test
-	public void buildPackage() throws ExlpConfigurationException
+	public void buildPackage()
 	{
 		
 	}

@@ -92,6 +92,12 @@ artifact therefore does not depend on EXLP.
 The goal writes the metadata to `META-INF/native-image/<groupId>/<artifactId>/reachability-metadata.json`
 in the build output directory of the current module; the packaging places it in the artifact.
 
+### Binding in the EXLP modules
+
+The `xml` module binds the goal at `process-classes`, so `mvn clean install` writes the metadata into
+the build output directory of the module and the packaging places it in the artifact. The plugin
+depends on no module of the layered chain, which the binding requires.
+
 ## Build and Start
 
 Prerequisites: JDK 8 or newer and Maven 3.

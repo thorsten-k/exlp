@@ -67,6 +67,32 @@
     
 	<build>
 		<plugins>
+			<!-- Reachability metadata for the JAXB and JSON models (FR-001) -->
+			<plugin>
+				<groupId>net.sf.exlp</groupId>
+				<artifactId>exlp-maven</artifactId>
+				<version>${project.version}</version>
+				<executions>
+					<execution>
+						<id>reachability-metadata</id>
+						<phase>process-classes</phase>
+						<goals><goal>reachabilityMetadata</goal></goals>
+					</execution>
+				</executions>
+				<configuration>
+					<annotations>
+						<annotation>
+							<type>javax.xml.bind.annotation.XmlAccessorType</type>
+						</annotation>
+						<annotation>
+							<type>jakarta.xml.bind.annotation.XmlAccessorType</type>
+						</annotation>
+						<annotation>
+							<type>com.fasterxml.jackson.annotation.JsonRootName</type>
+						</annotation>
+					</annotations>
+				</configuration>
+			</plugin>
 			<plugin>
 		        <groupId>org.apache.maven.plugins</groupId>
 		        <artifactId>maven-pmd-plugin</artifactId>

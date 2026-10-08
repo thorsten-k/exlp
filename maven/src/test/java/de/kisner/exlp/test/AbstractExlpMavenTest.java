@@ -2,7 +2,6 @@ package de.kisner.exlp.test;
 
 import java.io.File;
 
-import org.exlp.controller.handler.io.log.LoggerBootstrap;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
@@ -14,10 +13,13 @@ public class AbstractExlpMavenTest
 	
 	protected static File fTarget;
 	
+	private static boolean log4jInited = false;
+	public static boolean isLog4jInited() {return log4jInited;}
+	
 	@BeforeAll
 	public static void initFile()
 	{
-		if(!LoggerBootstrap.isLog4jInited()){initLogger();}
+		if(!isLog4jInited()){initLogger();}
 		String dirTarget = System.getProperty("targetDir");
 		if(dirTarget==null){dirTarget="target";}
 		setfTarget(new File(dirTarget));
@@ -28,9 +30,10 @@ public class AbstractExlpMavenTest
 	@BeforeAll
     public static void initLogger()
 	{
-		if(!LoggerBootstrap.isLog4jInited())
+		if(!isLog4jInited())
 		{
-			LoggerBootstrap.instance("maven.log4j2.xml").path("exlp/system/io/log").init();
+			ExlpMavenTestBootstrap.init();
+			log4jInited = true;
 		}
     }
 	

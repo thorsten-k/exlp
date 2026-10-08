@@ -1,5 +1,12 @@
 # Change Log
 
+## 2026-10-08 – XML: reachability metadata in the build
+
+- What: Decoupled the Maven plugin from the layered modules and bound the goal in `xml`.
+- Result: `mvn clean install` writes the metadata and the packaging places it in the module JAR.
+- Evidence: `mvn clean install -DskipTests` `[SUCCESS]`; 24 tests pass; the JAR contains the file.
+- Files: maven/pom.xml, maven/src, xml/pom.xml, README.md, doc/requirements/architecture.md.
+
 ## 2026-10-08 – FR-001: implementation of the metadata goal
 
 - What: Implemented FR-001 and ADR-0001; tests use a dependency's annotations.
