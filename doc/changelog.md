@@ -1,5 +1,16 @@
 # Change Log
 
+## 2026-10-08 – Build: every module compiles against the Java 8 API
+
+- What: The root POM configures `maven-compiler-plugin` with `release` 8 instead of `source` and
+  `target` 8.
+- Result: A build on JDK 11 rejects types and members that Java 8 does not provide; the artifacts keep
+  class-file version 52 (ADR-0003).
+- Evidence: `mvn -Pram -DskipTests -Djava.awt.headless=true clean install` `[SUCCESS]`; a class that
+  uses `List.of` fails with `cannot find symbol`; the installed jars carry class-file version 52.
+- Files: pom.xml, README.md, doc/decisions/ADR-0003-java-compile-level.md, doc/status.md,
+  doc/changelog.md.
+
 ## 2026-10-08 – XML: javax and jakarta each with their own output directory
 
 - What: `javax` and `jakarta` compile into `target/classes-javax` and `target/classes-jakarta`; the goal
