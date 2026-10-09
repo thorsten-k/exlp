@@ -117,6 +117,21 @@ mvn -pl xml -Pjavax generate-sources      # regenerate the javax sources
 mvn -pl xml -Pjakarta generate-sources    # regenerate the jakarta sources
 ```
 
+## Namespace Prefixes
+
+The JAXB utility of the `util` module applies the namespace prefixes of a mapper that is configured once
+for it to every method that writes XML (FR-002). Each variant adapts the mapper to the namespace prefix
+mapper type of its own JAXB RI:
+
+```java
+org.exlp.util.jx.JaxbUtil.setNsPrefixMapper(new org.exlp.util.jx.ExlpNsPrefixMapper());
+org.exlp.util.jk.JaxbUtil.setNsPrefixMapper(new org.exlp.util.jx.ExlpNsPrefixMapper());
+```
+
+Without a mapper the utility marshals with the defaults of the JAXB RI. A mapper that the JAXB RI rejects
+does not prevent marshalling: the XML is written without custom prefixes, and the rejection is logged as
+a warning that names the class of the mapper.
+
 ## Build and Start
 
 Prerequisites: JDK 11 or newer and Maven 3. All modules compile against the Java 8 API (`--release 8`,

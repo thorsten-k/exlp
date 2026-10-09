@@ -1,12 +1,14 @@
 # Change Log
 
-## 2026-10-09 – FR-002: review, correction, approval
+## 2026-10-09 – FR-002: review, correction, approval, implementation
 
-- What: Reviewed FR-002, applied the instructed corrections, and set it to approved.
-- Result: Review "Approval not recommended" (2 findings, 8 notes); acceptance: all findings addressed;
-  status approved.
-- Evidence: Five patterns without a match; line width and target values reached.
-- Files: doc/requirements/functional/FR-002-namespace-prefixes.md, doc/status.md, doc/changelog.md.
+- What: Reviewed FR-002, applied the corrections, approved it, and implemented it with an adapter per
+  variant.
+- Result: All findings addressed; the mapper is adapted to the RI type and a rejected mapper logs the
+  warning; status implemented.
+- Evidence: `mvn -o -pl util test` passes with 59 tests, four per variant.
+- Files: util/pom.xml, util/src, README.md, doc/requirements/functional/FR-002-namespace-prefixes.md,
+  doc/status.md, doc/changelog.md.
 
 ## 2026-10-08 – Build: every module compiles against the Java 8 API
 

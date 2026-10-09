@@ -53,6 +53,32 @@ public class JaxbUtil implements JaxbInterface
 		JaxbUtil.nsPrefixMapper = nsPrefixMapper;
 	}
 	
+	private static final String NS_PREFIX_MAPPER_PROPERTY = "org.glassfish.jaxb.namespacePrefixMapper";
+	
+	private static Object nsPrefixMapperValue(Object mapper)
+	{
+		if(mapper instanceof org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper) {return mapper;}
+		if(mapper instanceof com.sun.xml.bind.marshaller.NamespacePrefixMapper) {return mapper;}
+		if(mapper instanceof NsPrefixMapperInterface) {return new NsPrefixMapperAdapter((NsPrefixMapperInterface)mapper);}
+		return mapper;
+	}
+	
+	private static void applyNsPrefixMapper(Marshaller m, Object mapper)
+	{
+		if(mapper == null) {return;}
+		try
+		{
+			m.setProperty(NS_PREFIX_MAPPER_PROPERTY, nsPrefixMapperValue(mapper));
+		}
+		catch (JAXBException e) {logRejectedNsPrefixMapper(mapper);}
+		catch (RuntimeException e) {logRejectedNsPrefixMapper(mapper);}
+	}
+	
+	private static void logRejectedNsPrefixMapper(Object mapper)
+	{
+		logger.warn("Namespace prefix mapper "+mapper.getClass().getName()+" rejected by the JAXB RI");
+	}
+	
 	@SuppressWarnings("unused")
 	private static <T extends Object> T loadJAXB(ClassLoader classLoader, String xmlFile, Class<T> c) throws FileNotFoundException
 	{
@@ -239,10 +265,7 @@ public class JaxbUtil implements JaxbInterface
 //			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
 			
-			if(nsPrefixMapper!=null)
-			{
-				m.setProperty("org.glassfish.jaxb.namespacePrefixMapper",nsPrefixMapper);
-			}
+			applyNsPrefixMapper(m, nsPrefixMapper);
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
 			m.marshal( jaxb, os);
 		}
@@ -267,14 +290,14 @@ public class JaxbUtil implements JaxbInterface
 			Marshaller m = context.createMarshaller(); 
 //			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
-			if(nsPrefixMapper!=null){m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);}
+			applyNsPrefixMapper(m, nsPrefixMapper);
 			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
 			m.marshal(xml, w);
 		}
 		catch (JAXBException e) {logger.error("",e);}
 	}
 	
-	public static synchronized Document toDocument(Object jaxb){return toDocument(jaxb,null);}
+	public static synchronized Document toDocument(Object jaxb){return toDocument(jaxb,JaxbUtil.nsPrefixMapper);}
 	public static synchronized Document toDocument(Object jaxb, Object nsPrefixMapper)
 	{
 		Document doc = null;
@@ -283,10 +306,7 @@ public class JaxbUtil implements JaxbInterface
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
 			Marshaller m = context.createMarshaller(); 
-			if(nsPrefixMapper!=null)
-			{
-				m.setProperty("com.sun.xml.bind.namespacePrefixMapper",nsPrefixMapper);
-			}
+			applyNsPrefixMapper(m, nsPrefixMapper);
 			m.marshal(jaxb, out);
 			
 			InputStream is = new ByteArrayInputStream(out.toByteArray());

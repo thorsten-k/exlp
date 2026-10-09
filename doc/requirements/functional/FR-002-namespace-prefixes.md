@@ -2,7 +2,7 @@
 id: FR-002
 title: Apply custom namespace prefixes when marshalling XML
 type: functional
-status: approved
+status: implemented
 priority: should
 depends_on: []
 related: []
@@ -134,34 +134,36 @@ Then:
 
 ### Implementation
 
-- `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` – open: the mapper adapted to the `javax` RI
-  prefixes the output (AC-FR-002-01)
-- `util/src/main/java/org/exlp/util/jk/JaxbUtil.java` – open: the mapper adapted to the `jakarta` RI
-  prefixes the output and the variant sets `org.glassfish.jaxb.namespacePrefixMapper` in every method
-  that writes XML (AC-FR-002-01, Assumption 2)
-- `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` – open: a rejected mapper leaves the output without
-  custom prefixes and logs the warning that names the mapper class (AC-FR-002-02)
-- `util/src/main/java/org/exlp/util/jk/JaxbUtil.java` – open: a rejected mapper leaves the output without
-  custom prefixes and logs the warning that names the mapper class (AC-FR-002-02)
-- `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` – open: marshalling without a configured mapper uses
-  the RI defaults (AC-FR-002-03)
+- `util/src/main/java/org/exlp/util/jx/NsPrefixMapperAdapter.java` – adapts a configured mapper to the
+  `com.sun.xml.bind.marshaller.NamespacePrefixMapper` of the `javax` RI (AC-FR-002-01)
+- `util/src/main/java/org/exlp/util/jk/NsPrefixMapperAdapter.java` – adapts a configured mapper to the
+  `org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper` of the `jakarta` RI (AC-FR-002-01)
+- `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` – applies the mapper in every method that writes
+  XML, logs the warning for a rejected mapper, and uses the RI defaults without a mapper
+  (AC-FR-002-01, AC-FR-002-02, AC-FR-002-03, AC-FR-002-04)
+- `util/src/main/java/org/exlp/util/jk/JaxbUtil.java` – sets `org.glassfish.jaxb.namespacePrefixMapper`
+  and applies the mapper in every method that writes XML (AC-FR-002-01, Assumption 2)
 
 ### Tests
 
-- `util/src/test/java/org/exlp/util/jx` – open: a test asserts that a mapper accepted by the `javax`
-  RI prefixes the output (AC-FR-002-01)
-- `util/src/test/java/org/exlp/util/jk` – open: a test asserts that a mapper accepted by the `jakarta`
-  RI prefixes the output (AC-FR-002-01)
-- `util/src/test/java/org/exlp/util/jx` – open: a test asserts that a mapper rejected by the `javax`
-  RI leaves the output without custom prefixes and logs a warning (AC-FR-002-02)
-- `util/src/test/java/org/exlp/util/jk` – open: a test asserts that a mapper rejected by the `jakarta`
-  RI leaves the output without custom prefixes and logs a warning (AC-FR-002-02)
-- `util/src/test/java/org/exlp/util/jx` – open: a test asserts that marshalling without a configured
-  mapper uses the RI defaults (AC-FR-002-03)
-- `util/src/test/java/org/exlp/util/jx` – open: a test asserts that every public method that writes XML
-  applies the configured mapper (AC-FR-002-04)
+- `util/src/test/java/org/exlp/util/jx/TestJaxbUtilNsPrefix.java` – `appliesPrefixesOfConfiguredMapper`
+  asserts the prefixes of the `javax` RI (AC-FR-002-01)
+- `util/src/test/java/org/exlp/util/jx/TestJaxbUtilNsPrefix.java` – `writesWithoutCustomPrefixesForRejectedMapper`
+  asserts no custom prefixes and the warning for the `javax` RI (AC-FR-002-02)
+- `util/src/test/java/org/exlp/util/jx/TestJaxbUtilNsPrefix.java` – `writesRiDefaultsWithoutMapper`
+  asserts the RI defaults (AC-FR-002-03)
+- `util/src/test/java/org/exlp/util/jx/TestJaxbUtilNsPrefix.java` – `appliesOneConfigurationToEveryMethod`
+  asserts every method that writes XML (AC-FR-002-04)
+- `util/src/test/java/org/exlp/util/jk/TestJaxbUtilNsPrefix.java` – `appliesPrefixesOfConfiguredMapper`
+  asserts the prefixes of the `jakarta` RI (AC-FR-002-01)
+- `util/src/test/java/org/exlp/util/jk/TestJaxbUtilNsPrefix.java` – `writesWithoutCustomPrefixesForRejectedMapper`
+  asserts no custom prefixes and the warning for the `jakarta` RI (AC-FR-002-02)
+- `util/src/test/java/org/exlp/util/jk/TestJaxbUtilNsPrefix.java` – `writesRiDefaultsWithoutMapper`
+  asserts the RI defaults (AC-FR-002-03)
+- `util/src/test/java/org/exlp/util/jk/TestJaxbUtilNsPrefix.java` – `appliesOneConfigurationToEveryMethod`
+  asserts every method that writes XML (AC-FR-002-04)
+- `mvn -o -pl util test` – 59 tests pass (AC-FR-002-01)
 
 ### Documentation
 
-- `README.md` – open: configuring a namespace prefix mapper is documented for both JAXB variants
-  (AC-FR-002-01)
+- `README.md` – configuring a namespace prefix mapper is documented for both JAXB variants (AC-FR-002-01)

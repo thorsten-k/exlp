@@ -14,7 +14,7 @@ the title, and the status; for a requirement, additionally the priority.
 | ID | Title | Status | Priority |
 |---|---|---|---|
 | [FR-001](requirements/functional/FR-001-reachability-metadata.md) | Generate annotation-based Native Image reachability metadata | implemented | must |
-| [FR-002](requirements/functional/FR-002-namespace-prefixes.md) | Apply custom namespace prefixes when marshalling XML | approved | should |
+| [FR-002](requirements/functional/FR-002-namespace-prefixes.md) | Apply custom namespace prefixes when marshalling XML | implemented | should |
 
 
 

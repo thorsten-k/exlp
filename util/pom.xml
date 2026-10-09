@@ -140,30 +140,38 @@
     		<scope>provided</scope>
 		</dependency>
 		
-		<!-- JAXB RI (javax) for the tests: the API alone cannot marshal or unmarshal -->
+		<!-- JAXB RI (javax): the utility adapts the mapper to com.sun.xml.bind.marshaller.NamespacePrefixMapper (FR-002); marshalling in the tests -->
+		<dependency>
+			<groupId>com.sun.xml.bind</groupId>
+			<artifactId>jaxb-impl</artifactId>
+			<version>2.3.3</version>
+			<scope>provided</scope>
+			<exclusions>
+				<!-- The javax API is bound above as javax.xml.bind:jaxb-api; the RI is self-contained -->
+				<exclusion>
+					<groupId>*</groupId>
+					<artifactId>*</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<!-- JAXB RI (jakarta): the utility adapts the mapper to org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper (FR-002); marshalling in the tests -->
 		<dependency>
 			<groupId>org.glassfish.jaxb</groupId>
 			<artifactId>jaxb-runtime</artifactId>
-			<version>2.3.9</version>
-			<scope>test</scope>
+			<version>3.0.2</version>
+			<scope>provided</scope>
 			<exclusions>
-				<!-- The javax API is bound above as javax.xml.bind:jaxb-api -->
 				<exclusion>
-					<groupId>jakarta.xml.bind</groupId>
-					<artifactId>jakarta.xml.bind-api</artifactId>
+					<groupId>org.jvnet.staxex</groupId>
+					<artifactId>stax-ex</artifactId>
+				</exclusion>
+				<exclusion>
+					<groupId>com.sun.xml.fastinfoset</groupId>
+					<artifactId>FastInfoset</artifactId>
 				</exclusion>
 			</exclusions>
 		</dependency>
 		
-		<!--
-		<dependency>
-   	   		<groupId>com.sun.xml.bind</groupId>
-   	   		<artifactId>jaxb-impl</artifactId>
-   	   		<type>jar</type>
-   	   		<scope>provided</scope>
-   	   	</dependency>
-   	   	-->
-   	   	
 		<!-- JSON - Jackson-->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
