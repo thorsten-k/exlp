@@ -77,8 +77,8 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<!-- 3.8.0 (inherited from the parent) reports compileSourceRoots/outputDirectory as read-only -->
-				<version>3.13.0</version>
+				<!-- compileSourceRoots/outputDirectory are write-only parameters from 3.13.0 on; version follows the parent -->
+				<version>${maven-compiler-plugin.version}</version>
 				<executions>
 					<execution>
 						<id>compile-javax</id>
