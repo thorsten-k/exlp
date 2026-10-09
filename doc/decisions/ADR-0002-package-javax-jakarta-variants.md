@@ -42,8 +42,10 @@ artifacts.
     `--release 8` into `xml.classes.javax`.
   - `compile-jakarta` at phase `compile` compiles `src/main/java` and `src/main/jakarta` with
     `--release 11` into `xml.classes.jakarta`.
-- `maven-jar-plugin` (version of the parent) creates the artifacts at phase `package`: the classifier
-  `javax` from `xml.classes.javax` and the classifier `jakarta` from `xml.classes.jakarta`.
+- `maven-jar-plugin` (version of the parent) creates the artifacts at phase `process-classes`: the
+  classifier `javax` from `xml.classes.javax` and the classifier `jakarta` from `xml.classes.jakarta`; the
+  executions are declared after the goal of FR-001, so within the phase the metadata is written before the
+  jars are packed and both jars carry it.
 - The goal of FR-001 runs once per variant at phase `process-classes`; each run takes its variant
   directory as the production directory and writes
   `META-INF/native-image/<groupId>/<artifactId>/reachability-metadata.json` into it, so each classifier
@@ -72,6 +74,10 @@ artifacts.
   be generated in the module output directory and copied to the second variant.
 - The classifier jars remain ordinary attached artifacts, so `install`, `deploy`, and the signatures of
   the release profile need no handling of their own.
+- Attaching the classifier jars at `process-classes`, before the `test` phase, keeps a plain `mvn test` on
+  the repository working: a module that depends on a classifier resolves it from the reactor, and the jars
+  of `xml` must exist before the `compile` of that module; the default `package` phase would leave them
+  missing in a `test` run and `util` would not compile.
 - `--release` pins the API level of the compilation instead of switching the JDK, so the `javax`
   artifact cannot use APIs that are newer than Java 8.
 - Classifier jars keep the coordinates of the module, so `bom/pom.xml` and the consumers change only by
@@ -145,6 +151,8 @@ Jakarta compiler.
 - `mvn -pl xml -DskipTests -Djava.awt.headless=true clean install` `[SUCCESS]`; the local repository
   holds `exlp-xml-<version>.pom`, `exlp-xml-<version>-javax.jar`, and `exlp-xml-<version>-jakarta.jar`,
   and no jar without a classifier
+- `mvn -o clean test` `[SUCCESS]` on the whole repository: the classifier jars of `xml` exist before the
+  `test` phase of `util`, so `util` compiles and its tests resolve the variant artifact from the reactor
 - `xml/target/classes-javax` and `xml/target/classes-jakarta` hold 40 classes each and their own
   metadata; the module output directory holds no class
 - The `javax` jar carries class-file version 52 and the `javax.xml.bind` annotations, the `jakarta` jar

@@ -1,5 +1,17 @@
 # Change Log
 
+## 2026-10-09 – XML: classifier jars before the test phase
+
+- What: The two jar executions of the `xml` module run at phase `process-classes` (after the goal of
+  FR-001) instead of `package`.
+- Result: The classifier jars exist before the `test` phase, so a plain `mvn test` on the repository
+  resolves the variant artifact from the reactor and `util` compiles; the two jars, their class-file
+  versions, and their reachability metadata are unchanged (ADR-0002).
+- Evidence: `mvn -o clean test` `[SUCCESS]` (all twelve modules, 83 tests in `util`); `mvn -o clean
+  install` `[SUCCESS]`; `exlp-xml-<version>-javax.jar` carries class-file version 52 and the metadata,
+  `-jakarta.jar` version 55 and the metadata.
+- Files: xml/pom.xml, doc/decisions/ADR-0002-package-javax-jakarta-variants.md, doc/changelog.md.
+
 ## 2026-10-09 – FR-002: review, correction, approval, implementation
 
 - What: Reviewed FR-002, applied the corrections, approved it, and implemented it with an adapter per
