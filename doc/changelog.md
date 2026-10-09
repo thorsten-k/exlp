@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-10-09 – Build: the `addon` module is removed
+
+- What: The directory `addon` is deleted (`addon/pom.xml`, its ignore file, and seven test resources); the
+  module had left the reactor on 2022-05-01 (`dc1464f`, the module entry was commented out there and the
+  comment was removed on 2022-11-02 in `b1bdfd9`) and still hung on the parent line 0.1.15, so no build ran
+  it.
+- Result: The orphaned module is gone, and with it the only consumer that named `exlp-xml` without a
+  classifier (the open point of ADR-0002); the aggregator, the layer chain, and the published artifacts stay
+  unchanged.
+- Evidence: `git status --short` lists nine deleted files under `addon/`; `grep -n addon pom.xml` finds no
+  module entry; no artifact `exlp-addon` is in the local repository.
+- Files: addon/ (removed), doc/changelog.md.
+
 ## 2026-10-09 – XML: classifier jars before the test phase
 
 - What: The two jar executions of the `xml` module run at phase `process-classes` (after the goal of
