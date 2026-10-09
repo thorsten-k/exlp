@@ -3,8 +3,8 @@ package org.exlp.util.xpath;
 import org.exlp.model.xml.io.Dir;
 import org.exlp.model.xml.io.File;
 import org.exlp.test.AbstractExlpTest;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -65,19 +65,17 @@ public class TestIoXpathFile extends AbstractExlpTest
     	super.assertJaxbEquals(f2,file);
     }
 
-    @Disabled
-    @Test //(expected=ExlpXpathNotFoundException.class)
+    @Test
     public void testNotFound() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
     	Dir dir = createDir();
-    	IoXpath.getFile(dir, "code0");
+    	Assertions.assertThrows(ExlpXpathNotFoundException.class, () -> IoXpath.getFile(dir, "code0"));
     }
     
-    @Disabled
-    @Test //(expected=ExlpXpathNotUniqueException.class)
+    @Test
     public void testUnique() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
     	Dir dir = createDir();
-    	IoXpath.getFile(dir, "code3");
+    	Assertions.assertThrows(ExlpXpathNotUniqueException.class, () -> IoXpath.getFile(dir, "code3"));
     }
 }

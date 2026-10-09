@@ -7,8 +7,8 @@ import org.exlp.model.xml.net.Url;
 import org.exlp.model.xml.net.Urls;
 import org.exlp.test.AbstractExlpTest;
 import org.exlp.test.ExlpBootstrap;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -74,20 +74,18 @@ public class TestNetXpathUrl extends AbstractExlpTest
     	assertJaxbEquals(url2,url);
     }
 
-    @Disabled
-    @Test //(expected=ExlpXpathNotFoundException.class)
+    @Test
     public void testNotFound() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
     	Urls urls = createUrls();
-    	NetXpath.getUrl(urls, "code0");
+    	Assertions.assertThrows(ExlpXpathNotFoundException.class, () -> NetXpath.getUrl(urls, "code0"));
     }
     
-    @Disabled
-    @Test //(expected=ExlpXpathNotUniqueException.class)
+    @Test
     public void testUnique() throws ExlpXpathNotFoundException, ExlpXpathNotUniqueException
     {
     	Urls urls = createUrls();
-    	NetXpath.getUrl(urls, "code3");
+    	Assertions.assertThrows(ExlpXpathNotUniqueException.class, () -> NetXpath.getUrl(urls, "code3"));
     }
     
     @Test
