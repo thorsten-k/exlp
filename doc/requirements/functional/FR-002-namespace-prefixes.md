@@ -45,18 +45,11 @@ Out of scope:
 
 1. The `javax` variant sets the marshaller property `com.sun.xml.bind.namespacePrefixMapper`.
 2. The `jakarta` variant sets the marshaller property `org.glassfish.jaxb.namespacePrefixMapper`.
-3. The `jakarta` variant writes a doctype through the marshaller property `org.glassfish.jaxb.xmlHeaders`.
-4. The mapper is configured through the static `setNsPrefixMapper` method of the utility.
-5. The JAXB RI accepts only an instance of its own `NamespacePrefixMapper` type as the property value.
+3. The mapper is configured through the static `setNsPrefixMapper` method of the utility.
 
 ## Open Questions
 
-1. **Rejected mapper**
-   Question: When the JAXB RI rejects the configured mapper, does marshalling continue without custom
-   prefixes or does it fail?
-   Proposal: Marshalling continues without custom prefixes and reports a warning that names the class
-   of the mapper.
-   Open: The decision of the responsible person.
+None.
 
 ## Decided Questions
 
@@ -148,10 +141,14 @@ None.
 
 ### Tests
 
-- open: a test in the `util` module asserts that a mapper accepted by the RI prefixes the output
-  (AC-FR-002-01)
-- open: a test in the `util` module asserts that a rejected mapper leaves the output without custom
-  prefixes and logs a warning (AC-FR-002-02)
+- `util/src/test/java/org/exlp/util/jx` – open: a test asserts that a mapper accepted by the `javax`
+  RI prefixes the output (AC-FR-002-01)
+- `util/src/test/java/org/exlp/util/jx` – open: a test asserts that a mapper rejected by the `javax`
+  RI leaves the output without custom prefixes and logs a warning (AC-FR-002-02)
+- `util/src/test/java/org/exlp/util/jk` – open: a test asserts that a mapper accepted by the `jakarta`
+  RI prefixes the output (AC-FR-002-05)
+- `util/src/test/java/org/exlp/util/jk` – open: a test asserts that a mapper rejected by the `jakarta`
+  RI leaves the output without custom prefixes and logs a warning (AC-FR-002-05)
 
 ### Documentation
 
