@@ -3,8 +3,6 @@ package org.exlp.util.config;
 import java.io.FileNotFoundException;
 
 import org.exlp.test.AbstractExlpTest;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,16 +35,5 @@ public class TestSlf4J extends AbstractExlpTest
     	Exception e = new Exception("test");
 //    	logger.error("Something went wrong ...",e);
     	logger.info("Something went wrong ...",e);
-    }
-    
-    @Disabled
-    @Test
-    public void level()
-    {
-    	Assertions.assertEquals(false, logger.isTraceEnabled());
-    	Assertions.assertEquals(false, logger.isDebugEnabled());
-    	Assertions.assertEquals(false, logger.isInfoEnabled());
-    	Assertions.assertEquals(false, logger.isWarnEnabled());
-    	Assertions.assertEquals(true,  logger.isErrorEnabled());
     }
 }

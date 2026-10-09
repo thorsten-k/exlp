@@ -1,5 +1,30 @@
 # Change Log
 
+## 2026-10-09 – Build: the `addon` module is removed
+
+- What: The directory `addon` is deleted (`addon/pom.xml`, its ignore file, and seven test resources); the
+  module had left the reactor on 2022-05-01 (`dc1464f`, the module entry was commented out there and the
+  comment was removed on 2022-11-02 in `b1bdfd9`) and still hung on the parent line 0.1.15, so no build ran
+  it.
+- Result: The orphaned module is gone, and with it the only consumer that named `exlp-xml` without a
+  classifier (the open point of ADR-0002); the aggregator, the layer chain, and the published artifacts stay
+  unchanged.
+- Evidence: `git status --short` lists nine deleted files under `addon/`; `grep -n addon pom.xml` finds no
+  module entry; no artifact `exlp-addon` is in the local repository.
+- Files: addon/ (removed), doc/changelog.md.
+
+## 2026-10-09 – XML: classifier jars before the test phase
+
+- What: The two jar executions of the `xml` module run at phase `process-classes` (after the goal of
+  FR-001) instead of `package`.
+- Result: The classifier jars exist before the `test` phase, so a plain `mvn test` on the repository
+  resolves the variant artifact from the reactor and `util` compiles; the two jars, their class-file
+  versions, and their reachability metadata are unchanged (ADR-0002).
+- Evidence: `mvn -o clean test` `[SUCCESS]` (all twelve modules, 83 tests in `util`); `mvn -o clean
+  install` `[SUCCESS]`; `exlp-xml-<version>-javax.jar` carries class-file version 52 and the metadata,
+  `-jakarta.jar` version 55 and the metadata.
+- Files: xml/pom.xml, doc/decisions/ADR-0002-package-javax-jakarta-variants.md, doc/changelog.md.
+
 ## 2026-10-09 – FR-002: review, correction, approval, implementation
 
 - What: Reviewed FR-002, applied the corrections, approved it, and implemented it with an adapter per

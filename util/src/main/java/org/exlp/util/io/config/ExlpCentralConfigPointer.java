@@ -21,7 +21,8 @@ public class ExlpCentralConfigPointer
 	
 	private final String appCode;
 	private JaxbInterface jaxb; public ExlpCentralConfigPointer jaxb(JaxbInterface jaxb) {this.jaxb=jaxb; return this;}
-	private java.io.File fPointer;
+	private java.io.File fPointer; public ExlpCentralConfigPointer pointer(java.io.File fPointer) {this.fPointer=fPointer; return this;}
+	public ExlpCentralConfigPointer pointer(Path path) {return pointer(path.toFile());}
 	
 	public static <E extends Enum<E>> ExlpCentralConfigPointer instance(E appCode) {return new ExlpCentralConfigPointer(appCode.toString());}
 	public static ExlpCentralConfigPointer instance(String appCode) {return new ExlpCentralConfigPointer(appCode);}

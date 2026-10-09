@@ -142,7 +142,7 @@
 				<executions>
 					<execution>
 						<id>jar-javax</id>
-						<phase>package</phase>
+						<phase>process-classes</phase>
 						<goals><goal>jar</goal></goals>
 						<configuration>
 							<classifier>javax</classifier>
@@ -151,7 +151,7 @@
 					</execution>
 					<execution>
 						<id>jar-jakarta</id>
-						<phase>package</phase>
+						<phase>process-classes</phase>
 						<goals><goal>jar</goal></goals>
 						<configuration>
 							<classifier>jakarta</classifier>
