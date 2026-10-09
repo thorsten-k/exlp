@@ -9,12 +9,17 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 import org.exlp.test.CapturingAppender;
+import org.exlp.test.ExlpBootstrap;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class TestJaxbUtilNsPrefix
 {
+	final static Logger logger = LoggerFactory.getLogger(TestJaxbUtilNsPrefix.class);
+	
 	private static final String NAMESPACE = "http://exlp.sf.net/io";
 
 	@AfterEach
@@ -28,6 +33,7 @@ public class TestJaxbUtilNsPrefix
 		String xml = JaxbUtil.toString(new JxNsFixture());
 
 		Assertions.assertTrue(xml.contains("xmlns:io=\""+NAMESPACE+"\""), xml);
+		logger.debug(xml);
 	}
 
 	@Test
@@ -78,5 +84,13 @@ public class TestJaxbUtilNsPrefix
 		StringWriter sw = new StringWriter();
 		TransformerFactory.newInstance().newTransformer().transform(new DOMSource(doc), new StreamResult(sw));
 		return sw.toString();
+	}
+	
+	public static void main(String[] args)
+	{
+		ExlpBootstrap.init();
+		
+		TestJaxbUtilNsPrefix test = new TestJaxbUtilNsPrefix();
+		test.appliesPrefixesOfConfiguredMapper();
 	}
 }

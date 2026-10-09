@@ -27,12 +27,9 @@ public class TestJdomUtil extends AbstractExlpTest
 	@BeforeEach
 	public void init()
 	{
-		doc = new Document();
 		Element root = new Element("test");
-		
+		doc = new Document();
 		doc.setRootElement(root);
-		
-		
 		
 		mrl = MultiResourceLoader.instance();
 	}
