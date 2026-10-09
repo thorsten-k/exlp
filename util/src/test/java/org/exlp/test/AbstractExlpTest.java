@@ -44,7 +44,8 @@ public class AbstractExlpTest
 	@BeforeAll
 	public static void initPrefixMapper()
 	{
-		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());
+		// A JAXB RI accepts only its own NamespacePrefixMapper type (FR-002, AC-FR-002-01)
+//		JaxbUtil.setNsPrefixMapper(new ExlpNsPrefixMapper());
 	}
 	
 	
