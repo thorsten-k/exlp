@@ -3,6 +3,7 @@ package org.exlp.util.xpath;
 import org.exlp.model.xml.io.Dir;
 import org.exlp.model.xml.io.File;
 import org.exlp.test.AbstractExlpTest;
+import org.exlp.util.query.xpath.IoXpath;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -11,7 +12,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.xml.xpath.IoXpath;
 
 public class TestIoXpathFile extends AbstractExlpTest
 {

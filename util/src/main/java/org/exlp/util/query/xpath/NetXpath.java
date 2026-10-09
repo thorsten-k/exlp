@@ -1,4 +1,4 @@
-package net.sf.exlp.xml.xpath;
+package org.exlp.util.query.xpath;
 
 import java.util.List;
 

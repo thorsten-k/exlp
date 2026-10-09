@@ -1,4 +1,4 @@
-package net.sf.exlp.factory.txt;
+package org.exlp.factory.txt.config;
 
 import java.util.ArrayList;
 import java.util.List;

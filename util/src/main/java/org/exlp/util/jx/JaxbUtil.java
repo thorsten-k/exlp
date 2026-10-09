@@ -48,11 +48,8 @@ public class JaxbUtil implements JaxbInterface
 		
 	}
 	
-	@Override public <T> T load(Class<T> c, String resourceName) throws FileNotFoundException
-	{
-		return JaxbUtil.loadJAXB(resourceName, c);
-	}
 	
+	// Prefix Mapper ***********************************************************
 	public static void setNsPrefixMapper(NsPrefixMapperInterface nsPrefixMapper)
 	{
 		if(JaxbUtil.nsPrefixMapper != null){logger.warn(NsPrefixMapperInterface.class.getSimpleName()+" already set.");}
@@ -83,6 +80,13 @@ public class JaxbUtil implements JaxbInterface
 	private static void logRejectedNsPrefixMapper(Object mapper)
 	{
 		logger.warn("Namespace prefix mapper "+mapper.getClass().getName()+" rejected by the JAXB RI");
+	}
+	
+	
+// Loading ************************************************************************************************************************************
+	@Override public <T> T load(Class<T> c, String resourceName) throws FileNotFoundException
+	{
+		return JaxbUtil.loadJAXB(resourceName, c);
 	}
 	
 	public static <T extends Object> T loadJAXB(ClassLoader classLoader, String xmlFile, Class<T> c) throws FileNotFoundException
@@ -143,6 +147,31 @@ public class JaxbUtil implements JaxbInterface
 		return result;
 	}
 	
+	
+// Saving ************************************************************************************************************************************
+	@Override public void save(Path p, Object jaxb)
+	{
+		JaxbUtil.save(p.toFile(), jaxb, true);
+	}
+	public static synchronized void save(File f, Object jaxb, boolean formatted)
+	{
+		OutputStream os=null;
+		try
+		{
+			if(f.getAbsolutePath().endsWith(".gz"))
+			{
+				os = new GZIPOutputStream(new FileOutputStream(f));
+			}
+			else {os = new FileOutputStream(f);}
+			
+			output(os, jaxb, formatted);
+			os.close();
+		}
+		catch (FileNotFoundException e) {logger.error("",e);}
+		catch (IOException e) {logger.error("",e);}
+	}
+	
+// Helper methods for trace/debug/info/warn/error ************************************************************************************************************************************
 	private static String getCaller()
 	{
 		int index;
@@ -168,66 +197,40 @@ public class JaxbUtil implements JaxbInterface
 		if(logger.isTraceEnabled())
 		{
 			logger.trace(getCaller());
-			output(System.out, jaxb, null,true);
+			output(System.out, jaxb,true);
 		}
 	}
-	
 	public static synchronized void debug(Object jaxb)
 	{
 		if(logger.isDebugEnabled())
 		{
 			logger.debug(getCaller());
-			output(System.out, jaxb, null,true);
+			output(System.out, jaxb,true);
 		}
 	}
-	public static synchronized void info(Object jaxb) {info(jaxb,true);}
-	public static synchronized void info(Object jaxb, boolean formatted)
+	public static synchronized void info(Object jaxb)
 	{
 		if(logger.isInfoEnabled())
 		{
 			logger.info(getCaller());
-			output(System.out, jaxb, null,formatted);
+			output(System.out, jaxb,true);
 		}
 	}
-	
 	public static synchronized void warn(Object jaxb)
 	{
 		if(logger.isWarnEnabled())
 		{
 			logger.warn(getCaller());
-			output(System.out, jaxb , null,true);
+			output(System.out, jaxb ,true);
 		}
 	}
-	
 	public static synchronized void error(Object jaxb)
 	{
 		if(logger.isErrorEnabled())
 		{
 			logger.error(getCaller());
-			output(System.out, jaxb, null,true);
+			output(System.out, jaxb,true);
 		}
-	}
-	
-	@Override public void save(Path p, Object jaxb)
-	{
-		JaxbUtil.save(p.toFile(), jaxb, true);
-	}
-	public static synchronized void save(File f, Object jaxb, boolean formatted)
-	{
-		OutputStream os=null;
-		try
-		{
-			if(f.getAbsolutePath().endsWith(".gz"))
-			{
-				os = new GZIPOutputStream(new FileOutputStream(f));
-			}
-			else {os = new FileOutputStream(f);}
-			
-			output(os, jaxb, formatted);
-			os.close();
-		}
-		catch (FileNotFoundException e) {logger.error("",e);}
-		catch (IOException e) {logger.error("",e);}
 	}
 	
 	public static byte[] toBytes(Object jaxb)
@@ -236,7 +239,7 @@ public class JaxbUtil implements JaxbInterface
 		try
 		{
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			output(os, jaxb, null, true);
+			output(os, jaxb, true);
 			data = os.toByteArray();
 			os.close();
 			return data;
@@ -258,23 +261,19 @@ public class JaxbUtil implements JaxbInterface
 		return null;
 	}
 	
-	public static synchronized void output(OutputStream os, Object jaxb){output(os, jaxb,null, true);}
-	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted){output(os, jaxb,null, formatted);}
-	public static synchronized void output(OutputStream os, Object jaxb, DocType doctype, boolean formatted)
+	public static synchronized void output(OutputStream os, Object jaxb){output(os, jaxb, true);}
+	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted)
 	{
 		try
 		{
 			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
 			Marshaller m = context.createMarshaller();
-//			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
 			applyNsPrefixMapper(m, nsPrefixMapper);
-			if(doctype!=null){m.setProperty("com.sun.xml.bind.xmlHeaders", JDomUtil.toString(doctype));}
 			m.marshal( jaxb, os);
 		}
 		catch (JAXBException e) {logger.error("",e);}
 	}
-	
 	
 	public static synchronized void output(Writer w, Object xml)
 	{
@@ -282,7 +281,6 @@ public class JaxbUtil implements JaxbInterface
 		{
 			JAXBContext context = JAXBContext.newInstance(xml.getClass());
 			Marshaller m = context.createMarshaller(); 
-//			m.setProperty("com.sun.xml.bind.marshaller.CharacterEscapeHandler",new CdataXmlEscapeHandler("UTF-8"));
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
 			applyNsPrefixMapper(m, nsPrefixMapper);
 			m.marshal(xml, w);
@@ -290,8 +288,7 @@ public class JaxbUtil implements JaxbInterface
 		catch (JAXBException e) {logger.error("",e);}
 	}
 	
-	public static synchronized Document toDocument(Object jaxb){return toDocument(jaxb,JaxbUtil.nsPrefixMapper);}
-	public static synchronized Document toDocument(Object jaxb, Object nsPrefixMapper)
+	public static synchronized Document toDocument(Object jaxb)
 	{
 		Document doc = null;
 		try
@@ -311,13 +308,14 @@ public class JaxbUtil implements JaxbInterface
 		return doc;
 	}
 	
-	public static synchronized String toString(Object xml){return toString(xml,true);}
-	public static synchronized String toString(Object xml, boolean printPreamble)
+	public static synchronized String toString(Object xml)
 	{
 		Writer sw = new StringWriter();
 		JaxbUtil.output(sw, xml);
 		
 		String s = sw.toString();
+		
+		boolean printPreamble = true;
 		if(!printPreamble)
 		{
 			int index = s.indexOf("?>");
@@ -327,8 +325,7 @@ public class JaxbUtil implements JaxbInterface
 		return s;
 	}
 	
-	public static synchronized org.w3c.dom.Document toW3CDocument(Object jaxb){return toW3CDocument(jaxb,JaxbUtil.nsPrefixMapper);}
-	public static synchronized org.w3c.dom.Document toW3CDocument(Object jaxb, Object nsPrefixMapper)
+	public static synchronized org.w3c.dom.Document toW3CDocument(Object jaxb)
 	{
 		org.w3c.dom.Document doc = null;
 		try
@@ -336,7 +333,7 @@ public class JaxbUtil implements JaxbInterface
 			ByteArrayOutputStream out = new ByteArrayOutputStream();
 			JAXBContext context = JAXBContext.newInstance(jaxb.getClass());
 			Marshaller m = context.createMarshaller(); 
-			applyNsPrefixMapper(m, nsPrefixMapper);
+			applyNsPrefixMapper(m, JaxbUtil.nsPrefixMapper);
 			m.marshal(jaxb, out);
 			
 			InputStream is = new ByteArrayInputStream(out.toByteArray());

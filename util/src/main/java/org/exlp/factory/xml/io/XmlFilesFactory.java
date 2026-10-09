@@ -1,4 +1,4 @@
-package net.sf.exlp.factory.xml.io;
+package org.exlp.factory.xml.io;
 
 import java.util.List;
 

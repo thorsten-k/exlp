@@ -7,6 +7,7 @@ import org.exlp.model.xml.net.Url;
 import org.exlp.model.xml.net.Urls;
 import org.exlp.test.AbstractExlpTest;
 import org.exlp.test.ExlpBootstrap;
+import org.exlp.util.query.xpath.NetXpath;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,6 @@ import org.slf4j.LoggerFactory;
 
 import net.sf.exlp.exception.ExlpXpathNotFoundException;
 import net.sf.exlp.exception.ExlpXpathNotUniqueException;
-import net.sf.exlp.xml.xpath.NetXpath;
 
 public class TestNetXpathUrl extends AbstractExlpTest
 {

@@ -1,4 +1,4 @@
-package net.sf.exlp.factory.xml.identity;
+package org.exlp.factory.xml.identity;
 
 import org.exlp.model.xml.identity.User;
 

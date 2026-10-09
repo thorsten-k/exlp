@@ -42,23 +42,15 @@ public class TestJaxbUtil
 	public void toStringHasXmlPreamble()
 	{
 		String xml = JaxbUtil.toString(build());
-		logger.debug(xml);
 
 		Assertions.assertTrue(xml.startsWith("<?xml version"), xml);
-	}
-
-	@Test
-	public void toStringWithoutPreamble()
-	{
-		String xml = JaxbUtil.toString(build(), false);
-
-		Assertions.assertFalse(xml.contains("<?xml"), xml);
 	}
 
 	@Test
 	public void toStringContainsRootAndAttributes()
 	{
 		String xml = JaxbUtil.toString(build());
+		logger.debug(xml);
 
 		Assertions.assertTrue(xml.contains("code=\"test\""), xml);
 		Assertions.assertTrue(xml.contains(NAMESPACE), xml);

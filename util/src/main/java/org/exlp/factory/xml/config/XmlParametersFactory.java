@@ -1,4 +1,4 @@
-package net.sf.exlp.factory.xml.config;
+package org.exlp.factory.xml.config;
 
 import org.exlp.model.xml.config.Parameters;
 
