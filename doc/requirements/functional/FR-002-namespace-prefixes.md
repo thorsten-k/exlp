@@ -2,7 +2,7 @@
 id: FR-002
 title: Apply custom namespace prefixes when marshalling XML
 type: functional
-status: proposed
+status: approved
 priority: should
 depends_on: []
 related: []
@@ -12,21 +12,25 @@ related: []
 
 ## Requirement
 
-The JAXB utility of the `util` module applies namespace prefixes of a mapper configured for it
-(AC-FR-002-01).
+The JAXB utility of the `util` module applies the namespace prefixes of a mapper configured for it in
+both JAXB variants (AC-FR-002-01).
 
 - The configured mapper determines the prefix of each namespace of the written XML (AC-FR-002-01).
+- The utility adapts the configured mapper to the RI type of the variant before it sets the marshaller
+  property (Assumption 4).
 - A mapper that the JAXB RI of the variant rejects does not prevent marshalling; the XML is written
   without custom prefixes (AC-FR-002-02).
-- A rejected mapper is reported as a warning that names the class of the mapper (AC-FR-002-02).
+- A rejected mapper is logged as the warning `Namespace prefix mapper <class> rejected by the JAXB RI`
+  (AC-FR-002-02).
 - Without a configured mapper the utility marshals with the defaults of the JAXB RI (AC-FR-002-03).
-- The mapper is configured once for the utility and applies to every marshalling method (AC-FR-002-04).
+- The mapper is configured once for the utility and applies to every method that writes XML
+  (AC-FR-002-04).
 - Each JAXB variant sets the marshaller property of its own JAXB RI (Assumption 1, Assumption 2).
 
 ## Rationale
 
 JAXB assigns namespace prefixes on its own, and consumers that compare or read the XML expect the
-prefixes of the domain; a mapper that the JAXB RI rejects must not cost the written output.
+prefixes of the domain; a mapper that the JAXB RI rejects must not cause the written output to be lost.
 
 ## Scope
 
@@ -44,8 +48,13 @@ Out of scope:
 ## Assumptions
 
 1. The `javax` variant sets the marshaller property `com.sun.xml.bind.namespacePrefixMapper`.
-2. The `jakarta` variant sets the marshaller property `org.glassfish.jaxb.namespacePrefixMapper`.
-3. The mapper is configured through the static `setNsPrefixMapper` method of the utility.
+2. The `jakarta` variant sets the marshaller property `org.glassfish.jaxb.namespacePrefixMapper` in
+   every method that writes XML.
+3. The mapper is configured through the static `setNsPrefixMapper` method of the utility; its parameter
+   type is `org.exlp.interfaces.io.NsPrefixMapperInterface`.
+4. The utility adapts the configured mapper to the RI type of the variant before it sets the marshaller
+   property: `com.sun.xml.bind.marshaller.NamespacePrefixMapper` for `javax` and
+   `org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper` for `jakarta`.
 
 ## Open Questions
 
@@ -53,15 +62,22 @@ None.
 
 ## Decided Questions
 
-None.
+1. **Rejected mapper**
+   Question: When the JAXB RI rejects the configured mapper, does marshalling continue without custom
+   prefixes or does it fail?
+   Decision: Marshalling continues without custom prefixes and the rejection is logged as a warning that
+   names the class of the mapper.
+   Applies in: AC-FR-002-02
 
 ## Acceptance Criteria
 
-### AC-FR-002-01: Apply the prefixes of the configured mapper
+### AC-FR-002-01: Apply the prefixes of the configured mapper in both variants
 
 Given:
 
-- A mapper is configured and a JAXB object is marshalled.
+- A mapper that the JAXB RI of the variant accepts is configured.
+- A JAXB object is marshalled.
+- The `javax` variant and the `jakarta` variant each write the object.
 
 When:
 
@@ -69,13 +85,13 @@ When:
 
 Then:
 
-- Each namespace of the output carries the prefix that the mapper returns.
+- Each namespace of each output carries the prefix that the mapper returns.
 
 ### AC-FR-002-02: Marshal a rejected mapper without custom prefixes
 
 Given:
 
-- The configured mapper is not accepted by the JAXB RI of the variant.
+- The configured mapper is rejected by the JAXB RI of the variant.
 
 When:
 
@@ -84,7 +100,7 @@ When:
 Then:
 
 - The output is written without custom prefixes.
-- The rejection is logged as a warning that names the class of the mapper.
+- The rejection is logged as the warning `Namespace prefix mapper <class> rejected by the JAXB RI`.
 
 ### AC-FR-002-03: Marshal with the RI defaults without a mapper
 
@@ -100,7 +116,7 @@ Then:
 
 - The output carries the prefixes of the JAXB RI.
 
-### AC-FR-002-04: Apply one configuration to every marshalling method
+### AC-FR-002-04: Apply one configuration to any method that writes XML
 
 Given:
 
@@ -108,48 +124,44 @@ Given:
 
 When:
 
-- Each marshalling method of the utility writes a JAXB object.
+- Any public method of the utility that writes XML writes a JAXB object.
 
 Then:
 
 - Every output carries the prefixes of the mapper.
 
-### AC-FR-002-05: Apply prefixes in both JAXB variants
-
-Given:
-
-- A mapper of the variant is configured and the variant writes a JAXB object.
-
-When:
-
-- The `javax` variant and the `jakarta` variant each write the object.
-
-Then:
-
-- Each output carries the prefixes of its mapper.
-
-## Dependencies
-
-None.
-
 ## Evidence
 
 ### Implementation
 
-- open: `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` – applies the configured mapper (AC-FR-002-01)
-- open: `util/src/main/java/org/exlp/util/jk/JaxbUtil.java` – applies the configured mapper (AC-FR-002-01)
+- `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` – open: the mapper adapted to the `javax` RI
+  prefixes the output (AC-FR-002-01)
+- `util/src/main/java/org/exlp/util/jk/JaxbUtil.java` – open: the mapper adapted to the `jakarta` RI
+  prefixes the output and the variant sets `org.glassfish.jaxb.namespacePrefixMapper` in every method
+  that writes XML (AC-FR-002-01, Assumption 2)
+- `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` – open: a rejected mapper leaves the output without
+  custom prefixes and logs the warning that names the mapper class (AC-FR-002-02)
+- `util/src/main/java/org/exlp/util/jk/JaxbUtil.java` – open: a rejected mapper leaves the output without
+  custom prefixes and logs the warning that names the mapper class (AC-FR-002-02)
+- `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` – open: marshalling without a configured mapper uses
+  the RI defaults (AC-FR-002-03)
 
 ### Tests
 
 - `util/src/test/java/org/exlp/util/jx` – open: a test asserts that a mapper accepted by the `javax`
   RI prefixes the output (AC-FR-002-01)
+- `util/src/test/java/org/exlp/util/jk` – open: a test asserts that a mapper accepted by the `jakarta`
+  RI prefixes the output (AC-FR-002-01)
 - `util/src/test/java/org/exlp/util/jx` – open: a test asserts that a mapper rejected by the `javax`
   RI leaves the output without custom prefixes and logs a warning (AC-FR-002-02)
-- `util/src/test/java/org/exlp/util/jk` – open: a test asserts that a mapper accepted by the `jakarta`
-  RI prefixes the output (AC-FR-002-05)
 - `util/src/test/java/org/exlp/util/jk` – open: a test asserts that a mapper rejected by the `jakarta`
-  RI leaves the output without custom prefixes and logs a warning (AC-FR-002-05)
+  RI leaves the output without custom prefixes and logs a warning (AC-FR-002-02)
+- `util/src/test/java/org/exlp/util/jx` – open: a test asserts that marshalling without a configured
+  mapper uses the RI defaults (AC-FR-002-03)
+- `util/src/test/java/org/exlp/util/jx` – open: a test asserts that every public method that writes XML
+  applies the configured mapper (AC-FR-002-04)
 
 ### Documentation
 
-- open: `README.md` – configuring a namespace prefix mapper is documented (AC-FR-002-01)
+- `README.md` – open: configuring a namespace prefix mapper is documented for both JAXB variants
+  (AC-FR-002-01)

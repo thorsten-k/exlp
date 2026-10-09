@@ -1,5 +1,13 @@
 # Change Log
 
+## 2026-10-09 – FR-002: review, correction, approval
+
+- What: Reviewed FR-002, applied the instructed corrections, and set it to approved.
+- Result: Review "Approval not recommended" (2 findings, 8 notes); acceptance: all findings addressed;
+  status approved.
+- Evidence: Five patterns without a match; line width and target values reached.
+- Files: doc/requirements/functional/FR-002-namespace-prefixes.md, doc/status.md, doc/changelog.md.
+
 ## 2026-10-08 – Build: every module compiles against the Java 8 API
 
 - What: The root POM configures `maven-compiler-plugin` with `release` 8 instead of `source` and
