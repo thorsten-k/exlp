@@ -1,5 +1,13 @@
 # Change Log
 
+## 2026-10-10 – FR-003: central configuration pointer recorded
+
+- What: Recorded `ExlpCentralConfigPointer` as the FR-003 feature of the library.
+- Result: FR-003 has no open questions.
+- Evidence: `mvn -o -pl util -am clean test` `[SUCCESS]`; `TestExlpCentralConfigPointer` runs 11 tests.
+- Files: doc/requirements/functional/FR-003-central-configuration-pointer.md, doc/status.md,
+  doc/changelog.md.
+
 ## 2026-10-09 – Build: the `addon` module is removed
 
 - What: The directory `addon` is deleted (`addon/pom.xml`, its ignore file, and seven test resources); the

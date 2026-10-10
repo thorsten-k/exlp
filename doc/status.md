@@ -15,6 +15,7 @@ the title, and the status; for a requirement, additionally the priority.
 |---|---|---|---|
 | [FR-001](requirements/functional/FR-001-reachability-metadata.md) | Generate annotation-based Native Image reachability metadata | implemented | must |
 | [FR-002](requirements/functional/FR-002-namespace-prefixes.md) | Apply custom namespace prefixes when marshalling XML | implemented | should |
+| [FR-003](requirements/functional/FR-003-central-configuration-pointer.md) | Resolve configuration files through a central pointer file | implemented | should |
 
 
 
