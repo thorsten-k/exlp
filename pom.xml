@@ -30,7 +30,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     	<exlp.jaxb.package.base>org.exlp.model.xml</exlp.jaxb.package.base>
-    	<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+    	<maven-compiler-plugin.version>3.16.0</maven-compiler-plugin.version>
 	</properties>
 
 	<licenses>
@@ -130,7 +130,7 @@
 	         <plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<inherited>true</inherited>
-				<version>3.8.0</version>
+				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<!-- Compile against the Java 8 API, not only into class files 52 (ADR-0003) -->
 					<release>8</release>
