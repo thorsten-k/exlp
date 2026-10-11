@@ -1,5 +1,17 @@
 # Change Log
 
+## 2026-10-11 – ADR-0004: review corrections and acceptance
+
+- What: Named the location of the open question in `## Context`, the bound JUnit version and the JDK 11
+  prerequisite in `## Decision`, and the affected requirements and display locations in `## Impact`;
+  corrected the `test` module in the evidence and wrapped the file to the house width. Set the decision
+  to `accepted`.
+- Result: The two content findings of the review (missing location, missing requirement IDs) are
+  addressed, and the decision is binding.
+- Evidence: `grep -n 'FR-00' doc/decisions/ADR-0004-test-strategy.md` finds the three requirements;
+  the file is within the house line width; `doc/status.md` names `accepted`.
+- Files: doc/decisions/ADR-0004-test-strategy.md, doc/status.md, README.md, doc/changelog.md.
+
 ## 2026-10-11 – Build: surefire overrides and JUnit 4 removed
 
 - What: Removed the `maven-surefire-plugin` 2.22.2 overrides in `util` and `test`; every module now
