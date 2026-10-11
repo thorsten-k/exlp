@@ -63,7 +63,7 @@ module of the chain, so every module can bind its goals.
 - **Logging:** SLF4J as the facade with Log4j 2 as the backend.
 - **Messaging:** JMS for point-to-point and topic messaging; JeroMQ (ZeroMQ) in the client.
 - **Integration:** EJB and JPA APIs in the `ejb` module.
-- **Testing:** JUnit.
+- **Testing:** JUnit 5.
 
 ## Authoritative Locations
 

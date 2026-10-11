@@ -1,5 +1,16 @@
 # Change Log
 
+## 2026-10-11 – Build: surefire overrides and JUnit 4 removed
+
+- What: Removed the `maven-surefire-plugin` 2.22.2 overrides in `util` and `test`; every module now
+  inherits 3.6.0 from the root POM. Removed the managed `junit:junit` 4.12 entry from the BOM.
+- Result: The repository carries one test framework (JUnit 5); no module binds or references JUnit 4, and
+  the README and the architecture file name JUnit 5.
+- Evidence: `mvn -o -DskipTests=false verify` `[SUCCESS]` under JDK 11 (util 82, maven 23, shell 6 tests,
+  all runs on `surefire:3.6.0`); `grep -rn --include='*.java' 'org.junit.'` finds only `org.junit.jupiter`.
+- Files: util/pom.xml, test/pom.xml, bom/pom.xml.xml,
+  README.md, doc/requirements/architecture.md, doc/decisions/ADR-0004-test-strategy.md, doc/changelog.md.
+
 ## 2026-10-11 – ADR-0004: test strategy recorded as a proposal
 
 - What: Adopted the test strategy as ADR-0004 (status `proposed`) and adapted the copied draft to this

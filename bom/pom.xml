@@ -324,12 +324,7 @@
 			</dependency>
 	        
 	        <!-- Testing -->
-	        <dependency>
-   				<groupId>junit</groupId>
-   				<artifactId>junit</artifactId>
-   				<version>4.12</version>
-   			</dependency> 
-   			<dependency> <!-- Jupiter itself will be updated after junit removal -->
+   			<dependency> <!-- JUnit 5 (Jupiter) -->
 		 		<groupId>org.junit.jupiter</groupId>
 				<artifactId>junit-jupiter-api</artifactId>
 				<version>5.10.0</version>

@@ -58,18 +58,14 @@ The choice to be decided was how test programs are named, stored, and run.
 ## Open Points
 
 - The Maven version that the build requires is not regulated by this decision; the root POM binds
-  `maven-surefire-plugin` 3.6.0, which needs Maven 3.6.3 or newer, while the modules `util` and `test`
-  override the plugin with version 2.22.2.
-- JUnit 4 is still managed in the BOM (`bom/pom.xml`, `junit:junit` 4.12), but no module binds it and no
-  source file imports `org.junit.*`; the README still names JUnit 4 as the test library. The managed entry
-  is to be removed.
+  `maven-surefire-plugin` 3.6.0, which needs Maven 3.6.3 or newer.
 
 ## Evidence
 
 ### Implementation
 
-- `pom.xml` (root) – binds `maven-surefire-plugin` 3.6.0 in the plugin management; the plugin runs the test
-  programs through the JUnit Platform
+- `pom.xml` (root) – binds `maven-surefire-plugin` 3.6.0 in the plugin management; every module inherits
+  the version, and the plugin runs the test programs through the JUnit Platform
 - `bom/pom.xml` – manages `org.junit.jupiter:junit-jupiter-api` and `org.junit.jupiter:junit-jupiter-engine`
   (5.10.0, test scope); `util/pom.xml`, `maven/pom.xml`, `shell/pom.xml`, and `test/pom.xml` bind
   `junit-jupiter-api` in the test scope, and `util/pom.xml`, `maven/pom.xml`, and `test/pom.xml` add
