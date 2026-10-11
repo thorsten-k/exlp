@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-10-11 – ADR-0004: test module runs XML test programs
+
+- What: `AbstractXmlTest` in `test/src/main/java` received a `@Test` method that compares the marshalled
+  model against the reference XML under `test/src/test/resources`, `AbstractExlpXmlTest` became abstract,
+  and `test/pom.xml` binds `junit-jupiter-api` in the provided scope and adds the JAXB API and Runtime in
+  the test scope.
+- Result: The `test` module runs its XML test programs on JUnit 5; ADR-0004 names the module, the
+  inherited test method, and the JAXB dependency.
+- Evidence: `mvn -o -pl test clean verify` `[SUCCESS]`, 12 tests, 0 failures.
+- Files: test/pom.xml, test/src/main/java/org/exlp/test/AbstractXmlTest.java,
+  test/src/test/java/org/exlp/test/AbstractExlpXmlTest.java, doc/decisions/ADR-0004-test-strategy.md,
+  doc/changelog.md.
+
 ## 2026-10-11 – ADR-0004: review corrections and acceptance
 
 - What: Named the location of the open question in `## Context`, the bound JUnit version and the JDK 11

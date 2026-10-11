@@ -1,6 +1,7 @@
 package org.exlp.test;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.time.LocalDateTime;
@@ -11,17 +12,19 @@ import javax.xml.datatype.XMLGregorianCalendar;
 import org.apache.commons.io.FilenameUtils;
 import org.exlp.util.jx.JaxbUtil;
 import org.exlp.util.system.DateUtil;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class AbstractXmlTest<T extends Object>
+public abstract class AbstractXmlTest<T extends Object>
 {
 	final static Logger logger = LoggerFactory.getLogger(AbstractXmlTest.class);
-	
+
 	private File xmlFile;
-	
+
 	private Class<T> cJaxb;
-	
+
 	public AbstractXmlTest(Class<T> cXml, Path pPrefix, Path pSuffix)
 	{
 		this.cJaxb=cXml;
@@ -35,7 +38,7 @@ public class AbstractXmlTest<T extends Object>
 		        Path path = Paths.get(s, "src","test","resources");
 		        path = path.resolve(pPrefix);
 		        if(Objects.nonNull(pSuffix)) {path = path.resolve(pSuffix);}
-		       
+
 		        path = path.resolve(Paths.get(cJaxb.getSimpleName()+".xml"));
 		        logger.info("Path: "+path.toString());
 
@@ -45,13 +48,21 @@ public class AbstractXmlTest<T extends Object>
 			catch (SecurityException e) {e.printStackTrace();}
 		}
 	}
-	
+
 	protected static XMLGregorianCalendar getDefaultXmlDate()
 	{
 		LocalDateTime ldt = LocalDateTime.of(2011,11,11,11,11,11);
 		return DateUtil.toXmlGc(ldt);
 	}
-	
+
+	@Test
+	public void xml() throws FileNotFoundException
+	{
+		T actual = build(true);
+		T expected = JaxbUtil.loadJAXB(xmlFile.getAbsolutePath(), cJaxb);
+		Assertions.assertEquals(JaxbUtil.toString(expected),JaxbUtil.toString(actual),"Actual XML differs from expected XML");
+	}
+
 	protected void saveReferenceXml()
 	{
 		Object xml = this.build(true);
@@ -59,7 +70,7 @@ public class AbstractXmlTest<T extends Object>
 		JaxbUtil.info(xml);
     	JaxbUtil.save(xmlFile,xml,true);
 	}
-    
+
     //TODO declare as abstract
     protected T build(boolean withChilds){return null;}
 }

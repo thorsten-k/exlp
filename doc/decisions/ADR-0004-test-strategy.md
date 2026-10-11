@@ -22,7 +22,9 @@ decided was how test programs are named, stored, and run.
    is introduced.
 3. A test program is a class under `src/test/java` that carries at least one `@Test` method and whose
    name follows the selection pattern of the test run (the names `Test*` and `*Test`). A base or
-   helper class without a `@Test` method is not a test program, even if its name matches the pattern.
+   helper class without a `@Test` method is not a test program, even if its name matches the pattern;
+   the same holds for an abstract base class that carries a `@Test` method and is inherited by
+   concrete subclasses.
 4. A test program runs without an application container, without a database, and without a network
    and is therefore repeatable without preparation. A logging configuration under
    `src/test/resources` is allowed and does not stand in the way.
@@ -56,7 +58,8 @@ decided was how test programs are named, stored, and run.
 ## Impact
 
 - Requirements: FR-001, FR-002, and FR-003, whose verification uses the test programs.
-- Files: `util/src/test/java`, `maven/src/test/java`, and `shell/src/test/java` take the test programs.
+- Files: `util/src/test/java`, `maven/src/test/java`, `shell/src/test/java`, and `test/src/test/java`
+  take the test programs.
 - `README.md` (`## Technical Assumptions`) and the index (`doc/status.md`) name the decision.
 
 ## Open Points
@@ -73,9 +76,22 @@ decided was how test programs are named, stored, and run.
 - `bom/pom.xml` – manages `org.junit.jupiter:junit-jupiter-api` and
   `org.junit.jupiter:junit-jupiter-engine` (5.10.0, test scope); `util/pom.xml`, `maven/pom.xml`, and
   `shell/pom.xml` bind `junit-jupiter-api` in the test scope, `util/pom.xml` and `maven/pom.xml` add
-  `junit-jupiter-engine`, and `test/pom.xml` provides both artifacts for its support classes without
-  running a test program (points 1 and 2)
-- `util/src/test/java`, `maven/src/test/java`, and `shell/src/test/java` – carry test programs, that
-  is classes with `@Test` methods; the base classes `org.exlp.test.AbstractExlpTest` (`util`),
-  `org.exlp.test.AbstractExlpShellTest` (`shell`), and `de.kisner.exlp.test.AbstractExlpMavenTest`
-  (`maven`) use JUnit 5 as well (points 1 to 3)
+  `junit-jupiter-engine`, and `test/pom.xml` binds `junit-jupiter-api` in the provided scope for
+  the support class in `test/src/main/java` (points 1 and 2)
+- `test/pom.xml` – adds the JAXB API and the JAXB Runtime in the test scope; the test programs
+  of the module load and write XML through `org.exlp.util.jx.JaxbUtil`
+- `test/src/main/java` – carries the support class `org.exlp.test.AbstractXmlTest` with the
+  `@Test` method `xml()`; it marshals the model, loads the reference XML from
+  `test/src/test/resources`, and compares the two (points 1, 2, and 5)
+- `test/src/test/java` – carries the concrete test programs that extend the support class and
+  provide the model under test; the intermediate class `org.exlp.test.AbstractExlpXmlTest` is
+  abstract (points 1 to 3)
+- `util/src/test/java`, `maven/src/test/java`, `shell/src/test/java`, and `test/src/test/java` –
+  carry test programs, that is classes with `@Test` methods; the base classes
+  `org.exlp.test.AbstractExlpTest` (`util`), `org.exlp.test.AbstractExlpShellTest` (`shell`),
+  `de.kisner.exlp.test.AbstractExlpMavenTest` (`maven`), and `org.exlp.test.AbstractXmlTest`
+  (`test`) use JUnit 5 as well (points 1 to 3)
+
+### Tests
+
+- `mvn -o -pl test clean verify` `[SUCCESS]`; the `test` module runs 12 test programs without failure
