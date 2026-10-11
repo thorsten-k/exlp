@@ -60,7 +60,7 @@ public class TestJaxbUtilNsPrefix
 		JkNsFixture xml = new JkNsFixture();
 
 		ByteArrayOutputStream os = new ByteArrayOutputStream();
-		JaxbUtil.output(os, xml, true);
+		JaxbUtil.output(os, xml);
 
 		Assertions.assertTrue(JaxbUtil.toString(xml).contains("xmlns:io="));
 		Assertions.assertTrue(new String(JaxbUtil.toBytes(xml), StandardCharsets.UTF_8).contains("xmlns:io="));

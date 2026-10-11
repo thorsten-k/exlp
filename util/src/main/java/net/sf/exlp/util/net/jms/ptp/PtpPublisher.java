@@ -205,7 +205,7 @@ public class PtpPublisher
 	public void sendJaxb(Object jaxb) throws JMSException
 	{
 		ByteArrayOutputStream baos = new ByteArrayOutputStream();
-		JaxbUtil.output(baos, jaxb, true);
+		JaxbUtil.output(baos, jaxb);
 		
 		BytesMessage byteMsg = session.createBytesMessage();
 		byteMsg.writeBytes(baos.toByteArray());

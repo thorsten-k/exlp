@@ -24,8 +24,6 @@ import javax.xml.parsers.ParserConfigurationException;
 
 import org.exlp.interfaces.io.NsPrefixMapperInterface;
 import org.exlp.interfaces.util.JaxbInterface;
-import org.exlp.util.jx.JaxbUtil;
-import org.jdom2.DocType;
 import org.jdom2.Document;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
@@ -34,7 +32,6 @@ import org.slf4j.LoggerFactory;
 import org.xml.sax.SAXException;
 
 import net.sf.exlp.util.io.resourceloader.MultiResourceLoader;
-import net.sf.exlp.util.xml.JDomUtil;
 
 public class JaxbUtil implements JaxbInterface
 {
@@ -47,7 +44,6 @@ public class JaxbUtil implements JaxbInterface
 	{
 		
 	}
-	
 	
 	// Prefix Mapper ***********************************************************
 	public static void setNsPrefixMapper(NsPrefixMapperInterface nsPrefixMapper)
@@ -261,8 +257,8 @@ public class JaxbUtil implements JaxbInterface
 		return null;
 	}
 	
-	public static synchronized void output(OutputStream os, Object jaxb){output(os, jaxb, true);}
-	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted)
+	public static void output(OutputStream os, Object jaxb){output(os, jaxb, true);}
+	private static void output(OutputStream os, Object jaxb, boolean formatted)
 	{
 		try
 		{
@@ -270,7 +266,7 @@ public class JaxbUtil implements JaxbInterface
 			Marshaller m = context.createMarshaller();
 			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, formatted);
 			applyNsPrefixMapper(m, nsPrefixMapper);
-			m.marshal( jaxb, os);
+			m.marshal(jaxb, os);
 		}
 		catch (JAXBException e) {logger.error("",e);}
 	}

@@ -1,5 +1,18 @@
 # Change Log
 
+## 2026-10-11 – ADR-0004: test strategy recorded as a proposal
+
+- What: Adopted the test strategy as ADR-0004 (status `proposed`) and adapted the copied draft to this
+  repository; the JUnit 5 binding, the modules with test programs, the surefire versions, and the still
+  managed JUnit 4 entry are named.
+- Result: The decision repository and the index name ADR-0004; the copied `ADR-0003-test-strategy.md` is
+  replaced by the renumbered and adapted file.
+- Evidence: `grep -rl '@Test' */src` finds test programs in `util`, `maven`, and `shell`;
+  `grep -rn 'org.junit.jupiter' */pom.xml` finds the Jupiter binding in `bom`, `util`, `maven`, `shell`, and
+  `test`.
+- Files: doc/decisions/ADR-0004-test-strategy.md, doc/decisions/ADR-0003-test-strategy.md (removed),
+  doc/status.md, doc/changelog.md.
+
 ## 2026-10-10 – FR-003: central configuration pointer recorded
 
 - What: Recorded `ExlpCentralConfigPointer` as the FR-003 feature of the library.

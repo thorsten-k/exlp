@@ -253,8 +253,8 @@ public class JaxbUtil implements JaxbInterface
 		return null;
 	}
 	
-	public static synchronized void output(OutputStream os, Object jaxb){output(os, jaxb, true);}
-	public static synchronized void output(OutputStream os, Object jaxb, boolean formatted)
+	public static void output(OutputStream os, Object jaxb){output(os, jaxb, true);}
+	private static void output(OutputStream os, Object jaxb, boolean formatted)
 	{
 		try
 		{
