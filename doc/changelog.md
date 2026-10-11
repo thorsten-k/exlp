@@ -1,5 +1,27 @@
 # Change Log
 
+## 2026-10-11 – ADR-0005: approval
+
+- What: Set ADR-0005 to `accepted`; the review findings are addressed (the Maven version 3.6.3 stands in
+  `## Decision`, the location reference is struck on instruction), and the display locations follow.
+- Result: The decision is binding; no open item remains, and the one form note ("missing location") is
+  the responsible person's decision.
+- Evidence: `doc/status.md` names `accepted`; `grep -n 'Maven 3.6.3' README.md
+  doc/decisions/ADR-0005-maven-build.md` finds both locations.
+- Files: doc/decisions/ADR-0005-maven-build.md, doc/status.md, README.md, doc/changelog.md.
+
+## 2026-10-11 – ADR-0005: Maven build adopted as a proposal
+
+- What: Adopted the copied `ADR-0002-maven-build.md` as ADR-0005 (status `proposed`) and adapted it to
+  this repository: the root aggregator, the eleven modules, their packagings, the BOM `exlp-bom`, and the
+  required Maven version 3.6.3 replace the references of the source project.
+- Result: The decision repository and the index name ADR-0005 in English; no foreign module, BOM, or
+  parent reference remains, and the numbering follows ADR-0001 to ADR-0004.
+- Evidence: `grep -rn 'bom-parent8\|geojsf\|jsf\|entities' doc/decisions/ADR-0005-maven-build.md` finds no
+  match; `doc/status.md` names `proposed`.
+- Files: doc/decisions/ADR-0005-maven-build.md, doc/decisions/ADR-0002-maven-build.md (removed),
+  README.md, doc/status.md, doc/changelog.md.
+
 ## 2026-10-11 – ADR-0004: test module runs XML test programs
 
 - What: `AbstractXmlTest` in `test/src/main/java` received a `@Test` method that compares the marshalled

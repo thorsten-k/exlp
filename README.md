@@ -31,7 +31,7 @@ EXLP is an established, historically grown multi-module Maven project (`net.sf.e
 ## Technical Assumptions
 
 - **Platform:** Java 8 for the `javax` artifact and for the modules of the layered chain, which compile against the Java 8 API (`--release 8`, ADR-0003); the `xml` module builds with JDK 11 or newer and produces the `jakarta` artifact for Java 11 (ADR-0002, `doc/decisions/`).
-- **Build:** Maven multi-module build; artifacts are published under the group `net.sf.exlp`.
+- **Build:** Maven multi-module build (ADR-0005); artifacts are published under the group `net.sf.exlp`.
 - **Libraries:** SLF4J with Log4j2 (logging), JUnit 5 (testing, ADR-0004), JAXB and JDOM (XML), Jackson (JSON), Apache Commons (CLI, IO, Configuration).
 - **License:** GNU General Public License v3 (GPL-3.0).
 
@@ -134,7 +134,7 @@ a warning that names the class of the mapper.
 
 ## Build and Start
 
-Prerequisites: JDK 11 or newer and Maven 3. All modules compile against the Java 8 API (`--release 8`,
+Prerequisites: JDK 11 or newer and Maven 3.6.3 or newer. All modules compile against the Java 8 API (`--release 8`,
 ADR-0003); the `xml` module compiles the `javax` variant with `--release 8` and the `jakarta` variant
 with `--release 11` in one run (ADR-0002).
 
