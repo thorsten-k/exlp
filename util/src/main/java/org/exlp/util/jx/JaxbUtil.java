@@ -53,15 +53,36 @@ public class JaxbUtil implements JaxbInterface
 	}
 	
 	private static final String NS_PREFIX_MAPPER_PROPERTY = "com.sun.xml.bind.namespacePrefixMapper";
-	
+
+	// Only one of the two JAXB variants is present at runtime, therefore the mapper type of the other
+	// variant is checked reflectively (FR-002); a missing class counts as "no instance".
+	private static final String JAVAX_RI_MAPPER   = "com.sun.xml.bind.marshaller.NamespacePrefixMapper";
+	private static final String JAKARTA_RI_MAPPER = "org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper";
+
 	private static Object nsPrefixMapperValue(Object mapper)
 	{
-		if(mapper instanceof com.sun.xml.bind.marshaller.NamespacePrefixMapper) {return mapper;}
-		if(mapper instanceof org.glassfish.jaxb.runtime.marshaller.NamespacePrefixMapper) {return mapper;}
+		if(isInstanceOf(mapper, JAVAX_RI_MAPPER))   {return mapper;}
+		if(isInstanceOf(mapper, JAKARTA_RI_MAPPER)) {return mapper;}
 		if(mapper instanceof NsPrefixMapperInterface) {return new NsPrefixMapperAdapter((NsPrefixMapperInterface)mapper);}
 		return mapper;
 	}
-	
+
+	/**
+	 * Checks the type of the candidate reflectively without initializing the class. A class that the
+	 * runtime does not carry (the mapper type of the other JAXB variant) is no instance rather than a
+	 * {@code NoClassDefFoundError}.
+	 */
+	private static boolean isInstanceOf(Object candidate, String className)
+	{
+		try
+		{
+			ClassLoader cl = candidate.getClass().getClassLoader();
+			if(cl == null) {cl = Thread.currentThread().getContextClassLoader();}
+			return Class.forName(className, false, cl).isInstance(candidate);
+		}
+		catch (ClassNotFoundException | LinkageError e) {return false;}
+	}
+
 	private static void applyNsPrefixMapper(Marshaller m, Object mapper)
 	{
 		if(mapper == null) {return;}
@@ -71,6 +92,7 @@ public class JaxbUtil implements JaxbInterface
 		}
 		catch (JAXBException e) {logRejectedNsPrefixMapper(mapper);}
 		catch (RuntimeException e) {logRejectedNsPrefixMapper(mapper);}
+		catch (LinkageError e) {logRejectedNsPrefixMapper(mapper);}
 	}
 	
 	private static void logRejectedNsPrefixMapper(Object mapper)

@@ -69,6 +69,15 @@ None.
    names the class of the mapper.
    Applies in: AC-FR-002-02
 
+2. **Absent mapper type of the other variant**
+   Question: How does the utility detect the RI type when the runtime carries only one of the two JAXB
+   variants?
+   Decision: `nsPrefixMapperValue` must tolerate both variants. The utility checks the mapper type of the
+   other variant reflectively and treats a class the runtime does not carry as "no instance" instead of
+   failing with a linkage error; a mapper that implements only `NsPrefixMapperInterface` is adapted for
+   the present variant.
+   Applies in: AC-FR-002-01, AC-FR-002-02
+
 ## Acceptance Criteria
 
 ### AC-FR-002-01: Apply the prefixes of the configured mapper in both variants
@@ -141,6 +150,9 @@ Then:
 - `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` – applies the mapper in every method that writes
   XML, logs the warning for a rejected mapper, and uses the RI defaults without a mapper
   (AC-FR-002-01, AC-FR-002-02, AC-FR-002-03, AC-FR-002-04)
+- `util/src/main/java/org/exlp/util/jx/JaxbUtil.java` and `util/src/main/java/org/exlp/util/jk/JaxbUtil.java`
+  – `nsPrefixMapperValue` detects the RI type reflectively and treats the mapper type of the absent
+  variant as "no instance" (AC-FR-002-01, AC-FR-002-02)
 - `util/src/main/java/org/exlp/util/jk/JaxbUtil.java` – sets `org.glassfish.jaxb.namespacePrefixMapper`
   and applies the mapper in every method that writes XML (AC-FR-002-01, Assumption 2)
 
@@ -162,7 +174,15 @@ Then:
   asserts the RI defaults (AC-FR-002-03)
 - `util/src/test/java/org/exlp/util/jk/TestJaxbUtilNsPrefix.java` – `appliesOneConfigurationToEveryMethod`
   asserts every method that writes XML (AC-FR-002-04)
-- `mvn -o -pl util test` – 59 tests pass (AC-FR-002-01)
+- `util/src/test/java/org/exlp/util/jx/TestJaxbUtilForeignRiAbsent.java` –
+  `writesPrefixesWhenForeignRiIsAbsent` asserts that the `javax` utility applies an
+  `NsPrefixMapperInterface` mapper when the jakarta RI type is absent (AC-FR-002-01)
+- `util/src/test/java/org/exlp/util/jk/TestJaxbUtilForeignRiAbsent.java` –
+  `writesPrefixesWhenForeignRiIsAbsent` asserts the same for the `jakarta` utility when the javax RI type
+  is absent (AC-FR-002-01)
+- `util/src/test/java/org/exlp/test/HidingClassLoader.java` – test support that hides the RI type of the
+  absent variant from a copy of the utility
+- `mvn -o -pl util -am test` – 84 tests pass, 0 failures (AC-FR-002-01)
 
 ### Documentation
 

@@ -1,5 +1,23 @@
 # Change Log
 
+## 2026-10-13 – FR-002: tolerate the absent mapper type of the other JAXB variant
+
+- What: Replaced the hard `instanceof` checks of `nsPrefixMapperValue` in `jx/JaxbUtil` and `jk/JaxbUtil`
+  with a reflective type check; the mapper type of a variant the runtime does not carry counts as "no
+  instance" instead of raising a `NoClassDefFoundError`. `applyNsPrefixMapper` additionally catches
+  `LinkageError` as a safety net.
+- Result: With only one JAXB variant on the classpath a mapper that implements `NsPrefixMapperInterface`
+  is adapted for the present variant again, so the configured prefixes are applied; a foreign RI mapper is
+  still detected and rejected as before.
+- Evidence: `mvn -o -pl util -am test` under JDK 11 `[SUCCESS]`, 84 tests, 0 failures; the new
+  `TestJaxbUtilForeignRiAbsent` fails with `NoClassDefFoundError` before the fix and passes after.
+- Files: util/src/main/java/org/exlp/util/jx/JaxbUtil.java,
+  util/src/main/java/org/exlp/util/jk/JaxbUtil.java,
+  util/src/test/java/org/exlp/util/jx/TestJaxbUtilForeignRiAbsent.java,
+  util/src/test/java/org/exlp/util/jk/TestJaxbUtilForeignRiAbsent.java,
+  util/src/test/java/org/exlp/test/HidingClassLoader.java,
+  doc/requirements/functional/FR-002-namespace-prefixes.md, doc/changelog.md.
+
 ## 2026-10-11 – ADR-0005: approval
 
 - What: Set ADR-0005 to `accepted`; the review findings are addressed (the Maven version 3.6.3 stands in
