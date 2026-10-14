@@ -117,6 +117,10 @@ mvn -pl xml -Pjavax generate-sources      # regenerate the javax sources
 mvn -pl xml -Pjakarta generate-sources    # regenerate the jakarta sources
 ```
 
+`cxf-xjc-plugin` runs XJC in a forked JVM on Java 9 or newer, and that JVM inherits the locale of the
+build machine. The module therefore pins English through the property `cxf.xjc.jvmArgs` (`xml/pom.xml`):
+the generated Javadoc is English, and the sources are reproducible on every machine (ADR-0004).
+
 ## Namespace Prefixes
 
 The JAXB utility of the `util` module applies the namespace prefixes of a mapper that is configured once

@@ -11,9 +11,9 @@ import jakarta.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse für anonymous complex type.
+ * <p>Java class for anonymous complex type.
  * 
- * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
  * &lt;complexType&gt;
@@ -46,7 +46,7 @@ public class Obj
     protected Integer refId;
 
     /**
-     * Ruft den Wert der ms-Eigenschaft ab.
+     * Gets the value of the ms property.
      * 
      * @return
      *     possible object is
@@ -58,7 +58,7 @@ public class Obj
     }
 
     /**
-     * Legt den Wert der ms-Eigenschaft fest.
+     * Sets the value of the ms property.
      * 
      * @param value
      *     allowed object is
@@ -70,7 +70,7 @@ public class Obj
     }
 
     /**
-     * Ruft den Wert der refId-Eigenschaft ab.
+     * Gets the value of the refId property.
      * 
      * @return
      *     possible object is
@@ -82,7 +82,7 @@ public class Obj
     }
 
     /**
-     * Legt den Wert der refId-Eigenschaft fest.
+     * Sets the value of the refId property.
      * 
      * @param value
      *     allowed object is

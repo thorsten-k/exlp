@@ -17,6 +17,9 @@
 		<!-- Each JAXB variant compiles and packages in its own output directory; neither is privileged -->
 		<xml.classes.javax>${project.build.directory}/classes-javax</xml.classes.javax>
 		<xml.classes.jakarta>${project.build.directory}/classes-jakarta</xml.classes.jakarta>
+		<!-- cxf-xjc-plugin runs XJC in a forked JVM on Java 9 or newer, which inherits the locale of the
+		     build machine; pinning English keeps the generated Javadoc English and the sources reproducible -->
+		<cxf.xjc.jvmArgs>-Duser.language=en</cxf.xjc.jvmArgs>
 	</properties>
 
 	<dependencyManagement>

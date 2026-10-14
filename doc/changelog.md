@@ -1,5 +1,25 @@
 # Change Log
 
+## 2026-10-14 – XML: English Javadoc in the generated JAXB sources
+
+- What: Pinned the locale of the XJC run in `xml/pom.xml` through the property `cxf.xjc.jvmArgs`
+  (`-Duser.language=en`, the country is irrelevant for the message bundle) and regenerated the `jakarta`
+  sources with it; a follow-up change to ADR-0004 without a new functional decision.
+- Result: The generated Javadoc of both variants is English. From Java 9 on `cxf-xjc-plugin` runs XJC in a
+  forked JVM that inherited the locale of the build machine (`de_DE`) and wrote German comments; the `javax`
+  sources came from a JDK 8 run in the Maven JVM with `-Duser.language=en` and were English before.
+  Regenerating `javax` reproduces the versioned sources byte-identically, and the class files are unchanged
+  because only Javadoc lines differ.
+- Evidence: `mvn -o -pl xml -Pjakarta clean generate-sources` `[SUCCESS]` under JDK 11 without `MAVEN_OPTS`
+  while the system locale is `de_DE`; `grep -rl 'Klasse\|Schemafragment\|Ruft den\|Legt den' xml/src/main
+  --include='*.java'` finds no file; `diff -r` of a freshly generated `javax` tree against
+  `xml/src/main/javax` reports no difference; `mvn -o -pl xml -Djava.awt.headless=true clean install`
+  `[SUCCESS]` (40 sources per variant, 25 registrations, both classifier jars); `mvn -o -pl util test
+  -Dtest='TestJaxbUtil*,TestNsPrefix*'` passes 24 tests, and the eight failures of `mvn -o -pl util -am test`
+  are pre-existing ramdisk paths (`/Volumes/ramdisk/maven/net.sf.exlp`) that occur unchanged with the change
+  stashed.
+- Files: xml/pom.xml, xml/src/main/jakarta/org/exlp/, README.md, doc/changelog.md.
+
 ## 2026-10-13 – ADRs renumbered (rule override)
 
 - What: Renumbered all five accepted decisions on the explicit request of the responsible person; for this
