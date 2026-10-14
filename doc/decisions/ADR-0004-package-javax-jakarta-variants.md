@@ -1,15 +1,15 @@
 ---
-id: ADR-0002
+id: ADR-0004
 title: Build and publish the JAXB variants as classifier artifacts
 status: accepted
 date: 2026-10-08
 affects:
   - FR-001
 related:
-  - ADR-0001
+  - ADR-0005
 ---
 
-# ADR-0002: Build and publish the JAXB variants as classifier artifacts
+# ADR-0004: Build and publish the JAXB variants as classifier artifacts
 
 ## Context
 

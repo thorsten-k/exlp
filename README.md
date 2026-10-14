@@ -30,9 +30,9 @@ EXLP is an established, historically grown multi-module Maven project (`net.sf.e
 
 ## Technical Assumptions
 
-- **Platform:** Java 8 for the `javax` artifact and for the modules of the layered chain, which compile against the Java 8 API (`--release 8`, ADR-0003); the `xml` module builds with JDK 11 or newer and produces the `jakarta` artifact for Java 11 (ADR-0002, `doc/decisions/`).
-- **Build:** Maven multi-module build (ADR-0005); artifacts are published under the group `net.sf.exlp`.
-- **Libraries:** SLF4J with Log4j2 (logging), JUnit 5 (testing, ADR-0004), JAXB and JDOM (XML), Jackson (JSON), Apache Commons (CLI, IO, Configuration).
+- **Platform:** Java 8 for the `javax` artifact and for the modules of the layered chain, which compile against the Java 8 API (`--release 8`, ADR-0001); the `xml` module builds with JDK 11 or newer and produces the `jakarta` artifact for Java 11 (ADR-0004, `doc/decisions/`).
+- **Build:** Maven multi-module build (ADR-0002); artifacts are published under the group `net.sf.exlp`.
+- **Libraries:** SLF4J with Log4j2 (logging), JUnit 5 (testing, ADR-0003), JAXB and JDOM (XML), Jackson (JSON), Apache Commons (CLI, IO, Configuration).
 - **License:** GNU General Public License v3 (GPL-3.0).
 
 ## Open Fundamental Decisions
@@ -90,7 +90,7 @@ module); the packaging places it in the artifact.
 
 ### Binding in the EXLP modules
 
-The `xml` module binds the goal twice at `process-classes`, once per variant output directory (ADR-0002),
+The `xml` module binds the goal twice at `process-classes`, once per variant output directory (ADR-0004),
 so `mvn clean install` writes the metadata into each variant directory and the packaging places it in the
 matching classifier artifact. The plugin depends on no module of the layered chain, which the binding
 requires.
@@ -99,7 +99,7 @@ requires.
 
 The `xml` module compiles both JAXB variants from the same XSD in one Maven run and publishes exactly two
 artifacts: `net.sf.exlp:exlp-xml:<version>:javax` and `net.sf.exlp:exlp-xml:<version>:jakarta`. There is
-no artifact without a classifier, so a consumer names the classifier that fits its platform (ADR-0002).
+no artifact without a classifier, so a consumer names the classifier that fits its platform (ADR-0004).
 
 ```xml
 <dependency>
@@ -135,8 +135,8 @@ a warning that names the class of the mapper.
 ## Build and Start
 
 Prerequisites: JDK 11 or newer and Maven 3.6.3 or newer. All modules compile against the Java 8 API (`--release 8`,
-ADR-0003); the `xml` module compiles the `javax` variant with `--release 8` and the `jakarta` variant
-with `--release 11` in one run (ADR-0002).
+ADR-0001); the `xml` module compiles the `javax` variant with `--release 8` and the `jakarta` variant
+with `--release 11` in one run (ADR-0004).
 
 ```bash
 mvn clean install

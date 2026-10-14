@@ -1,12 +1,12 @@
 ---
-id: ADR-0005
+id: ADR-0002
 title: Maven as build tool
 status: accepted
 date: 2026-10-11
 affects: []
 ---
 
-# ADR-0005: Maven as build tool
+# ADR-0002: Maven as build tool
 
 ## Context
 
@@ -34,7 +34,7 @@ dependencies, and binds the extensions of the BOM and the target platform.
 - The dependency versions live in one BOM, so no module repeats a version.
 - The enforcer rule keeps a banned dependency out of the reactor, and the javadoc plugin documents the
   artifacts of a release.
-- The bound `maven-surefire-plugin` 3.6.0 (ADR-0004) needs Maven 3.6.3 or newer, which sets the required
+- The bound `maven-surefire-plugin` 3.6.0 (ADR-0003) needs Maven 3.6.3 or newer, which sets the required
   version of the build.
 
 ## Alternatives

@@ -1,19 +1,19 @@
 ---
-id: ADR-0003
+id: ADR-0001
 title: Compile all modules against the Java 8 API
 status: accepted
 date: 2026-10-08
 related:
-  - ADR-0002
+  - ADR-0004
 ---
 
-# ADR-0003: Compile all modules against the Java 8 API
+# ADR-0001: Compile all modules against the Java 8 API
 
 ## Context
 
 The project overview (`README.md`, `## Technical Assumptions`) names Java 8 as the platform of the
 artifacts, and the root `pom.xml` configured the compiler with `source` and `target` 8. The build of the
-repository runs on JDK 11 or newer (ADR-0002). The open question is how the artifacts of the modules of
+repository runs on JDK 11 or newer (ADR-0004). The open question is how the artifacts of the modules of
 the layered chain keep running on Java 8 although a newer JDK compiles them.
 
 - `source` and `target` select the source level and the class-file version, but the compilation uses the
@@ -28,8 +28,8 @@ Every module of the repository compiles against the Java 8 API.
 - The root `pom.xml` configures `maven-compiler-plugin` with the parameter `release` and the value `8`;
   the parameters `source` and `target` are not used.
 - The `xml` module keeps one value per run: `--release 8` for the `javax` artifact and `--release 11`
-  for the `jakarta` artifact (ADR-0002); the configuration of an execution overrides the inherited value.
-- The build requires JDK 9 or newer for the `release` argument, in practice JDK 11 or newer (ADR-0002).
+  for the `jakarta` artifact (ADR-0004); the configuration of an execution overrides the inherited value.
+- The build requires JDK 9 or newer for the `release` argument, in practice JDK 11 or newer (ADR-0004).
 - The artifacts of the modules of the layered chain carry class-file version 52 and use the Java 8 API
   only; the test compilation is checked in the same way.
 
@@ -49,7 +49,7 @@ stays unnoticed.
 
 ### Building with JDK 8
 
-Rejects a newer API by definition, but ADR-0002 requires JDK 11 or newer for the `xml` module, so the
+Rejects a newer API by definition, but ADR-0004 requires JDK 11 or newer for the `xml` module, so the
 repository cannot be built with a JDK 8 throughout.
 
 ### Signature check of the Java 8 API after the compilation
@@ -60,7 +60,7 @@ its own, and a separate signature artifact.
 ## Impact
 
 - `pom.xml` (root) – the parameter `release` replaces `source` and `target` for every module.
-- `xml/pom.xml` – the two runs keep their values 8 and 11 (ADR-0002).
+- `xml/pom.xml` – the two runs keep their values 8 and 11 (ADR-0004).
 - `README.md` (`## Technical Assumptions`, `## Build and Start`) and the index (`doc/status.md`) name the
   decision.
 

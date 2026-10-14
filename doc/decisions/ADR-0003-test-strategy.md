@@ -1,11 +1,11 @@
 ---
-id: ADR-0004
+id: ADR-0003
 title: Test strategy
 status: accepted
 date: 2026-10-10
 ---
 
-# ADR-0004: Test strategy
+# ADR-0003: Test strategy
 
 ## Context
 

@@ -1,5 +1,5 @@
 ---
-id: ADR-0001
+id: ADR-0005
 title: Scan module classes with ClassGraph
 status: accepted
 date: 2026-10-08
@@ -7,7 +7,7 @@ affects:
   - FR-001
 ---
 
-# ADR-0001: Scan module classes with ClassGraph
+# ADR-0005: Scan module classes with ClassGraph
 
 ## Context
 

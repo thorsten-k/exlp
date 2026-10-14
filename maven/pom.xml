@@ -47,7 +47,7 @@
 			<scope>compile</scope>
 		</dependency>
 		
-		<!-- Build tooling: class scanning for reachability metadata (ADR-0001) -->
+		<!-- Build tooling: class scanning for reachability metadata (ADR-0005) -->
 		<dependency>
 			<groupId>io.github.classgraph</groupId>
 			<artifactId>classgraph</artifactId>

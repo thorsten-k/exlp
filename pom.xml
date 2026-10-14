@@ -142,7 +142,7 @@
 				<inherited>true</inherited>
 				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
-					<!-- Compile against the Java 8 API, not only into class files 52 (ADR-0003) -->
+					<!-- Compile against the Java 8 API, not only into class files 52 (ADR-0001) -->
 					<release>8</release>
 					<encoding>UTF-8</encoding>
 				</configuration>

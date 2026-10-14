@@ -17,7 +17,7 @@ module's artifact (AC-FR-001-01).
 
 - The goal writes the metadata into the output directory configured for the goal run; the default is the
   build output directory of the current module (AC-FR-001-09).
-- The generated file is accepted by the Native Image version bound in ADR-0001 (AC-FR-001-02).
+- The generated file is accepted by the Native Image version bound in ADR-0005 (AC-FR-001-02).
 - The plugin selects production classes through annotation types configured in the Maven plugin (AC-FR-001-03).
 - Every selected class is registered with all its declared constructors, fields, and methods (AC-FR-001-04).
 - When a class matches multiple configured annotations, one entry covers it (AC-FR-001-05).
@@ -87,7 +87,7 @@ Given:
 
 When:
 
-- GraalVM Native Image in the version bound in ADR-0001 consumes the artifact.
+- GraalVM Native Image in the version bound in ADR-0005 consumes the artifact.
 
 Then:
 

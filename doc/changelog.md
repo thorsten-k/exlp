@@ -1,5 +1,24 @@
 # Change Log
 
+## 2026-10-13 – ADRs renumbered (rule override)
+
+- What: Renumbered all five accepted decisions on the explicit request of the responsible person; for this
+  step the rule "Numbers that have already been used are not reused" (`doc/requirements/requirements.md`,
+  `### Filenames and IDs`) is overridden. The permutation is ADR-0001→ADR-0005, ADR-0002→ADR-0004,
+  ADR-0003→ADR-0001, ADR-0004→ADR-0003, ADR-0005→ADR-0002.
+- Result: The decision repository holds ADR-0001 (java-compile-level), ADR-0002 (maven-build), ADR-0003
+  (test-strategy), ADR-0004 (package-javax-jakarta-variants), and ADR-0005
+  (scan-module-classes-with-classgraph); the index, the project overview, FR-001, and the POM comments follow
+  the new numbers.
+- Evidence: `grep -rn 'ADR-000' doc/decisions doc/status.md README.md
+  doc/requirements/functional/FR-001-reachability-metadata.md pom.xml bom/pom.xml maven/pom.xml` names only
+  the new numbers; `ls doc/decisions` lists the five renamed files.
+- Files: doc/decisions/ADR-0001-java-compile-level.md, doc/decisions/ADR-0002-maven-build.md,
+  doc/decisions/ADR-0003-test-strategy.md, doc/decisions/ADR-0004-package-javax-jakarta-variants.md,
+  doc/decisions/ADR-0005-scan-module-classes-with-classgraph.md, doc/status.md, README.md,
+  doc/requirements/functional/FR-001-reachability-metadata.md, pom.xml, bom/pom.xml, maven/pom.xml,
+  doc/changelog.md.
+
 ## 2026-10-13 – FR-002: tolerate the absent mapper type of the other JAXB variant
 
 - What: Replaced the hard `instanceof` checks of `nsPrefixMapperValue` in `jx/JaxbUtil` and `jk/JaxbUtil`
